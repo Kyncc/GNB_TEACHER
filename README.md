@@ -1,1 +1,80 @@
-#GNB_TEACHER
+﻿# 归纳本学生端
+
+> 基于Vue.js和Dcloud(H5+)混合技术Hybrid App
+
+## 版本记录
+- [V1.0][101]
+- [V1.1][102]
+
+
+
+## 使用技术简介
+### 编译环境
+- [VueLoader][4]
+### Hybird框架
+- [跨平台技术-H5+][1]
+### 数据视图控制
+- [Vue.js][2]
+- [路由-VueRouter][3]  
+- [单项数据流-Vuex][6]
+- [VueRouter和Vuex流同步-Vuex-router-sync][7]
+### 功能组件
+- [时间格式化-Moment.js][8]
+- [图片控制剪裁-Cropper.js][11]
+### UI组件
+- [手机UI库-Vux][5]
+- [触摸手势组件-VueTouch][9]
+- [加载数据组件-Vue-infinite-loading][10]
+- [图片懒加载-Vue-lazyload][12]
+ 
+## 文件夹结构
+
+    ├── build       # webpack编译配置
+    ├── config      # webpack配置
+    ├── dist        # 打包后文件（此目录放在HBuilder中）
+    ├── App.vue     # 入口页面
+    ├── main.js     # 入口JS
+    ├── store.js    # Store
+    ├── index.html  # html模版
+    ├── src         # 开发目录
+        ├── api         # 用来放置接口
+        ├── assets      # 静态资源文件
+        ├── common      # 公共文件模块
+        ├── main        # 主页模块
+        ├── login       # 登陆模块
+        ├── collect     # 收藏本模块
+        ├── error       # 归纳本（错题统计）模块
+        ├── picture     # 拍错题模块
+        ├── message     # 消息模块
+        ├── users       # 个人中心
+            ├── pages               # 页面文件
+            ├── modules             # 逻辑
+            ├── action.js           # action
+            └── mutatuinTypes.js    # mutatuinTypes
+
+
+### 安装
+
+    npm install //安装依赖包
+
+### 使用
+
+    npm run dev     //进入开发模式
+    npm run build   //打包生成的目录在dist下
+
+
+  [1]: http://www.dcloud.io/runtime.html
+  [2]: http://cn.vuejs.org/guide/
+  [3]: http://router.vuejs.org/zh-cn/index.html
+  [4]: http://vue-loader.vuejs.org/en/index.html
+  [5]: https://vuxjs.gitbooks.io/vux/content/about/component-standard.html
+  [6]: http://vuex.vuejs.org/zh-cn/index.html
+  [7]: https://github.com/vuejs/vuex-router-sync
+  [8]: http://momentjs.cn/
+  [9]: https://github.com/vuejs/vue-touch
+  [10]: https://peachscript.github.io/vue-infinite-loading/#!/slots
+  [11]: https://fengyuanchen.github.io/cropperjs/
+  [12]: https://github.com/hilongjw/vue-lazyload
+  [101]: https://modao.cc/app/74c9bb01f9319f75c2e561e4e60790178a086b44
+  [102]: https://modao.cc/app/8e3cd430e96831abcc170f6fdfbe4aee7c3c95fe
+ 

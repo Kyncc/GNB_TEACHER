@@ -1,0 +1,226 @@
+html,body{
+    -webkit-user-select: none;
+    user-select: none;
+    font-family: 'simhei';
+    background:#edf2f1;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+#App{
+    height:100%;
+}
+.none{
+    display:none;
+}
+@import '../assets/iconfont.css';
+.iconfont{
+    position: relative;
+}
+.weui_tabbar_item{
+    background:#fff;
+}
+.weui_cells{
+    margin-top:0;
+}
+.ellipsis{
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+img[lazy=loaded] {
+  -webkit-animation-duration: .3s;
+  animation-duration: .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+img[lazy=loading] {
+  margin: auto;
+}
+img[lazy=error] {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+
+/**
+*   反馈历史、作业消息历史、班级消息历史、纠错消息历史、意见反馈历史、系统消息历史
+*/
+.messageSection{
+    .scollMain{padding-bottom:3.5em;}
+    section{
+        font-size:inherit;
+        text-align: center;
+        h3{font-size:26/40em;padding:.2rem .5rem;background: rgba(0,0,0,.6);display: inline-block;color:#fff;margin:1rem 0 .5rem;border-radius: 7px;}
+        article{font-size:28/40em;width:90%;padding:15px;background: #fff;margin:0 auto;box-sizing: border-box;text-align:left;border-radius: 7px;}
+    }
+}
+
+/**
+*   Vux-Loading
+*/
+.weui_loading_toast{
+    .weui_mask_transparent{
+        background: rgba(0,0,0,.3);
+    }
+}
+
+/**
+*   Vux-Toast
+*/
+.vux-toast{
+    .weui_toast {
+        top:85%;
+    }
+}
+/**
+*   Vux-XButton
+*/
+
+.weui_btn_primary{background:#4bb7aa;}
+.weui_btn_primary:not(.weui_btn_disabled):active {
+    color: hsla(0,0%,100%,.4);
+    background-color: #4bb7aa;
+}
+.weui_btn_disabled {
+    color: hsla(0,0%,100%,.6);
+    background: #ccc !important;
+}
+.weui_btn_plain_primary{
+    color: #4bb7aa;
+    border: 1px solid #4bb7aa;
+}
+/**
+*   Vux-ButtonTab
+*/
+.vux-button-group>a.hover, .vux-button-group>a.vux-button-group-current, .vux-button-group>a:active{
+    background-color:#4bb7aa ;
+    border-color:#4bb7aa ;
+}
+/**
+*   Vux-XHeader
+*/
+.vux-header{
+    color:#fff ;background-color:#4bb7aa ;
+    .vux-header-right {a {color:#fff }}
+}
+.vux-header .vux-header-title, .vux-header h1{margin-left:88px;}
+.vux-header .vux-header-left a{color:#fff;}
+.vux-header .vux-header-left .vux-header-back:before{border-color:#fff; width: 15px;height: 15px; top: 0px;}
+
+/**
+*   Vux-Scoll
+*/
+.xs-plugin-pulldown-container{font-size:16/20rem;}
+.exerciseExampleList{
+    .weui_panel_hd{
+        padding: 0.2rem 0.75rem 0.2rem;
+        color: #000;
+        font-size: 0.8rem;
+        Button{margin-right:.75em;}
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
+    .weui_panel_ft{
+        padding:5/20rem 15/20rem;
+    }
+    .weui_media_box{
+         padding:15/20rem;
+        .weui_media_desc{
+            -webkit-line-clamp:5;
+            font-size:.75rem;
+            img{
+                 width:100%;display:block;
+            }
+        }
+    }
+    .weui_panel_ft::after{display: none;}
+}
+
+.exerciseDetail{
+    .weui_panel_hd{
+        padding:8/20rem 15/20rem 8/20rem;
+        color:#000;
+        font-size:15/20rem;
+        Button{margin-right:.75/20rem;}
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
+   .options{
+       .weui_media_desc{
+           padding:.5rem .3rem;
+       }
+   }
+    .weui_media_box{
+        padding:15/40rem;
+        .weui_media_desc{
+            -webkit-line-clamp:100;
+            font-size:.75rem;
+        }
+    }
+    .weui_panel_ft::after{display: none;}
+}
+
+
+/**
+*   纠错页面公共样式
+*   点评页面公共样式
+*/
+.correctDetail,.commentDetail{
+    .select-item {
+        width: 100/20rem;
+        height: 30/20rem;
+        line-height:30/20rem;
+        text-align: center;
+        border-radius: 3px;
+        color:#4bb7aa;
+        border: 1px solid #4bb7aa;
+        background-color: #fff;
+        margin-right:6/20rem;
+        margin-top:15/20rem;
+    }
+    .select-item-selected {
+        background: #ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAMAAACecocUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTZDOEJBQ0E3NkIxMTFFNEE3MzJFOUJCMEU5QUM0QkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTZDOEJBQ0I3NkIxMTFFNEE3MzJFOUJCMEU5QUM0QkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNkM4QkFDODc2QjExMUU0QTczMkU5QkIwRTlBQzRCQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNkM4QkFDOTc2QjExMUU0QTczMkU5QkIwRTlBQzRCQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnMGp3kAAAAJUExURf9KAP///////4Jqdw0AAAADdFJOU///ANfKDUEAAAAuSURBVHjaTMpBDgAABAPB5f+PlhLUpZMWuQcYMWLEyDN4ymqa5KS4+3G+KAEGACQmAGlKzr56AAAAAElFTkSuQmCC)  no-repeat right bottom;
+        border-color: #ff4a00;
+    }
+}
+.vux-slider .vux-indicator-right>a>.vux-icon-dot, .vux-slider>.vux-indicator>a>.vux-icon-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+.vux-header .vux-header-left, .vux-header .vux-header-right{
+    font-size: 0.9rem;
+}

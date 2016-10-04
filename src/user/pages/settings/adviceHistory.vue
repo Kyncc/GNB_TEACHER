@@ -1,0 +1,58 @@
+<template>
+	<div class='settingsAdviceHistory vux-scroller-header-box'>
+		<div style="height:46px;">
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">反馈历史</x-header>
+		</div>
+		<scroller class="messageSection" lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
+			<div class="scollMain">
+				<section v-for="item in fetchHistory">
+					<h3>{{item.createTime}}</h3>
+					<article>
+						<h4>{{item.title}}</h4>
+						<p>
+						{{item.content}}
+						</p>
+					</article>
+				</section>
+
+			</div>
+		</scroller>
+	</div>
+</template>
+
+<script>
+import {XHeader,XInput,Group,Scroller,Cell} from 'vux'
+import { adviceHistory } from '../../actions.js'
+import { fetchHistory, fetchToken } from '../../getters.js'
+import * as _  from '../../../config/whole.js'
+
+export default {
+	components: {
+		XHeader,XInput,Group,Cell,Scroller
+	},
+	vuex:{
+		actions:{
+			adviceHistory
+		},
+		getters:{
+			fetchHistory,
+			fetchToken
+		}
+	},
+	ready(){
+		this.adviceHistory({token:this.fetchToken},()=>{
+			//_.toast("获取记录成功")
+		})
+	},
+	methods: {
+		load (uuid) {
+			this.adviceHistory({token:this.fetchToken},()=>{
+				setTimeout(()=>{
+					this.$broadcast('pulldown:reset', uuid)
+					_.toast("刷新成功")
+				},500)
+			})
+		}
+	}
+}
+</script>
