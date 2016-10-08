@@ -30,7 +30,9 @@ html,body{
     -webkit-line-clamp: 1;
     overflow: hidden;
 }
-
+.weui_btn:after{
+    border:none;
+}
 
 @-webkit-keyframes fadeIn {
     from {
@@ -132,15 +134,16 @@ img[lazy=error] {
 }
 .vux-header .vux-header-title, .vux-header h1{margin-left:88px;}
 .vux-header .vux-header-left a{color:#fff;}
-.vux-header .vux-header-left .vux-header-back:before{border-color:#fff; width: 15px;height: 15px; top: 0px;}
+.vux-header .vux-header-left .vux-header-back:before{border-color:#fff; width: 15px;height: 15px; top: 0px;border-width:2px 0 0 2px;}
 
 /**
 *   Vux-Scoll
 */
 .xs-plugin-pulldown-container{font-size:16/20rem;}
 .exerciseExampleList{
+   
     .weui_panel_hd{
-        padding: 0.2rem 0.75rem 0.2rem;
+        padding: 0.4rem 0.75rem 0.4rem;
         color: #000;
         font-size: 0.8rem;
         Button{margin-right:.75em;}
@@ -157,7 +160,8 @@ img[lazy=error] {
          padding:15/20rem;
         .weui_media_desc{
             -webkit-line-clamp:5;
-            font-size:.75rem;
+            font-size:.8rem;
+             color:#666;
             img{
                  width:100%;display:block;
             }
@@ -170,7 +174,7 @@ img[lazy=error] {
     .weui_panel_hd{
         padding:8/20rem 15/20rem 8/20rem;
         color:#000;
-        font-size:15/20rem;
+        font-size:16/20rem;
         Button{margin-right:.75/20rem;}
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -187,7 +191,8 @@ img[lazy=error] {
         padding:15/40rem;
         .weui_media_desc{
             -webkit-line-clamp:100;
-            font-size:.75rem;
+            font-size:.8rem;
+            color:#666;
         }
     }
     .weui_panel_ft::after{display: none;}
@@ -222,5 +227,19 @@ img[lazy=error] {
     border-radius: 5px;
 }
 .vux-header .vux-header-left, .vux-header .vux-header-right{
-    font-size: 0.9rem;
+    font-size:18px;
+}
+
+
+/**
+*   icon样式
+*/
+.icon-comment,.icon-flag{
+    color:#ff9800;margin-right:.2rem;top:0px;font-size:.9rem;
+}
+.icon-collect,.icon-error-login{
+    color:#ff9800;margin-right:.2rem;font-size:1rem;top:2px;
+}
+.icon-clear{
+    color:#ff4a00;font-size:1rem;top:1px;
 }

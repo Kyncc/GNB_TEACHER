@@ -3,7 +3,7 @@
   <div style="height:46px;">
     <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心<a slot="right" v-touch:tap="_quit">退出</a></x-header>
   </div>
-  <scroller lock-x v-ref:scroller height="-46px">
+  <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <div class="info">
         <img class="defaultimg" v-lazy="fetchHeadImg"/>
@@ -78,7 +78,7 @@ export default {
 			cmr.captureImage(function(p) {
 				plus.io.resolveLocalFileSystemURL(p, function(entry) {
 					self.setHeadPhoto(entry.toLocalURL())
-                    self.$router.go('user/photo')
+                    self.$router.go('/main/user/photo');
 				})
 			});
         },
@@ -86,7 +86,7 @@ export default {
             let self = this
             plus.gallery.pick(function(e) {
                 self.setHeadPhoto(e.files[0])
-                self.$router.go('user/photo')
+                self.$router.go('/main/user/photo');
 			}, function(e) {
                  _.toast("取消选择图片")
 			}, {

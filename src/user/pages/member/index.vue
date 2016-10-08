@@ -1,6 +1,6 @@
 <template>
   <view-box v-ref:view-box class='member vux-scroller-header-box'>
-    <div style="height:46px;" slot="header">
+    <div style="height:45px;" slot="header">
       <x-header :left-options="{showBack: true}"  class="vux-scroller-header">我的会员<!--<a slot="right" v-touch:tap="_recharge">充值</a>--></x-header>
     </div>
 
@@ -8,7 +8,8 @@
         <div>
           <group>
             <div class="headimg">
-              <img src="../../../assets/user/headimg.png" alt="" />
+              <img v-lazy="userHeadImg"/>
+              <!--<img src="../../../assets/user/headimg.png" alt="" />-->
               <p>{{fetchMemberInfo.isVip=='0'?'普通会员':'VIP'}}</p>
             </div>
 
@@ -42,10 +43,10 @@
             </flexbox>
             <div class="content vux-1px-b vux-1px-t">
               <flexbox class="vux-1px-b">
-                <flexbox-item class="padnone disable title" :span="7/20">
+                <flexbox-item class="padnone  title" :span="7/20">
                   我的特权
                 </flexbox-item>
-                <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="padnone title" :span="8/20">
+                <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="disable padnone title" :span="8/20">
                   VIP拥有更多特权
                 </flexbox-item>
                 <flexbox-item v-if="fetchMemberInfo.isVip=='0'" class="padnone title" :span="4/20">
@@ -110,6 +111,7 @@
 import './member.less'
 import {  XHeader,  Cell,  Group,  Alert,  Flexbox,  FlexboxItem,  Scroller,ViewBox}from 'vux'
 import { member } from '../../actions.js'
+import {userHeadImg} from '../../../common/getters'
 import {fetchToken,fetchMemberInfo} from '../../getters'
 import * as _ from '../../../config/whole.js'
 
@@ -122,8 +124,7 @@ export default {
           member
       },
       getters:{
-          fetchToken,
-          fetchMemberInfo
+          fetchToken,fetchMemberInfo,userHeadImg
       }
   },
   ready(){

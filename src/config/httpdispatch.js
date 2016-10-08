@@ -68,7 +68,7 @@ export default {
    *  cameraRemove:例题删除
    */
   camera: (params) => {
-    return http({ method: 'get', url: API_PATHS.camera, data: params.data, ok: params.ok, wrong: params.wrong });
+    return http({ method: 'post', url: API_PATHS.camera, data: params.data, ok: params.ok, wrong: params.wrong });
   },
   cameraHistory: (params) => {
     return http({ method: 'get', url: API_PATHS.cameraHistory, data: params.data, ok: params.ok, wrong: params.wrong });
@@ -226,13 +226,18 @@ export function http(params) {
         if (resp.data.code == 200) {
           params.ok(resp);
         } else {
+            _.toast(resp.data.msg);
           params.wrong(resp);
         }
         // _.leave();
         return resp;
       }, err => {
       console.log('Network Error:', err);
-      _.toast("接口异常");
+      if(err.data.msg){
+          _.toast(err.data.msg)
+      }else{
+          _.toast('接口异常')
+      }
       _.leave();
       // _.toast(JSON.parse(err.body).msg);
       return err;

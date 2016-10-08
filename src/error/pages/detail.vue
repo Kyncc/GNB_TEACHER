@@ -11,16 +11,16 @@
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/4" style="color:#4bb7aa">例题内容</flexbox-item>
+							<flexbox-item :span="2/4" style="color:#4bb7aa">题干</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;">
 								<template v-if="detail.collectTime != '0' ? true:false">
-									<span @click="_removeCollect(detail.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消收藏</span>
+									<span @click="_removeCollect(detail.id)" style="color:#666;text-align:right" ><i class="icon iconfont icon-collect"></i>取消</span>
 								</template>
 								<template v-if="detail.collectTime == '0' ? true:false">
-									<span @click="_collectAdd(detail.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
+									<span @click="_collectAdd(detail.id)" style="color:#666;text-align:right"><i class="icon iconfont icon-collect"></i>收藏</span>
 								</template>
 							</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
+							<flexbox-item :span="1/4" v-touch:tap="_correct"  style="color:#666;text-align:right"><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
 						</flexbox>
 					</div>
 					<!--题目整体-->
@@ -44,7 +44,7 @@
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析：</flexbox-item>
+							<flexbox-item :span="2/5" style="color:#4bb7aa">解析</flexbox-item>
 						</flexbox>
 					</div>
 					<!--解析主体-->
@@ -111,20 +111,21 @@ export default {
     },
 	methods: {
 		_errorList(){	//错题列表IDS获取
-			let self = this;
+			// let self = this;
 			_.busy();
 			this.getErrorListIds({
-				knowledgeId:self.list[0].knowledgeId,
+				knowledgeId:this.list[0].knowledgeId,
 				options:{
-					period_id:self.period_id,
-					subject_id:self.subject_id
+					period_id:this.period_id,
+					subject_id:this.subject_id
 				},
-				token:self.token
+				token:this.token
 			},()=>{
-				if(self.errorListIds.length == 0){
+				if(this.errorListIds.length == 0){
 					_.toast("暂无例题");
 				}else{
-					self.$router.replace('/error/list/'+self.list[0].knowledgeId);
+					this.$router.go(`/error/list/${this.list[0].knowledgeId}`);
+					// self.$router.on('/error/list/'+self.list[0].knowledgeId);
 				}
 				_.leave();
 			},()=>{

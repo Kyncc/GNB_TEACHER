@@ -11,12 +11,12 @@
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="1/2" style="color:#4bb7aa">收藏习题</flexbox-item>
-							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct">
-								<span><i class="icon iconfont icon-error-login"></i>纠错</span>
-							</flexbox-item>
+							<flexbox-item :span="1/2" style="color:#4bb7aa">题干</flexbox-item>
 							<flexbox-item :span="1/4" style="text-align:right;" v-touch:tap="_remove">
-								<span style="color:orange"><i class="icon iconfont icon-clear"></i>取消</span>
+								<span style="color:#666"><i class="icon iconfont icon-clear"></i>取消</span>
+							</flexbox-item>
+							<flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct">
+								<span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
 							</flexbox-item>
 						</flexbox>
 					</div>
@@ -35,7 +35,7 @@
 									{{ $key }} : {{{* value }}}
 								</p>
 							</div>
-						</template>
+						</template> 
 
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析</flexbox-item>
+							<flexbox-item :span="2/5" style="color:#4bb7aa">解析</flexbox-item>
 						</flexbox>
 					</div>
 					<!--解析主体-->
@@ -103,9 +103,9 @@ export default {
 				token:this.token
 			},()=>{
 					setTimeout(()=>{
-						self.list = self.CollectExampleList;
-						if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
-						self.$broadcast('$InfiniteLoading:complete');
+						this.list = this.CollectExampleList;
+						if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+						this.$broadcast('$InfiniteLoading:complete');
 					},300);
 				}
 			)
@@ -120,14 +120,13 @@ export default {
 			this.$router.go('/collect/');
 		},
 		_removeCollect(){
-			let self =  this;
 			this.collectRemove({
 				options:{
-					id:self.id,
-					period_id:self.period_id,
-					subject_id:self.subject_id
+					id:this.id,
+					period_id:this.period_id,
+					subject_id:this.subject_id
 				},
-				token:self.token,
+				token:this.token,
 				type:'example'
 			},()=>{
 				setTimeout(()=>{

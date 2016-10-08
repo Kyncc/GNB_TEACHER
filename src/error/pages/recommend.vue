@@ -17,13 +17,13 @@
 						<flexbox-item :span="2/4" style="color:#4bb7aa">练习题{{{$index+1}}}</flexbox-item>
                         <flexbox-item :span="1/4" style="text-align:right;">
                            <template v-if="item.collectTime == '0' ? true:false">
-								<span @click="_collectAdd($index,item.id)"><i class="icon iconfont icon-collect"></i>收藏</span>
+								<span @click="_collectAdd($index,item.id)" style="color:#666;text-align:right"><i class="icon iconfont icon-collect"></i>收藏</span>
 							</template>
 							<template v-if="item.collectTime != '0' ? true:false">
-								<span @click="_removeCollect($index,item.id)" class="isCollect"><i class="icon iconfont icon-collect"></i>取消收藏</span>
+								<span @click="_removeCollect($index,item.id)" style="color:#666;text-align:right"><i class="icon iconfont icon-collect"></i>取消</span>
 							</template>
                         </flexbox-item>
-                        <flexbox-item :span="1/4" style="text-align:right" v-touch:tap="_correct(item.id)" ><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
+                        <flexbox-item :span="1/4" style="text-align:right;color:#666;" v-touch:tap="_correct(item.id)" ><i class="icon iconfont icon-error-login"></i>纠错</flexbox-item>
 					</flexbox>				
 				</div>
 				<!--题目整体--> 
@@ -47,7 +47,7 @@
 				<div class="weui_panel weui_panel_access exerciseDetail" v-show="answerShow">
 					<div class="weui_panel_hd">
 						<flexbox :gutter="0" wrap="wrap">
-							<flexbox-item :span="2/5" style="color:#4bb7aa">本题解析：</flexbox-item>
+							<flexbox-item :span="2/5" style="color:#4bb7aa">解析</flexbox-item>
 						</flexbox>				
 					</div> 
 					<!--解析主体--> 
@@ -132,6 +132,7 @@ export default {
 				},
 				token:self.token
 			};
+			console.log(this.errorRecommendIds);
 			this.postErrorRecommend(parm,()=>{
 				_.toast("提交成功");
 				history.back();
@@ -209,19 +210,15 @@ export default {
 	ready(){
 		this._startTimeDown();
 	},
-	computed:{
-		errorRecommendIds(){
-			this.corrects= [];
-			for(let i = 0; i< this.errorRecommendIds.length;i++){
-				this.corrects.push('1');
-			}
-		}
-	},
 	watch:{
 		answer(){
+			this.corrects = new Array(this.errorRecommendIds.length);
+			for(let i = 0; i< this.corrects.length;i++){
+				this.corrects[i] = '0' ;
+			}
 			for(let i = 0; i< this.answer.length;i++){
-				let index = this.answer[i];
-				this.corrects[index-1] = '0';
+				let index = this.answer[i] - 1;
+				this.corrects[index] = '1' ;
 			}
 		}
 	}

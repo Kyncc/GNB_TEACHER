@@ -1,10 +1,7 @@
-﻿# 归纳本教师端
+﻿# 归纳本学生端
 
 > 基于Vue.js和Dcloud(H5+)混合技术Hybrid App
 
-## 版本记录
-- [V1.0][101]
-- [V1.1][102]
 
 ## 使用技术简介
 ### 编译环境
@@ -24,6 +21,7 @@
 - [触摸手势组件-VueTouch][9]
 - [加载数据组件-Vue-infinite-loading][10]
 - [图片懒加载-Vue-lazyload][12]
+- [灯箱-PhotoSwipe][13]
  
 ## 文件夹结构
 
@@ -73,6 +71,5 @@
   [10]: https://peachscript.github.io/vue-infinite-loading/#!/slots
   [11]: https://fengyuanchen.github.io/cropperjs/
   [12]: https://github.com/hilongjw/vue-lazyload
-  [101]: https://modao.cc/app/74c9bb01f9319f75c2e561e4e60790178a086b44
-  [102]: https://modao.cc/app/8e3cd430e96831abcc170f6fdfbe4aee7c3c95fe
- 
+  [13]: https://github.com/dimsemenov/PhotoSwipe
+  
