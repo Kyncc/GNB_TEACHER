@@ -15,7 +15,7 @@
           </swiper>
         </div>
         <section class="content">
-            <flexbox :gutter="0">
+            <flexbox :gutter="0" wrap="wrap">
               <flexbox-item :span="32/100">
                   <img src="../../assets/main/error.png" alt="" />
                   <p>查看错题</p>
@@ -32,8 +32,6 @@
                   <img src="../../assets/main/knowledge.png" alt="" />
                   <p class="disable">知识图谱</p>
               </flexbox-item>
-            </flexbox>
-              <flexbox :gutter="0">
               <flexbox-item :span="32/100">
                   <img src="../../assets/main/homework.png" alt="" />
                   <p class="disable">布置作业</p>
@@ -44,15 +42,7 @@
                   <img src="../../assets/main/types.png" alt="" />
                   <p class="disable">刷题型</p>
               </flexbox-item>
-              <flexbox-item :span="2/100">
-              </flexbox-item>
-              <flexbox-item :span="32/100">
-                  &nbsp;
-              </flexbox-item>
             </flexbox>
-          <!-- <panel :footer="{'title':'您已拍错'+cameraCount+'道题目','url':'/camera'}" :list="pictureInc" :type="type"></panel>
-          <panel :footer="{'title':'您已归纳'+errorCount+'道题目','url':'/error/'}" :list="errorInc" :type="type"></panel>
-          <panel :footer="{'title':'您已收藏'+collectCount+'道题目','url':'/collect/'}" :list="collectInc" :type="type"></panel> -->
         </section>
       </div>
     </scroller>
@@ -63,17 +53,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem} from 'vux'
+import { XHeader,Swiper,SwiperItem,Scroller,Flexbox,FlexboxItem} from 'vux'
 import { collectCount,errorCount,cameraCount,swiper} from '../getters'
 import { period_id,subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
-
 import { shareReady } from '../../common/h5Plus/share.js';
 import './main.less'
 
 export default {
   components: {
-    XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem
+    XHeader,Swiper,SwiperItem,Scroller,Flexbox,FlexboxItem
   },
   methods: {
 		_share(){
@@ -119,7 +108,7 @@ export default {
                 width:3rem;
                 height:3rem;
                 display:block;
-                margin:0.5rem auto;
+                margin:0.7rem auto 0.3rem auto;
             }
             p{
                 text-align:center;
