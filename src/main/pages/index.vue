@@ -94,8 +94,6 @@ export default {
     this.getStudentIndex(params);
   }
 }
-
-
 </script>
 <style lang="less" scoped>
 .content{
