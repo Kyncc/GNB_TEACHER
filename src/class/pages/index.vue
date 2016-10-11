@@ -37,12 +37,11 @@ import {
 from 'vux'
 import {
   myClassList
-} from '../../actions'
+} from '../actions'
 import {
-  fetchClassList,
-  fetchToken
-} from '../../getters'
-
+  fetchClassList
+} from '../getters'
+import { token } from '../../common/getters.js'
 export default {
   components: {
     XHeader,
@@ -57,7 +56,7 @@ export default {
   vuex: {
     getters: {
       fetchClassList,
-      fetchToken
+      token
     },
     actions: {
       myClassList
@@ -72,8 +71,8 @@ export default {
     }
   },
   ready() {
-      console.log(this.fetchToken)
-      this.myClassList({token:this.fetchToken})
+      console.log(this.token)
+      this.myClassList({token:this.token})
   }
 }
 </script>

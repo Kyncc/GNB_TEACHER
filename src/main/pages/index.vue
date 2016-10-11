@@ -22,7 +22,7 @@
               </flexbox-item>
               <flexbox-item :span="2/100">
               </flexbox-item>
-              <flexbox-item :span="32/100">
+              <flexbox-item :span="32/100" link="/main/index/class">
                   <img src="../../assets/main/class.png" alt="" />
                   <p>我的班级</p>
               </flexbox-item>

@@ -61,9 +61,9 @@ import userMemberRule from './user/pages/member/rule'
 import userMemberRecharge from './user/pages/member/recharge'
 import userMemberMyBill from './user/pages/member/myBill'
 //我的班级
-import userClassIndex from './user/pages/class/index'
-import userClassDetail from './user/pages/class/classDetail'
-import userClassAdd from './user/pages/class/addClass'
+import classIndex from './class/pages/index'
+import classDetail from './class/pages/classDetail'
+import classAdd from './class/pages/addClass'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
 //插件
@@ -177,9 +177,9 @@ router.map({
   'user/member/myBill': { component: userMemberMyBill }, //我的账单
   'user/member/rule':{ component: userMemberRule}, //积分规则
   //我的班级
-  'user/class': { component: userClassIndex },
-  'user/class/detail': { component: userClassDetail },
-  'user/class/addClass': { component: userClassAdd },
+  '/main/index/class': { component: classIndex },
+  '/main/index/detail': { component: classDetail },
+  '/main/index/addClass': { component: classAdd },
   //我的教材
   'user/textBook': { component: userTextbook }
 })
