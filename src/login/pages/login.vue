@@ -46,8 +46,8 @@ export default {
       disable: false,
       // mobile:'',
       // password:''
-      mobile:'15375117191',
-      password:'112233'
+      mobile:'',
+      password:''
     }
   },
   methods:{
@@ -61,7 +61,7 @@ export default {
           setTimeout(()=>{
               _.leave();
               this.$router.replace('/main');
-          },500);
+          },1000);
       },()=>{
           setTimeout(()=>{
               _.leave();
@@ -74,6 +74,15 @@ export default {
      disable(){
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
-  }
+ },ready(){
+     function plusReady() {
+        plus.navigator.closeSplashscreen();
+    }
+    if(window.plus) {
+        plusReady();
+    } else {
+        document.addEventListener('plusready', plusReady, false);
+    }
+ }
 }
 </script>

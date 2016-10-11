@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      version: '1.0.0',
+      version: '1.0.1',
       show: false,
       confirm: false,
       quit:false
@@ -64,20 +64,24 @@ export default {
     },
     _quit(type) {
         if(type=='确认'){
-          this.$router.replace('/');
-            // this.quitToken({token:this.fetchToken},()=>{
-            //     this.$router.replace('/')
-            // })
+            localStorage.removeItem('headImg');
+            localStorage.removeItem('mobile');
+            localStorage.removeItem('name');
+            localStorage.removeItem('token');
+            localStorage.removeItem('isVip');
+            localStorage.removeItem('balance');
+            localStorage.removeItem('numerical');
+            this.$router.replace('/');
         }
     },
     onAction(type) {
       if (type == '确认') {
         let start = true;
-        let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/gnb-student.apk", {}, (d, status)=> {
+        let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/com.sanbao.guinaben.student.apk", {}, (d, status)=> {
           if (status == 200) {
             console.log('下载完成：' + d.filename);
             plus.ui.toast('下载完成：' + d.filename);
-            void plus.runtime.install('_downloads/gnb-student.apk');
+            void plus.runtime.install('_downloads/com.sanbao.guinaben.student.apk');
           } else {
             console.log('下载失败：' + status);
             plus.ui.toast('下载失败：' + status);
@@ -111,7 +115,7 @@ export default {
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
     _openStore() {
-      window.location.href = "market://details?id=io.dcloud.HelloH5";
+      window.location.href = "market://details?id=com.sanbao.guinaben.student";
     }
   }
 }

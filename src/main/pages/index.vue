@@ -48,7 +48,6 @@
     </scroller>
   </div>
 </template>
-
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -59,13 +58,12 @@ import { period_id,subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import { shareReady } from '../../common/h5Plus/share.js';
 import './main.less'
-
 export default {
   components: {
     XHeader,Swiper,SwiperItem,Scroller,Flexbox,FlexboxItem
   },
   methods: {
-		_share(){
+        _share(){
       //shareReady()
     }
   },
@@ -92,6 +90,14 @@ export default {
         token:this.token
     }
     this.getStudentIndex(params);
+    function plusReady() {
+        plus.navigator.closeSplashscreen();
+    }
+    if(window.plus) {
+        plusReady();
+    } else {
+        document.addEventListener('plusready', plusReady, false);
+    }
   }
 }
 </script>
