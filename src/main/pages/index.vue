@@ -22,7 +22,7 @@
               </flexbox-item>
               <flexbox-item :span="2/100">
               </flexbox-item>
-              <flexbox-item :span="32/100" link="/main/index/class">
+              <flexbox-item :span="32/100" v-touch:tap="_class">
                   <img src="../../assets/main/class.png" alt="" />
                   <p>我的班级</p>
               </flexbox-item>
@@ -63,9 +63,9 @@ export default {
     XHeader,Swiper,SwiperItem,Scroller,Flexbox,FlexboxItem
   },
   methods: {
-        _share(){
-      //shareReady()
-    }
+        _class(){
+            this.$router.go('/main/index/class')
+        }
   },
   vuex: {
     getters: {

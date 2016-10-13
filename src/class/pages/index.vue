@@ -41,7 +41,9 @@ import {
 import {
   fetchClassList
 } from '../getters'
-import { token } from '../../common/getters.js'
+import {
+  token
+} from '../../common/getters.js'
 export default {
   components: {
     XHeader,
@@ -68,11 +70,16 @@ export default {
     },
     _detail() {
       this.$router.go('detail')
+    },
+    createClass() {
+        this.$router.go('createClass')
     }
   },
   ready() {
-      console.log(this.token)
-      this.myClassList({token:this.token})
+    console.log(this.token)
+    this.myClassList({
+      token: this.token
+    })
   }
 }
 </script>
