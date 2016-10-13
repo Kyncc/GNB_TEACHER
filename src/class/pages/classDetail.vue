@@ -1,26 +1,35 @@
 <template>
 <view-box v-ref:view-box class='myClass'>
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
   <x-header :left-options="{showBack: true}">数学一班</x-header>
-  <cell title="我的老师">
-  </cell>
-  <group>
-    <cell title="汪老师">
-        <img slot="icon" width="30" style="display:block;margin-right:5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=">
+  <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
+    <flexbox-item :span="3/4">
+      <button-tab>
+        <button-tab-item v-touch:tap="_list('student')" :selected="selected">学生列表</button-tab-item>
+        <button-tab-item v-touch:tap="_list('apply')"  :selected="!selected">申请列表</button-tab-item>
+      </button-tab>
+    </flexbox-item>
+  </flexbox>
+  </div>
+  <group style="padding-top:98px;" v-show="selected">
+    <cell v-for="item in fetchClassMateList" :title="item.name" >
+        <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
     </cell>
   </group>
-  <cell title="我的同学">
-
-  </cell>
-  <group>
-    <cell title="李同学">
-        <img slot="icon" width="30" style="display:block;margin-right:5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=">
-    </cell>
+  <group style="padding-top:98px;" v-show="!selected">
+    <div v-for="item in list" class="applyList">
+        <p class="msg">{{item.title}}申请加入数学一班 <span class="disable">2016.10.13</span></p>
+        <p class="state disable">已同意</p>
+        <x-button class="leftbtn" type='warn' mini>拒绝</x-button>
+        <x-button class="rightbtn" type='primary' mini>同意</x-button>
+    </div>
   </group>
 </view-box>
 </template>
 
 <script>
 import './myClass.less'
+import InfiniteLoading from 'vue-infinite-loading'
 import {
   XHeader,
   Cell,
@@ -29,9 +38,13 @@ import {
   Flexbox,
   FlexboxItem,
   Search,
-  ViewBox
+  XButton,
+  ViewBox,ButtonTab,ButtonTabItem
 }
 from 'vux'
+import { myClassmateList,applyList} from '../actions.js'
+import { fetchClassMateList,fetchApplyList } from '../getters.js'
+import { token,id } from '../../common/getters.js'
 export default {
   components: {
     XHeader,
@@ -41,15 +54,67 @@ export default {
     Flexbox,
     FlexboxItem,
     Search,
-    ViewBox
+    ViewBox,ButtonTab,ButtonTabItem,InfiniteLoading,XButton
+  },
+  vuex:{
+    actions:{
+        myClassmateList,applyList
+    },
+    getters:{
+        fetchClassMateList,token,id,fetchApplyList
+    }
+  },
+  ready(){
+      this.myClassmateList({
+          classCode:this.id,
+          token:this.token
+      })
+      this.applyList({
+          classCode:this.id,
+          token:this.token
+      })
+  },
+  data(){
+    return {
+        list:[{title:'李同学'},{title:'李同学'},{title:'李同学'},{title:'李同学'},{title:'李同学'},{title:'李同学'},{title:'李同学'},{title:'李同学'},{title:'李同学'},{title:'李同学'}],
+        selected: true
+    }
   },
   methods: {
-    _points() {
-      this.$router.go('points')
-    },
-    _recharge() {
-      this.$router.go('recharge')
+    _list(val) {
+        if(val=='apply'){
+            this.selected = false
+        }else{
+            this.selected = true
+        }
     }
   }
 }
 </script>
+<style lang="less" scoped>
+    .applyList{
+        padding:1rem;
+        border-bottom:1px solid #999;
+        .msg{
+            line-height:2rem;
+            font-size:1rem;
+            span{
+                font-size:0.8rem;
+                float:right;
+            }
+        }
+        .state{
+            text-align:center;
+            font-size:0.8rem;
+        }
+        .leftbtn{
+            width:30%;
+            margin-top:0;
+        }
+        .rightbtn{
+            width:30%;
+            margin-left:37%;
+            margin-top:0;
+        }
+    }
+</style>

@@ -133,9 +133,15 @@ export default {
   myClassList: (params) => {
     return http({ method: 'get', url: API_PATHS.myClassList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  createClass: (params) => {
+    return http({ method: 'post', url: API_PATHS.createClass, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   //获取班级成员名单
   myClassmateList: (params) => {
     return http({ method: 'get', url: API_PATHS.myClassmateList, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
+  applyList: (params) => {
+    return http({ method: 'get', url: API_PATHS.applyList, data: params.data, ok: params.ok, wrong: params.wrong })
   },
   //修改密码
   updatePwd: (params) => {

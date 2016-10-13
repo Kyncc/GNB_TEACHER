@@ -16,56 +16,63 @@
         </div>
         <section class="content">
             <flexbox :gutter="0" wrap="wrap">
-              <flexbox-item :span="32/100">
-                  <img src="../../assets/main/error.png" alt="" />
-                  <p>查看错题</p>
+              <flexbox-item :span="246.6/750" >
+                  <img src="../../assets/main/error.png"/>
+                  <p>查错题</p>
               </flexbox-item>
-              <flexbox-item :span="2/100">
+              <flexbox-item :span="5/750">
               </flexbox-item>
-              <flexbox-item :span="32/100" v-touch:tap="_class">
+              <flexbox-item :span="246.6/750"  v-link="{ path: '/index/class'}">
                   <img src="../../assets/main/class.png" alt="" />
                   <p>我的班级</p>
               </flexbox-item>
-              <flexbox-item :span="2/100">
+              <flexbox-item :span="5/750">
               </flexbox-item>
-              <flexbox-item :span="32/100">
-                  <img src="../../assets/main/knowledge.png" alt="" />
-                  <p class="disable">知识图谱</p>
-              </flexbox-item>
-              <flexbox-item :span="32/100">
+              <flexbox-item :span="246.6/750"  @click='_warn()'>
                   <img src="../../assets/main/homework.png" alt="" />
                   <p class="disable">布置作业</p>
               </flexbox-item>
-              <flexbox-item :span="2/100">
+              <flexbox-item :span="246.6/750" @click='_warn()'>
+                  <img src="../../assets/main/knowledge.png" alt="" />
+                  <p class="disable">知识图谱</p>
               </flexbox-item>
-              <flexbox-item :span="32/100">
+              <flexbox-item :span="5/750">
+              </flexbox-item>            
+              <flexbox-item :span="246.6/750" @click='_warn()'>
                   <img src="../../assets/main/types.png" alt="" />
                   <p class="disable">刷题型</p>
               </flexbox-item>
-            </flexbox>
+
+          </flexbox>
         </section>
       </div>
     </scroller>
   </div>
 </template>
+
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { XHeader,Swiper,SwiperItem,Scroller,Flexbox,FlexboxItem} from 'vux'
+import { XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem} from 'vux'
 import { collectCount,errorCount,cameraCount,swiper} from '../getters'
 import { period_id,subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
-import { shareReady } from '../../common/h5Plus/share.js';
+import * as _ from '../../config/whole.js'
+
+import {shareReady} from '../../common/h5Plus/share.js';
 import './main.less'
+
 export default {
   components: {
-    XHeader,Swiper,SwiperItem,Scroller,Flexbox,FlexboxItem
+    XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem
   },
   methods: {
-        _class(){
-            this.$router.go('/main/index/class')
-        }
+		_share(){
+      //shareReady()
+  },_warn(){
+      _.toast('敬请期待')
+  }
   },
   vuex: {
     getters: {
@@ -77,26 +84,17 @@ export default {
     }
   },
   store,
-  data(){
-    return {
-    }
-  },
   ready(){
     let params = {
         options:{
             period_id:this.period_id,
             subject_id:this.subject_id
         },
-        token:this.token
+        token:localStorage.getItem('token')
     }
     this.getStudentIndex(params);
-    function plusReady() {
-        plus.navigator.closeSplashscreen();
-    }
     if(window.plus) {
-        plusReady();
-    } else {
-        document.addEventListener('plusready', plusReady, false);
+        plus.navigator.closeSplashscreen();
     }
   }
 }
@@ -106,13 +104,13 @@ export default {
     .vux-flexbox{
         .vux-flexbox-item{
             background:#fff;
-            margin-bottom:0.4rem;
+            margin-bottom:0.13rem;
             min-width:0;
             img{
-                width:3rem;
-                height:3rem;
+                width:2rem;
+                height:2rem;
                 display:block;
-                margin:0.7rem auto 0.3rem auto;
+                margin:1rem auto 0.5rem auto;
             }
             p{
                 text-align:center;

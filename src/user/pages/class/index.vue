@@ -1,7 +1,7 @@
 <template>
 <view-box v-ref:view-box class='myClass'>
-  <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
-  <!-- <group>
+  <x-header :left-options="{showBack: true}">我的班级</x-header>
+  <group>
     <flexbox>
       <flexbox-item :span="17/20">
         <search placeholder="请输入班级编号" :auto-fixed="false"></search>
@@ -12,9 +12,9 @@
         </div>
       </flexbox-item>
     </flexbox>
-  </group> -->
+  </group>
   <group>
-    <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode)">
+    <cell v-for="item in fetchClassList" title="数学一班" link="detail" v-touch:tap="_detail">
       <span class="demo-icon" slot="icon"></span>
     </cell>
   </group>
@@ -37,13 +37,12 @@ import {
 from 'vux'
 import {
   myClassList
-} from '../actions'
+} from '../../actions'
 import {
-  fetchClassList
-} from '../getters'
-import {
-  token
-} from '../../common/getters.js'
+  fetchClassList,
+  fetchToken
+} from '../../getters'
+
 export default {
   components: {
     XHeader,
@@ -58,7 +57,7 @@ export default {
   vuex: {
     getters: {
       fetchClassList,
-      token
+      fetchToken
     },
     actions: {
       myClassList
@@ -68,18 +67,13 @@ export default {
     _search() {
       this.$router.go('addClass')
     },
-    _detail(code) {
-      this.$router.go('class/detail/'+code)
-    },
-    createClass() {
-        this.$router.go('createClass')
+    _detail() {
+      this.$router.go('detail')
     }
   },
   ready() {
-    console.log(this.token)
-    this.myClassList({
-      token: this.token
-    })
+      console.log(this.fetchToken)
+      this.myClassList({token:this.fetchToken})
   }
 }
 </script>

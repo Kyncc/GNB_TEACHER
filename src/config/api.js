@@ -73,8 +73,11 @@ export const API_PATHS = {
   updateUserInfo: `${API_ENV}${API_VERSION}/teacher/user/updateUserInfo`,
   //获取班级列表
   myClassList: `${API_ENV}${API_VERSION}/teacher/class/myClassList`,
+  //创建班级
+  createClass: `${API_ENV}${API_VERSION}/teacher/class/createClass`,
   //班级成员名单
   myClassmateList: `${API_ENV}${API_VERSION}/teacher/class/myClassmateList`,
+  applyList: `${API_ENV}${API_VERSION}/teacher/class/applyList`,
   //修改密码
   updatePwd: `${API_ENV}${API_VERSION}/teacher/user/updatePwd`,
   //反馈
