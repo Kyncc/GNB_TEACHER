@@ -19,7 +19,7 @@
                     {{{item.knowledge}}}
                 </div>
                 <div class="weui_panel_bd">
-                    <a class="weui_media_box weui_media_appmsg" href="#!/index/check/detail/errorDetail/{{item.id}}">
+                    <a class="weui_media_box weui_media_appmsg">
                         <div class="weui_media_bd">
                             <p class="weui_media_desc">
                                 {{{item.content}}}
