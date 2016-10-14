@@ -48,3 +48,15 @@ export const applyList = ({
     wrong: response => {}
   })
 }
+
+export const replyApply = ({
+  dispatch
+}, params, callback) => {
+  Api.replyApply({
+    data: params,
+    ok: response => {
+      callback && callback()
+    },
+    wrong: response => {}
+  })
+}

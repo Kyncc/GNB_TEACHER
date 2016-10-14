@@ -14,7 +14,7 @@ const mutations = {
     state.classMateList = data
   },
   [GET_APPLY_LIST](state, data) {
-    state.applyList = data
+    state.applyList = data[0].students
   }
 }
 

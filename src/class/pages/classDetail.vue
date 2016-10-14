@@ -17,11 +17,12 @@
     </cell>
   </group>
   <group style="padding-top:98px;" v-show="!selected">
-    <div v-for="item in list" class="applyList">
-        <p class="msg">{{item.title}}申请加入数学一班 <span class="disable">2016.10.13</span></p>
-        <p class="state disable">已同意</p>
-        <x-button class="leftbtn" type='warn' mini>拒绝</x-button>
-        <x-button class="rightbtn" type='primary' mini>同意</x-button>
+    <div v-for="item in fetchApplyList" class="applyList">
+        <p class="msg">{{item.studentName}}申请加入{{item.className}} <span class="disable">{{item.applyTime}}</span></p>
+        <p v-show="item.status == 1" class="state disable">已同意</p>
+        <p v-show="item.status == 0" class="state disable">已拒绝</p>
+        <x-button v-show="item.status == 2" v-touch:tap="_apply(0,item,item.classCode,item.studentId)"> class="leftbtn" type='warn' mini>拒绝</x-button>
+        <x-button v-show="item.status == 2" v-touch:tap="_apply(1,item,item.classCode,item.studentId)"> class="rightbtn" type='primary' mini>同意</x-button>
     </div>
   </group>
 </view-box>
@@ -42,7 +43,7 @@ import {
   ViewBox,ButtonTab,ButtonTabItem
 }
 from 'vux'
-import { myClassmateList,applyList} from '../actions.js'
+import { myClassmateList,applyList,replyApply} from '../actions.js'
 import { fetchClassMateList,fetchApplyList } from '../getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
@@ -58,10 +59,26 @@ export default {
   },
   vuex:{
     actions:{
-        myClassmateList,applyList
+        myClassmateList,applyList,replyApply
     },
     getters:{
         fetchClassMateList,token,id,fetchApplyList
+    }
+  },
+  methods:{
+    _apply(status,classCode,studentId){
+        let self = this
+        self.replyApply({
+            classCode: classCode,
+            status: status,
+            studentId: studentId,
+            token: self.token
+        },()=>{
+            self.applyList({
+                classCode: self.id,
+                token: self.token
+            })
+        })
     }
   },
   ready(){

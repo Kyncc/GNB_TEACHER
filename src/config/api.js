@@ -77,7 +77,10 @@ export const API_PATHS = {
   createClass: `${API_ENV}${API_VERSION}/teacher/class/createClass`,
   //班级成员名单
   myClassmateList: `${API_ENV}${API_VERSION}/teacher/class/myClassmateList`,
+  //申请列表
   applyList: `${API_ENV}${API_VERSION}/teacher/class/applyList`,
+  //申请回复
+  replyApply:`${API_ENV}${API_VERSION}/teacher/class/replyApply`,
   //修改密码
   updatePwd: `${API_ENV}${API_VERSION}/teacher/user/updatePwd`,
   //反馈
