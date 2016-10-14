@@ -54,10 +54,10 @@ export const API_PATHS = {
    *  errorRecommend:归纳本推荐习题
    */
    error:`${API_ENV}${API_VERSION}/teacher/error`,
-   errorList:`${API_ENV}${API_VERSION}/teacher/error/list`,
-   errorMore:`${API_ENV}${API_VERSION}/teacher/error/more`,
-   errorRecommend:`${API_ENV}${API_VERSION}/teacher/error/recommend`,
-   errorRecommendPost:`${API_ENV}${API_VERSION}/teacher/error/recommendPost`,
+   errorList:`${API_ENV}${API_VERSION}/v1/student/error/list`,
+   errorMore:`${API_ENV}${API_VERSION}/v1/student/error/more`,
+   errorRecommend:`${API_ENV}${API_VERSION}/v1/student/error/recommend`,
+   errorRecommendPost:`${API_ENV}${API_VERSION}/v1/student/error/recommendPost`,
    /**互动模块
    * msgSystem:系统消息
    * msgClass:班级消息

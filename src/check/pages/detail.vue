@@ -40,7 +40,7 @@ export default {
     },
     methods:{
         _check(id){
-            console.log(id)
+            this.$router.go('error/'+ id)
         }
     },
     data(){

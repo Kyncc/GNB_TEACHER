@@ -22,6 +22,7 @@ import member from './user/modules/member.js'
 import setting from './user/modules/setting.js'
 
 import myClass from './class/modules/class'
+import check from './check/modules/check.js'
 
 
 Vue.use(Vuex)
@@ -43,6 +44,7 @@ export default new Vuex.Store({
     advice,
     friend,
     member,
-    setting
+    setting,
+    check
   }
 })
