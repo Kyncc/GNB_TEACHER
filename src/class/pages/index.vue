@@ -1,69 +1,44 @@
 <template>
-<view-box v-ref:view-box class='myClass'>
-  <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
-  <group>
-    <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode)">
-      <span class="demo-icon" slot="icon"></span>
-    </cell>
-  </group>
+    <view-box v-ref:view-box class='myClass'>
+        <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
+        <group>
+            <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode,item.name)">
+                <span class="demo-icon" slot="icon"></span>
+            </cell>
+        </group>
 
-</view-box>
+    </view-box>
 </template>
 
 <script>
 import './myClass.less'
-import {
-  XHeader,
-  Cell,
-  Group,
-  Alert,
-  Flexbox,
-  FlexboxItem,
-  Search,
-  ViewBox
-}
-from 'vux'
-import {
-  myClassList
-} from '../actions'
-import {
-  fetchClassList
-} from '../getters'
-import {
-  token
-} from '../../common/getters.js'
+import {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox} from 'vux'
+import {myClassList,setClassName} from '../actions'
+import {fetchClassList} from '../getters'
+import {token} from '../../common/getters.js'
 export default {
-  components: {
-    XHeader,
-    Cell,
-    Group,
-    Alert,
-    Flexbox,
-    FlexboxItem,
-    Search,
-    ViewBox
-  },
-  vuex: {
-    getters: {
-      fetchClassList,
-      token
+    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox},
+    vuex: {
+        getters: {
+            fetchClassList,token
+        },
+        actions: {
+            myClassList,setClassName
+        }
     },
-    actions: {
-      myClassList
-    }
-  },
-  methods: {
-    _detail(code) {
-      this.$router.go('class/detail/' + code)
+    methods: {
+        _detail(code,name) {
+            this.$router.go('class/detail/' + code)
+            this.setClassName(name)
+        },
+        createClass() {
+            this.$router.go('createClass')
+        }
     },
-    createClass() {
-      this.$router.go('createClass')
+    ready() {
+        this.myClassList({
+            token: this.token
+        })
     }
-  },
-  ready() {
-    this.myClassList({
-      token: this.token
-    })
-  }
 }
 </script>
