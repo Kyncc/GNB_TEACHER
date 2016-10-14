@@ -1,9 +1,9 @@
 <template>
 <view-box v-ref:view-box class='myClass'>
-  <x-header :left-options="{showBack: true}">添加班级</x-header>
+  <x-header :left-options="{showBack: true}">邀请学生</x-header>
   <section class="copyCode">
     <h3>我的邀请码</h3>
-    <b>{{fetchInviteCode}}</b>
+    <b>{{id}}</b>
   </section>
   <div class="button">
     <x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>
@@ -25,6 +25,10 @@ import {
   ViewBox
 }
 from 'vux'
+import {
+  id
+} from '../../common/getters.js'
+
 export default {
   components: {
     XHeader,
@@ -37,12 +41,14 @@ export default {
     Search,
     ViewBox
   },
+  vuex: {
+    getters: {
+      id
+    }
+  },
   methods: {
-    _points() {
-      this.$router.go('points')
-    },
-    _recharge() {
-      this.$router.go('recharge')
+    _shareCode() {
+
     }
   }
 }
@@ -73,7 +79,7 @@ export default {
     height: 120/40em;
     background: #ffffff;
     border-radius: 5px;
-    margin: 0 auto 65/40em;
+    margin: 65/40em auto;
     border: 2px dashed #959595;
     text-align: center;
     padding: 0.75em 0 1em;
@@ -83,4 +89,5 @@ export default {
     width: 560/40em;
     margin: 0 auto;
     padding-bottom: 42px;
-}</style>
+}
+</style>

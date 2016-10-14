@@ -21,23 +21,7 @@ import Photo from './main/pages/photo.vue'
 //题目评注、纠错
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
-//拍错题
-import camera from './camera/pages/index'
-import cameraHistory from './camera/pages/history'
-import cameraRecord from './camera/pages/record'
-import cameraResult from './camera/pages/result'
-import cameraPhoto from './camera/pages/photo.vue'
-//归纳本
-import error from './error/pages/index'
-import errorList from './error/pages/list'
-import errorDetail from './error/pages/detail'
-import errorMore from './error/pages/more'
-import errorRecommend from './error/pages/recommend'
-//收藏本
-import collectExample from './collect/pages/example'
-import collectCamera from './collect/pages/camera'
-import collectCameraDetail from './collect/pages/cameraRecord'
-import collectExampleDetail from './collect/pages/exampleDetail'
+
 //通知
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
@@ -60,11 +44,14 @@ import userMemberPoints from './user/pages/member/points'
 import userMemberRule from './user/pages/member/rule'
 import userMemberRecharge from './user/pages/member/recharge'
 import userMemberMyBill from './user/pages/member/myBill'
+//查错题
+import indexCheckIndex from './check/pages/index.vue'
+import indexCheckDetail from './check/pages/detail.vue'
 //我的班级
 import indexClassIndex from './class/pages/index'
 import indexClassCreate from './class/pages/createClass'
 import indexClassDetail from './class/pages/classDetail'
-import indexClassAdd from './class/pages/addClass'
+import indexClassInvite from './class/pages/invite'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
 //插件
@@ -138,23 +125,6 @@ router.map({
   'main/user/photo':{
       component: Photo
   },
-  //拍错题
- 'camera':{component: camera},
- 'camera/history':{component: cameraHistory},
- 'camera/photo':{component: cameraPhoto},
- 'camera/record/:id/:cameraId':{component: cameraRecord},
- 'camera/result/:id':{component: cameraResult},
-  //归纳本
-  'error': { component: error },
-  'error/detail/:id': { component: errorDetail },
-  'error/list/:knowledgeId': { component: errorList },
-  'error/more/:knowledgeId/:id': { component: errorMore },
-  'error/recommend/:knowledgeId': { component: errorRecommend },
-  //收藏本
-  'collect/example': {component: collectExample},
-  'collect/camera': {component: collectCamera},
-  'collect/camera/detail/:id/:cameraId': {component: collectCameraDetail},
-  'collect/example/detail/:id': {component: collectExampleDetail},
   //消息
   'message/class': { component: messageClass },
   'message/system': { component: messageSystem },
@@ -181,7 +151,10 @@ router.map({
   'index/class': { component: indexClassIndex },
   'index/createClass': { component: indexClassCreate },
   'index/class/detail/:id': { component: indexClassDetail },
-  'index/class/addClass': { component: indexClassAdd },
+  'index/class/invite/:id': { component: indexClassInvite },
+  //查错题
+  'index/check': { component: indexCheckIndex },
+  'index/check/detail/:id': { component: indexCheckDetail },
   //我的教材
   'user/textBook': { component: userTextbook }
 })

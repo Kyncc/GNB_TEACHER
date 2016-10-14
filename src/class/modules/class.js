@@ -1,4 +1,4 @@
-import {GET_CLASS_LIST, GET_CLASS_MATE_LIST,GET_APPLY_LIST} from '../mutationTypes'
+import {GET_CLASS_LIST, GET_CLASS_MATE_LIST, GET_APPLY_LIST} from '../mutationTypes'
 
 const state = {
   classList: [],
