@@ -1,18 +1,6 @@
 <template>
 <view-box v-ref:view-box class='myClass'>
   <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
-  <!-- <group>
-    <flexbox>
-      <flexbox-item :span="17/20">
-        <search placeholder="请输入班级编号" :auto-fixed="false"></search>
-      </flexbox-item>
-      <flexbox-item style="background:#efeff4;" :span="3/20">
-        <div class="btn-wrap" style="">
-          <div class="search-btn" v-touch:tap="_search">搜索</div>
-        </div>
-      </flexbox-item>
-    </flexbox>
-  </group> -->
   <group>
     <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode)">
       <span class="demo-icon" slot="icon"></span>
@@ -69,10 +57,10 @@ export default {
       this.$router.go('addClass')
     },
     _detail(code) {
-      this.$router.go('class/detail/'+code)
+      this.$router.go('class/detail/' + code)
     },
     createClass() {
-        this.$router.go('createClass')
+      this.$router.go('createClass')
     }
   },
   ready() {

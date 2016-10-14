@@ -1,7 +1,7 @@
 <template>
 <view-box v-ref:view-box class='myClass'>
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-  <x-header :left-options="{showBack: true}">数学一班</x-header>
+  <x-header :left-options="{showBack: true}">数学一班<a slot="right" v-link="{ path: '/index/class/invite'}">邀请学生</a></x-header>
   <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
     <flexbox-item :span="3/4">
       <button-tab>
