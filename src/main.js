@@ -38,12 +38,6 @@ import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 import userInviteIndex from './user/pages/invite/index'
 import userInviteFriend from './user/pages/invite/friend'
 import userCodeInput from './user/pages/invite/input'
-//我的会员
-import userMemberIndex from './user/pages/member/index'
-import userMemberPoints from './user/pages/member/points'
-import userMemberRule from './user/pages/member/rule'
-import userMemberRecharge from './user/pages/member/recharge'
-import userMemberMyBill from './user/pages/member/myBill'
 //查错题
 import indexCheckIndex from './check/pages/index.vue'
 import indexCheckDetail from './check/pages/detail.vue'
@@ -62,6 +56,7 @@ import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 
 import '../node_modules/cropperjs/dist/cropper.min.css'
+
 
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -143,12 +138,6 @@ router.map({
   'user/invite': { component: userInviteIndex },
   'user/invite/friend': { component: userInviteFriend },
   'user/invite/input': { component: userCodeInput },
-  //我的会员
-  'user/member': { component: userMemberIndex },
-  'user/member/points': { component: userMemberPoints }, //我的积分
-  'user/member/recharge': { component: userMemberRecharge }, //充值
-  'user/member/myBill': { component: userMemberMyBill }, //我的账单
-  'user/member/rule':{ component: userMemberRule}, //积分规则
   //我的班级
   'index/class': { component: indexClassIndex },
   'index/createClass': { component: indexClassCreate },
@@ -174,6 +163,8 @@ router.redirect({
   'collect/comment/:id':'/comment/:id',
   'error/comment/:id':'/comment/:id'
 });
+
+
 
 sync(store, router)
 

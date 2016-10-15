@@ -2,11 +2,10 @@
     <view-box v-ref:view-box class='myClass'>
         <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
         <group>
-            <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode,item.name)">
-                <span class="demo-icon" slot="icon"></span>
-            </cell>
+            <div  v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
+                <span :class="{'vux-reddot':item.status=='1'}">{{item.name}}&nbsp;</span>
+            </div>
         </group>
-
     </view-box>
 </template>
 
@@ -42,3 +41,14 @@ export default {
     }
 }
 </script>
+<style lang="less" scoped>
+.myClass{
+    .cell{
+        padding:1rem;
+        span{
+            dispaly:inline-block !important;
+        }
+        border-bottom:1px solid #999;
+    }
+}
+</style>
