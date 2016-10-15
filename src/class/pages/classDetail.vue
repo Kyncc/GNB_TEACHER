@@ -18,7 +18,7 @@
         </group>
         <group style="padding-top:98px;" v-show="!selected">
             <div v-for="item in fetchApplyList" class="applyList">
-                <p class="msg">{{item.studentName}}申请加入{{item.className}} <span class="disable">{{item.applyTime}}</span></p>
+                <p class="msg"><i>{{item.studentName}}</i>申请加入<i>{{item.className}}</i> <span class="disable">{{item.applyTime | ymd}}</span></p>
                 <p v-show="item.status == 1" class="state disable">已同意</p>
                 <p v-show="item.status == 0" class="state disable">已拒绝</p>
                 <x-button v-show="item.status == 2" v-touch:tap="_apply(0,item,item.classCode,item.studentId)"> class="leftbtn" type='warn' mini>拒绝</x-button>
@@ -89,14 +89,18 @@ export default {
 </script>
 <style lang="less" scoped>
 .applyList{
-    padding:1rem;
+    padding:0.8rem 1rem;
     border-bottom:1px solid #999;
     .msg{
         line-height:2rem;
-        font-size:1rem;
+        font-size:0.9rem;
         span{
             font-size:0.8rem;
             float:right;
+        }
+        i{
+            color:#4bb7aa;
+            font-style:normal;
         }
     }
     .state{

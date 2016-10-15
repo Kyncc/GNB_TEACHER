@@ -13,7 +13,7 @@
             </flexbox>
         </div>
         <div style="padding-top:98px;">
-            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
+            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list"  v-touch:tap="_into(item.knowledgeId)">
                 <div class="weui_panel_hd">
                     <x-button type='primary' mini>参考例题</x-button>
                     {{{item.knowledge}}}
@@ -55,7 +55,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import {period_id,subject_id,token,id} from '../../common/getters'
 import {errorIndexIds,errorIndexList,errorIndexTotalPage} from '../getters'
-import {getErrorIds,getErrorList} from '../actions'
+import {getErrorIds,getErrorList,setKnowledgeId} from '../actions'
 import moment from 'moment'
 
 export default {
@@ -68,10 +68,14 @@ export default {
             period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage,id
         },
         actions: {
-            getErrorIds,getErrorList
+            getErrorIds,getErrorList,setKnowledgeId
         }
     },
     methods: {
+        _into(knowledgeId){
+            this.setKnowledgeId(knowledgeId)
+            this.$router.go('/index/check/detail/errorDetail/'+ this.id)
+        },
         _time(value) {
             if (value == 'week') {
                 this.endTime= moment().unix();

@@ -6,7 +6,7 @@
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <div class="info">
-        <img class="defaultimg" v-lazy="fetchHeadImg"/>
+        <img class="defaultimg"  v-touch:tap="_upload" v-lazy="fetchHeadImg"/>
         <p class="phone">&nbsp;{{fetchPhone}}&nbsp;</p>
         <div class="upload" v-touch:tap="_upload">
           上传头像
@@ -19,9 +19,6 @@
         <!-- <cell title="我的教材" link="../user/textBook/">
             <span class="icon icon-textbook" slot="icon"></span>
         </cell> -->
-        <cell title="我的班级" link="javascript:void(0);" v-touch:tap="_myClass">
-          <span class="icon icon-class" slot="icon"></span>
-        </cell>
         <cell title="我的会员" link="/user/member/">
           <span class="icon icon-member" slot="icon"></span>
         </cell>
