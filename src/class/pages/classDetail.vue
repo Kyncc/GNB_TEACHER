@@ -21,8 +21,8 @@
                 <p class="msg"><i>{{item.studentName}}</i>申请加入<i>{{item.className}}</i> <span class="disable">{{item.applyTime | ymd}}</span></p>
                 <p v-show="item.status == 1" class="state disable">已同意</p>
                 <p v-show="item.status == 0" class="state disable">已拒绝</p>
-                <x-button v-show="item.status == 2" v-touch:tap="_apply(0,item,item.classCode,item.studentId)"> class="leftbtn" type='warn' mini>拒绝</x-button>
-                <x-button v-show="item.status == 2" v-touch:tap="_apply(1,item,item.classCode,item.studentId)"> class="rightbtn" type='primary' mini>同意</x-button>
+                <x-button v-show="item.status == 2" v-touch:tap="_apply('0',item.classCode,item.studentId)" class="leftbtn" type='warn' mini>拒绝</x-button>
+                <x-button v-show="item.status == 2" v-touch:tap="_apply('1',item.classCode,item.studentId)" class="rightbtn" type='primary' mini>同意</x-button>
             </div>
         </group>
     </view-box>
@@ -47,6 +47,7 @@ export default {
     },
     methods:{
         _apply(status,classCode,studentId){
+            console.log(classCode)
             let self = this
             self.replyApply({
                 classCode: classCode,
@@ -59,6 +60,13 @@ export default {
                     token: self.token
                 })
             })
+        },
+        _list(val) {
+            if(val=='apply'){
+                this.selected = false
+            }else{
+                this.selected = true
+            }
         }
     },
     ready(){
@@ -74,15 +82,6 @@ export default {
     data(){
         return {
             selected: true
-        }
-    },
-    methods: {
-        _list(val) {
-            if(val=='apply'){
-                this.selected = false
-            }else{
-                this.selected = true
-            }
         }
     }
 }
