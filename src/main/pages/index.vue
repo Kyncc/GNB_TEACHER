@@ -42,7 +42,13 @@
                   <img src="../../assets/main/types.png" alt="" />
                   <p class="disable">刷题型</p>
               </flexbox-item>
-
+              <flexbox-item :span="5/750">
+              </flexbox-item>
+              <flexbox-item :span="246.6/750" @click='_warn()'>
+                  <p class="disable">&nbsp;</p>
+                  <p class="disable">&nbsp;</p>
+                  <p class="disable">&nbsp;</p>
+              </flexbox-item>
           </flexbox>
         </section>
       </div>
@@ -120,4 +126,5 @@ export default {
         }
     }
 }
+
 </style>

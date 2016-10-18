@@ -49,3 +49,11 @@ export default {
     }
 }
 </script>
+<style lang="less" scoped>
+.weui_cell{
+    padding: 1rem;
+    &:last-child{
+        border: none;
+    }
+}
+</style>

@@ -116,4 +116,10 @@ export default {
         margin-top:0;
     }
 }
+.weui_cell{
+    padding: 1rem;
+    &:last-child{
+        border: none;
+    }
+}
 </style>

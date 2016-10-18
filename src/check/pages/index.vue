@@ -47,7 +47,7 @@ export default {
         span{
             dispaly:inline-block !important;
         }
-        border-bottom:1px solid #999;
+        border-bottom:1px solid #d9d9d9;
     }
 }
 </style>
