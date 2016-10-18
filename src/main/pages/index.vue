@@ -1,59 +1,59 @@
 <template >
-  <div class="mainIndex">
-    <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
-      <x-header :left-options="{showBack: false}">归纳本
-        <!--<a slot="right" v-touch:tap="_share">
-          <i class="icon iconfont icon-share"></i>
-        </a>-->
-      </x-header>
+    <div class="mainIndex">
+        <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
+            <x-header :left-options="{showBack: false}">归纳本
+                <!--<a slot="right" v-touch:tap="_share">
+                <i class="icon iconfont icon-share"></i>
+            </a>-->
+        </x-header>
     </div>
     <scroller lock-x v-ref:scroller height="-46px">
-      <div style="padding-top:46px;">
-        <div class="swiper">
-          <swiper auto loop height="10em" dots-position="center">
-            <swiper-item class="swiperImg" v-for="item in swiper"><img :src="item"/></swiper-item>
-          </swiper>
+        <div style="padding-top:46px;">
+            <div class="swiper">
+                <swiper auto loop height="10em" dots-position="center">
+                    <swiper-item class="swiperImg" v-for="item in swiper"><img :src="item"/></swiper-item>
+                </swiper>
+            </div>
+            <section class="content">
+                <flexbox :gutter="0" wrap="wrap">
+                    <flexbox-item :span="246.6/750"   v-link="{ path: '/index/check'}">
+                        <img src="../../assets/main/error.png"/>
+                        <p>查看错题</p>
+                    </flexbox-item>
+                    <flexbox-item :span="5/750">
+                    </flexbox-item>
+                    <flexbox-item :span="246.6/750" @click='_warn()'>
+                        <img src="../../assets/main/knowledge.png" alt="" />
+                        <p class="disable">知识图谱</p>
+                    </flexbox-item>
+                    <flexbox-item :span="5/750">
+                    </flexbox-item>
+                    <flexbox-item :span="246.6/750"  @click='_warn()'>
+                        <img src="../../assets/main/homework.png" alt="" />
+                        <p class="disable">布置作业</p>
+                    </flexbox-item>
+                    <flexbox-item :span="246.6/750"  v-link="{ path: '/index/class'}">
+                        <img src="../../assets/main/class.png" alt="" />
+                        <p>我的班级</p>
+                    </flexbox-item>
+                    <flexbox-item :span="5/750">
+                    </flexbox-item>
+                    <flexbox-item :span="246.6/750" @click='_warn()'>
+                        <img src="../../assets/main/types.png" alt="" />
+                        <p class="disable">刷题型</p>
+                    </flexbox-item>
+                    <flexbox-item :span="5/750">
+                    </flexbox-item>
+                    <flexbox-item :span="246.6/750" @click='_warn()'>
+                        <p class="disable">&nbsp;</p>
+                        <p class="disable">&nbsp;</p>
+                        <p class="disable">&nbsp;</p>
+                    </flexbox-item>
+                </flexbox>
+            </section>
         </div>
-        <section class="content">
-            <flexbox :gutter="0" wrap="wrap">
-              <flexbox-item :span="246.6/750"   v-link="{ path: '/index/check'}">
-                  <img src="../../assets/main/error.png"/>
-                  <p>查看错题</p>
-              </flexbox-item>
-              <flexbox-item :span="5/750">
-              </flexbox-item>
-              <flexbox-item :span="246.6/750"  v-link="{ path: '/index/class'}">
-                  <img src="../../assets/main/class.png" alt="" />
-                  <p>我的班级</p>
-              </flexbox-item>
-              <flexbox-item :span="5/750">
-              </flexbox-item>
-              <flexbox-item :span="246.6/750"  @click='_warn()'>
-                  <img src="../../assets/main/homework.png" alt="" />
-                  <p class="disable">布置作业</p>
-              </flexbox-item>
-              <flexbox-item :span="246.6/750" @click='_warn()'>
-                  <img src="../../assets/main/knowledge.png" alt="" />
-                  <p class="disable">知识图谱</p>
-              </flexbox-item>
-              <flexbox-item :span="5/750">
-              </flexbox-item>
-              <flexbox-item :span="246.6/750" @click='_warn()'>
-                  <img src="../../assets/main/types.png" alt="" />
-                  <p class="disable">刷题型</p>
-              </flexbox-item>
-              <flexbox-item :span="5/750">
-              </flexbox-item>
-              <flexbox-item :span="246.6/750" @click='_warn()'>
-                  <p class="disable">&nbsp;</p>
-                  <p class="disable">&nbsp;</p>
-                  <p class="disable">&nbsp;</p>
-              </flexbox-item>
-          </flexbox>
-        </section>
-      </div>
     </scroller>
-  </div>
+</div>
 </template>
 
 <script>
@@ -70,39 +70,39 @@ import {shareReady} from '../../common/h5Plus/share.js';
 import './main.less'
 
 export default {
-  components: {
-    XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem
-  },
-  methods: {
-		_share(){
-      //shareReady()
-  },_warn(){
-      _.toast('敬请期待')
-  }
-  },
-  vuex: {
-    getters: {
-        collectCount,errorCount,cameraCount,swiper,
-        period_id,subject_id,token
+    components: {
+        XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem
     },
-    actions: {
-      getStudentIndex
-    }
-  },
-  store,
-  ready(){
-    let params = {
-        options:{
-            period_id:this.period_id,
-            subject_id:this.subject_id
+    methods: {
+        _share(){
+            //shareReady()
         },
-        token:localStorage.getItem('token')
+        _warn(){
+            _.toast('敬请期待')
+        }
+    },
+    vuex: {
+        getters: {
+            collectCount,errorCount,cameraCount,swiper,period_id,subject_id,token
+        },
+        actions: {
+            getStudentIndex
+        }
+    },
+    store,
+    ready(){
+        let params = {
+            options:{
+                period_id:this.period_id,
+                subject_id:this.subject_id
+            },
+            token:localStorage.getItem('token')
+        }
+        this.getStudentIndex(params);
+        if(window.plus) {
+            plus.navigator.closeSplashscreen();
+        }
     }
-    this.getStudentIndex(params);
-    if(window.plus) {
-        plus.navigator.closeSplashscreen();
-    }
-  }
 }
 </script>
 <style lang="less" scoped>
