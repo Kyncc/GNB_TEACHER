@@ -4,7 +4,9 @@
 			<x-header :left-options="{showBack: true}">错题列表</x-header>
 			<group class="knowledge">
 				<p><span>知识点：</span>{{{knowledge}}}</p>
-				<p><span>难度：{{difficult}}</span> <span style="float:right;"  v-touch:tap="_correct" ><i class="icon iconfont icon-error-login"></i> 纠错</span></p>
+				<p><span>难度：{{difficult}}</span>
+					<!-- <span style="float:right;"  v-touch:tap="_correct" ><i class="icon iconfont icon-error-login"></i> 纠错</span> -->
+				</p>
 			</group>
 		</div>
 		<div style="padding-top:120px;">

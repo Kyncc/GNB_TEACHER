@@ -19,7 +19,7 @@
                     {{{item.knowledge}}}
                 </div>
                 <div class="weui_panel_bd">
-                    <a class="weui_media_box weui_media_appmsg">
+                    <a class="weui_media_box weui_media_appmsg"  v-touch:tap="_into(item.knowledgeId)">
                         <div class="weui_media_bd">
                             <p class="weui_media_desc">
                                 {{{item.content}}}
@@ -55,7 +55,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import {period_id,subject_id,token,id} from '../../common/getters'
 import {errorIndexIds,errorIndexList,errorIndexTotalPage} from '../getters'
-import {getErrorIds,getErrorList} from '../actions'
+import {getErrorIds,getErrorList,setKnowledgeId} from '../actions'
 import moment from 'moment'
 
 export default {
@@ -68,10 +68,14 @@ export default {
             period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage,id
         },
         actions: {
-            getErrorIds,getErrorList
+            getErrorIds,getErrorList,setKnowledgeId
         }
     },
     methods: {
+        _into(knowledgeId){
+            this.setKnowledgeId(knowledgeId)
+            this.$router.go('/index/check/detail/errorDetail/'+ this.id)            
+        },
         _time(value) {
             if (value == 'week') {
                 this.endTime= moment().unix();
