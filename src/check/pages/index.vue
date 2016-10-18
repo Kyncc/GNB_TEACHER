@@ -1,21 +1,24 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
-        <x-header :left-options="{showBack: true}">查错题</x-header>
+        <x-header :left-options="{showBack: true}">查看错题</x-header>
         <group>
-            <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode,item.name)">
+            <!-- <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode,item.name)">
                 <span class="demo-icon" slot="icon"></span>
-            </cell>
+            </cell> -->
+            <div  v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
+                <span>{{item.name}}&nbsp;</span>
+            </div>
         </group>
     </view-box>
 </template>
 <script>
 import './myClass.less'
-import {XHeader,Cell,Group,ViewBox}from 'vux'
+import {XHeader,Group,ViewBox}from 'vux'
 import {myClassList,setClassName} from '../../class/actions.js'
 import {fetchClassList} from '../../class/getters'
 import {token} from '../../common/getters.js'
 export default {
-    components: {XHeader,Cell,Group,ViewBox},
+    components: {XHeader,Group,ViewBox},
     vuex: {
         getters: {
             fetchClassList,token
@@ -37,3 +40,14 @@ export default {
     }
 }
 </script>
+<style lang="less" scoped>
+.myClass{
+    .cell{
+        padding:1rem;
+        span{
+            dispaly:inline-block !important;
+        }
+        border-bottom:1px solid #999;
+    }
+}
+</style>

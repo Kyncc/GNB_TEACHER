@@ -18,7 +18,7 @@
             <flexbox :gutter="0" wrap="wrap">
               <flexbox-item :span="246.6/750"   v-link="{ path: '/index/check'}">
                   <img src="../../assets/main/error.png"/>
-                  <p>查错题</p>
+                  <p>查看错题</p>
               </flexbox-item>
               <flexbox-item :span="5/750">
               </flexbox-item>
