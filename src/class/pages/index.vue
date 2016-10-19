@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         _detail(code,name) {
-            this.$router.go('class/detail/' + code)
+            this.$router.go('class/manage/' + code)
             this.setClassName(name)
         },
         createClass() {

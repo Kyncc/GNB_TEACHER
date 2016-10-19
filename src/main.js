@@ -48,6 +48,7 @@ import indexClassIndex from './class/pages/index'
 import indexClassCreate from './class/pages/createClass'
 import indexClassDetail from './class/pages/classDetail'
 import indexClassInvite from './class/pages/invite'
+import indexClassManage from './class/pages/classManage.vue'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
 //插件
@@ -147,6 +148,7 @@ router.map({
   'index/createClass': { component: indexClassCreate },
   'index/class/detail/:id': { component: indexClassDetail },
   'index/class/invite/:id': { component: indexClassInvite },
+  'index/class/manage/:id': { component: indexClassManage },
   //查错题
   'index/check': { component: indexCheckIndex },
   'index/check/detail/:id': { component: indexCheckDetail },
