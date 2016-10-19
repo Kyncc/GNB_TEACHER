@@ -1,7 +1,6 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
         <x-header :left-options="{showBack: true}">班级管理</x-header>
-
         <group>
             <x-input name="username" :value.sync="fetchClassName" readonly><span>编辑</span></x-input>
             <div  v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
