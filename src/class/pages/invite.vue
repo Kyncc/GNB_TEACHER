@@ -1,56 +1,33 @@
 <template>
-<view-box v-ref:view-box class='myClass'>
-  <x-header :left-options="{showBack: true}">邀请学生</x-header>
-  <section class="copyCode">
-    <h3>我的邀请码</h3>
-    <b>{{id}}</b>
-  </section>
-  <div class="button">
-    <x-button type="primary" v-touch:tap="_shareCode">复制邀请码</x-button>
-  </div>
-</view-box>
+    <view-box v-ref:view-box class='myClass'>
+        <x-header :left-options="{showBack: true}">邀请学生</x-header>
+        <section class="copyCode">
+            <h3>我的邀请码</h3>
+            <b id="biao1">{{id}}</b>
+        </section>
+        <div class="button">
+            <x-button type="primary" v-touch:tap="_cppyCode">复制邀请码</x-button>
+        </div>
+    </view-box>
 </template>
 
 <script>
 import './myClass.less'
-import {
-  XHeader,
-  XButton,
-  Cell,
-  Group,
-  Alert,
-  Flexbox,
-  FlexboxItem,
-  Search,
-  ViewBox
-}
-from 'vux'
-import {
-  id
-} from '../../common/getters.js'
+import {XHeader,XButton,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox} from 'vux'
+import {id} from '../../common/getters.js'
 
 export default {
-  components: {
-    XHeader,
-    XButton,
-    Cell,
-    Group,
-    Alert,
-    Flexbox,
-    FlexboxItem,
-    Search,
-    ViewBox
-  },
-  vuex: {
-    getters: {
-      id
-    }
-  },
-  methods: {
-    _shareCode() {
+    components: {XHeader,XButton,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox},
+    vuex: {
+        getters: {
+            id
+        }
+    },
+    methods: {
+        _cppyCode() {
 
+        }
     }
-  }
 }
 </script>
 <style lang="less" scoped>

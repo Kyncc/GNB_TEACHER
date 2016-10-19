@@ -1,14 +1,14 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
-        <x-header :left-options="{showBack: true}">{{fetchClassName}}<a slot="right" v-touch:tap="_edit">{{edit}}</a></x-header>
+        <x-header :left-options="{showBack: true}">{{fetchClassName}}<a slot="right" v-show="fetchClassMateList.length" v-touch:tap="_edit">{{edit}}</a></x-header>
 
         <group>
             <cell v-for="item in fetchClassMateList" :title="item.name" >
                 <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
-                <div class="weui_cell_ft" v-show="delete" v-touch:tap="_delete(item.id,item.name)">删除</div>
+                <div class="weui_cell_ft" v-show="delete" v-touch:tap="_delete(item.id)">删除</div>
             </cell>
         </group>
-        <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定删除该学生码?" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
+        <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定删除该学生吗?" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
     </view-box>
 </template>
 
@@ -34,15 +34,13 @@ export default {
             delete: false,
             show: false,
             delId:'',
-            delName:'',
             edit:'编辑'
         }
     },
     methods:{
-        _delete(id,name){
+        _delete(id){
             this.show = true
             this.delId = id
-            this.delName = name
         },
         _edit(){
             if(this.delete){

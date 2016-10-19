@@ -38,6 +38,17 @@ export const delStudent= ({dispatch}, params, callback) => {
     })
 }
 
+
+//删除班级
+export const delClass= ({dispatch}, params, callback) => {
+    Api.delClass({
+        data: params,
+        ok: response => {
+            callback && callback()
+        },
+        wrong: response => {}
+    })
+}
 export const myClassmateList = ({dispatch}, params) => {
     Api.myClassmateList({
         data: params,

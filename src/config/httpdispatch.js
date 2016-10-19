@@ -152,6 +152,10 @@ export default {
   delStudent: (params) => {
     return http({ method: 'post', url: API_PATHS.delStudent, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  //删除班级
+  delClass: (params) => {
+    return http({ method: 'post', url: API_PATHS.delClass, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   //修改密码
   updatePwd: (params) => {
     return http({ method: 'post', url: API_PATHS.updatePwd, data: params.data, ok: params.ok, wrong: params.wrong })
