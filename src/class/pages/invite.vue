@@ -6,7 +6,7 @@
     <b>{{id}}</b>
   </section>
   <div class="button">
-    <x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>
+    <x-button type="primary" v-touch:tap="_shareCode">复制邀请码</x-button>
   </div>
 </view-box>
 </template>

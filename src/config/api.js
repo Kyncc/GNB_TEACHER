@@ -78,6 +78,8 @@ export const API_PATHS = {
   applyList: `${API_ENV}${API_VERSION}/teacher/class/applyList`,
   //申请回复
   replyApply:`${API_ENV}${API_VERSION}/teacher/class/replyApply`,
+  //删除学生
+  delStudent:`${API_ENV}${API_VERSION}/teacher/class/delStudent`,
   //修改密码
   updatePwd: `${API_ENV}${API_VERSION}/teacher/user/updatePwd`,
   //反馈

@@ -2,9 +2,22 @@
     <view-box v-ref:view-box class='myClass'>
         <x-header :left-options="{showBack: true}">班级管理</x-header>
         <group>
-            <x-input name="username" :value.sync="fetchClassName" readonly><span>编辑</span></x-input>
-            <div  v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
-                <span :class="{'vux-reddot':item.status=='1'}">{{item.name}}&nbsp;</span>
+            <!-- <x-input name="username" style="border-bottom:1px solid #d9d9d9;" :value.sync="fetchClassName" readonly><span>编辑</span></x-input> -->
+            <div  class="cell" v-show="fetchClassName">
+                <span>{{fetchClassName}}</span>
+                <!-- <div class="weui_cell_ft">编辑</div> -->
+            </div>
+            <div  class="cell"   v-link="{ path: '/index/class/apply/'+ id}">
+                <span :class="{'vux-reddot': reddot }">申请通知&nbsp;</span>
+                <div class="weui_cell_ft with_arrow"></div>
+            </div>
+            <div  class="cell"  v-link="{ path: '/index/class/detail/'+ id}">
+                <span >班级成员</span>
+                <div class="weui_cell_ft with_arrow">{{fetchClassMateList.length}}人</div>
+            </div>
+            <div  class="cell"  v-link="{ path: '/index/class/invite/'+ id}">
+                <span >邀请学生</span>
+                <div class="weui_cell_ft with_arrow">    </div>
             </div>
         </group>
     </view-box>
@@ -12,19 +25,23 @@
 
 <script>
 import './myClass.less'
-import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Cell,Group,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,XInput} from 'vux'
 import { myClassmateList,applyList,replyApply} from '../actions.js'
 import { fetchClassMateList,fetchApplyList,fetchClassName } from '../getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
-    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,InfiniteLoading,XButton,XInput},
+    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,XButton,XInput},
     vuex:{
         actions:{
             myClassmateList,applyList,replyApply
         },
         getters:{
             fetchClassMateList,token,id,fetchApplyList,fetchClassName
+        }
+    },
+    data(){
+        return {
+            reddot:false
         }
     },
     methods:{
@@ -42,13 +59,6 @@ export default {
                     token: self.token
                 })
             })
-        },
-        _list(val) {
-            if(val=='apply'){
-                this.selected = false
-            }else{
-                this.selected = true
-            }
         }
     },
     ready(){
@@ -60,48 +70,33 @@ export default {
             classCode:this.id,
             token:this.token
         })
-    },
-    data(){
-        return {
-            readonly: false
+        var self = this
+        for(var key in this.fetchApplyList){
+            if(this.fetchApplyList[key].status == '2'){
+                self.reddot = true
+            }
         }
     }
 }
 </script>
 <style lang="less" scoped>
-.applyList{
-    padding:0.8rem 1rem;
-    border-bottom:1px solid #999;
-    .msg{
-        line-height:2rem;
-        font-size:0.9rem;
+.myClass{
+
+    .cell{
+        padding:1rem;
         span{
-            font-size:0.8rem;
-            float:right;
+            dispaly:inline-block !important;
         }
-        i{
-            color:#4bb7aa;
-            font-style:normal;
+        border-bottom:1px solid #d9d9d9;
+        &:last-child{
+            border: none;
         }
     }
-    .state{
-        text-align:center;
-        font-size:0.8rem;
-    }
-    .leftbtn{
-        width:30%;
-        margin-top:0;
-    }
-    .rightbtn{
-        width:30%;
-        margin-left:37%;
-        margin-top:0;
+
+    .weui_cell_ft{
+        width: 20%;
+        float: right;
     }
 }
-.weui_cell{
-    padding: 1rem;
-    &:last-child{
-        border: none;
-    }
-}
+
 </style>

@@ -1,121 +1,80 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
-        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">{{fetchClassName}}<a slot="right" v-link="{ path: '/index/class/invite/'+ id}">邀请学生</a></x-header>
-            <flexbox style="padding:10px 0;background:#edf2f1;" class="vux-center">
-                <flexbox-item :span="3/4">
-                    <button-tab>
-                        <button-tab-item v-touch:tap="_list('student')" :selected="selected">学生列表</button-tab-item>
-                        <button-tab-item v-touch:tap="_list('apply')"  :selected="!selected">申请列表</button-tab-item>
-                    </button-tab>
-                </flexbox-item>
-            </flexbox>
-        </div>
-        <group style="padding-top:98px;" v-show="selected">
+        <x-header :left-options="{showBack: true}">{{fetchClassName}}<a slot="right" v-touch:tap="_edit">{{edit}}</a></x-header>
+
+        <group>
             <cell v-for="item in fetchClassMateList" :title="item.name" >
                 <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
+                <div class="weui_cell_ft" v-show="delete" v-touch:tap="_delete(item.id,item.name)">删除</div>
             </cell>
         </group>
-        <group style="padding-top:98px;" v-show="!selected">
-            <div v-for="item in fetchApplyList" class="applyList">
-                <p class="msg"><i>{{item.studentName}}</i>申请加入<i>{{item.className}}</i> <span class="disable">{{item.applyTime | ymd}}</span></p>
-                <p v-show="item.status == 1" class="state disable">已同意</p>
-                <p v-show="item.status == 0" class="state disable">已拒绝</p>
-                <x-button v-show="item.status == 2" v-touch:tap="_apply('0',item.classCode,item.studentId)" class="leftbtn" type='warn' mini>拒绝</x-button>
-                <x-button v-show="item.status == 2" v-touch:tap="_apply('1',item.classCode,item.studentId)" class="rightbtn" type='primary' mini>同意</x-button>
-            </div>
-        </group>
+        <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定删除该学生码?" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
     </view-box>
 </template>
 
 <script>
 import './myClass.less'
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader,Cell,Group,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
-import { myClassmateList,applyList,replyApply} from '../actions.js'
-import { fetchClassMateList,fetchApplyList,fetchClassName } from '../getters.js'
+import {XHeader,Cell,Group,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm} from 'vux'
+import { delStudent,myClassmateList} from '../actions.js'
+import { fetchClassMateList,fetchClassName } from '../getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
-    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,InfiniteLoading,XButton},
+    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,InfiniteLoading,XButton,Confirm},
     vuex:{
         actions:{
-            myClassmateList,applyList,replyApply
+            delStudent,myClassmateList
         },
         getters:{
-            fetchClassMateList,token,id,fetchApplyList,fetchClassName
+            fetchClassMateList,token,id,fetchClassName
         }
-    },
-    methods:{
-        _apply(status,classCode,studentId){
-            console.log(classCode)
-            let self = this
-            self.replyApply({
-                classCode: classCode,
-                status: status,
-                studentId: studentId,
-                token: self.token
-            },()=>{
-                self.applyList({
-                    classCode: self.id,
-                    token: self.token
-                })
-            })
-        },
-        _list(val) {
-            if(val=='apply'){
-                this.selected = false
-            }else{
-                this.selected = true
-            }
-        }
-    },
-    ready(){
-        this.myClassmateList({
-            classCode:this.id,
-            token:this.token
-        })
-        this.applyList({
-            classCode:this.id,
-            token:this.token
-        })
     },
     data(){
         return {
-            selected: true
+            delete: false,
+            show: false,
+            delId:'',
+            delName:'',
+            edit:'编辑'
+        }
+    },
+    methods:{
+        _delete(id,name){
+            this.show = true
+            this.delId = id
+            this.delName = name
+        },
+        _edit(){
+            if(this.delete){
+                this.delete = false
+                this.edit='编辑'
+            }else{
+                this.delete = true
+                this.edit='完成'
+            }
+        },
+        onAction(type) {
+            if(type=='确认'){
+                let self = this
+                self.delStudent({
+                    studentId:self.delId,
+                    classCode:self.id,
+                    token:self.token
+                },()=>{
+                    self.myClassmateList({
+                        classCode:self.id,
+                        token:self.token
+                    })
+                })
+            }else{
+                return
+            }
         }
     }
 }
 </script>
 <style lang="less" scoped>
-.applyList{
-    padding:0.8rem 1rem;
-    border-bottom:1px solid #999;
-    .msg{
-        line-height:2rem;
-        font-size:0.9rem;
-        span{
-            font-size:0.8rem;
-            float:right;
-        }
-        i{
-            color:#4bb7aa;
-            font-style:normal;
-        }
-    }
-    .state{
-        text-align:center;
-        font-size:0.8rem;
-    }
-    .leftbtn{
-        width:30%;
-        margin-top:0;
-    }
-    .rightbtn{
-        width:30%;
-        margin-left:37%;
-        margin-top:0;
-    }
-}
+
 .weui_cell{
     padding: 1rem;
     &:last-child{

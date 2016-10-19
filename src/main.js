@@ -49,6 +49,7 @@ import indexClassCreate from './class/pages/createClass'
 import indexClassDetail from './class/pages/classDetail'
 import indexClassInvite from './class/pages/invite'
 import indexClassManage from './class/pages/classManage.vue'
+import indexClassApply from './class/pages/classApply.vue'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
 //插件
@@ -67,14 +68,14 @@ FastClick.attach(document.body)
 
 //图片异步加载
 Vue.use(VueLazyload, {
-  preLoad: 1.3,
-  error: 'http://www.atool.org/placeholder.png?size=300x200&text=%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5&&bg=ccc&fg=fff',
-  loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
+    preLoad: 1.3,
+    error: 'http://www.atool.org/placeholder.png?size=300x200&text=%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5&&bg=ccc&fg=fff',
+    loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
 })
 
 //格式化时间
 Vue.filter('ymd', function(value) {
-  return moment.unix(value).format('YYYY-MM-DD');
+    return moment.unix(value).format('YYYY-MM-DD');
 });
 
 //请求超时
@@ -83,7 +84,7 @@ Vue.http.interceptors.push((request, next) => {
     if (request._timeout) {
         timeout = setTimeout(() => {
             if(request.onTimeout) request.onTimeout(request)
-			      request.abort()
+            request.abort()
         }, request._timeout);
     }
     next((response) => {
@@ -97,77 +98,78 @@ const router = new Router({
     // saveScrollPosition:true
 })
 router.map({
-  '/login': { component: Login },
-  'agreement': { component: agreement },
-  //注册账户
-  'register': { component: register },
-  'register/password': { component: setPassword },
-  //忘记密码
-  'forget': { component: forget },
-  'forget/password': { component: resetPassword },
-  //纠错
-  'correct/:id':{component: correct},
-  //评注
-  'comment/:id':{component: comment},
-  //主页
-  'main/': {
-    component: Main,
-    subRoutes: {
-      'user/': {
-        component: User
-      },
-      'message/': {
-        component: Message
-      },
-      'index/': {
-        component: Index
-      }
-    }
-  },
-  'main/user/photo':{
-      component: Photo
-  },
-  //消息
-  'message/class': { component: messageClass },
-  'message/system': { component: messageSystem },
-  'message/correct': { component: messageCorrect },
-  //个人中心
-  'user/resetPwd': { component: userResetPwd },
-  'user/info': { component: userInfo },
-  //设置
-  'user/settings': { component: userSettingsIndex },
-  'user/settings/aboutUs': { component: userSettingsAboutUs },
-  'user/settings/advice': { component: userSettingsAdvice },
-  'user/settings/advice/history': { component: userSettingsAdviceHistory },
-  //邀请好友
-  'user/invite': { component: userInviteIndex },
-  'user/invite/friend': { component: userInviteFriend },
-  'user/invite/input': { component: userCodeInput },
-  //我的班级
-  'index/class': { component: indexClassIndex },
-  'index/createClass': { component: indexClassCreate },
-  'index/class/detail/:id': { component: indexClassDetail },
-  'index/class/invite/:id': { component: indexClassInvite },
-  'index/class/manage/:id': { component: indexClassManage },
-  //查错题
-  'index/check': { component: indexCheckIndex },
-  'index/check/detail/:id': { component: indexCheckDetail },
-  'index/check/detail/error/:id': { component: indexCheckError},
-  'index/check/detail/errorDetail/:id': { component: indexCheckErrorDetail},
-  //我的教材
-  'user/textBook': { component: userTextbook }
+    '/login': { component: Login },
+    'agreement': { component: agreement },
+    //注册账户
+    'register': { component: register },
+    'register/password': { component: setPassword },
+    //忘记密码
+    'forget': { component: forget },
+    'forget/password': { component: resetPassword },
+    //纠错
+    'correct/:id':{component: correct},
+    //评注
+    'comment/:id':{component: comment},
+    //主页
+    'main/': {
+        component: Main,
+        subRoutes: {
+            'user/': {
+                component: User
+            },
+            'message/': {
+                component: Message
+            },
+            'index/': {
+                component: Index
+            }
+        }
+    },
+    'main/user/photo':{
+        component: Photo
+    },
+    //消息
+    'message/class': { component: messageClass },
+    'message/system': { component: messageSystem },
+    'message/correct': { component: messageCorrect },
+    //个人中心
+    'user/resetPwd': { component: userResetPwd },
+    'user/info': { component: userInfo },
+    //设置
+    'user/settings': { component: userSettingsIndex },
+    'user/settings/aboutUs': { component: userSettingsAboutUs },
+    'user/settings/advice': { component: userSettingsAdvice },
+    'user/settings/advice/history': { component: userSettingsAdviceHistory },
+    //邀请好友
+    'user/invite': { component: userInviteIndex },
+    'user/invite/friend': { component: userInviteFriend },
+    'user/invite/input': { component: userCodeInput },
+    //我的班级
+    'index/class': { component: indexClassIndex },
+    'index/createClass': { component: indexClassCreate },
+    'index/class/detail/:id': { component: indexClassDetail },
+    'index/class/invite/:id': { component: indexClassInvite },
+    'index/class/manage/:id': { component: indexClassManage },
+    'index/class/apply/:id':{ component: indexClassApply},
+    //查错题
+    'index/check': { component: indexCheckIndex },
+    'index/check/detail/:id': { component: indexCheckDetail },
+    'index/check/detail/error/:id': { component: indexCheckError},
+    'index/check/detail/errorDetail/:id': { component: indexCheckErrorDetail},
+    //我的教材
+    'user/textBook': { component: userTextbook }
 })
 
 router.redirect({
-  // '/':'/main',
-  '/main/': '/main/index',
-  '/collect/': '/collect/example',
-  'camera/correct/:id':'/correct/:id',
-  'collect/correct/:id':'/correct/:id',
-  'error/correct/:id':'/correct/:id',
-  'camera/comment/:id':'/comment/:id',
-  'collect/comment/:id':'/comment/:id',
-  'error/comment/:id':'/comment/:id'
+    // '/':'/main',
+    '/main/': '/main/index',
+    '/collect/': '/collect/example',
+    'camera/correct/:id':'/correct/:id',
+    'collect/correct/:id':'/correct/:id',
+    'error/correct/:id':'/correct/:id',
+    'camera/comment/:id':'/comment/:id',
+    'collect/comment/:id':'/comment/:id',
+    'error/comment/:id':'/comment/:id'
 });
 
 
@@ -176,54 +178,54 @@ sync(store, router)
 
 router.beforeEach(function(transition) {
     if (transition.to.path == '/') {
-      if(localStorage.token){
-          router.replace('/main/index');
-      }else{
-          router.replace('/login');
-      }
+        if(localStorage.token){
+            router.replace('/main/index');
+        }else{
+            router.replace('/login');
+        }
     }
-  if (transition.to.path == '/register/password') {
-    if (store.state.register.mobile == '') {
-      console.log("禁止访问!");
-      router.replace('/register');
+    if (transition.to.path == '/register/password') {
+        if (store.state.register.mobile == '') {
+            console.log("禁止访问!");
+            router.replace('/register');
+        }
     }
-  }
-  if (transition.to.path == '/forget/password') {
-    if (store.state.forget.mobile == '') {
-      console.log("禁止访问!");
-      router.replace('/forget');
+    if (transition.to.path == '/forget/password') {
+        if (store.state.forget.mobile == '') {
+            console.log("禁止访问!");
+            router.replace('/forget');
+        }
     }
-  }
-  transition.next();
+    transition.next();
 })
 
 
 
 function plusReady(){
-  let first = null;
-  plus.key.addEventListener("backbutton",function(){
-      if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
-          if (!first) {
-              first = new Date().getTime();
-              _.toast('再按一次退出')
-              setTimeout(function() {
-                  first = null;
-              }, 1000);
-          } else {
-              if (new Date().getTime() - first < 1000) {
-                  plus.runtime.quit();
-              }
-          }
-      }else{
-          window.history.back();
-      }
-  });
+    let first = null;
+    plus.key.addEventListener("backbutton",function(){
+        if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
+            if (!first) {
+                first = new Date().getTime();
+                _.toast('再按一次退出')
+                setTimeout(function() {
+                    first = null;
+                }, 1000);
+            } else {
+                if (new Date().getTime() - first < 1000) {
+                    plus.runtime.quit();
+                }
+            }
+        }else{
+            window.history.back();
+        }
+    });
 }
 
 if(window.plus){
-  plusReady();
+    plusReady();
 }else{
-  document.addEventListener("plusready",plusReady,false);
+    document.addEventListener("plusready",plusReady,false);
 }
 
 router.start(App, '#App')

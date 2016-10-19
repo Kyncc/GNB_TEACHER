@@ -26,6 +26,18 @@ export const createClass = ({dispatch}, params, callback) => {
         wrong: response => {}
     })
 }
+
+//删除学生
+export const delStudent= ({dispatch}, params, callback) => {
+    Api.delStudent({
+        data: params,
+        ok: response => {
+            callback && callback()
+        },
+        wrong: response => {}
+    })
+}
+
 export const myClassmateList = ({dispatch}, params) => {
     Api.myClassmateList({
         data: params,

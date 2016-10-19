@@ -148,6 +148,10 @@ export default {
   replyApply: (params) => {
     return http({ method: 'post', url: API_PATHS.replyApply, data: params.data, ok: params.ok, wrong: params.wrong })
   },
+  //删除学生
+  delStudent: (params) => {
+    return http({ method: 'post', url: API_PATHS.delStudent, data: params.data, ok: params.ok, wrong: params.wrong })
+  },
   //修改密码
   updatePwd: (params) => {
     return http({ method: 'post', url: API_PATHS.updatePwd, data: params.data, ok: params.ok, wrong: params.wrong })
