@@ -18,14 +18,14 @@
 <script>
 import './myClass.less'
 import {XHeader,Cell,Group,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
-import { replyApply} from '../actions.js'
+import { replyApply,applyList} from '../actions.js'
 import { fetchApplyList,fetchClassName } from '../getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
     components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,XButton},
     vuex:{
         actions:{
-            replyApply
+            replyApply,applyList
         },
         getters:{
             token,id,fetchApplyList,fetchClassName
