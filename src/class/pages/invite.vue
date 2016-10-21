@@ -26,10 +26,10 @@ export default {
     },
     methods: {
         _cppyCode(id) {
-            var Context = plus.android.importClass("android.content.Context");
-            var main = plus.android.runtimeMainActivity();
-            var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
-            plus.android.invoke(clip,"setText",id);
+            var Context = plus.android.importClass("android.content.Context")
+            var main = plus.android.runtimeMainActivity()
+            var clip = main.getSystemService(Context.CLIPBOARD_SERVICE)
+            plus.android.invoke(clip,"setText",id)
             _.toast('复制成功')
         }
     }

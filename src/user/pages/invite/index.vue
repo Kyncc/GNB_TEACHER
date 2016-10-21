@@ -16,31 +16,21 @@
 		<b>{{fetchInviteCode}}</b>
 	</section>
 	<div class="button">
-		<x-button type="primary" v-show="fetchInviteCode" v-touch:tap="_shareCode(fetchInviteCode)">复制邀请码</x-button>
+		<x-button type="primary" v-show="fetchInviteCode" v-touch:tap="_cppyCode(fetchInviteCode)">复制邀请码</x-button>
 		<x-button type="primary" v-touch:tap="_inputCode">输入邀请码</x-button>
 	</div>
 </div>
 </template>
 
 <script>
-import {
-	XHeader,
-	XInput,
-	Group,
-	XButton
-} from 'vux'
+import {XHeader,XInput,Group,XButton} from 'vux'
 import './invite.less'
 import { getInviteCode } from '../../actions.js'
 import {fetchToken,fetchInviteCode} from '../../getters'
 import * as _  from '../../../config/whole.js'
 
 export default {
-	components: {
-		XHeader,
-		XInput,
-		Group,
-		XButton
-	},
+	components: {XHeader,XInput,Group,XButton},
 	vuex:{
 		actions:{
 			getInviteCode
@@ -55,16 +45,16 @@ export default {
 	},
 	methods: {
 		_friend() {
-			this.$router.go('friend');
+			this.$router.go('friend')
 		},
 		_inputCode() {
-			this.$router.go('input');
+			this.$router.go('input')
 		},
-		_shareCode(id) {
-			var Context = plus.android.importClass("android.content.Context");
-            var main = plus.android.runtimeMainActivity();
-            var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
-            plus.android.invoke(clip,"setText",id);
+		_cppyCode(id) {
+			var Context = plus.android.importClass("android.content.Context")
+            var main = plus.android.runtimeMainActivity()
+            var clip = main.getSystemService(Context.CLIPBOARD_SERVICE)
+            plus.android.invoke(clip,"setText",id)
             _.toast('复制成功')
 		}
 	}
