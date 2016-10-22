@@ -37,6 +37,7 @@ export default {
             classCode:this.id,
             token:this.token
         })
+        
     },
     methods:{
         _check(id){

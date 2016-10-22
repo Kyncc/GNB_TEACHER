@@ -29,6 +29,9 @@ export const getErrorList = ({ dispatch }, params,success) => {
         }
     })
 }
+export const clearList = ({dispatch})=>{
+    dispatch(types.CLEAR_LIST)
+}
 
 export const getErrorListIds = ({ dispatch }, params, success,wrong) => {
     Api.errorList({

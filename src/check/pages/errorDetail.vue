@@ -9,7 +9,7 @@
 				</p>
 			</group>
 		</div>
-		<div style="padding-top:120px;">
+		<div id="scroll" style="padding-top:120px;">
 			<div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
@@ -74,6 +74,11 @@ export default {
 			knowledge: '',
 			difficult: ''
 		}
+	},
+	ready(){
+		document.getElementById('scroll').addEventListener("scroll", ()=>{
+            console.log(1)
+        })
 	},
 	methods: {
 		_show(index) {

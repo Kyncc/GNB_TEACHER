@@ -13,7 +13,7 @@
             </flexbox>
         </div>
         <div style="padding-top:98px;">
-            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
+            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in errorIndexList">
                 <div class="weui_panel_hd">
                     <x-button type='primary' mini>参考例题</x-button>
                     {{{item.knowledge}}}
@@ -52,10 +52,9 @@
 <script>
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import store from '../../store'
 import {period_id,subject_id,token,id} from '../../common/getters'
 import {errorIndexIds,errorIndexList,errorIndexTotalPage} from '../getters'
-import {getErrorIds,getErrorList,setKnowledgeId} from '../actions'
+import {getErrorIds,getErrorList,setKnowledgeId,clearList} from '../actions'
 import moment from 'moment'
 
 export default {
@@ -68,13 +67,13 @@ export default {
             period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage,id
         },
         actions: {
-            getErrorIds,getErrorList,setKnowledgeId
+            getErrorIds,getErrorList,setKnowledgeId,clearList
         }
     },
     methods: {
         _into(knowledgeId){
             this.setKnowledgeId(knowledgeId)
-            this.$router.go('/index/check/detail/errorDetail/'+ this.id)            
+            this.$router.go('/index/check/detail/errorDetail/'+ this.id)
         },
         _time(value) {
             if (value == 'week') {
@@ -87,8 +86,8 @@ export default {
                 this.endTime = moment().unix();
                 this.startTime = moment().add(-3, 'M').unix();
             }
-            this.list = [];
-            this.currentPage = 1;
+            this.clearList()
+            this.currentPage = 1
             this.$nextTick(() => {
                 this.$broadcast('$InfiniteLoading:reset');
             });
@@ -107,22 +106,31 @@ export default {
                     subject_id: this.subject_id
                 }
             },()=>{
-                setTimeout(()=>{
-                    this.$broadcast('$InfiniteLoading:loaded');
-                    if(this.errorIndexTotalPage <= this.currentPage){
-                        this.$broadcast('$InfiniteLoading:complete');
-                        return;
-                    }
-                    this.currentPage ++;
-                },1000);
+                this.getErrorList({
+                    options: {
+                        ids: this.errorIndexIds,
+                        period_id: this.period_id,
+                        subject_id: this.subject_id
+                    },
+                    token: this.token,
+                    studentId: this.id
+                },()=>{
+                    setTimeout(()=>{
+                        console.log(this.errorIndexList.length)
+                        this.$broadcast('$InfiniteLoading:loaded');
+                        if(this.errorIndexTotalPage <= this.currentPage){
+                            this.$broadcast('$InfiniteLoading:complete');
+                            return;
+                        }
+                        this.currentPage ++;
+                    },1000);
+                })
             })
         }
     },
-    store,
     data(){
         return{
             currentPage:1,
-            list:[],
             totalPage:1,
             endTime:moment().unix(),
             startTime:moment().add(-7, 'd').unix()
@@ -131,20 +139,6 @@ export default {
     watch:{
         totalPage() {
             return this.errorIndexTotalPage;
-        },
-        errorIndexIds() {
-            let params = {
-                options: {
-                    ids: this.errorIndexIds,
-                    period_id: this.period_id,
-                    subject_id: this.subject_id
-                },
-                token: this.token
-            };
-            this.getErrorList(params);
-        },
-        errorIndexList(){
-            this.list = this.list.concat(this.errorIndexList);
         }
     }
 }

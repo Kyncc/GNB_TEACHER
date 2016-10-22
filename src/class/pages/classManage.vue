@@ -60,7 +60,7 @@ export default {
                 self.delClass({
                     classCode:self.id,
                     token:self.token
-                },()=>{                    
+                },()=>{
                     self.myClassList({
                         token: self.token
                     })
@@ -100,7 +100,7 @@ export default {
             if(this.fetchApplyList[key].status == '2'){
                 self.reddot = true
             }
-        }
+        }       
     }
 }
 </script>

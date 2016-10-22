@@ -9,7 +9,8 @@ import {
     GET_ERROR_LISTLIST_SUCCESS,
     GET_ERROR_LISTLIST_ERROR,
 
-    SET_KNOWLEDGE_ID
+    SET_KNOWLEDGE_ID,
+    CLEAR_LIST
 }from '../mutationTypes'
 
 const state = {
@@ -31,6 +32,11 @@ const state = {
 
 
 const mutations = {
+    [CLEAR_LIST](state){
+        state.index.code = ''
+        state.index.list = []
+        state.index.msg =''
+    },
     //错题本首页
     [GET_ERROR_INDEXIDS_SUCCESS](state,data){
         console.log(data.data)
@@ -44,7 +50,7 @@ const mutations = {
     },
     [GET_ERROR_INDEXLIST_SUCCESS](state , data){
         state.index.code = data.code;
-        state.index.list = data.data;
+        state.index.list = state.index.list.concat(data.data);
         state.index.msg = data.msg;
     },
     [GET_ERROR_INDEXLIST_ERROR](state, data){
