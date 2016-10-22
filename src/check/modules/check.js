@@ -10,7 +10,8 @@ import {
     GET_ERROR_LISTLIST_ERROR,
 
     SET_KNOWLEDGE_ID,
-    CLEAR_LIST
+    CLEAR_LIST,
+    SET_CURRENTPAGE
 }from '../mutationTypes'
 
 const state = {
@@ -20,7 +21,8 @@ const state = {
         ids:[],
         list:[],
         msg:'',
-        totalPage:'1'
+        totalPage:'1',
+        currentPage:1,
     },
     list:{
         code:'',
@@ -32,6 +34,9 @@ const state = {
 
 
 const mutations = {
+    [SET_CURRENTPAGE](state,data){
+        state.index.currentPage = data
+    },
     [CLEAR_LIST](state){
         state.index.code = ''
         state.index.list = []

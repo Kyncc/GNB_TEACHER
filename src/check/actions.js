@@ -32,6 +32,10 @@ export const getErrorList = ({ dispatch }, params,success) => {
 export const clearList = ({dispatch})=>{
     dispatch(types.CLEAR_LIST)
 }
+export const setCurrentPage = ({dispatch},data)=>{
+    dispatch(types.SET_CURRENTPAGE,data)
+}
+
 
 export const getErrorListIds = ({ dispatch }, params, success,wrong) => {
     Api.errorList({

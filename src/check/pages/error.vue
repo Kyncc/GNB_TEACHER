@@ -12,7 +12,7 @@
                 </flexbox-item>
             </flexbox>
         </div>
-        <div style="padding-top:98px;">
+        <div id="scroll" style="padding-top:98px">
             <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in errorIndexList">
                 <div class="weui_panel_hd">
                     <x-button type='primary' mini>参考例题</x-button>
@@ -43,9 +43,7 @@
                 </span>
                 <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
             </infinite-loading>
-
         </div>
-
     </view-box>
 </template>
 
@@ -53,8 +51,8 @@
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {period_id,subject_id,token,id} from '../../common/getters'
-import {errorIndexIds,errorIndexList,errorIndexTotalPage} from '../getters'
-import {getErrorIds,getErrorList,setKnowledgeId,clearList} from '../actions'
+import {errorIndexIds,errorIndexList,errorIndexTotalPage,fetchCurrentPage} from '../getters'
+import {getErrorIds,getErrorList,setKnowledgeId,clearList,setCurrentPage} from '../actions'
 import moment from 'moment'
 
 export default {
@@ -64,10 +62,10 @@ export default {
     },
     vuex: {
         getters: {
-            period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage,id
+            period_id,subject_id,token,errorIndexIds,errorIndexList,errorIndexTotalPage,id,fetchCurrentPage
         },
         actions: {
-            getErrorIds,getErrorList,setKnowledgeId,clearList
+            getErrorIds,getErrorList,setKnowledgeId,clearList,setCurrentPage
         }
     },
     methods: {
@@ -77,25 +75,25 @@ export default {
         },
         _time(value) {
             if (value == 'week') {
-                this.endTime= moment().unix();
-                this.startTime = moment().add(-7, 'd').unix();
+                this.endTime= moment().unix()
+                this.startTime = moment().add(-7, 'd').unix()
             } else if (value == 'month') {
-                this.endTime = moment().unix();
-                this.startTime = moment().add(-1, 'M').unix();
+                this.endTime = moment().unix()
+                this.startTime = moment().add(-1, 'M').unix()
             } else {
-                this.endTime = moment().unix();
-                this.startTime = moment().add(-3, 'M').unix();
+                this.endTime = moment().unix()
+                this.startTime = moment().add(-3, 'M').unix()
             }
             this.clearList()
-            this.currentPage = 1
+            this.setCurrentPage(1)
             this.$nextTick(() => {
-                this.$broadcast('$InfiniteLoading:reset');
-            });
+                this.$broadcast('$InfiniteLoading:reset')
+            })
         },
         _onInfinite(){
             this.getErrorIds({
                 studentId: this.id,
-                currentPage:this.currentPage,
+                currentPage:this.fetchCurrentPage,
                 between:{
                     start:this.startTime,
                     end:this.endTime
@@ -116,29 +114,21 @@ export default {
                     studentId: this.id
                 },()=>{
                     setTimeout(()=>{
-                        console.log(this.errorIndexList.length)
-                        this.$broadcast('$InfiniteLoading:loaded');
-                        if(this.errorIndexTotalPage <= this.currentPage){
-                            this.$broadcast('$InfiniteLoading:complete');
-                            return;
+                        this.$broadcast('$InfiniteLoading:loaded')
+                        if(parseInt(this.errorIndexTotalPage) <= parseInt(this.fetchCurrentPage)){
+                            this.$broadcast('$InfiniteLoading:complete')
+                            return
                         }
-                        this.currentPage ++;
-                    },1000);
+                        this.setCurrentPage(parseInt(this.fetchCurrentPage) + 1)
+                    },1000)
                 })
             })
         }
     },
     data(){
         return{
-            currentPage:1,
-            totalPage:1,
             endTime:moment().unix(),
             startTime:moment().add(-7, 'd').unix()
-        }
-    },
-    watch:{
-        totalPage() {
-            return this.errorIndexTotalPage;
         }
     }
 }

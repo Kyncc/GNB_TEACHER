@@ -6,3 +6,5 @@ export const errorListIds  = (state) => state.check.list.ids
 export const errorListList  = (state) => state.check.list.list
 
 export const fetchKnowledgeId =  (state) => state.check.knowledgeId
+
+export const fetchCurrentPage = (state) => state.check.index.currentPage

@@ -30,7 +30,7 @@ export default {
             this.setClassName(name)
             setTimeout(()=>{
                 this.$router.go('class/manage/' + code)
-            },500)
+            },300)
 
         },
         createClass() {
