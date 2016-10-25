@@ -1,5 +1,5 @@
 <template>
-    <view-box v-ref:view-box class='mainMessage'>
+    <div  style="height:100%">
         <x-header :left-options="{showBack: false}" class="vux-scroller-header">消息</x-header>
         <div id='wrapper' style="height:100%">
             <group>
@@ -41,7 +41,7 @@
             </div>
             <span class="vux-close">截屛到微信中识别二维码</span>
         </dialog>
-    </view-box>
+    </div>
 </template>
 
 <script>

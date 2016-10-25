@@ -92,11 +92,7 @@ Vue.http.interceptors.push((request, next) => {
     });
 })
 
-const router = new Router({
-    hashbang:false,
-    history:true,
-    saveScrollPosition:true
-})
+const router = new Router()
 router.map({
     '/login': { component: Login },
     'agreement': { component: agreement },
