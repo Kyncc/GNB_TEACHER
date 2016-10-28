@@ -29,11 +29,6 @@
                     </div>
                 </cell>
             </group>
-            <div slot="pulldown" class="xs-plugin-pulldown-container xs-plugin-pulldown-down" style="position: absolute; width: 100%; height: 60px; line-height: 60px; top: -60px; text-align: center;">
-                <span v-show="pulldownStatus === 'default'"></span>
-                <span class="pulldown-arrow" v-show="pulldownStatus === 'down' || pulldownStatus === 'up'" :class="{'rotate': pulldownStatus === 'up'}">↓</span>
-                <span v-show="pulldownStatus === 'loading'"><spinner type="lines"></spinner></span>
-            </div>
         </div>
         <dialog :show.sync="show" class="dialog-demo" @click="show=false">
             <div class="img-box">
@@ -71,17 +66,6 @@ export default {
     methods: {
         _openQQ(){
             window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
-        },
-        load (uuid) {
-            setTimeout(() => {
-                this.$broadcast('pulldown:reset', uuid);
-                this._refresh();
-            }, 1000)
-        },
-        _refresh(){
-            this.getMessageIndex({"token":localStorage.getItem('token')},()=>{
-                _.toast('刷新成功');
-            });
         }
     },
     data () {
@@ -91,23 +75,16 @@ export default {
         }
     },
     ready(){
-        this.getMessageIndex({"token":localStorage.getItem('token')});
+        let self = this
+        self.getMessageIndex({"token":localStorage.getItem('token')});
         var jroll = new JRoll("#wrapper");
         jroll.pulldown({
             refresh: function(complete) {
-                ajax({
-                    success: function() {
-                        //异步数据加载完成后必须要执行该complete方法才能结束loading
-                        complete();
-                    }
+                self.getMessageIndex({"token":localStorage.getItem('token')},()=>{
+                    complete();
                 });
             }
         });
-        function ajax(params) {
-            setTimeout(function() {
-                params.success();
-            }, 800);
-        }
     }
 }
 </script>
