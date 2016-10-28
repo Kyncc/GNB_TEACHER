@@ -12,7 +12,7 @@
 <script>
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {XHeader,Cell,Group,XButton} from 'vux'
+import { XHeader,Cell,Group } from 'vux'
 import { myClassmateList,applyList} from '../../class/actions.js'
 import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
 import { token,id } from '../../common/getters.js'
