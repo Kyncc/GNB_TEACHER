@@ -1,7 +1,7 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
         <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
-        <group>
+        <group id='wrapper' style="height:100%">
             <div  v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
                 <span :class="{'vux-reddot':item.status=='1'}">{{item.name}}&nbsp;</span>
             </div>
@@ -11,6 +11,8 @@
 
 <script>
 import './myClass.less'
+import JRoll from 'jroll'
+import '../../common/pulldown.js'
 import {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox} from 'vux'
 import {myClassList,setClassName} from '../actions'
 import {fetchClassList} from '../getters'
@@ -37,10 +39,21 @@ export default {
             this.$router.go('createClass')
         }
     },
-    ready() {
-        this.myClassList({
-            token: this.token
+    ready(){
+        let self = this
+        self.myClassList({
+            token: self.token
         })
+        var jroll = new JRoll("#wrapper");
+        jroll.pulldown({
+            refresh: function(complete) {
+                self.myClassList({
+                    token: self.token
+                },()=>{
+                    complete()
+                })
+            }
+        });
     }
 }
 </script>

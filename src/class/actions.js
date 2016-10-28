@@ -3,11 +3,12 @@ import * as types from './mutationTypes'
 import * as _ from '../config/whole'
 
 //获取班级列表
-export const myClassList = ({dispatch}, params) => {
+export const myClassList = ({dispatch}, params,callback) => {
     Api.myClassList({
         data: params,
         ok: response => {
             dispatch(types.GET_CLASS_LIST, response.data.data)
+            callback&&callback()
         },
         wrong: response => {}
     })
