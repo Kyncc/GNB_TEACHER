@@ -50,11 +50,12 @@ export const delClass= ({dispatch}, params, callback) => {
         wrong: response => {}
     })
 }
-export const myClassmateList = ({dispatch}, params) => {
+export const myClassmateList = ({dispatch}, params, callback) => {
     Api.myClassmateList({
         data: params,
         ok: response => {
             dispatch(types.GET_CLASS_MATE_LIST, response.data.data)
+            callback&&callback()
         },
         wrong: response => {}
     })
