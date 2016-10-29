@@ -43,7 +43,7 @@
 import store from '../../store'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {XHeader,Group,Cell,Spinner,ViewBox,Dialog} from 'vux'
+import { XHeader,Group,Cell,ViewBox,Dialog } from 'vux'
 import { token } from '../../common/getters'
 import { messageIndex } from '../../message/getters'
 import { getMessageIndex} from '../../message/actions'
@@ -51,7 +51,7 @@ import * as _ from '../../config/whole'
 
 export default {
     components: {
-        XHeader,Group,Cell,Spinner,ViewBox,Dialog
+        XHeader,Group,Cell,ViewBox,Dialog
     },
     vuex: {
         getters: {
