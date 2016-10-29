@@ -38,12 +38,12 @@
 import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {XHeader,Cell,Group,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,XInput,Confirm} from 'vux'
+import {XHeader,Cell,Group,XButton,ViewBox,ButtonTab,ButtonTabItem,XInput,Confirm} from 'vux'
 import { myClassmateList,applyList,myClassList,delClass} from '../actions.js'
 import { fetchClassMateList,fetchApplyList,fetchClassName } from '../getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
-    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,XButton,XInput,Confirm},
+    components: {XHeader,Cell,Group,ViewBox,ButtonTab,ButtonTabItem,XButton,XInput,Confirm},
     vuex:{
         actions:{
             myClassmateList,applyList,myClassList,delClass

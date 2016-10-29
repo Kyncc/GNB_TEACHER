@@ -12,12 +12,10 @@
 		<div id="scroll" style="padding-top:120px;">
 			<div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in list">
 				<div class="weui_panel_hd">
-					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="3/4" style="color:#4bb7aa">{{item.cameraTime | ymd}}</flexbox-item>
-						<flexbox-item :span="1/4" style="text-align:right;color:#666" v-touch:tap="_comment(item.id)" >
-							<i class="icon iconfont icon-comment"></i>点评
-						</flexbox-item>
-					</flexbox>
+					<p class="">
+						<span style="color:#4bb7aa">{{item.cameraTime | ymd}}</span>
+						<span style="float:right" v-touch:tap="_comment(item.id)"><i class="icon iconfont icon-comment"></i>点评</span>
+					</p>
 				</div>
 				<div class="weui_panel_bd">
 					<div class="weui_media_bd weui_media_box ">
@@ -28,20 +26,19 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<infinite-loading :on-infinite="_onInfinite" spinner="default">
-		<span slot="no-results" style="color:#4bb7aa;">
-			<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-			<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
-		</span>
-		<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
-	</infinite-loading>
-	<previewer :list="imgList" v-ref:previewer ></previewer>
-</view-box>
+		<infinite-loading :on-infinite="_onInfinite" spinner="default">
+			<span slot="no-results" style="color:#4bb7aa;">
+				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
+			</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
+		</infinite-loading>
+		<previewer :list="imgList" v-ref:previewer ></previewer>
+	</view-box>
 </template>
 
 <script>
-import {XHeader,Flexbox,FlexboxItem,ViewBox,Group,Previewer} from 'vux'
+import {XHeader,ViewBox,Group,Previewer} from 'vux'
 import './error.less'
 import InfiniteLoading from 'vue-infinite-loading'
 import {period_id,subject_id,token,id} from '../../common/getters'
@@ -51,7 +48,7 @@ import {getErrorListIds,getErrorListList} from '../actions'
 
 export default {
 	components: {
-		XHeader,Flexbox,FlexboxItem,ViewBox,Group,Previewer,InfiniteLoading
+		XHeader,ViewBox,Group,Previewer,InfiniteLoading
 	},
 	vuex: {
 		actions: {
@@ -77,8 +74,8 @@ export default {
 	},
 	ready(){
 		document.getElementById('scroll').addEventListener("scroll", ()=>{
-            console.log(1)
-        })
+			console.log(1)
+		})
 	},
 	methods: {
 		_show(index) {

@@ -19,12 +19,12 @@
 import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox} from 'vux'
+import {XHeader,Cell,Group,ViewBox} from 'vux'
 import {myClassList,setClassName} from '../actions'
 import {fetchClassList} from '../getters'
 import {token} from '../../common/getters.js'
 export default {
-    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox},
+    components: {XHeader,Cell,Group,ViewBox},
     vuex: {
         getters: {
             fetchClassList,token

@@ -1,6 +1,6 @@
 <template>
     <view-box v-ref:view-box class="errorIndex">
-        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
             <x-header :left-options="{showBack: true}">错题归纳</x-header>
             <div style="background:#edf2f1;width:100%">
                 <div style="padding:10px 0;width:75%;margin:0 auto;" class="vux-center">
@@ -27,11 +27,10 @@
                         </div>
                     </a>
                     <div class="weui_panel_ft">
-                        <flexbox :gutter="0" wrap="wrap">
-                            <flexbox-item :span="1/2">难度：{{item.difficult}}</flexbox-item>
-                            <flexbox-item :span="1/4"></flexbox-item>
-                            <flexbox-item :span="1/4" style="text-align:right"> 错误{{item.errorCount}}次</flexbox-item>
-                        </flexbox>
+                        <p class="">
+                            <span>难度：{{item.difficult}}</span>
+                            <span style="float:right">错误{{item.errorCount}}次</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -48,7 +47,7 @@
 </template>
 
 <script>
-import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
+import {XHeader,Panel,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {period_id,subject_id,token,id} from '../../common/getters'
 import {errorIndexIds,errorIndexList,errorIndexTotalPage,fetchCurrentPage} from '../getters'
@@ -58,7 +57,7 @@ import moment from 'moment'
 export default {
     components: {
         XHeader,XButton,InfiniteLoading,
-        Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
+        Panel,ViewBox,ButtonTab,ButtonTabItem
     },
     vuex: {
         getters: {

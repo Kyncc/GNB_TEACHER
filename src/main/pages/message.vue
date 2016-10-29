@@ -49,7 +49,6 @@ import { messageIndex } from '../../message/getters'
 import { getMessageIndex} from '../../message/actions'
 import * as _ from '../../config/whole'
 
-
 export default {
     components: {
         XHeader,Group,Cell,Spinner,ViewBox,Dialog

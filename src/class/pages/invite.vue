@@ -13,12 +13,12 @@
 
 <script>
 import './myClass.less'
-import {XHeader,XButton,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox} from 'vux'
+import {XHeader,XButton,Cell,Group,ViewBox} from 'vux'
 import {id} from '../../common/getters.js'
 import * as _ from '../../config/whole.js'
 
 export default {
-    components: {XHeader,XButton,Cell,Group,Alert,Flexbox,FlexboxItem,Search,ViewBox},
+    components: {XHeader,XButton,Cell,Group,ViewBox},
     vuex: {
         getters: {
             id

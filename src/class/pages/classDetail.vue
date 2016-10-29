@@ -23,12 +23,12 @@ import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
 import InfiniteLoading from 'vue-infinite-loading'
-import {XHeader,Cell,Group,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm} from 'vux'
+import {XHeader,Cell,Group,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm} from 'vux'
 import { delStudent,myClassmateList} from '../actions.js'
 import { fetchClassMateList,fetchClassName } from '../getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
-    components: {XHeader,Cell,Group,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem,InfiniteLoading,XButton,Confirm},
+    components: {XHeader,Cell,Group,ViewBox,ButtonTab,ButtonTabItem,InfiniteLoading,XButton,Confirm},
     vuex:{
         actions:{
             delStudent,myClassmateList
