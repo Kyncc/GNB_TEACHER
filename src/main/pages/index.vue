@@ -1,58 +1,54 @@
-<template >
-    <div class="mainIndex">
+<template>
+    <view-box v-ref:view-box class="mainIndex">
         <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
-            <x-header :left-options="{showBack: false}">归纳本
-            <!--<a slot="right" v-touch:tap="_share">
-                <i class="icon iconfont icon-share"></i>
-            </a>-->
-        </x-header>
-    </div>
-    <scroller lock-x v-ref:scroller height="-46px">
-        <div style="padding-top:46px;">
-            <div class="swiper">
-                <swiper auto loop height="10em" dots-position="center">
-                    <swiper-item class="swiperImg" v-for="item in swiper"><img :src="item"/></swiper-item>
-                </swiper>
-            </div>
-            <section class="content">
-                <div class="flex-wrap">
-                    <div class="flex-item right1px bottom1px" v-link="{ path: '/index/check'}">
-                        <img src="../../assets/main/error.png"/>
-                        <p>查看错题</p>
-                    </div>
-                    <div class="flex-item right1px bottom1px" @click='_warn()'>
-                        <img src="../../assets/main/knowledge.png" alt="" />
-                        <p class="disable">知识图谱</p>
-                    </div>
-                    <div class="flex-item bottom1px" @click='_warn()'>
-                        <img src="../../assets/main/homework.png" alt="" />
-                        <p class="disable">布置作业</p>
-                    </div>
-                    <div class="flex-item right1px" v-link="{ path: '/index/class'}">
-                        <img src="../../assets/main/class.png" alt="" />
-                        <p>我的班级</p>
-                    </div>
-                    <div class="flex-item right1px" @click='_warn()'>
-                        <img src="../../assets/main/types.png" alt="" />
-                        <p class="disable">刷题型</p>
-                    </div>
-                    <div class="flex-item" @click='_warn()'>
-                        <p class="disable">&nbsp;</p>
-                        <p class="disable">&nbsp;</p>
-                        <p class="disable">&nbsp;</p>
-                    </div>
-                </div>
-            </section>
+            <x-header :left-options="{showBack: false}">归纳本</x-header>
         </div>
-    </scroller>
-</div>
+        <scroller lock-x v-ref:scroller height="-46px">
+            <div style="padding-top:46px;">
+                <div class="swiper">
+                    <swiper auto loop height="10em" dots-position="center">
+                        <swiper-item class="swiperImg" v-for="item in swiper"><img :src="item"/></swiper-item>
+                    </swiper>
+                </div>
+                <section class="content">
+                    <div class="flex-wrap">
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/index/check'}">
+                            <img src="../../assets/main/error.png"/>
+                            <p>查看错题</p>
+                        </div>
+                        <div class="flex-item right1px bottom1px" @click='_warn()'>
+                            <img src="../../assets/main/knowledge.png" alt="" />
+                            <p class="disable">知识图谱</p>
+                        </div>
+                        <div class="flex-item bottom1px" @click='_warn()'>
+                            <img src="../../assets/main/homework.png" alt="" />
+                            <p class="disable">布置作业</p>
+                        </div>
+                        <div class="flex-item right1px" v-link="{ path: '/index/class'}">
+                            <img src="../../assets/main/class.png" alt="" />
+                            <p>我的班级</p>
+                        </div>
+                        <div class="flex-item right1px" @click='_warn()'>
+                            <img src="../../assets/main/types.png" alt="" />
+                            <p class="disable">刷题型</p>
+                        </div>
+                        <div class="flex-item" @click='_warn()'>
+                            <p class="disable">&nbsp;</p>
+                            <p class="disable">&nbsp;</p>
+                            <p class="disable">&nbsp;</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </scroller>
+    </view-box>
 </template>
 
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { XHeader,Swiper,SwiperItem,Panel,Scroller} from 'vux'
+import { XHeader,Swiper,SwiperItem,Panel,Scroller,ViewBox} from 'vux'
 import { collectCount,errorCount,cameraCount,swiper} from '../getters'
 import { period_id,subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
@@ -63,7 +59,7 @@ import './main.less'
 
 export default {
     components: {
-        XHeader,Swiper,SwiperItem,Panel,Scroller
+        XHeader,Swiper,SwiperItem,Panel,Scroller,ViewBox
     },
     methods: {
         _share(){

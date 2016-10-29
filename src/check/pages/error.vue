@@ -2,12 +2,14 @@
     <view-box v-ref:view-box class="errorIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">错题归纳</x-header>
-            <div style="padding:10px 0;background:#edf2f1;width:75%;margin:0 auto;" class="vux-center">
-                <button-tab style="width:100%;">
-                    <button-tab-item v-touch:tap="_time('week')" selected>一周内</button-tab-item>
-                    <button-tab-item v-touch:tap="_time('month')">一月内</button-tab-item>
-                    <button-tab-item v-touch:tap="_time('all')">全部</button-tab-item>
-                </button-tab>
+            <div style="background:#edf2f1;width:100%">
+                <div style="padding:10px 0;width:75%;margin:0 auto;" class="vux-center">
+                    <button-tab style="width:100%;">
+                        <button-tab-item v-touch:tap="_time('week')" selected>一周内</button-tab-item>
+                        <button-tab-item v-touch:tap="_time('month')">一月内</button-tab-item>
+                        <button-tab-item v-touch:tap="_time('all')">全部</button-tab-item>
+                    </button-tab>
+                </div>
             </div>
         </div>
         <div id="scroll" style="padding-top:98px">

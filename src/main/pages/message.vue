@@ -90,15 +90,6 @@ export default {
 </script>
 
 <style>
-.rotate {
-    transform: rotate(-180deg);
-}
-.pulldown-arrow {
-    display: inline-block;
-    transition: all linear 0.2s;
-    color: #666;
-    font-size: 25px;
-}
 .homepage>.weui_tab>.weui_tab_bd.vux-fix-safari-overflow-scrolling>div{
     height: 100%;
 }
