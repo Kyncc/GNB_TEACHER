@@ -66,7 +66,7 @@ module.exports = {
   vue: {
     loaders: utils.cssLoaders(),
     autoprefixer: {
-      browsers: ['last 2 versions']
+      browsers: ['> 5%','iOS 7','iOS 8','iOS 9']
     }
   }
 }

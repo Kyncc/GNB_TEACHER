@@ -2,7 +2,7 @@
     <div class="mainIndex">
         <div style="position:fixed;left:0;top:0;width:100%;z-index:2016" slot="header">
             <x-header :left-options="{showBack: false}">归纳本
-                <!--<a slot="right" v-touch:tap="_share">
+            <!--<a slot="right" v-touch:tap="_share">
                 <i class="icon iconfont icon-share"></i>
             </a>-->
         </x-header>
@@ -15,41 +15,33 @@
                 </swiper>
             </div>
             <section class="content">
-                <flexbox :gutter="0" wrap="wrap">
-                    <flexbox-item :span="246.6/750"   v-link="{ path: '/index/check'}">
+                <div class="flex-wrap">
+                    <div class="flex-item right1px bottom1px" v-link="{ path: '/index/check'}">
                         <img src="../../assets/main/error.png"/>
                         <p>查看错题</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" @click='_warn()'>
+                    </div>
+                    <div class="flex-item right1px bottom1px" @click='_warn()'>
                         <img src="../../assets/main/knowledge.png" alt="" />
                         <p class="disable">知识图谱</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750"  @click='_warn()'>
+                    </div>
+                    <div class="flex-item bottom1px" @click='_warn()'>
                         <img src="../../assets/main/homework.png" alt="" />
                         <p class="disable">布置作业</p>
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750"  v-link="{ path: '/index/class'}">
+                    </div>
+                    <div class="flex-item right1px" v-link="{ path: '/index/class'}">
                         <img src="../../assets/main/class.png" alt="" />
                         <p>我的班级</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" @click='_warn()'>
+                    </div>
+                    <div class="flex-item right1px" @click='_warn()'>
                         <img src="../../assets/main/types.png" alt="" />
                         <p class="disable">刷题型</p>
-                    </flexbox-item>
-                    <flexbox-item :span="5/750">
-                    </flexbox-item>
-                    <flexbox-item :span="246.6/750" @click='_warn()'>
+                    </div>
+                    <div class="flex-item" @click='_warn()'>
                         <p class="disable">&nbsp;</p>
                         <p class="disable">&nbsp;</p>
                         <p class="disable">&nbsp;</p>
-                    </flexbox-item>
-                </flexbox>
+                    </div>
+                </div>
             </section>
         </div>
     </scroller>
@@ -60,7 +52,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
-import { XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem} from 'vux'
+import { XHeader,Swiper,SwiperItem,Panel,Scroller} from 'vux'
 import { collectCount,errorCount,cameraCount,swiper} from '../getters'
 import { period_id,subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
@@ -71,7 +63,7 @@ import './main.less'
 
 export default {
     components: {
-        XHeader,Swiper,SwiperItem,Panel,Scroller,Flexbox,FlexboxItem
+        XHeader,Swiper,SwiperItem,Panel,Scroller
     },
     methods: {
         _share(){
@@ -107,11 +99,13 @@ export default {
 </script>
 <style lang="less" scoped>
 .content{
-    .vux-flexbox{
-        .vux-flexbox-item{
+    .flex-wrap{
+        width:100%;
+        .flex-item{
             background:#fff;
-            margin-bottom:0.13rem;
-            min-width:0;
+            width:33.3333%;
+            box-sizing:border-box;
+            float:left;
             img{
                 width:2rem;
                 height:2rem;
@@ -124,6 +118,14 @@ export default {
                 margin-bottom:0.5rem;
             }
         }
+
+        .right1px{
+            border-right:2px solid #edf2f1;
+        }
+        .bottom1px{
+            border-bottom:2px solid #edf2f1;
+        }
+
     }
 }
 

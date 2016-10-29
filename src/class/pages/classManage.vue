@@ -1,35 +1,43 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
-        <x-header :left-options="{showBack: true}">班级管理</x-header>
-        <group>
-            <!-- <x-input name="username" style="border-bottom:1px solid #d9d9d9;" :value.sync="fetchClassName" readonly><span>编辑</span></x-input> -->
-            <div  class="cell" v-show="fetchClassName">
-                <span>{{fetchClassName}}</span>
-                <!-- <div class="weui_cell_ft">编辑</div> -->
+        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+            <x-header :left-options="{showBack: true}">班级管理</x-header>
+        </div>
+        <div style="padding-top:46px;height:100%">
+            <div id='wrapper' style="height:100%">
+                <group>
+                    <!-- <x-input name="username" style="border-bottom:1px solid #d9d9d9;" :value.sync="fetchClassName" readonly><span>编辑</span></x-input> -->
+                    <div  class="cell" v-show="fetchClassName">
+                        <span>{{fetchClassName}}</span>
+                        <!-- <div class="weui_cell_ft">编辑</div> -->
+                    </div>
+                    <div  class="cell"   v-link="{ path: '/index/class/apply/'+ id}">
+                        <span :class="{'vux-reddot': reddot }">申请通知&nbsp;</span>
+                        <div class="weui_cell_ft with_arrow"></div>
+                    </div>
+                    <div  class="cell"  v-link="{ path: '/index/class/detail/'+ id}">
+                        <span >班级成员</span>
+                        <div class="weui_cell_ft with_arrow">{{fetchClassMateList.length}}人</div>
+                    </div>
+                    <div class="cell"  v-link="{ path: '/index/class/invite/'+ id}">
+                        <span >邀请学生</span>
+                        <div class="weui_cell_ft with_arrow"></div>
+                    </div>
+                    <div class="cell"  v-touch:tap="_delete()">
+                        <span >删除班级</span>
+                        <div class="weui_cell_ft with_arrow"></div>
+                    </div>
+                </group>
             </div>
-            <div  class="cell"   v-link="{ path: '/index/class/apply/'+ id}">
-                <span :class="{'vux-reddot': reddot }">申请通知&nbsp;</span>
-                <div class="weui_cell_ft with_arrow"></div>
-            </div>
-            <div  class="cell"  v-link="{ path: '/index/class/detail/'+ id}">
-                <span >班级成员</span>
-                <div class="weui_cell_ft with_arrow">{{fetchClassMateList.length}}人</div>
-            </div>
-            <div class="cell"  v-link="{ path: '/index/class/invite/'+ id}">
-                <span >邀请学生</span>
-                <div class="weui_cell_ft with_arrow"></div>
-            </div>
-            <div class="cell"  v-touch:tap="_delete()">
-                <span >删除班级</span>
-                <div class="weui_cell_ft with_arrow"></div>
-            </div>
-        </group>
+        </div>
         <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定删除该班级吗?" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
     </view-box>
 </template>
 
 <script>
 import './myClass.less'
+import JRoll from 'jroll'
+import '../../common/pulldown.js'
 import {XHeader,Cell,Group,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,XInput,Confirm} from 'vux'
 import { myClassmateList,applyList,myClassList,delClass} from '../actions.js'
 import { fetchClassMateList,fetchApplyList,fetchClassName } from '../getters.js'
@@ -96,11 +104,33 @@ export default {
             token:this.token
         })
         var self = this
-        for(var key in this.fetchApplyList){
-            if(this.fetchApplyList[key].status == '2'){
+        for(var key in self.fetchApplyList){
+            if(self.fetchApplyList[key].status == '2'){
                 self.reddot = true
             }
-        }       
+        }
+        var jroll = new JRoll("#wrapper");
+        jroll.pulldown({
+            refresh: function(complete) {
+                self.myClassmateList({
+                    classCode:self.id,
+                    token:self.token
+                },()=>{
+                    complete()
+                })
+                self.applyList({
+                    classCode:self.id,
+                    token:self.token
+                },()=>{
+                    complete()
+                })
+                for(var key in self.fetchApplyList){
+                    if(self.fetchApplyList[key].status == '2'){
+                        self.reddot = true
+                    }
+                }
+            }
+        });
     }
 }
 </script>

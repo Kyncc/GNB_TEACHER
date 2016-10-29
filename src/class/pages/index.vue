@@ -1,11 +1,17 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
-        <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
-        <group id='wrapper' style="height:100%">
-            <div  v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
-                <span :class="{'vux-reddot':item.status=='1'}">{{item.name}}&nbsp;</span>
+        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+            <x-header :left-options="{showBack: true}">我的班级<a slot="right" v-link="{ path: '/index/createClass'}">创建班级</a></x-header>
+        </div>
+        <div style="padding-top:46px;height:100%">
+            <div id='wrapper' style="height:100%">
+                <group>
+                    <div v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
+                        <span :class="{'vux-reddot':item.status=='1'}">{{item.name}}&nbsp;</span>
+                    </div>
+                </group>
             </div>
-        </group>
+        </div>
     </view-box>
 </template>
 
@@ -33,7 +39,6 @@ export default {
             setTimeout(()=>{
                 this.$router.go('class/manage/' + code)
             },300)
-
         },
         createClass() {
             this.$router.go('createClass')

@@ -1,24 +1,27 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
-        <x-header :left-options="{showBack: true}">查看错题</x-header>
-        <group id='wrapper' style="height:100%">
-            <!-- <cell v-for="item in fetchClassList" :title="item.name" v-touch:tap="_detail(item.classCode,item.name)">
-                <span class="demo-icon" slot="icon"></span>
-            </cell> -->
-            <div  v-for="item in fetchClassList"  class="cell"  v-touch:tap="_detail(item.classCode,item.name)">
-                <span>{{item.name}}&nbsp;</span>
+        <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+            <x-header :left-options="{showBack: true}">查看错题</x-header>
+        </div>
+        <div style="padding-top:46px;height:100%">
+            <div id='wrapper' style="height:100%">
+                <group>
+                    <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
+                        <span>{{item.name}}&nbsp;</span>
+                    </div>
+                </group>
             </div>
-        </group>
+        </div>
     </view-box>
 </template>
 <script>
 import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {XHeader,Group,ViewBox}from 'vux'
-import {myClassList,setClassName} from '../../class/actions.js'
-import {fetchClassList} from '../../class/getters'
-import {token} from '../../common/getters.js'
+import { XHeader,Group,ViewBox }from 'vux'
+import { myClassList,setClassName } from '../../class/actions.js'
+import { fetchClassList } from '../../class/getters'
+import { token } from '../../common/getters.js'
 export default {
     components: {XHeader,Group,ViewBox},
     vuex: {

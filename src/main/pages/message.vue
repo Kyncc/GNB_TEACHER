@@ -1,5 +1,5 @@
 <template>
-    <div  style="height:100%">
+    <div style="height:100%">
         <x-header :left-options="{showBack: false}" class="vux-scroller-header">消息</x-header>
         <div id='wrapper' style="height:100%">
             <group>

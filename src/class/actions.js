@@ -60,11 +60,12 @@ export const myClassmateList = ({dispatch}, params, callback) => {
         wrong: response => {}
     })
 }
-export const applyList = ({dispatch}, params) => {
+export const applyList = ({dispatch}, params, callback) => {
     Api.applyList({
         data: params,
         ok: response => {
             dispatch(types.GET_APPLY_LIST, response.data.data)
+            callback&&callback()
         },
         wrong: response => {}
     })
