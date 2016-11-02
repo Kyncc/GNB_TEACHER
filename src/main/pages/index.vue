@@ -28,9 +28,9 @@
                             <img src="../../assets/main/class.png" alt="" />
                             <p>我的班级</p>
                         </div>
-                        <div class="flex-item right1px" @click='_warn()'>
+                        <div class="flex-item right1px" v-link="{ path: '/index/brush'}">
                             <img src="../../assets/main/types.png" alt="" />
-                            <p class="disable">刷题型</p>
+                            <p >刷题型</p>
                         </div>
                         <div class="flex-item" @click='_warn()'>
                             <p class="disable">&nbsp;</p>

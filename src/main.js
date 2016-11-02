@@ -43,6 +43,11 @@ import indexCheckIndex from './check/pages/index.vue'
 import indexCheckDetail from './check/pages/detail.vue'
 import indexCheckError from './check/pages/error.vue'
 import indexCheckErrorDetail from './check/pages/errorDetail.vue'
+
+//刷题型
+import indexBrushIndex from './brush/pages/index.vue'
+import indexBrushDetail from './brush/pages/detail.vue'
+import indexBrushBrush from './brush/pages/brush.vue'
 //我的班级
 import indexClassIndex from './class/pages/index'
 import indexClassCreate from './class/pages/createClass'
@@ -152,6 +157,10 @@ router.map({
     'index/check/detail/:id': { component: indexCheckDetail },
     'index/check/detail/error/:id': { component: indexCheckError},
     'index/check/detail/errorDetail/:id': { component: indexCheckErrorDetail},
+    //刷题型 Brush
+    'index/brush': { component: indexBrushIndex },
+    'index/brush/detail/:id': { component: indexBrushDetail },
+    'index/brush/brush/:id': { component:indexBrushBrush },
     //我的教材
     'user/textBook': { component: userTextbook }
 })
