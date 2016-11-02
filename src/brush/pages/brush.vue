@@ -6,9 +6,9 @@
         <div style="padding-top:46px;height:100%">
             <div id='wrapper' style="height:100%">
                 <group>
-                    <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
+                    <!-- <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
                         <span>{{item.name}}&nbsp;</span>
-                    </div>
+                    </div> -->
                 </group>
             </div>
         </div>
