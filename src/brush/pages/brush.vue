@@ -1,11 +1,23 @@
 <template>
     <view-box v-ref:view-box class='myClass'>
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true}">刷题型</x-header>
+            <x-header :left-options="{showBack: true}">题型汇总</x-header>
         </div>
         <div style="padding-top:46px;height:100%">
             <div id='wrapper' style="height:100%">
                 <group>
+                    <div class="cell">
+                        <span>必修</span>
+                    </div>
+                    <cell title="第1章:集合函数与概念" >
+                      <span class="icon icon-info" slot="icon"></span>
+                    </cell>
+                    <cell title="第2章:基本初等函数" >
+                      <span class="icon icon-info" slot="icon"></span>
+                    </cell>
+                    <cell title="第3章:函数的应用" >
+                      <span class="icon icon-info" slot="icon"></span>
+                    </cell>
                     <!-- <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
                         <span>{{item.name}}&nbsp;</span>
                     </div> -->
@@ -18,12 +30,12 @@
 import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import { XHeader,Group,ViewBox }from 'vux'
+import { XHeader,Group,ViewBox,Cell }from 'vux'
 import { myClassList,setClassName } from '../../class/actions.js'
 import { fetchClassList } from '../../class/getters'
 import { token } from '../../common/getters.js'
 export default {
-    components: {XHeader,Group,ViewBox},
+    components: {XHeader,Group,ViewBox,Cell},
     vuex: {
         getters: {
             fetchClassList,token
