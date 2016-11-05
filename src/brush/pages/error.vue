@@ -1,23 +1,12 @@
 <template>
     <view-box v-ref:view-box class="errorIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:1">
-            <x-header :left-options="{showBack: true}">错题归纳</x-header>
-            <div style="background:#edf2f1;width:100%">
-                <div style="padding:10px 0;width:75%;margin:0 auto;" class="vux-center">
-                    <button-tab style="width:100%;">
-                        <button-tab-item v-touch:tap="_time('week')" selected>一周内</button-tab-item>
-                        <button-tab-item v-touch:tap="_time('month')">一月内</button-tab-item>
-                        <button-tab-item v-touch:tap="_time('all')">全部</button-tab-item>
-                    </button-tab>
-                </div>
-            </div>
+            <x-header :left-options="{showBack: true}">记录题型</x-header>
         </div>
-        <div id="scroll" style="padding-top:98px">
+        <div id="scroll" style="padding-top:46px">
             <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in errorIndexList">
-                <div class="weui_panel_hd">
-                    <x-button type='primary' mini>参考例题</x-button>
-                    {{{item.knowledge}}}
-                </div>
+                <div class="weui_panel_hd">{{{item.knowledge}}} <span style="float:right">{{$index+1}}/{{errorIndexList.length}}</span></div>
+                <!-- <x-button type='primary' mini>参考例题</x-button> -->
                 <div class="weui_panel_bd">
                     <a class="weui_media_box weui_media_appmsg"  v-touch:tap="_into(item.knowledgeId)">
                         <div class="weui_media_bd">
@@ -70,25 +59,8 @@ export default {
     methods: {
         _into(knowledgeId){
             this.setKnowledgeId(knowledgeId)
-            this.$router.go('/index/check/detail/errorDetail/'+ this.id)
-        },
-        _time(value) {
-            if (value == 'week') {
-                this.endTime= moment().unix()
-                this.startTime = moment().add(-7, 'd').unix()
-            } else if (value == 'month') {
-                this.endTime = moment().unix()
-                this.startTime = moment().add(-1, 'M').unix()
-            } else {
-                this.endTime = moment().unix()
-                this.startTime = moment().add(-3, 'M').unix()
-            }
-            this.clearList()
-            this.setCurrentPage(1)
-            this.$nextTick(() => {
-                this.$broadcast('$InfiniteLoading:reset')
-            })
-        },
+            this.$router.go('/index/brush/detail/errorDetail/'+ this.id)
+        },        
         _onInfinite(){
             this.getErrorIds({
                 studentId: this.id,
@@ -127,7 +99,7 @@ export default {
     data(){
         return{
             endTime:moment().unix(),
-            startTime:moment().add(-7, 'd').unix()
+            startTime:moment().add(-3, 'M').unix()
         }
     }
 }

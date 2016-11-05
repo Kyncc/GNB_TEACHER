@@ -9,18 +9,15 @@
                     <div class="cell">
                         <span>必修</span>
                     </div>
-                    <cell title="第1章:集合函数与概念" >
+                    <cell title="第1章:集合函数与概念" @click="_detail">
                       <span class="icon icon-info" slot="icon"></span>
                     </cell>
-                    <cell title="第2章:基本初等函数" >
+                    <cell title="第2章:基本初等函数" @click="_detail">
                       <span class="icon icon-info" slot="icon"></span>
                     </cell>
-                    <cell title="第3章:函数的应用" >
+                    <cell title="第3章:函数的应用" @click="_detail">
                       <span class="icon icon-info" slot="icon"></span>
                     </cell>
-                    <!-- <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
-                        <span>{{item.name}}&nbsp;</span>
-                    </div> -->
                 </group>
             </div>
         </div>
@@ -33,21 +30,20 @@ import '../../common/pulldown.js'
 import { XHeader,Group,ViewBox,Cell }from 'vux'
 import { myClassList,setClassName } from '../../class/actions.js'
 import { fetchClassList } from '../../class/getters'
-import { token } from '../../common/getters.js'
+import { token,id } from '../../common/getters.js'
 export default {
     components: {XHeader,Group,ViewBox,Cell},
     vuex: {
         getters: {
-            fetchClassList,token
+            fetchClassList,token,id
         },
         actions: {
             myClassList,setClassName
         }
     },
     methods: {
-        _detail(code,name) {
-            this.setClassName(name)
-            this.$router.go('check/detail/' + code)
+        _detail() {
+            this.$router.go('/index/brush/error/' + this.id)
         }
     },
     ready(){

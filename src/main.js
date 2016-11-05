@@ -10,6 +10,7 @@ import Login from './login/pages/login'
 import agreement from './login/pages/agreement'
 import register from './login/pages/register'
 import setPassword from './login/pages/setPassword'
+import setInfo from './login/pages/setInfo'
 import forget from './login/pages/forget'
 import resetPassword from './login/pages/resetPassword'
 //首页
@@ -48,6 +49,9 @@ import indexCheckErrorDetail from './check/pages/errorDetail.vue'
 import indexBrushIndex from './brush/pages/index.vue'
 import indexBrushDetail from './brush/pages/detail.vue'
 import indexBrushBrush from './brush/pages/brush.vue'
+import indexBrushError from './brush/pages/error.vue'
+import indexBrushErrorDetail from './brush/pages/errorDetail.vue'
+
 //我的班级
 import indexClassIndex from './class/pages/index'
 import indexClassCreate from './class/pages/createClass'
@@ -104,6 +108,7 @@ router.map({
     //注册账户
     'register': { component: register },
     'register/password': { component: setPassword },
+    'register/info': { component: setInfo },
     //忘记密码
     'forget': { component: forget },
     'forget/password': { component: resetPassword },
@@ -161,6 +166,8 @@ router.map({
     'index/brush': { component: indexBrushIndex },
     'index/brush/detail/:id': { component: indexBrushDetail },
     'index/brush/brush/:id': { component:indexBrushBrush },
+    'index/brush/error/:id': { component:indexBrushError },
+    '/index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
     //我的教材
     'user/textBook': { component: userTextbook }
 })
