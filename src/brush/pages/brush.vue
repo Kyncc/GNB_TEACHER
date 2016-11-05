@@ -6,9 +6,7 @@
         <div style="padding-top:46px;height:100%">
             <div id='wrapper' style="height:100%">
                 <group>
-                    <div class="cell">
-                        <span>必修</span>
-                    </div>
+                    <div class="cell">必修</div>
                     <cell title="第1章:集合函数与概念" @click="_detail">
                         <span class="icon icon-info" slot="icon"></span>
                     </cell>
@@ -31,6 +29,7 @@ import { XHeader,Group,ViewBox,Cell }from 'vux'
 import { myClassList,setClassName } from '../../class/actions.js'
 import { fetchClassList } from '../../class/getters'
 import { token,id } from '../../common/getters.js'
+
 export default {
     components: {XHeader,Group,ViewBox,Cell},
     vuex: {
@@ -51,7 +50,7 @@ export default {
         self.myClassList({
             token: self.token
         })
-        var jroll = new JRoll("#wrapper");
+        var jroll = new JRoll("#wrapper")
         jroll.pulldown({
             refresh: function(complete) {
                 self.myClassList({
@@ -67,7 +66,7 @@ export default {
 <style lang="less" scoped>
 .myClass{
     .cell{
-        padding:1rem;
+        padding:0.5rem 1rem;
         span{
             dispaly:inline-block !important;
         }

@@ -22,6 +22,10 @@
                         </p>
                     </div>
                 </div>
+                <p class="abandon">
+                    <span class="">斩题</span>
+                    <span class="">放弃</span>
+                </p>
             </div>
 
             <infinite-loading :on-infinite="_onInfinite" spinner="waveDots">
@@ -104,3 +108,19 @@ export default {
     }
 }
 </script>
+<style lang="less" scoped>
+    .abandon{
+        text-align: center;
+        border-top: 1px solid #dfdfdf;
+        span{
+            width: 49.5%;
+            display: block;
+            float: left;
+            font-size: 0.8rem;
+            line-height: 1.5rem;
+            &:first-child{
+                border-right: 1px solid #dfdfdf;
+            }
+        }
+    }
+</style>

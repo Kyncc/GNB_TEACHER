@@ -11,8 +11,8 @@
 			<div class="weui_panel weui_panel_access exerciseExampleList" >
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="2/4" style="color:#4bb7aa">题干</flexbox-item>
-                        <flexbox-item :span="1/4" style="text-align:right;color:#666" ><i class="icon iconfont icon-comment"></i>点评</flexbox-item>
+						<flexbox-item :span="3/4" style="color:#4bb7aa">题干</flexbox-item>
+                        <flexbox-item :span="1/4" style="text-align:right;color:#666" ><i class="icon iconfont icon-comment"></i>纠错</flexbox-item>
 					</flexbox>
 				</div>
 				<!--题目整体-->
