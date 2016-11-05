@@ -10,13 +10,13 @@
                         <span>必修</span>
                     </div>
                     <cell title="第1章:集合函数与概念" @click="_detail">
-                      <span class="icon icon-info" slot="icon"></span>
+                        <span class="icon icon-info" slot="icon"></span>
                     </cell>
                     <cell title="第2章:基本初等函数" @click="_detail">
-                      <span class="icon icon-info" slot="icon"></span>
+                        <span class="icon icon-info" slot="icon"></span>
                     </cell>
                     <cell title="第3章:函数的应用" @click="_detail">
-                      <span class="icon icon-info" slot="icon"></span>
+                        <span class="icon icon-info" slot="icon"></span>
                     </cell>
                 </group>
             </div>
@@ -60,7 +60,7 @@ export default {
                     complete()
                 })
             }
-        });
+        })
     }
 }
 </script>

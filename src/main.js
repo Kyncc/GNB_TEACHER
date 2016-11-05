@@ -44,7 +44,9 @@ import indexCheckIndex from './check/pages/index.vue'
 import indexCheckDetail from './check/pages/detail.vue'
 import indexCheckError from './check/pages/error.vue'
 import indexCheckErrorDetail from './check/pages/errorDetail.vue'
-
+//知识图谱
+import report from './report/pages/index'
+import reportDetail from './report/pages/detail'
 //刷题型
 import indexBrushIndex from './brush/pages/index.vue'
 import indexBrushDetail from './brush/pages/detail.vue'
@@ -169,7 +171,10 @@ router.map({
     'index/brush/error/:id': { component:indexBrushError },
     '/index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
     //我的教材
-    'user/textBook': { component: userTextbook }
+    'user/textBook': { component: userTextbook },
+    //知识图谱
+    'report': {component: report},
+    'report/detail/:sectionId': {component: reportDetail},
 })
 
 router.redirect({

@@ -60,7 +60,7 @@ export default {
         _into(knowledgeId){
             this.setKnowledgeId(knowledgeId)
             this.$router.go('/index/brush/detail/errorDetail/'+ this.id)
-        },        
+        },
         _onInfinite(){
             this.getErrorIds({
                 studentId: this.id,

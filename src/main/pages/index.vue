@@ -16,7 +16,7 @@
                             <img src="../../assets/main/error.png"/>
                             <p>查看错题</p>
                         </div>
-                        <div class="flex-item right1px bottom1px" @click='_warn()'>
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/report'}" >
                             <img src="../../assets/main/knowledge.png" alt="" />
                             <p class="disable">知识图谱</p>
                         </div>
