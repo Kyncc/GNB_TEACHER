@@ -9,11 +9,8 @@
 		<div style="padding-top:46px;">
 			<!--内容-->
 			<div class="weui_panel weui_panel_access exerciseExampleList" >
-				<div class="weui_panel_hd">
-					<flexbox :gutter="0" wrap="wrap">
-						<flexbox-item :span="3/4" style="color:#4bb7aa">题干</flexbox-item>
-                        <flexbox-item :span="1/4" style="text-align:right;color:#666" ><i class="icon iconfont icon-comment"></i>纠错</flexbox-item>
-					</flexbox>
+				<div class="weui_panel_hd">					
+					<p style="color:#4bb7aa">题干<span style="float:right"><i class="icon iconfont icon-comment"></i>纠错</span></p>
 				</div>
 				<!--题目整体-->
 				<div class="weui_panel_bd" >
@@ -50,13 +47,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <infinite-loading :on-infinite="_onInfinite" spinner="default">
-			<span slot="no-results" style="color:#4bb7aa;">
-				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
-			</span>
-			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
-		</infinite-loading> -->
 	</view-box>
 </template>
 
