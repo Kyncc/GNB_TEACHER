@@ -15,24 +15,25 @@
 </template>
 
 <script>
-import {Cell, Group} from 'vux'
+import {Cell,Group} from 'vux'
 export default {
-    name:'accordion',
-    components:{
-        Cell,Group
+    name: 'accordion',
+    components: {
+        Cell,
+        Group
     },
-    props: ['list','link']
+    props: ['list', 'link']
 }
 </script>
 <style lang="less" >
-.ac-container{
+.ac-container {
     width: 100%;
     text-align: left;
 }
-.gnb-accordion{
+.gnb-accordion {
     margin-top: 1rem;
 }
-.ac-container label{
+.ac-container label {
     padding: 5px 20px;
     position: relative;
     z-index: 20;
@@ -43,19 +44,19 @@ export default {
     line-height: 33px;
     font-size: 19px;
 }
-.ac-container label:hover{
+.ac-container label:hover {
     background: #fff;
 }
 .ac-container input:checked + label,
-.ac-container input:checked + label:hover{
+.ac-container input:checked + label:hover {
     background: #c6e1ec;
     color: #3d7489;
-    .with_arrow{
+    .with_arrow {
         transform: rotate(315deg);
     }
 }
-.ac-container label:hover:after,
-.ac-container input:checked + label:hover:after{
+.ac-container input:checked + label:hover:after,
+.ac-container label:hover:after {
     content: '';
     position: absolute;
     width: 24px;
@@ -64,24 +65,23 @@ export default {
     top: 7px;
     // background: transparent url(../images/arrow_down.png) no-repeat center center;
 }
-.ac-container input{
+.ac-container input {
     display: none;
 }
-.ac-container article{
+.ac-container article {
     margin-top: -1px;
     overflow: hidden;
-    height: 0px;
+    height: 0;
     position: relative;
     z-index: 10;
     -webkit-transition: height 0.3s ease-in-out;
     transition: height 0.3s ease-in-out;
 }
-.ac-container input:checked ~ article{
+.ac-container input:checked ~ article {
     -webkit-transition: height 0.5s ease-in-out;
     transition: height 0.5s ease-in-out;
 }
-.ac-container input:checked ~ article.ac-small{
+.ac-container input:checked ~ article.ac-small {
     height: auto;
 }
-
 </style>
