@@ -6,7 +6,6 @@
         <div id="scroll" style="padding-top:46px">
             <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in errorIndexList">
                 <div class="weui_panel_hd">{{{item.knowledge}}} <span style="float:right">{{$index+1}}/{{errorIndexList.length}}</span></div>
-                <!-- <x-button type='primary' mini>参考例题</x-button> -->
                 <div class="weui_panel_bd">
                     <a class="weui_media_box weui_media_appmsg"  v-touch:tap="_into(item.knowledgeId)">
                         <div class="weui_media_bd">
@@ -109,18 +108,18 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-    .abandon{
-        text-align: center;
-        border-top: 1px solid #dfdfdf;
-        span{
-            width: 49.5%;
-            display: block;
-            float: left;
-            font-size: 0.8rem;
-            line-height: 1.5rem;
-            &:first-child{
-                border-right: 1px solid #dfdfdf;
-            }
+.abandon{
+    text-align: center;
+    border-top: 1px solid #dfdfdf;
+    span{
+        width: 49.5%;
+        display: block;
+        float: left;
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+        &:first-child{
+            border-right: 1px solid #dfdfdf;
         }
     }
+}
 </style>
