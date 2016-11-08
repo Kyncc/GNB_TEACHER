@@ -44,6 +44,7 @@ import indexCheckIndex from './check/pages/index.vue'
 import indexCheckDetail from './check/pages/detail.vue'
 import indexCheckError from './check/pages/error.vue'
 import indexCheckErrorDetail from './check/pages/errorDetail.vue'
+
 //知识图谱
 import report from './report/pages/index'
 import reportDetail from './report/pages/detail'

@@ -16,7 +16,7 @@ import index from './main/modules/index'
 import message from './message/modules/index'
 
 import user from './user/modules/index.js'
-
+import report from './report/modules/index'
 import myClass from './class/modules/class'
 import check from './check/modules/check.js'
 
@@ -37,6 +37,7 @@ export default new Vuex.Store({
     message,
     myClass,
     user,
-    check
+    check,
+    report
   }
 })
