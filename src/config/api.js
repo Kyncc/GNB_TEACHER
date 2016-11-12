@@ -111,5 +111,6 @@ export const API_PATHS = {
     *  reportChapter:教材章节列表
     */
     reportChapter: `${API_ENV}${API_VERSION}/teacher/report`,
-    reportDetail: `${API_ENV}${API_VERSION}/teacher/report/detail`
+    reportDetail: `${API_ENV}${API_VERSION}/teacher/report/detail`,
+    summary: `${API_ENV}${API_VERSION}/teacher/summary`,
 }

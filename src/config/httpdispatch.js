@@ -202,7 +202,10 @@ export default {
   },
   headImg: (params) => {
     return http({ method: 'post', url: API_PATHS.headImg, data: params.data, ok: params.ok, wrong: params.wrong })
-  }
+  },
+  summary: (params) => {
+    return http({ method: 'get', url: API_PATHS.summary, data: params.data, ok: params.ok, wrong: params.wrong })
+  }  
 }
 
 export function http(params) {

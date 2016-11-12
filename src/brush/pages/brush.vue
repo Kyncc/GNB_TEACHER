@@ -26,18 +26,19 @@ import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
 import { XHeader,Group,ViewBox,Cell }from 'vux'
-import { myClassList,setClassName } from '../../class/actions.js'
-import { fetchClassList } from '../../class/getters'
-import { token,id } from '../../common/getters.js'
+import { setClassName } from '../../class/actions.js'
+import { fetchSummary } from '../getters'
+import { getSummary } from '../actions.js'
+import { token,id,subject_id } from '../../common/getters.js'
 
 export default {
     components: {XHeader,Group,ViewBox,Cell},
     vuex: {
         getters: {
-            fetchClassList,token,id
+            fetchSummary,token,id,subject_id
         },
         actions: {
-            myClassList,setClassName
+            getSummary,setClassName
         }
     },
     methods: {
@@ -47,14 +48,19 @@ export default {
     },
     ready(){
         let self = this
-        self.myClassList({
-            token: self.token
+        self.getSummary({
+            token: self.token,
+            subject_id:self.subject_id,
+            member_id:self.id,
+            grade:'10'
         })
         var jroll = new JRoll("#wrapper")
         jroll.pulldown({
             refresh: function(complete) {
-                self.myClassList({
-                    token: self.token
+                self.getSummary({
+                    token: self.token,
+                    subject_id:self.subject_id,
+                    grade:'10'
                 },()=>{
                     complete()
                 })

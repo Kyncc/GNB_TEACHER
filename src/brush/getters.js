@@ -8,3 +8,5 @@ export const errorListList  = (state) => state.check.list.list
 export const fetchKnowledgeId =  (state) => state.check.knowledgeId
 
 export const fetchCurrentPage = (state) => state.check.index.currentPage
+
+export const fetchSummary = (state) => state.brush.summary

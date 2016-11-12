@@ -11,7 +11,8 @@ import {
 
     SET_KNOWLEDGE_ID,
     CLEAR_LIST,
-    SET_CURRENTPAGE
+    SET_CURRENTPAGE,
+    SET_SUMMARY
 }from '../mutationTypes'
 
 const state = {
@@ -30,6 +31,7 @@ const state = {
         list:[],
         msg:''
     },
+    summary:''
 }
 
 
@@ -80,9 +82,11 @@ const mutations = {
     [GET_ERROR_LISTLIST_ERROR](state, data){
         state.list.msg = data.msg;
     },
-
     [SET_KNOWLEDGE_ID](state, data){
         state.knowledgeId = data
+    },
+    [SET_SUMMARY](state, data){
+        state.summary = data
     }
 }
 

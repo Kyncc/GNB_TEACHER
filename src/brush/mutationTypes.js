@@ -15,3 +15,5 @@ export const SET_KNOWLEDGE_ID = 'SET_KNOWLEDGE_ID'
 export const CLEAR_LIST = 'CLEAR_LIST'
 
 export const SET_CURRENTPAGE = 'SET_CURRENTPAGE'
+
+export const SET_SUMMARY = 'SET_SUMMARY'

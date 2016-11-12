@@ -19,6 +19,7 @@ import user from './user/modules/index.js'
 import report from './report/modules/index'
 import myClass from './class/modules/class'
 import check from './check/modules/check.js'
+import brush from './brush/modules/brush.js'
 
 
 Vue.use(Vuex)
@@ -38,6 +39,7 @@ export default new Vuex.Store({
     myClass,
     user,
     check,
-    report
+    report,
+    brush
   }
 })

@@ -73,3 +73,19 @@ export const getErrorListList = ({ dispatch }, params, success,wrong) => {
 export const setKnowledgeId = ({ dispatch }, params) => {
     dispatch(types.SET_KNOWLEDGE_ID, params)
 }
+
+
+export const getSummary = ({ dispatch }, params, success, wrong) => {
+    Api.summary({
+        data: params,
+        ok: response => {
+            console.log(response)
+            dispatch(types.SET_SUMMARY, response)
+            success&&success()
+        },
+        wrong: response => {
+            wrong&&wrong()
+            _.toast(response.data.msg)
+        }
+    })
+}
