@@ -1,63 +1,93 @@
-import {
-    GET_ADVICE_LIST,
-    GET_INVITE_STUDENT_LIST,
-    GET_INVITE_CODE,
-    GET_USER_INFO,
-    GET_NUMERICAL_LIST,
-    GET_BILL_LIST,
-    GET_MEMBER_INFO,
-    GET_VERSION
-} from '../mutationTypes'
+import * as types from '../mutationTypes'
 
 const state = {
-    adviceList: [],
-    inviteStudentList: [],
-    inviteCode: '',
-    info:{
-        grade: '',
-        name: '',
-        school: '',
-        subject: '',
-        sex: '',
+    textbook:{
+        all:[
+          {
+            "textbookId": 1,
+            "textbookName": "必修101"
+          },
+          {
+            "textbookId": 2,
+            "textbookName": "必修101"
+          }
+        ],
+        my:[
+          {
+            "textbookId": 1,
+            "textbookName": "必修101"
+          },
+          {
+            "textbookId": 2,
+            "textbookName": "必修101"
+          }
+        ]
     },
-    numericalList: [],
-    myBillList: [],
-    memberInfo: {},
-    version: {}
-}
-
-const mutations = {
-    [GET_ADVICE_LIST](state, data) {
-        state.adviceList = data
+    workbook:{
+        search:[],
+        all:[],
+        my:[]
     },
-    [GET_INVITE_STUDENT_LIST](state, data) {
-        state.inviteStudentList = data
-    },
-    [GET_INVITE_CODE](state, data) {
-        state.inviteCode = data
-    },
-    [GET_USER_INFO](state, data) {
-        state.info.grade = data.grade
-        state.info.name = data.name
-        state.info.school = data.school
-        state.info.subject = data.subject
-        state.info.sex = data.sex
-    },
-    [GET_NUMERICAL_LIST](state, data) {
-        state.numericalList = data
-    },
-    [GET_BILL_LIST](state, data) {
-        state.myBillList = data
-    },
-    [GET_MEMBER_INFO](state, data) {
-        state.memberInfo = data
-    },
-    [GET_VERSION](state, data) {
-        state.version = data
+    userinfo:{},
+    textbookVersion:{
+      subjectType:[],
+      subjectOptions:{
+        physics:[],
+        math:[]
+      }
     }
 }
 
+// const state = {
+//     textbook:{
+//         all:[],
+//         my:[]
+//     },
+//     workbook:{
+//         search:[{}],
+//         all:[{}],
+//         my:[{}]
+//     },
+//     userinfo:{},
+//     textbookVersion:{}
+// }
+
+
+
+const mutations = {
+  [types.TEXTBOOK_ADD](state, data) {
+    state.textbook.all = data;
+  },
+  [types.TEXTBOOK_GET](state, data) {
+     state.textbook.my = data;
+  },
+  [types.TEXTBOOK_RELOAD](state) {
+     state.textbook.my = {};
+  },
+  [types.TEXTBOOK_GET_ALL](state, data) {
+     state.textbook.all = data;
+  },
+  [types.WORKBOOK_GET](state, data) {
+     state.workbook.my = data;
+  },
+  [types.WOEKBOOK_RELOAD](state) {
+     state.workbook.my = {};
+  },
+  [types.WORKBOOK_GET_ALL](state, data) {
+     state.workbook.all = data;
+  },
+  [types.WORKBOOK_GET_SEARCH](state, data) {
+     state.workbook.all = data;
+  },
+  [types.USERINFO_GET](state, data) {
+     state.userinfo = data;
+  },
+  [types.USERINFO_TEXTBOOKVERSION](state, data) {
+     state.textbookVersion = data;
+  }
+}
+
 export default {
-    state,
-    mutations
+  state,
+  mutations
 }

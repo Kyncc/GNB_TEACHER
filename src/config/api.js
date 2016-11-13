@@ -113,4 +113,15 @@ export const API_PATHS = {
     reportChapter: `${API_ENV}${API_VERSION}/teacher/report`,
     reportDetail: `${API_ENV}${API_VERSION}/teacher/report/detail`,
     summary: `${API_ENV}${API_VERSION}/teacher/summary`,
+    //我的教材
+    userTextbook: `${API_ENV}${API_VERSION}/teacher/textbook`,
+    userTextbookAll: `${API_ENV}${API_VERSION}/teacher/textbook/list`,
+    userTextbookAdd: `${API_ENV}${API_VERSION}/teacher/textbook/add`,
+    userTextbookDel: `${API_ENV}${API_VERSION}/teacher/textbook/del`,
+    //习题册
+    userWorkbook: `${API_ENV}${API_VERSION}/teacher/workbook`,
+    userWorkbookAll: `${API_ENV}${API_VERSION}/teacher/workbook/list`,
+    userWorkbookAdd: `${API_ENV}${API_VERSION}/teacher/workbook/add`,
+    userWorkbookDel: `${API_ENV}${API_VERSION}/teacher/workbook/del`,
+    userWorkbookSearch: `${API_ENV}${API_VERSION}/teacher/workbook/search`,
 }

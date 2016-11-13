@@ -64,6 +64,10 @@ import indexClassManage from './class/pages/classManage.vue'
 import indexClassApply from './class/pages/classApply.vue'
 //我的教材
 import userTextbook from './user/pages/textbook/index'
+import userTextbookAdd from './user/pages/textbook/add'
+//我的习题册
+import userWorkbook from './user/pages/workbook/index'
+import userWorkbookAdd from './user/pages/workbook/add'
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
@@ -171,8 +175,13 @@ router.map({
     'index/brush/brush/:id': { component:indexBrushBrush },
     'index/brush/error/:id': { component:indexBrushError },
     '/index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
+
     //我的教材
-    'user/textBook': { component: userTextbook },
+    'user/textbook': { component: userTextbook },
+    'user/textbook/add':{component:userTextbookAdd},
+    //我的习题册
+    'user/workbook': { component: userWorkbook },
+    'user/workbook/add':{component:userWorkbookAdd},
     //知识图谱
     'report': {component: report},
     'report/detail/:sectionId': {component: reportDetail},

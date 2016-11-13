@@ -4,7 +4,7 @@
 		<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">邀请好友<a slot="right" v-touch:tap="_friend">受邀好友</a></x-header>
 	</div>
 	<img src="../../../assets/user/friend_title.png" class="title" />
-	<section class="step">
+	<section class="step">		
 		<article>
 			<h3>提示</h3>
 			<p>被邀请的好友需安装归纳本APP，且被邀请好友必须是新用户哦！</p>
@@ -16,21 +16,31 @@
 		<b>{{fetchInviteCode}}</b>
 	</section>
 	<div class="button">
-		<x-button type="primary" v-show="fetchInviteCode" v-touch:tap="_cppyCode(fetchInviteCode)">复制邀请码</x-button>
+		<!--<x-button type="primary" v-touch:tap="_shareCode">分享给好友</x-button>-->
 		<x-button type="primary" v-touch:tap="_inputCode">输入邀请码</x-button>
 	</div>
 </div>
 </template>
 
 <script>
-import {XHeader,XInput,Group,XButton} from 'vux'
+import {
+	XHeader,
+	XInput,
+	Group,
+	XButton
+} from 'vux'
 import './invite.less'
 import { getInviteCode } from '../../actions.js'
 import {fetchToken,fetchInviteCode} from '../../getters'
 import * as _  from '../../../config/whole.js'
 
 export default {
-	components: {XHeader,XInput,Group,XButton},
+	components: {
+		XHeader,
+		XInput,
+		Group,
+		XButton
+	},
 	vuex:{
 		actions:{
 			getInviteCode
@@ -45,17 +55,14 @@ export default {
 	},
 	methods: {
 		_friend() {
-			this.$router.go('friend')
+			this.$router.go('friend');
 		},
 		_inputCode() {
-			this.$router.go('input')
+			this.$router.go('input');
 		},
-		_cppyCode(id) {
-			var Context = plus.android.importClass("android.content.Context")
-            var main = plus.android.runtimeMainActivity()
-            var clip = main.getSystemService(Context.CLIPBOARD_SERVICE)
-            plus.android.invoke(clip,"setText",id)
-            _.toast('复制成功')
+		_shareCode() {
+
+
 		}
 	}
 }

@@ -16,9 +16,15 @@
         <cell title="个人资料" link="/user/info/">
           <span class="icon icon-info" slot="icon"></span>
         </cell>
+        <cell title="我的教材" link="../user/textbook/">
+            <span class="icon icon-textbook" slot="icon"></span>
+        </cell>
+        <cell title="我的习题册" link="../user/workbook/">
+            <span class="icon icon-workbook" slot="icon"></span>
+        </cell>
         <!-- <cell title="我的教材" link="../user/textBook/">
             <span class="icon icon-textbook" slot="icon"></span>
-        </cell> -->        
+        </cell> -->
         <cell title="邀请好友" link="/user/invite/">
           <span class="icon icon-invite" slot="icon"></span>
         </cell>

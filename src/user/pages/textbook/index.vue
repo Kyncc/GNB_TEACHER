@@ -1,168 +1,73 @@
 <template>
-<view-box v-ref:view-box class='textbook'>
-  <x-header :left-options="{showBack: true}">我的教材</x-header>
-  <div class="swipewrap">
-    <div class="topswipe">
-      <flexbox>
-        <flexbox-item :span="3/swipelist.length" v-for="book in swipelist">
-          <div class="bookswipe">
-            {{book.name}}
-          </div>
-        </flexbox-item>
-      </flexbox>
+  <view-box v-ref:view-box class='textbookIndex'>
+    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+      <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+        我的教材<a slot="right">科目</a>
+      </x-header>
     </div>
-  </div>
-  <group>
-    <selector placeholder="人教版1" title="数学" :options="list" @on-change="onChange"></selector>
-  </group>
-  <scroller class="bookwrap" lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
-    <div class="book" v-for="book in booklist">
-      {{book.name}}
-    </div>
-  </scroller>
-</view-box>
-</template>
 
+    <div style="padding-top:46px;">
+      <group>
+        <cell v-for="item in MyTextbook" :title="item.textbookName"></cell>
+      </group>
+
+      <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+				<span slot="no-results" style="color:#4bb7aa;">
+					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+					<p style="font-size:1rem;display:inline-block;">快去添加点教材吧~</p>
+				</span>
+				<span slot="no-more"></span>
+			</infinite-loading>
+    </div>
+
+    <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+      <x-button style="width:100%;border-radius:0px;" @click="_addTextBook()">教材添加</x-button>
+    </tabbar>
+    
+  </view-box>
+</template>
 <script>
-import {
-  XHeader,
-  XInput,
-  Group,
-  Selector,
-  Flexbox,
-  FlexboxItem,
-  Scroller,
-  ViewBox
-} from 'vux'
+import {XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
+import {token} from '../../../common/getters'
+import {getTextbook} from '../../actions/textbook'
+import {MyTextbook} from '../../getters'
+import store from '../../../store' 
 
 export default {
-  data() {
-    return {
-      list: [{
-        key: '2',
-        value: '人教版2'
-      }, {
-        key: '3',
-        value: '人教版3'
-      }],
-      swipelist: [{
-        name: '必修1'
-      }, {
-        name: '必修2'
-      }, {
-        name: '必修3'
-      }, {
-        name: '必修3'
-      }, {
-        name: '必修3'
-      }, {
-        name: '必修2'
-      }, {
-        name: '必修3'
-      }, {
-        name: '必修3'
-      }, {
-        name: '必修3'
-      }],
-      booklist: [{
-        name: '必修1'
-      }, {
-        name: '必修2'
-      }, {
-        name: '必修3'
-      }, {
-        name: '必修4'
-      }, {
-        name: '必修5'
-      }, {
-        name: '必修6'
-      }, {
-        name: '必修7'
-      }, {
-        name: '必修8'
-      }, {
-        name: '必修9'
-      }, {
-        name: '必修10'
-      }, {
-        name: '必修11'
-      }, {
-        name: '必修12'
-      }, {
-        name: '必修13'
-      }, {
-        name: '必修14'
-      }, {
-        name: '必修15'
-      }, {
-        name: '必修16'
-      }]
-    }
-  },
   components: {
-    XHeader,
-    XInput,
-    Group,
-    Selector,
-    Flexbox,
-    FlexboxItem,
-    Scroller,
-    ViewBox
+    XHeader,XInput,Group,Selector,Cell,ViewBox,Tabbar,XButton,InfiniteLoading
   },
+  vuex: {
+		getters: {
+			token,MyTextbook
+		},
+		actions: {
+      getTextbook
+		}
+	},
+	store,
   methods: {
-    load(uuid) {
-      setTimeout(() => {
-        this.$broadcast('pulldown:reset', uuid)
-      }, 1000)
+    _back() {
+      this.$router.go('/main/user');
     },
-    onChange() {
-
-    }
+    _addTextBook(){
+      this.$router.go('add');
+    },
+    _onInfinite(){
+      if(this.MyTextbook.length != 0){
+          this.$broadcast('$InfiniteLoading:loaded');
+          this.$broadcast('$InfiniteLoading:complete');
+        return;
+      }
+			this.getTextbook({
+				token:this.token,   
+        subjectId:'2'
+			},()=>{
+					if(this.MyTextbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+          this.$broadcast('$InfiniteLoading:complete');
+			});
+		}
   }
 }
 </script>
-
-<style lang="less">::-webkit-scrollbar {
-    width: 0;
-}
-.textbook {
-    .vux-no-group-title {
-        margin-top: 0;
-    }
-    .swipewrap {
-        margin-bottom: 1rem;
-        position: relative;
-        height: 6rem;
-        overflow: scroll;
-        margin-top: 1rem;
-        .topswipe {
-            height: 6rem;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-    }
-    .bookswipe {
-        width: 4rem;
-        height: 6rem;
-        line-height: 6rem;
-        text-align: center;
-        background-color: #ccc;
-    }
-    .bookwrap {
-        background-color: #edf2f1;
-        padding: 1rem 0 1rem 2%;
-        .book {
-            width: 22%;
-            margin-right: 3%;
-            margin-bottom: 1rem;
-            height: 6rem;
-            line-height: 6rem;
-            text-align: center;
-            background-color: #ccc;
-            float: left;
-        }
-    }
-
-}
-</style>
