@@ -7,6 +7,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const router = new Router();
+
 /*获取短信验证码(注册账号)*/
 export const getRegisterCode = ({ dispatch }, params) => {
   Api.getCode({
