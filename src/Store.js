@@ -11,6 +11,7 @@ import setPassword from './login/modules/setPassword'
 import forget from './login/modules/forget'
 import resetPassword from './login/modules/resetPassword'
 
+import remember from './remember/modules/index'
 import index from './main/modules/index'
 
 import message from './message/modules/index'
@@ -33,6 +34,7 @@ export default new Vuex.Store({
     resetPassword,
     index,
     comment,
+    remember,
     correct,
     collectAction,
     message,

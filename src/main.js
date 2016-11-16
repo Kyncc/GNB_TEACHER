@@ -22,7 +22,12 @@ import Photo from './main/pages/photo.vue'
 //题目评注、纠错
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
-
+//记错题
+import remember from './remember/pages/index'
+import rememberWorkbook from './remember/pages/workbook'
+import rememberExercise from './remember/pages/exercise'
+import rememberExample from './remember/pages/example'
+import rememberAdd from './remember/pages/add'
 //通知
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
@@ -164,6 +169,12 @@ router.map({
     'index/class/invite/:id': { component: indexClassInvite },
     'index/class/manage/:id': { component: indexClassManage },
     'index/class/apply/:id':{ component: indexClassApply},
+    //记错题
+    'remember':{component: remember},
+    'remember/add':{component: rememberAdd},
+    'remember/example/:id': { component:  rememberExample},
+    'remember/workbook/:bookId':{component: rememberWorkbook},
+    'remember/workbook/exercise/:chapterId':{component: rememberExercise},
     //查错题
     'index/check': { component: indexCheckIndex },
     'index/check/detail/:id': { component: indexCheckDetail },

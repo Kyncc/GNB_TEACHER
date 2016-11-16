@@ -55,6 +55,13 @@ export const API_PATHS = {
     */
     error: `${API_ENV}${API_VERSION}/teacher/error`,
     errorList: `${API_ENV}${API_VERSION}/teacher/error/camera`,
+    /**记错题
+    *  rememberChapter:记错题章节列表
+    */
+    rememberChapter:`${API_ENV}${API_VERSION}/v1/student/remember/chapter`,
+    rememberDetail:`${API_ENV}${API_VERSION}/v1/student/remember/exercises`,
+    rememberDetailPost:`${API_ENV}${API_VERSION}/v1/student/remember/submit`,
+    rememberExample: `${API_ENV}${API_VERSION}/v1/student/exerciseList`,
     /**互动模块
     * msgSystem:系统消息
     * msgClass:班级消息
@@ -119,9 +126,9 @@ export const API_PATHS = {
     userTextbookAdd: `${API_ENV}${API_VERSION}/teacher/textbook/add`,
     userTextbookDel: `${API_ENV}${API_VERSION}/teacher/textbook/del`,
     //习题册
-    userWorkbook: `${API_ENV}${API_VERSION}/teacher/workbook`,
-    userWorkbookAll: `${API_ENV}${API_VERSION}/teacher/workbook/list`,
-    userWorkbookAdd: `${API_ENV}${API_VERSION}/teacher/workbook/add`,
-    userWorkbookDel: `${API_ENV}${API_VERSION}/teacher/workbook/del`,
-    userWorkbookSearch: `${API_ENV}${API_VERSION}/teacher/workbook/search`,
+    userWorkbook: `${API_ENV}${API_VERSION}/v1/student/workbook`,
+    userWorkbookAll: `${API_ENV}${API_VERSION}/v1/student/workbook/list`,
+    userWorkbookAdd: `${API_ENV}${API_VERSION}/v1/student/workbook/add`,
+    userWorkbookDel: `${API_ENV}${API_VERSION}/v1/student/workbook/del`,
+    userWorkbookSearch: `${API_ENV}${API_VERSION}/v1/student/workbook/search`,
 }

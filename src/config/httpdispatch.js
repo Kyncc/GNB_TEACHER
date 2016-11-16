@@ -60,6 +60,22 @@ export default {
     collectCameraIds: (params) => {
         return http({ method: 'get', url: API_PATHS.collectCameraIds, data: params.data, ok: params.ok, wrong: params.wrong });
     },
+    /**记错题章节 */
+    rememberCharpter: (params) => {
+        return http({ method: 'get', url: API_PATHS.rememberChapter, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
+    /**记错题章节练习题 */
+    rememberExercise: (params) => {
+        return http({ method: 'get', url: API_PATHS.rememberDetail, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
+    /**记错题章节练习题提交 */
+    rememberExercisePost: (params) => {
+        return http({ method: 'post', url: API_PATHS.rememberDetailPost, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
+    /**记错题例题获得 */
+    rememberExampleGet: (params) => {
+        return http({ method: 'get', url: API_PATHS.rememberExample, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
     /**拍错题模块
     *  camera:拍错题搜索
     *  cameraImportant:拍错题设为例题
