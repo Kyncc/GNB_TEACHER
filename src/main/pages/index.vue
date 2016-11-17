@@ -20,7 +20,7 @@
                             <img src="../../assets/main/knowledge.png" alt="" />
                             <p class="disable">知识图谱</p>
                         </div>
-                        <div class="flex-item bottom1px" v-link="{ path: '/remember'}">
+                        <div class="flex-item bottom1px" @click="_warn()">
                             <img src="../../assets/main/homework.png" alt="" />
                             <p class="disable">布置作业</p>
                         </div>
