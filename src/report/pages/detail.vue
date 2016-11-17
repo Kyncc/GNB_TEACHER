@@ -7,9 +7,9 @@
         </div>
 
         <div style="padding-top:46px;">
-            <header class="sectionHeader ellipsis">{{reportDetail.chapter_name}}</header>
+            <!--<header class="sectionHeader ellipsis">{{reportDetail.chapter_name}}</header>-->
             <div class="section">
-                <article class="difficultBlock">
+                <!--<article class="difficultBlock">
                     <div><p class="per-35 tl" style="color:#487d68">难度等级</p><p class="per-21">1</p><p class="per-21">2</p><p class="per-21 ">3</p></div>
                     <div><p class="per-35 tl" style="color:#487d68">记录题型</p><p class="per-21">{{reportDetail.degree_level.level1_count}}个</p><p class="per-21">{{reportDetail.degree_level.level2_count}}个</p><p class="per-21">{{reportDetail.degree_level.level3_count}}个</p></div>
                     <div><p class="per-35 tl" style="color:#487d68">掌握程度</p><p class="per-21">{{reportDetail.degree_level.level1_percentage}}</p><p class="per-21">{{reportDetail.degree_level.level2_percentage}}</p><p class="per-21 ">{{reportDetail.degree_level.level3_percentage}}</p></div>
@@ -31,9 +31,16 @@
                     <div><p class="per-35 tl">审题型错误</p><p class="per-40 advice">思想不集中、粗心</p><p class="per-25 tr">{{reportDetail.error_reason.error3}}</p></div>
                     <div><p class="per-35 tl">计算错误</p><p class="per-40 advice">答题不规范</p><p class="per-25 tr">{{reportDetail.error_reason.error4}}</p></div>
                     <div><p class="per-35 tl">未记录错误</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.error_reason.error5}}</p></div>
-                </article>
+                </article>-->
             </div>
 
+            <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+				<span slot="no-results" style="color:#4bb7aa;">
+					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+					<p style="font-size:1rem;display:inline-block;">程序出了一点问题~</p>
+				</span>
+				<span slot="no-more"></span>
+			</infinite-loading>
         </div>  
     </view-box>
 </template>
@@ -43,31 +50,36 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
-import { subject_id,token,chapterId } from '../../common/getters'
-import {reportDetail} from '../getters'
+import InfiniteLoading from 'vue-infinite-loading'
+import {token,chapterId } from '../../common/getters'
+import {reportDetail,reportSubjectId} from '../getters'
 import {getReportDetail} from '../actions'
 import '../index.less'
 
-
-
 export default {
   components: {
-    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton
-  },
-  methods: {
-	
+    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,InfiniteLoading
   },
   vuex: {
     getters: {
-        subject_id,token,reportDetail,chapterId
+        reportSubjectId,token,reportDetail,chapterId
     },
     actions: {
-
+        getReportDetail
     }
   },
   store,
-  ready(){
-    
+  methods: {
+    _onInfinite(){
+        this.getReportDetail({
+            token:this.token,   
+            chapter_id:this.chapterId,
+            subject_id:this.reportSubjectId
+        },()=>{
+            if(this.reportDetail.chapter_name) {this.$broadcast('$InfiniteLoading:loaded');}
+            this.$broadcast('$InfiniteLoading:complete');
+        });
+    }   
   }
 }
 </script>

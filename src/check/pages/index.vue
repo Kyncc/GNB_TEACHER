@@ -35,7 +35,7 @@ export default {
     methods: {
         _detail(code,name) {
             this.setClassName(name)
-            this.$router.go('check/detail/' + code)
+            this.$router.go('/remember')
         }
     },
     ready(){

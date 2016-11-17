@@ -2,11 +2,11 @@
     <view-box v-ref:view-box class="rememberIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
-                记错题
+                {{fetchClassName}}
                 <a slot="right" @click="_changeSub()" class="changeSub">{{rememberSubjectId | subName}}<span class="with_arrow"></span></a>
             </x-header>
         </div>
-						
+
         <div style="padding-top:46px;">
             <template v-for="item in rememberWorkbook">
                  <template v-if="item">
@@ -15,7 +15,7 @@
                     </group>
                 </template>
             </template>
-            
+
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -25,9 +25,9 @@
             </infinite-loading>
         </div>
 
-        <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+        <!-- <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
            <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" @click="_add">添加习题册</x-button>
-        </tabbar>
+        </tabbar> -->
 
     </view-box>
     <!--切换课程-->
@@ -41,6 +41,7 @@ import store from '../../store'
 import {XHeader,Panel,ViewBox,Group,Cell,Search,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {token} from '../../common/getters'
+import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
 import {getWorkbook,setSubject} from '../actions/remember'
 import {delChapter} from '../actions/workbook'
@@ -58,13 +59,13 @@ export default {
             case '2':return '数学';
             case '7':return '物理';
         }
-    }    
+    }
   },
   methods: {
     _toChapter(str){
         this.delChapter();      //进去前清除章节数据
         this.$router.go('/remember/workbook/'+str);
-    }, 
+    },
 	_back(){
         this.$router.go('/main');
     },
@@ -90,17 +91,17 @@ export default {
         }
 
         this.getWorkbook({
-            token:this.token,   
+            token:this.token,
             subjectId:this.rememberSubjectId
         },()=>{
             if(this.rememberWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
         });
-    }   
+    }
   },
   vuex: {
     getters:{
-        token,rememberWorkbook,rememberSubjectId
+        token,rememberWorkbook,rememberSubjectId,fetchClassName
     },
     actions:{
         getWorkbook,setSubject,delChapter,WorkbookAllDel
@@ -124,5 +125,3 @@ export default {
   }
 }
 </script>
-
-

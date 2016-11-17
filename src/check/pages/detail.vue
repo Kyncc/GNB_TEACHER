@@ -54,7 +54,7 @@ export default {
     },
     methods:{
         _check(id){
-            this.$router.go('/remember')
+            this.$router.go('error/'+ id)
         }
     }
 }
