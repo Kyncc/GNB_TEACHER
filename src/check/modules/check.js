@@ -32,7 +32,6 @@ const state = {
     },
 }
 
-
 const mutations = {
     [SET_CURRENTPAGE](state,data){
         state.index.currentPage = data

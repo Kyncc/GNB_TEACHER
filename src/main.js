@@ -51,7 +51,9 @@ import indexCheckError from './check/pages/error.vue'
 import indexCheckErrorDetail from './check/pages/errorDetail.vue'
 
 //知识图谱
-import report from './report/pages/index'
+import reportIndex from './report/pages/index.vue'
+import reportClass from './report/pages/class.vue'
+import report from './report/pages/report.vue'
 import reportDetail from './report/pages/detail'
 //刷题型
 import indexBrushIndex from './brush/pages/index.vue'
@@ -194,7 +196,9 @@ router.map({
     'user/workbook': { component: userWorkbook },
     'user/workbook/add':{component:userWorkbookAdd},
     //知识图谱
-    'report': {component: report},
+    'reportIndex': {component:reportIndex},
+    'reportClass/:id': {component:reportClass},
+    'report/:id': {component: report},
     'report/detail/:sectionId': {component: reportDetail},
 })
 
