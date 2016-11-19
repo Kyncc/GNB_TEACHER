@@ -26,7 +26,7 @@ import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
 import { XHeader,Group,ViewBox,Cell }from 'vux'
-import { setClassName } from '../../class/actions.js'
+import { fetchClassCode } from '../../class/getters.js'
 import { fetchSummary } from '../getters'
 import { getSummary } from '../actions.js'
 import { token,id,subject_id } from '../../common/getters.js'
@@ -35,10 +35,10 @@ export default {
     components: {XHeader,Group,ViewBox,Cell},
     vuex: {
         getters: {
-            fetchSummary,token,id,subject_id
+            fetchSummary,token,id,subject_id,fetchClassCode
         },
         actions: {
-            getSummary,setClassName
+            getSummary
         }
     },
     methods: {
@@ -51,8 +51,8 @@ export default {
         self.getSummary({
             token: self.token,
             subject_id:self.subject_id,
-            member_id:self.id,
-            grade:'10'
+            studentId:self.id,
+            class_code:self.fetchClassCode
         })
         var jroll = new JRoll("#wrapper")
         jroll.pulldown({
@@ -60,7 +60,8 @@ export default {
                 self.getSummary({
                     token: self.token,
                     subject_id:self.subject_id,
-                    grade:'10'
+                    studentId:self.id,
+                    class_code:self.fetchClassCode
                 },()=>{
                     complete()
                 })
