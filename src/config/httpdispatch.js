@@ -258,6 +258,14 @@ export default {
     textbookDel: (params) => {
         return http({ method: 'post', url: API_PATHS.userTextbookDel, data: params.data, ok: params.ok, wrong: params.wrong })
     },
+    /** 成绩报告单*/
+    report: (params) => {
+        return http({ method: 'get', url: API_PATHS.reportChapter, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
+    /** 成绩报告单详细*/
+    reportDetail: (params) => {
+        return http({ method: 'get', url: API_PATHS.reportDetail, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
 }
 
 export function http(params) {

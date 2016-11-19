@@ -13,7 +13,7 @@ const mockstate = {
             "name": "必修一",
             "textbook_id": 1,
             "checked":true,
-            "chapter_list": 
+            "chapter_list":
             [
                 {
                     "chapter_id": 75463,
@@ -37,7 +37,7 @@ const mockstate = {
             "name": "必修一",
             "textbook_id": 1,
             "checked":true,
-            "chapter_list": 
+            "chapter_list":
             [
                 {
                     "chapter_id": 75463,
@@ -69,7 +69,7 @@ const mockstate = {
             "level3_percentage": "67%"
         },
         "error_reason":{
-             "error1":"50%",   
+             "error1":"50%",
              "error2":"60%",
              "error3":"70%",
              "error4":"80%",
@@ -100,7 +100,7 @@ const state = {
             "level3_percentage": "67%"
         },
         "error_reason":{
-             "error1":"50%",   
+             "error1":"50%",
              "error2":"60%",
              "error3":"70%",
              "error4":"80%",

@@ -52,4 +52,3 @@ export const setSubject = ({ dispatch }, id) => {
     dispatch(types.REPORT_CHANGE_SUBJECT,id);
     dispatch(types.CLEAR_REPORT_CHAPTER);
 }
-

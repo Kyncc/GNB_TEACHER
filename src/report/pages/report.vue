@@ -1,7 +1,8 @@
 <template >
     <view-box v-ref:view-box class="reportIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+            <x-header :left-options="{showBack: true}">
+            <!-- <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()"> -->
                 成绩报告单
                 <a slot="right" @click="_change()" class="changeSub">
                     {{subjectName}}
@@ -22,22 +23,21 @@
                 <accordion :list="reportChapter" link="report/detail/" @on-click-back="_openChapter" ></accordion>
             </div>
         </div>
-        
+
         <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_changeSubject"><gnb-change-sub>
     </view-box>
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {token } from '../../common/getters'
+import {token,id } from '../../common/getters'
 import {reportChapter,reportScoll,reportSubjectId} from '../getters'
 import {getReport,changeChapter,setScoll,clearReport,setSubject} from '../actions'
+import {fetchClassCode} from '../../class/getters.js'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import accordion from '../../components/accordion'
 import '../index.less'
@@ -48,7 +48,7 @@ export default {
   },
   vuex: {
     getters: {
-        reportSubjectId,token,reportChapter,reportScoll
+        reportSubjectId,token,reportChapter,reportScoll,id,fetchClassCode
     },
     actions: {
         changeChapter,getReport,setScoll,setSubject
@@ -56,9 +56,9 @@ export default {
   },
   store,
   methods: {
-	_back() {
-      this.$router.go('/main');
-    },
+	// _back() {
+    //   this.$router.go('/reportClass');
+    // },
     _change(){
         this.visible = true;
     },
@@ -84,14 +84,16 @@ export default {
             return;
         }
         this.getReport({
-            token:this.token,   
-            subject_id:this.reportSubjectId
+            token:this.token,
+            subject_id:this.reportSubjectId,
+            studentId:this.id,
+            class_code:this.fetchClassCode
         },()=>{
             if(this.reportChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
             this.jroll.refresh();
         });
-    }   
+    }
   },
    data(){
         return {
@@ -107,7 +109,12 @@ export default {
         this.jroll.scrollTo(0,this.reportScoll,0);      //记录高度并滚动
         this.jroll.pulldown({
             refresh: function(complete) {
-                self.getReport({token:self.token,subject_id:self.reportSubjectId},()=>{
+                self.getReport({
+                    token:self.token,
+                    subject_id:self.reportSubjectId,
+                    studentId:this.id,
+                    class_code:this.fetchClassCode
+                },()=>{
                     complete();
                     self.setScoll(0);
                 })
