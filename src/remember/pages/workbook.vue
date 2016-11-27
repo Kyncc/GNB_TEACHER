@@ -10,16 +10,16 @@
             <template v-for="item in rememberChapter">
                 <template v-for="a in item">
                     <div v-for="aitem in a" style="margin-bottom:.5rem">
-                        <header class="sectionHeader ellipsis">{{aitem.name}}</header>
+                        <header class="sectionHeader ellipsis">{{_isLinkTitle(aitem)}}</header>
                         <!--<span class="with_arrow"></span>-->
                         <group>
-                            <template v-for="b in aitem.b"> 
-                                <cell :title="b.name" @click="_isLink(b)" ></cell>
+                            <template v-for="b in aitem.b">
+                                <cell :title="_isLinkTitle(b)" @click="_isLink(b)" ></cell>
                                 <template v-for="c in b.c">
-                                    <cell :title="c.name" @click="_isLink(c)"></cell>
+                                    <cell :title="_isLinkTitle(c)" @click="_isLink(c)"></cell>
                                     <template v-for="d in c.d">
-                                        <cell :title="d.name" @click="_isLink(d)"></cell>
-                                    </template>    
+                                        <cell :title="_isLinkTitle(d)" @click="_isLink(d)"></cell>
+                                    </template>
                                 </template>
                             </template>
                         </group>
@@ -72,10 +72,16 @@ export default {
           }
           return;
       },
+      _isLinkTitle(item){
+          if(item.isLink == 'true' && item.isUsed == 'true'){
+              return  '✔ '+item.name
+          }
+          return (item.isLink == 'true' ? '✐  '+item.name:'♢  '+item.name);
+      },
       _onInfinite(){
         this._isFirst();
         this.getWorkbookChapter({
-            token:this.token,   
+            token:this.token,
             workbookId:this.wookbookId
         },()=>{
             this.$broadcast('$InfiniteLoading:loaded');
@@ -89,7 +95,7 @@ export default {
             this.$broadcast('$InfiniteLoading:complete');
             return;
         }
-     } 
+     }
 
   }
 }

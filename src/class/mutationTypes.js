@@ -8,3 +8,7 @@ export const GET_APPLY_LIST = 'GET_APPLY_LIST'
 export const SET_CLASS_NAME = 'SET_CLASS_NAME'
 
 export const SET_CLASS_CODE = 'SET_CLASS_CODE'
+
+export const SET_STUDENT_ID = 'SET_STUDENT_ID'
+
+export const CLEAR_REPORT_DETAIL = 'CLEAR_REPORT_DETAIL'

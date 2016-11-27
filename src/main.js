@@ -199,7 +199,7 @@ router.map({
     'reportIndex': {component:reportIndex},
     'reportClass/:id': {component:reportClass},
     'report/:id': {component: report},
-    'report/detail/:sectionId': {component: reportDetail},
+    'report/detail/:chapterId': {component: reportDetail},
 })
 
 router.redirect({

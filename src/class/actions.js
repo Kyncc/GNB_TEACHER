@@ -21,6 +21,10 @@ export const setClassName = ({dispatch}, params) => {
 export const setClassCode = ({dispatch}, params) => {
     dispatch(types.SET_CLASS_CODE,params)
 }
+//设置班级代码
+export const setStudentId = ({dispatch}, params) => {
+    dispatch(types.SET_STUDENT_ID,params)
+}
 export const createClass = ({dispatch}, params, callback) => {
     Api.createClass({
         data: params,

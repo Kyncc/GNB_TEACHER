@@ -20,7 +20,7 @@
                 <span slot="no-more"></span>
             </infinite-loading>-->
             <div id='wrapper' style="height:100%" >
-                <accordion :list="reportChapter" link="report/detail/" @on-click-back="_openChapter" ></accordion>
+                <accordion :list="reportChapter" link="/report/detail/" @on-click-back="_openChapter" ></accordion>
             </div>
         </div>
 
@@ -38,6 +38,7 @@ import {token,id } from '../../common/getters'
 import {reportChapter,reportScoll,reportSubjectId} from '../getters'
 import {getReport,changeChapter,setScoll,clearReport,setSubject} from '../actions'
 import {fetchClassCode} from '../../class/getters.js'
+import {setStudentId} from '../../class/actions.js'
 import gnbChangeSub from '../../components/changesub/index.vue'
 import accordion from '../../components/accordion'
 import '../index.less'
@@ -51,7 +52,7 @@ export default {
         reportSubjectId,token,reportChapter,reportScoll,id,fetchClassCode
     },
     actions: {
-        changeChapter,getReport,setScoll,setSubject
+        changeChapter,getReport,setScoll,setSubject,setStudentId
     }
   },
   store,
@@ -105,6 +106,16 @@ export default {
     },
   ready(){
         let self = this;
+        self.setStudentId(self.id)
+        self.getReport({
+            token:self.token,
+            subject_id:self.reportSubjectId,
+            studentId:self.id,
+            class_code:self.fetchClassCode
+        },()=>{
+            complete();
+            self.setScoll(0);
+        })
         this.jroll = new JRoll("#wrapper");
         this.jroll.scrollTo(0,this.reportScoll,0);      //记录高度并滚动
         this.jroll.pulldown({
@@ -112,8 +123,8 @@ export default {
                 self.getReport({
                     token:self.token,
                     subject_id:self.reportSubjectId,
-                    studentId:this.id,
-                    class_code:this.fetchClassCode
+                    studentId:self.id ,
+                    class_code:self.fetchClassCode
                 },()=>{
                     complete();
                     self.setScoll(0);

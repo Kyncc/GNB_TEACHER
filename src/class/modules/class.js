@@ -1,11 +1,12 @@
-import {GET_CLASS_LIST,GET_CLASS_MATE_LIST,GET_APPLY_LIST,SET_CLASS_NAME,SET_CLASS_CODE} from '../mutationTypes'
+import {GET_CLASS_LIST,GET_CLASS_MATE_LIST,GET_APPLY_LIST,SET_CLASS_NAME,SET_CLASS_CODE,SET_STUDENT_ID} from '../mutationTypes'
 
 const state = {
     classList: [],
     classMateList: [],
     applyList: [],
     className:'',
-    classCode:''
+    classCode:'',
+    studentId:''
 }
 
 const mutations = {
@@ -23,6 +24,9 @@ const mutations = {
     },
     [SET_CLASS_CODE](state, data) {
         state.classCode = data
+    },
+    [SET_STUDENT_ID](state, data) {
+        state.studentId = data
     }
 }
 

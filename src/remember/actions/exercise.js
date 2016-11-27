@@ -37,3 +37,9 @@ export const rememberExercisePost = ({ dispatch }, params,success,wrong) => {
 export const rememberExerciseClear = ({ dispatch }) => {
   dispatch(types.REMEMBER_EXERCISE_CLEAR);
 }
+
+
+/**章节练习题答案变更 */
+export const rememberExAnswerChange = ({ dispatch },pid,id) => {
+  dispatch(types.REMEMBER_EXERCISE_CHANGE,pid,id);
+}
