@@ -1,9 +1,9 @@
 <template>
     <view-box v-ref:view-box class="rememberIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-            <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()">
+            <x-header :left-options="{showBack: true}" >
                 {{fetchClassName}}
-                <a slot="right" @click="_changeSub()" class="changeSub">{{rememberSubjectId | subName}}<span class="with_arrow"></span></a>
+                <a slot="right" @click="_changeSub()" class="changeSub">查看<span class="with_arrow"></span></a>
             </x-header>
         </div>
 
@@ -66,9 +66,9 @@ export default {
         this.delChapter();      //进去前清除章节数据
         this.$router.go('/remember/workbook/'+str);
     },
-	_back(){
-        this.$router.go('/main');
-    },
+	// _back(){
+    //     this.$router.go('/main');
+    // },
     _add(){
         this.WorkbookAllDel();  //进去前清除所有练习册数据
         this.$router.go('/remember/add');
