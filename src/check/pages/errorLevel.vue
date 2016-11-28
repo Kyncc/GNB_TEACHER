@@ -99,14 +99,12 @@ export default {
                 },
                 token: this.token,
                 options: {
-                    period_id: this.period_id,
                     subject_id: this.subject_id
                 }
             },()=>{
                 this.getErrorList({
                     options: {
                         ids: this.errorIndexIds,
-                        period_id: this.period_id,
                         subject_id: this.subject_id
                     },
                     token: this.token,

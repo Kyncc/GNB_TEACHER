@@ -5,7 +5,9 @@
         </div>
         <div id="scroll" style="padding-top:46px">
             <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in errorIndexList">
-                <div class="weui_panel_hd">{{{item.knowledge}}} <span style="float:right">{{$index+1}}/{{errorIndexList.length}}</span></div>
+                <div class="weui_panel_hd">{{{item.knowledge}}}
+                    <!-- <span style="float:right">{{$index+1}}/{{errorIndexList.length}}</span> -->
+                </div>
                 <div class="weui_panel_bd">
                     <a class="weui_media_box weui_media_appmsg"  v-touch:tap="_into(item.knowledgeId)">
                         <div class="weui_media_bd">

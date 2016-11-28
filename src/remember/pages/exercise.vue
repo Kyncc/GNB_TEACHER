@@ -31,7 +31,7 @@
                                             <span v-else class="checker error">✘</span>
                                         </section> -->
                                         <p>错<span style="color:orange">{{itemB.number}}</span>人 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                        <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
+                                        <x-button mini plain type="primary" @click="_intoExample(itemB.eid)">例题</x-button>
                                     </div>
                                 </cell>
                             </group>
