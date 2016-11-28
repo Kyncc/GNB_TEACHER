@@ -26,10 +26,11 @@
                             <group :title="item.name">
                                 <cell v-for="itemB in item.b" :title="itemB.name">
                                     <div slot="value">
-                                        <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index)">
+                                        <!-- <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index)">
                                             <span v-if="itemB.answer" class="checker">✔</span>
                                             <span v-else class="checker error">✘</span>
-                                        </section>
+                                        </section> -->
+                                        <p>错<span style="color:orange">{{itemB.number}}</span>人 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                         <x-button mini plain type="primary" @click="_intoExample(itemB.id)">例题</x-button>
                                     </div>
                                 </cell>
@@ -37,8 +38,8 @@
                         </template>
                     </template>
 
-                    <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交结果</x-button>
-                    <x-button v-else style="width:95%;margin-top:1rem;" type="primary" disabled>已提交</x-button>
+                    <!-- <x-button v-if="!rememberExercise.isUsed" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">提交结果</x-button>
+                    <x-button v-else style="width:95%;margin-top:1rem;" type="primary" disabled>已提交</x-button> -->
 
                 </template>
 

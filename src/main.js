@@ -49,6 +49,7 @@ import indexCheckIndex from './check/pages/index.vue'
 import indexCheckDetail from './check/pages/detail.vue'
 import indexCheckError from './check/pages/error.vue'
 import indexCheckErrorDetail from './check/pages/errorDetail.vue'
+import indexCheckErrorLevel from './check/pages/errorLevel.vue'
 
 //知识图谱
 import reportIndex from './report/pages/index.vue'
@@ -172,7 +173,7 @@ router.map({
     'index/class/manage/:id': { component: indexClassManage },
     'index/class/apply/:id':{ component: indexClassApply},
     //记错题
-    'remember':{component: remember},
+    'remember/:id':{component: remember},
     'remember/add':{component: rememberAdd},
     'remember/example/:id': { component:  rememberExample},
     'remember/workbook/:bookId':{component: rememberWorkbook},
@@ -180,6 +181,7 @@ router.map({
     //查错题
     'index/check': { component: indexCheckIndex },
     'index/check/detail/:id': { component: indexCheckDetail },
+    'index/check/error/level/:id': { component: indexCheckErrorLevel },//错误程度
     'index/check/detail/error/:id': { component: indexCheckError},
     'index/check/detail/errorDetail/:id': { component: indexCheckErrorDetail},
     //刷题型 Brush
@@ -187,7 +189,7 @@ router.map({
     'index/brush/detail/:id': { component: indexBrushDetail },
     'index/brush/brush/:id': { component:indexBrushBrush },
     'index/brush/error/:id': { component:indexBrushError },
-    '/index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
+    'index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
 
     //我的教材
     'user/textbook': { component: userTextbook },

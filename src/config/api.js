@@ -58,10 +58,13 @@ export const API_PATHS = {
     /**记错题
     *  rememberChapter:记错题章节列表
     */
-    rememberChapter:`${API_ENV}${API_VERSION}/v1/student/remember/chapter`,
-    rememberDetail:`${API_ENV}${API_VERSION}/v1/student/remember/exercises`,
+    //rememberChapter:`${API_ENV}${API_VERSION}/v1/student/remember/chapter`,
+    //rememberDetail:`${API_ENV}${API_VERSION}/v1/student/remember/exercises`,
     rememberDetailPost:`${API_ENV}${API_VERSION}/v1/student/remember/submit`,
     rememberExample: `${API_ENV}${API_VERSION}/v1/student/exerciseList`,
+
+    rememberChapter:`${API_ENV}${API_VERSION}/teacher/error/byWorkbook/chapter`,
+    rememberDetail:`${API_ENV}${API_VERSION}/teacher/error/byWorkbook/exercise`,
     /**互动模块
     * msgSystem:系统消息
     * msgClass:班级消息
@@ -126,7 +129,8 @@ export const API_PATHS = {
     userTextbookAdd: `${API_ENV}${API_VERSION}/teacher/textbook/add`,
     userTextbookDel: `${API_ENV}${API_VERSION}/teacher/textbook/del`,
     //习题册
-    userWorkbook: `${API_ENV}${API_VERSION}/v1/student/workbook`,
+    //userWorkbook: `${API_ENV}${API_VERSION}/v1/student/workbook`,
+    userWorkbook: `${API_ENV}${API_VERSION}/teacher/error/byWorkbook`,
     userWorkbookAll: `${API_ENV}${API_VERSION}/v1/student/workbook/list`,
     userWorkbookAdd: `${API_ENV}${API_VERSION}/v1/student/workbook/add`,
     userWorkbookDel: `${API_ENV}${API_VERSION}/v1/student/workbook/del`,

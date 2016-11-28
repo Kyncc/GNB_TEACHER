@@ -19,7 +19,7 @@ import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
 import { XHeader,Group,ViewBox }from 'vux'
-import { myClassList,setClassName } from '../../class/actions.js'
+import { myClassList,setClassName,setClassCode } from '../../class/actions.js'
 import { fetchClassList } from '../../class/getters'
 import { token } from '../../common/getters.js'
 export default {
@@ -29,13 +29,14 @@ export default {
             fetchClassList,token
         },
         actions: {
-            myClassList,setClassName
+            myClassList,setClassName,setClassCode
         }
     },
     methods: {
         _detail(code,name) {
+            this.setClassCode(code)
             this.setClassName(name)
-            this.$router.go('/remember')
+            this.$router.go('/remember/'+ code)
         }
     },
     ready(){

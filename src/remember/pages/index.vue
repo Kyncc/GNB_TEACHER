@@ -25,62 +25,52 @@
             </infinite-loading>
         </div>
 
-        <!-- <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
-           <x-button style="width:100%;border-radius:0px;background:#fff;color:#000" type="primary" @click="_add">添加习题册</x-button>
-        </tabbar> -->
-
     </view-box>
     <!--切换课程-->
-    <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="rememberSubjectId" @on-click-back="_changeSubject"><gnb-change-sub>
+        <mt-popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub" >
+            <p @click="toStudent()">按学生</p>
+            <p @click="toError()">按错误程度</p>
+        </mt-popup>
 </template>
 
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
+import { Popup } from 'mint-ui'
 import {XHeader,Panel,ViewBox,Group,Cell,Search,Tabbar,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {token} from '../../common/getters'
+import {token,id} from '../../common/getters'
 import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
 import {getWorkbook,setSubject} from '../actions/remember'
 import {delChapter} from '../actions/workbook'
 import {WorkbookAllDel} from '../actions/add'
-import gnbChangeSub from '../../components/changesub/index.vue'
+import '../../components/changesub/index.less'
 import '../index.less'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,Search,gnbChangeSub,InfiniteLoading,Tabbar,XButton
-  },
-  filters: {
-    subName(id){
-        switch(id){
-            case '2':return '数学';
-            case '7':return '物理';
-        }
-    }
+    XHeader,ViewBox,Panel,Group,Cell,Search,InfiniteLoading,Tabbar,XButton,
+    'mt-popup': Popup
   },
   methods: {
     _toChapter(str){
         this.delChapter();      //进去前清除章节数据
         this.$router.go('/remember/workbook/'+str);
     },
-	// _back(){
-    //     this.$router.go('/main');
-    // },
+    toStudent(){
+        this.$router.go('/index/check/detail/'+this.id)
+    },
+    toError(){
+        this.$router.go('/index/check/error/level/'+this.id)
+    },
     _add(){
         this.WorkbookAllDel();  //进去前清除所有练习册数据
         this.$router.go('/remember/add');
     },
     _changeSub(){
         this.visible = true;
-    },
-    /** 切换科目*/
-    _changeSubject(item){
-        this.subjectName = item.value;
-        this.setSubject(item.id);       //更换科目
-        this.visible = false;
     },
     _onInfinite(){
         //若没有数据则重新提交
@@ -92,7 +82,8 @@ export default {
 
         this.getWorkbook({
             token:this.token,
-            subjectId:this.rememberSubjectId
+            //subjectId:this.rememberSubjectId
+            classCode:this.id
         },()=>{
             if(this.rememberWorkbook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
@@ -101,7 +92,7 @@ export default {
   },
   vuex: {
     getters:{
-        token,rememberWorkbook,rememberSubjectId,fetchClassName
+        token,rememberWorkbook,rememberSubjectId,fetchClassName,id
     },
     actions:{
         getWorkbook,setSubject,delChapter,WorkbookAllDel
@@ -113,14 +104,6 @@ export default {
         searchName:'',
         visible:false,
         subjectList:['math','physics']
-    }
-  },
-  watch:{
-    /** 切换学科*/
-    rememberSubjectId(){
-        this.$nextTick(() => {
-            this.$broadcast('$InfiniteLoading:reset');
-        });
     }
   }
 }

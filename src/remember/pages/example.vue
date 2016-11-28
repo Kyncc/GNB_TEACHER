@@ -9,13 +9,13 @@
 			<div v-for="detail in rememberExample">
 				<div class="weui_panel weui_panel_access exerciseDetail" >
 					<div class="weui_panel_hd">
-                        <p style="width:25%;color:#4bb7aa">题干</p>
-                        <p style="width:50%;text-align:right;" v-touch:tap="_collect(detail.collectTime)">
-                            <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{detail.collectTime | collect}}</span>
-                        </p>
-                        <p style="width:25%;text-align:right" v-touch:tap="_correct"> 
-                            <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
-                        </p>
+						<p style="width:25%;color:#4bb7aa">题干</p>
+						<p style="width:50%;text-align:right;" v-touch:tap="_collect(detail.collectTime)">
+							<span style="color:#666"><i class="icon iconfont icon-collect"></i>{{detail.collectTime | collect}}</span>
+						</p>
+						<p style="width:25%;text-align:right" v-touch:tap="_correct">
+							<span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
+						</p>
 					</div>
 					<!--题目整体-->
 					<div class="weui_panel_bd">
@@ -32,14 +32,14 @@
 									{{ $key }} : {{{* value }}}
 								</p>
 							</div>
-						</template> 
+						</template>
 
 					</div>
 				</div>
 				<!--解析-->
 				<div class="weui_panel weui_panel_access exerciseDetail">
 					<div class="weui_panel_hd">
-                        <div style="color:#4bb7aa;width:25%">解析</div>
+						<div style="color:#4bb7aa;width:25%">解析</div>
 					</div>
 					<!--解析主体-->
 					<div class="weui_panel_bd">
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<infinite-loading :on-infinite="_onInfinite" spinner="default">
 				<span slot="no-results" style="color:#4bb7aa;">
 					<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -70,70 +70,70 @@ import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import {rememberExampleGet,rememberExampleClear,collectAdd,collectRemove} from '../actions/example'
 import {rememberExample,rememberSubjectId,exampleId} from '../getters'
 import {token} from '../../common/getters'
+import {fetchClassCode} from '../../class/getters.js'
 import store from '../../store'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
 	components: {
-        XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
+		XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
 	},
-    created(){
-        this.rememberExampleClear();
-    },
-    filters: {
-        collect(state){
-            if(state == 0){
-                return '收藏';
-            }
-            return '取消';
-        }    
-    },
+	created(){
+		this.rememberExampleClear();
+	},
+	filters: {
+		collect(state){
+			if(state == 0){
+				return '收藏';
+			}
+			return '取消';
+		}
+	},
 	vuex: {
-        getters: {
-            token,rememberExample,rememberSubjectId,exampleId
-        },
-        actions: {
-            rememberExampleGet,rememberExampleClear,collectAdd,collectRemove
-        }
-    },
+		getters: {
+			token,rememberExample,rememberSubjectId,exampleId,fetchClassCode
+		},
+		actions: {
+			rememberExampleGet,rememberExampleClear,collectAdd,collectRemove
+		}
+	},
 	methods: {
 		_onInfinite(){
 			this.rememberExampleGet({
 				options:{
 					ids:[this.exampleId],
-					subject_id:this.rememberSubjectId,
-                    period_id:'3'
+					subject_id:this.rememberSubjectId
 				},
+				classCode:this.fetchClassCode,
 				token:this.token
 			},()=>{
-                    if(this.rememberExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-                    this.$broadcast('$InfiniteLoading:complete');
-				}
-			)
+				if(this.rememberExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+				this.$broadcast('$InfiniteLoading:complete');
+			})
 		},
 		_correct(){
 			this.$router.go('/remember/correct/'+this.exampleId);
 		},
 		_collect(state){
-            let parma = {
-                options:{
-                    id:this.exampleId,
-                    period_id:'3',
-                    subject_id:this.rememberSubjectId
-                },
-                token:this.token,
-                type:'example'
-            }
-            if(state != 0){
-                //已收藏
-                this.collectRemove(parma);
-            }else{
-                //未收藏
-                this.collectAdd(parma);
-            }
+			let parma = {
+				options:{
+					id:this.exampleId,
+					period_id:'3',
+					subject_id:this.rememberSubjectId
+				},
+				token:this.token,
+				type:'example'
+			}
+			if(state != 0){
+				//已收藏
+				this.collectRemove(parma);
+			}else{
+				//未收藏
+				this.collectAdd(parma);
+			}
 		}
 	},
-    store,
+	store,
 	watch:{
 		exampleId(){
 			this.$nextTick(() => {
