@@ -123,8 +123,8 @@ export const API_PATHS = {
     reportChapter: `${API_ENV}${API_VERSION}/teacher/report`,
     reportDetail: `${API_ENV}${API_VERSION}/teacher/report/detail`,
     summary: `${API_ENV}${API_VERSION}/teacher/summary`,
-    brushList:`${API_ENV}${API_VERSION}/teacher/summary/list-exercises-ids`,
-    brushAction:`${API_ENV}${API_VERSION}/teacher/summary/loose-win-exercise-ids`,
+    brushList:`${API_ENV}${API_VERSION}/teacher/summary/list-exercises`,
+    brushAction:`${API_ENV}${API_VERSION}/teacher/summary/loose-win-exercise`,
     //我的教材
     userTextbook: `${API_ENV}${API_VERSION}/teacher/textbook`,
     userTextbookAll: `${API_ENV}${API_VERSION}/teacher/textbook/list`,

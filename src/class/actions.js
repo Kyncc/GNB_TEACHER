@@ -21,7 +21,7 @@ export const setClassName = ({dispatch}, params) => {
 export const setClassCode = ({dispatch}, params) => {
     dispatch(types.SET_CLASS_CODE,params)
 }
-//设置班级代码
+//设置学生代码
 export const setStudentId = ({dispatch}, params) => {
     dispatch(types.SET_STUDENT_ID,params)
 }

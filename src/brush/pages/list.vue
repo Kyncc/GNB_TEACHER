@@ -45,6 +45,7 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import { token } from '../../common/getters'
+import { fetchClassCode,fetchStudentId } from '../../class/getters'
 import { brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId} from '../getters'
 import { brushListClear,setScoll,getBushList,bushListAction } from '../actions/list'
 import '../index.less'
@@ -55,18 +56,26 @@ export default {
         XHeader,XButton,InfiniteLoading,
         Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
     },
+    vuex: {
+        getters: {
+            token,brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId,fetchClassCode,fetchStudentId
+        },
+        actions: {
+            brushListClear,setScoll,getBushList,bushListAction
+        }
+    },
     created(){
         this.brushListClear();
     },
-    filters: {
-        subName(id){
-            switch(id){
-                case '2':return '数学';
-                case '7':return '物理';
-                case '8':return '化学';
-            }
-        }    
-    },
+    // filters: {
+    //     subName(id){
+    //         switch(id){
+    //             case '2':return '数学';
+    //             case '7':return '物理';
+    //             case '8':return '化学';
+    //         }
+    //     }
+    // },
     methods: {
         _intoDetail(id){
             // alert(document.documentElement.scrollTop);
@@ -78,7 +87,9 @@ export default {
                 excercise_id:item.excercise_id,
                 token:this.token,
                 subject_id:item.subject_id,
-                status:type
+                status:type,
+                class_code:this.fetchClassCode,
+                studentId:this.fetchStudentId
             })
         },
         _isFirst(){
@@ -98,7 +109,9 @@ export default {
                 currentPage:this.brushListCurrentPage,
                 token:this.token,
                 chapter_id:this.brushListId,
-                subject_id:this.brushSubjectId
+                subject_id:this.brushSubjectId,
+                class_code:this.fetchClassCode,
+                studentId:this.fetchStudentId
             },()=>{
                 this.$broadcast('$InfiniteLoading:loaded');
                 if(this.brushListCurrentPage  > this.brushListTotalPage){
@@ -107,14 +120,6 @@ export default {
                 }
             })
        }
-    },
-    vuex: {
-        getters: {
-            token,brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId
-        },
-        actions: {
-            brushListClear,setScoll,getBushList,bushListAction
-        }
     },
     store
 }
