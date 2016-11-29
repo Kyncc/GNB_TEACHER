@@ -59,6 +59,8 @@ import reportDetail from './report/pages/detail'
 //刷题型
 import indexBrushIndex from './brush/pages/index.vue'
 import indexBrushDetail from './brush/pages/detail.vue'
+import brushExample from './brush/pages/example.vue'
+import brushList from './brush/pages/list.vue'
 import indexBrushBrush from './brush/pages/brush.vue'
 import indexBrushError from './brush/pages/error.vue'
 import indexBrushErrorDetail from './brush/pages/errorDetail.vue'
@@ -189,6 +191,9 @@ router.map({
     'index/brush/detail/:id': { component: indexBrushDetail },
     'index/brush/brush/:id': { component:indexBrushBrush },
     'index/brush/error/:id': { component:indexBrushError },
+    // 'index/brush/list/:id': { component:indexBrushList },
+    'brush/example/:id':{component: brushExample},
+    'brush/list/:chapterId':{component: brushList},
     'index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
 
     //我的教材
