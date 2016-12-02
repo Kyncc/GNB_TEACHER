@@ -1,7 +1,7 @@
 <template>
   <div class="register vux-scroller-header-box">
     <div style="height:46px;">
-			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">重置密码</x-header>
+			<x-header :left-options="{showBack: false,preventGoBack:false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">重置密码</x-header>
 		</div>
     <div class="icon">
       <img src="../../assets/login/icon.jpg">
@@ -56,15 +56,14 @@ export default {
     }
   },
   methods:{
-     _back(){
-        this.$router.replace('/');
-    },
     _complete(){
        let params = {
         mobile:this.forgetMobile,
         pwd:this.password
       }
-      this.resetPwd(params);
+      this.resetPwd(params,()=>{
+        this.$router.replace('/');
+      });
     }
   },
   computed:{

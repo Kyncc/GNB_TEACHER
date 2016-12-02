@@ -1,22 +1,29 @@
 import {
   GET_REGISTER_MESSAGE_SUCCESS,
-  GET_REGISTER_MESSAGE_ERROR
+  GET_TEXTBOOK_VERSION_SUCCESS
 } from '../mutationTypes'
 
 const state = {
-  code:'',
   mobile:'',
-  msg:''
+  code:'',
+  version:{
+    math:[],
+    physics:[]
+  }
 }
 
 const mutations = {
   [GET_REGISTER_MESSAGE_SUCCESS](state , data){
-    state.code = data.data.code;
     state.mobile = data.data.mobile;
-    state.msg = data.msg;
+    state.code = data.data.code;
   },
-  [GET_REGISTER_MESSAGE_ERROR](state, data){
-    state.msg = data.msg;
+  [GET_TEXTBOOK_VERSION_SUCCESS](state , data){
+    state.version.math = data.subjectOptions.math;
+     if(data.subjectOptions.physics){
+       state.version.physics = data.subjectOptions.physics;
+     }else{
+       state.version.physics = [];
+     }
   }
 }
 
