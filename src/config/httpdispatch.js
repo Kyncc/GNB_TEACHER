@@ -149,6 +149,9 @@ export default {
     myClassList: (params) => {
         return http({ method: 'get', url: API_PATHS.myClassList, data: params.data, ok: params.ok, wrong: params.wrong })
     },
+    material: (params) => {
+        return http({ method: 'get', url: API_PATHS.material, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
     createClass: (params) => {
         return http({ method: 'post', url: API_PATHS.createClass, data: params.data, ok: params.ok, wrong: params.wrong })
     },

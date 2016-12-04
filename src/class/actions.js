@@ -13,6 +13,17 @@ export const myClassList = ({dispatch}, params,callback) => {
         wrong: response => {}
     })
 }
+
+//获取创建班级信息
+export const getMaterial = ({dispatch}, params,callback) => {
+    Api.material({
+        data: params,
+        ok: response => {
+            callback&&callback(response.data.data.list)
+        },
+        wrong: response => {}
+    })
+}
 //设置标题
 export const setClassName = ({dispatch}, params) => {
     dispatch(types.SET_CLASS_NAME,params)

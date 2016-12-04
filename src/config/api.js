@@ -80,6 +80,7 @@ export const API_PATHS = {
     updateUserInfo: `${API_ENV}${API_VERSION}/teacher/user/updateUserInfo`,
     //获取班级列表
     myClassList: `${API_ENV}${API_VERSION}/teacher/class/myClassList`,
+    material: `${API_ENV}${API_VERSION}/teacher/class/material`,
     //创建班级
     createClass: `${API_ENV}${API_VERSION}/teacher/class/createClass`,
     //班级成员名单

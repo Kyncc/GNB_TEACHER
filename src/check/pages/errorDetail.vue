@@ -93,10 +93,11 @@ export default {
 		_onInfinite() {
 			let self = this
 			self.getErrorListIds({
-				options: {
-					period_id: self.period_id,
-					subject_id: self.subject_id
-				},
+				// options: {
+				// 	period_id: self.period_id,
+				// 	subject_id: self.subject_id
+				// },
+				subject_id: self.subject_id,
 				token: self.token,
 				studentId: self.id,
 				knowledgeId:self.fetchKnowledgeId
@@ -104,9 +105,10 @@ export default {
 				self.getErrorListList({
 					options: {
 						ids: self.errorListIds,
-						period_id: self.period_id,
+						// period_id: self.period_id,
 						subject_id: self.subject_id
 					},
+					studentId: self.id,
 					token: self.token
 				}, () => {
 					setTimeout(() => {
