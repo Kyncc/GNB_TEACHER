@@ -48,7 +48,7 @@ export default {
                     token: this.token,
                     name: this.name,
                     subject_id: this.subject_id,
-                    gread:this.value[0].substring(3),
+                    grade:this.value[0].substring(3),
                     edition_id:this.value[2].substring(3),
                 }, () => {
                     this.$router.replace('/index/class')
