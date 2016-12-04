@@ -11,7 +11,8 @@ import {
 
     SET_KNOWLEDGE_ID,
     CLEAR_LIST,
-    SET_CURRENTPAGE
+    SET_CURRENTPAGE,
+    ERROR_INDEXDETAIL
 }from '../mutationTypes'
 
 const state = {
@@ -20,6 +21,7 @@ const state = {
         code:'',
         ids:[],
         list:[],
+        detail:[],
         msg:'',
         totalPage:'1',
         currentPage:1,
@@ -35,6 +37,9 @@ const state = {
 const mutations = {
     [SET_CURRENTPAGE](state,data){
         state.index.currentPage = data
+    },
+    [ERROR_INDEXDETAIL](state, data){
+        state.index.detail = data.data;
     },
     [CLEAR_LIST](state){
         state.index.code = ''

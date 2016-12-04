@@ -29,6 +29,20 @@ export const getErrorList = ({ dispatch }, params,success) => {
         }
     })
 }
+
+/**获取详情 */
+export const getErrorDetail = ({ dispatch }, params,success) => {
+  Api.exerciseList({
+    data: params,
+    ok: response => {
+      dispatch(types.ERROR_INDEXDETAIL, response.data);
+      success&&success();
+    },
+    wrong: response => {
+      _.toast(response.data.msg);
+    }
+  })
+}
 export const clearList = ({dispatch})=>{
     dispatch(types.CLEAR_LIST)
 }

@@ -1,5 +1,6 @@
 export const errorIndexIds  = (state) => state.check.index.ids
 export const errorIndexList  = (state) => state.check.index.list
+export const errorIndexDetail  = (state) => state.check.index.detail
 export const errorIndexTotalPage  = (state) => state.check.index.totalPage
 
 export const errorListIds  = (state) => state.check.list.ids

@@ -130,7 +130,7 @@ router.map({
     'forget': { component: forget },
     'forget/password': { component: resetPassword },
     //纠错
-    'correct/:id':{component: correct},
+    'correct/:subjectId/:id':{component: correct},
     //评注
     'comment/:id':{component: comment},
     //主页

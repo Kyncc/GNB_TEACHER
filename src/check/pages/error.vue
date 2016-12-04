@@ -19,7 +19,7 @@
                     {{{item.knowledge}}}
                 </div>
                 <div class="weui_panel_bd">
-                    <a class="weui_media_box weui_media_appmsg"  v-touch:tap="_into(item.knowledgeId)">
+                    <a class="weui_media_box weui_media_appmsg"  v-touch:tap="_into(item.id)">
                         <div class="weui_media_bd">
                             <p class="weui_media_desc">
                                 {{{item.content}}}
@@ -68,9 +68,9 @@ export default {
         }
     },
     methods: {
-        _into(knowledgeId){
-            this.setKnowledgeId(knowledgeId)
-            this.$router.go('/index/check/detail/errorDetail/'+ this.id)
+        _into(id){
+            // this.setKnowledgeId(knowledgeId)
+            this.$router.go('/index/check/detail/errorDetail/'+ id)
         },
         _time(value) {
             if (value == 'week') {

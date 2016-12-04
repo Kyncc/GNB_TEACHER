@@ -1,7 +1,9 @@
 <template>
 	<div class='errorCorrect  vux-scroller-header-box'>
 		<div style="height:46px;">
-			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错<a slot="right" v-touch:tap="_commit">提交</a></x-header>
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错
+                <a slot="right" v-touch:tap="_commit">提交</a>
+            </x-header>
 		</div>
         <div>
             <group title="纠错类型">
@@ -29,9 +31,9 @@
 
 <script>
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
-import store from '../../store' 
+import store from '../../store'
 import { correct } from '../actions'
-import { period_id,subject_id,token } from '../getters'
+import { token } from '../getters'
 import * as _ from '../../config/whole'
 
 export default {
@@ -41,7 +43,7 @@ export default {
 	},
      vuex: {
         getters: {
-            period_id,subject_id,token
+            token
         },
         actions: {
             correct
@@ -49,16 +51,18 @@ export default {
     },
 	methods: {
 		_commit(){
-             if(!this.type[0] && this.type[0]!='0'){
+            if(!this.type[0] && this.type[0]!='0'){
                _.toast("请选择纠错类型");
                return;
             }
-
+            if(this.type.indexOf(4) >= 0 && this.content==''){
+                _.toast("请填写纠错内容");
+               return;
+            }
 			 let params = {
                 options:{
                     id:Number(this.id),
-                    period_id:this.period_id,
-                    subject_id:this.subject_id
+                    subject_id:this.subejectId
                 },
                 data:{
                     content:this.content,
@@ -74,9 +78,9 @@ export default {
         return{
              type: [],
              content:'',
-             id:store.state.route.params.id
+             id:store.state.route.params.id,
+             subejectId:store.state.route.params.subjectId
         }
     }
 }
 </script>
-

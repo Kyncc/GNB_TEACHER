@@ -19,7 +19,7 @@
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
 import { XHeader,Cell,Group,ViewBox} from 'vux'
-import { myClassmateList,applyList} from '../../class/actions.js'
+import { myClassmateList,applyList,setStudentId} from '../../class/actions.js'
 import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
@@ -28,7 +28,7 @@ export default {
     },
     vuex:{
         actions:{
-            myClassmateList,applyList
+            myClassmateList,applyList,setStudentId
         },
         getters:{
             fetchClassMateList,token,id,fetchClassName
@@ -54,6 +54,7 @@ export default {
     },
     methods:{
         _check(id){
+            this.setStudentId(id)
             this.$router.go('error/'+ id)
         }
     }
