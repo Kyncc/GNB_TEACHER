@@ -23,7 +23,7 @@ export const updateUserinfo = ({ dispatch }, params,success,wrong) => {
   Api.updateUserInfo({
     data: params,
     ok: response => {
-      dispatch(types.USERINFO_UPDATE, response.data.data);
+    //   dispatch(types.USERINFO_UPDATE, response.data.data);
       success&&success();
     },
     wrong: response => {
@@ -47,5 +47,3 @@ export const getTextbookVersion = ({ dispatch }, params,success,wrong) => {
     }
   })
 }
-
-

@@ -10,7 +10,7 @@
                 <x-input title="姓名" name="username" :value.sync="name" readonly></x-input>
                 <x-input title="性别" name="sex" value="女" v-show="sex=='0'"readonly></x-input>
                 <x-input title="性别" name="sex" value="男" v-show="sex=='1'" readonly></x-input>
-                <x-input title="年级" name="grade" :value.sync="gradeName" readonly></x-input>
+                <!-- <x-input title="年级" name="grade" :value.sync="gradeName" readonly></x-input> -->
                 <x-input title="学校" name="school" :value.sync="school" readonly></x-input>
             </group>
             <!-- <group title="版本选择">
@@ -28,7 +28,7 @@
                         <checker-item value="0">女</checker-item>
                     </checker>
                 </cell>
-                <selector title="年级" :options="gradeList" :value.sync="grade" @on-change="_onChangeGrade"></selector>
+                <!-- <selector title="年级" :options="gradeList" :value.sync="grade" @on-change="_onChangeGrade"></selector> -->
                 <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
             </group>
             <!-- <group title="版本选择">
@@ -133,7 +133,7 @@ export default {
                             math:this.math,
                             physics:this.physics
                         },
-                        grade: this.grade,
+                        // grade: this.grade,
                         token: this.token
                     }, () => {
                         this.getUserinfo({
