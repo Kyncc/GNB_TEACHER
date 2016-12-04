@@ -34,7 +34,7 @@
             <div class="img-box">
                 <img src="../../assets/main/ewm.jpg" style="max-width:100%">
             </div>
-            <span class="vux-close">截屛到微信中识别二维码</span>
+            <span class="vux-close" style="width:100%">截屛到微信中识别二维码</span>
         </dialog>
     </div>
 </template>

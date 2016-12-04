@@ -16,22 +16,23 @@
                             <img src="../../assets/main/error.png"/>
                             <p>查看错题</p>
                         </div>
-                        <div class="flex-item right1px bottom1px" v-link="{ path: '/reportIndex'}" >
-                            <img src="../../assets/main/knowledge.png" alt="" />
-                            <p class="disable">知识图谱</p>
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/index/brush'}">
+                            <img src="../../assets/main/types.png" alt="" />
+                            <p >题型汇总</p>
                         </div>
-                        <div class="flex-item bottom1px" @click="_warn()">
-                            <img src="../../assets/main/homework.png" alt="" />
-                            <p class="disable">布置作业</p>
+                        <div class="flex-item bottom1px" v-link="{ path: '/reportIndex'}" >
+                            <img src="../../assets/main/knowledge.png" alt="" />
+                            <p class="disable">成绩报告单</p>
                         </div>
                         <div class="flex-item right1px" v-link="{ path: '/index/class'}">
                             <img src="../../assets/main/class.png" alt="" />
                             <p>我的班级</p>
                         </div>
-                        <div class="flex-item right1px" v-link="{ path: '/index/brush'}">
-                            <img src="../../assets/main/types.png" alt="" />
-                            <p >刷题型</p>
+                        <div class="flex-item right1px" @click="_warn()">
+                            <img src="../../assets/main/homework.png" alt="" />
+                            <p class="disable">布置作业</p>
                         </div>
+
                         <div class="flex-item" @click='_warn()'>
                             <p class="disable">&nbsp;</p>
                             <p class="disable">&nbsp;</p>
