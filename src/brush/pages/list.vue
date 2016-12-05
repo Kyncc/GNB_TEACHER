@@ -44,7 +44,7 @@
 import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
-import { token } from '../../common/getters'
+import { token,chapterId} from '../../common/getters'
 import { fetchClassCode,fetchStudentId } from '../../class/getters'
 import { brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId} from '../getters'
 import { brushListClear,setScoll,getBushList,bushListAction } from '../actions/list'
@@ -58,7 +58,7 @@ export default {
     },
     vuex: {
         getters: {
-            token,brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId,fetchClassCode,fetchStudentId
+            token,brushList,brushListTotalPage,brushListCurrentPage,brushSubjectId,brushListScoll,brushListId,fetchClassCode,fetchStudentId,chapterId
         },
         actions: {
             brushListClear,setScoll,getBushList,bushListAction
@@ -83,7 +83,7 @@ export default {
         },
         _brushAction(type,item){
              this.bushListAction({
-                chapter_id:item.chapter_id,
+                chapter_id:this.chapterId,
                 excercise_id:item.excercise_id,
                 token:this.token,
                 subject_id:item.subject_id,

@@ -16,9 +16,9 @@
                     <cell title="个人资料" link="/user/info/">
                         <span class="icon icon-info" slot="icon"></span>
                     </cell>
-                    <cell title="邀请好友" link="/user/invite/">
+                    <!-- <cell title="邀请好友" link="/user/invite/">
                         <span class="icon icon-invite" slot="icon"></span>
-                    </cell>
+                    </cell> -->
                     <cell title="设置" link="/user/settings/">
                         <span class="icon icon-settings" slot="icon"></span>
                     </cell>
