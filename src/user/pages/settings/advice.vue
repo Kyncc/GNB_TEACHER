@@ -15,8 +15,8 @@
 <script>
 
 import {XHeader,XInput,Group,XTextarea,XButton} from 'vux'
-import { advice } from '../../actions.js'
-import {fetchToken} from '../../getters'
+import { advice } from '../../actions/advice'
+import { token } from '../../../common/getters.js'
 import * as _  from '../../../config/whole.js'
 
 export default {
@@ -35,7 +35,7 @@ export default {
 			advice
 		},
 		getters:{
-			fetchToken
+			token
 		}
 	},
 	methods: {
@@ -45,12 +45,12 @@ export default {
 		_submit(){
 			if(this.title && this.content && this.contact){
 				this.advice({
-					token:this.fetchToken,
+					token:this.token,
 					title:this.title,
 					content:this.content,
 					contact:this.contact
 				},()=>{
-					this.$router.go('advice/history')
+					this.$router.go('advice/history');
 				})
 			}else{
 				_.toast("请完善内容")

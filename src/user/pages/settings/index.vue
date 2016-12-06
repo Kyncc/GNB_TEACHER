@@ -27,8 +27,9 @@
 <script>
 import {  XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
 import './setting.less'
-import {  updateVersion, quitToken} from '../../actions.js'
-import {  fetchVersion,  fetchToken} from '../../getters.js'
+import {  updateVersion} from '../../actions/settings.js'
+import {  versionCurrent} from '../../getters.js'
+import {  system,token} from '../../../common/getters.js'
 
 export default {
   components: {
@@ -40,7 +41,7 @@ export default {
   },
   data() {
     return {
-      version: '1.0.1',
+      version: '1.0.2',
       show: false,
       confirm: false,
       quit:false
@@ -48,11 +49,11 @@ export default {
   },
   vuex: {
     actions: {
-      updateVersion,quitToken
+      updateVersion
     },
     getters: {
-      fetchVersion,
-      fetchToken
+      versionCurrent,
+      system,token
     }
   },
   methods: {
@@ -68,20 +69,21 @@ export default {
             localStorage.removeItem('mobile');
             localStorage.removeItem('name');
             localStorage.removeItem('token');
-            localStorage.removeItem('isVip');
-            localStorage.removeItem('balance');
-            localStorage.removeItem('numerical');
             this.$router.replace('/');
         }
     },
     onAction(type) {
+      if(this.system == 'IOS' && type == '确认'){
+        window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8";
+        return;
+      }
       if (type == '确认') {
         let start = true;
-        let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/com.sanbao.guinaben.student.apk", {}, (d, status)=> {
+        let dtask = plus.downloader.createDownload("http://www.chinasanbao.com/app/com.sanbao.guinaben.teacher.apk", {}, (d, status)=> {
           if (status == 200) {
             console.log('下载完成：' + d.filename);
             plus.ui.toast('下载完成：' + d.filename);
-            void plus.runtime.install('_downloads/com.sanbao.guinaben.student.apk');
+            void plus.runtime.install('_downloads/com.sanbao.guinaben.teacher.apk');
           } else {
             console.log('下载失败：' + status);
             plus.ui.toast('下载失败：' + status);
@@ -103,49 +105,29 @@ export default {
       }
     },
     _update() {
-      this.updateVersion({
-        token: this.fetchToken
-      }, () => {
-        if (this.fetchVersion.currentVersion != this.version) {
-          this.confirm = true
-        }
-      })
+       if(this.system == 'IOS' ){
+         window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"; 
+         return; 
+       }
+
+        this.updateVersion({
+          token: this.fetchToken
+        }, () => {
+          if (this.fetchVersion.currentVersion != this.version) {
+            this.confirm = true
+          }
+        })
     },
     _openQQ() {
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
     _openStore() {
-      window.location.href = "market://details?id=com.sanbao.guinaben.student";
+      if(this.system == 'IOS' ){
+         window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"; 
+         return; 
+      }
+      window.location.href = "market://details?id=com.sanbao.guinaben.teacher";
     }
   }
 }
 </script>
-
-<style lang="less">
-body {
-    -webkit-touch-callout: none;
-}
-.settings {
-    .vux-header {
-        color: #fff;
-        background-color: #4bb7aa;
-    }
-    .weui_cells {
-        margin-top: 0;
-    }
-    .vux-no-group-title {
-        margin-top: 0;
-    }
-    .vux-header .vux-header-left,
-    .vux-header .vux-header-right {
-        font-size: 16px;
-    }
-    .vux-header .vux-header-left .vux-header-back:before {
-        border-color: #fff;
-    }
-    .vux-header .vux-header-title,
-    .vux-header h1 {
-        margin-left: 88px;
-    }
-}
-</style>

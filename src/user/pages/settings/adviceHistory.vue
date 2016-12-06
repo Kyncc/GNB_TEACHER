@@ -1,58 +1,65 @@
 <template>
-	<div class='settingsAdviceHistory vux-scroller-header-box'>
-		<div style="height:46px;">
-			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">反馈历史</x-header>
-		</div>
-		<scroller class="messageSection" lock-x scrollbar-y use-pulldown :pulldown-config="{content:'下拉刷新',downContent:'下拉刷新',upContent:'释放刷新',loadingContent:'加载中'}" @pulldown:loading="load">
-			<div class="scollMain">
-				<section v-for="item in fetchHistory">
-					<h3>{{item.createTime}}</h3>
-					<article>
-						<h4>{{item.title}}</h4>
-						<p>
-						{{item.content}}
-						</p>
-					</article>
-				</section>
+	 <view-box v-ref:view-box class="settingsAdviceHistory">
+		  <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
+            <x-header :left-options="{showBack: true}">
+               反馈历史
+            </x-header>
+        </div>
 
-			</div>
-		</scroller>
-	</div>
+		 <div style="padding-top:46px;" class="messageSection">
+			<section v-for="item in fetchHistory" >
+				<h3>{{item.createTime}}</h3>
+				<article>
+					<h4>{{item.title}}</h4>
+					<p>
+					{{item.content}}
+					</p>
+				</article>
+			</section>
+		</div>
+		
+		<infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+			<span slot="no-results" style="color:#4bb7aa;">
+				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+				<p style="font-size:1rem;display:inline-block;">暂无消息~</p>
+			</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
+		</infinite-loading>
+
+
+	</view-box>
 </template>
 
 <script>
-import {XHeader,XInput,Group,Scroller,Cell} from 'vux'
-import { adviceHistory } from '../../actions.js'
-import { fetchHistory, fetchToken } from '../../getters.js'
+import {XHeader,XInput,Group,Cell,ViewBox} from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
+import { adviceHistory } from '../../actions/advice'
+import { historyList } from '../../getters.js'
+import { token } from '../../../common/getters.js'
 import * as _  from '../../../config/whole.js'
 
 export default {
 	components: {
-		XHeader,XInput,Group,Cell,Scroller
+		XHeader,XInput,Group,Cell,ViewBox,InfiniteLoading
 	},
 	vuex:{
 		actions:{
 			adviceHistory
 		},
 		getters:{
-			fetchHistory,
-			fetchToken
+			historyList,
+			token
 		}
 	},
-	ready(){
-		this.adviceHistory({token:this.fetchToken},()=>{
-			//_.toast("获取记录成功")
-		})
-	},
-	methods: {
-		load (uuid) {
-			this.adviceHistory({token:this.fetchToken},()=>{
-				setTimeout(()=>{
-					this.$broadcast('pulldown:reset', uuid)
-					_.toast("刷新成功")
-				},500)
-			})
-		}
-	}
+	 methods: {
+		 _onInfinite(){
+			this.adviceHistory({
+				token:this.token   
+			},()=>{
+				if(this.historyList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+				this.$broadcast('$InfiniteLoading:complete');
+			});
+		 }
+	 }
 }
 </script>

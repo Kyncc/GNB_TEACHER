@@ -62,7 +62,7 @@ export default {
         pwd:this.password
       }
       this.addPwd(params,()=>{
-          this.$router.replace('/register/info');
+          this.$router.replace('/main/index');
       });
     }
   },

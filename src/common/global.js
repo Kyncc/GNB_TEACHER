@@ -8,6 +8,7 @@ const state = {
     toastMsg:'',
     toastShow:false,
     isLoading:false,
+    system:'',
     period_id:3,
     subject_id:2
 }
@@ -21,6 +22,9 @@ const mutations = {
     },
     GET_LOADING (state, status) {
       state.isLoading = status
+    },
+    SET_SYSTEM (state, type) {
+      state.system = type
     }
 }
 

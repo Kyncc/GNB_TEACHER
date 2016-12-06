@@ -1,79 +1,26 @@
 import * as types from '../mutationTypes'
 
 const state = {
-    textbook:{
-        all:[
-            {
-                "textbookId": 1,
-                "textbookName": "必修101"
-            },
-            {
-                "textbookId": 2,
-                "textbookName": "必修101"
-            }
-        ],
-        my:[
-            {
-                "textbookId": 1,
-                "textbookName": "必修101"
-            },
-            {
-                "textbookId": 2,
-                "textbookName": "必修101"
-            }
-        ]
-    },
-    workbook:{
-        search:[],
-        all:[],
-        my:[]
-    },
     userinfo:{
-        grade: '',
         name: '',
         school: '',
-        subject: '',
-        sex: '',
+        sex: ''
     },
-    textbookVersion:{
-        subjectType:[],
-        subjectOptions:{
-            physics:[],
-            math:[]
-        }
+    settings:{
+        adviceList:[],
+        version:''
     }
 }
 
 const mutations = {
-    [types.TEXTBOOK_ADD](state, data) {
-        state.textbook.all = data;
-    },
-    [types.TEXTBOOK_GET](state, data) {
-        state.textbook.my = data;
-    },
-    [types.TEXTBOOK_RELOAD](state) {
-        state.textbook.my = {};
-    },
-    [types.TEXTBOOK_GET_ALL](state, data) {
-        state.textbook.all = data;
-    },
-    [types.WORKBOOK_GET](state, data) {
-        state.workbook.my = data;
-    },
-    [types.WOEKBOOK_RELOAD](state) {
-        state.workbook.my = {};
-    },
-    [types.WORKBOOK_GET_ALL](state, data) {
-        state.workbook.all = data;
-    },
-    [types.WORKBOOK_GET_SEARCH](state, data) {
-        state.workbook.all = data;
-    },
     [types.USERINFO_GET](state, data) {
         state.userinfo = data;
     },
-    [types.USERINFO_TEXTBOOKVERSION](state, data) {
-        state.textbookVersion = data;
+    [types.GET_VERSION](state, data) {
+        state.version = data;
+    },
+    [types.GET_ADVICE_LIST](state, data) {
+        state.settings.adviceList = data;
     }
 }
 

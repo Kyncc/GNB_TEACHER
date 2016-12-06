@@ -2,12 +2,7 @@
     <view-box v-ref:view-box class="reportIndex">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">
-            <!-- <x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back()"> -->
                 成绩报告单
-                <a slot="right" @click="_change()" class="changeSub">
-                    {{subjectName}}
-                    <span class="with_arrow"></span>
-                </a>
             </x-header>
         </div>
 
@@ -24,7 +19,6 @@
             </div>
         </div>
 
-        <gnb-change-sub :visible.sync="visible" :subject="subjectList" :selected="2" @on-click-back="_changeSubject"><gnb-change-sub>
     </view-box>
 </template>
 
@@ -34,25 +28,23 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {token,id } from '../../common/getters'
-import {reportChapter,reportScoll,reportSubjectId} from '../getters'
-import {getReport,changeChapter,setScoll,clearReport,setSubject} from '../actions'
+import {token,id} from '../../common/getters'
+import {reportChapter,reportScoll} from '../getters'
+import {getReport,changeChapter,setScoll,clearReport,setStudentId} from '../actions'
 import {fetchClassCode} from '../../class/getters.js'
-import {setStudentId} from '../../class/actions.js'
-import gnbChangeSub from '../../components/changesub/index.vue'
 import accordion from '../../components/accordion'
 import '../index.less'
 
 export default {
   components: {
-    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,accordion,gnbChangeSub,InfiniteLoading
+    XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,accordion,InfiniteLoading
   },
   vuex: {
     getters: {
-        reportSubjectId,token,reportChapter,reportScoll,id,fetchClassCode
+        token,reportChapter,reportScoll,id,fetchClassCode
     },
     actions: {
-        changeChapter,getReport,setScoll,setSubject,setStudentId
+        changeChapter,getReport,setScoll,setStudentId
     }
   },
   store,
@@ -62,13 +54,6 @@ export default {
     // },
     _change(){
         this.visible = true;
-    },
-    /** 切换科目*/
-    _changeSubject(item){
-        this.subjectName = item.value;
-        this.visible = false;
-        this.setSubject(item.id);       //更换科目
-        this._onInfinite();
     },
     _openChapter(index){
         this.changeChapter(index);
@@ -96,14 +81,6 @@ export default {
         });
     }
   },
-   data(){
-        return {
-			visible:false,
-            subjectList:['math','physics'],
-            subjectName:'数学',
-            jroll:{}
-        }
-    },
   ready(){
         let self = this;
         self.setStudentId(self.id)
