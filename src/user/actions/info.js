@@ -9,7 +9,7 @@ export const getUserInfo = ({ dispatch }, params, success,wrong) => {
   Api.getUserInfo({
     data: params,
     ok: response => {
-      dispatch(types.GET_USER_INFO, response.data.data);
+      dispatch(types.USERINFO_GET, response.data.data);
       _.leave();
       success&&success()
     },

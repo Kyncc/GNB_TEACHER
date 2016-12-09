@@ -20,7 +20,7 @@
                             <img src="../../assets/main/types.png" alt="" />
                             <p >题型汇总</p>
                         </div>
-                        <div class="flex-item bottom1px" v-link="{ path: '/reportIndex'}" >
+                        <div class="flex-item bottom1px" v-link="{ path: '/report'}" >
                             <img src="../../assets/main/knowledge.png" alt="" />
                             <p class="disable">成绩报告单</p>
                         </div>

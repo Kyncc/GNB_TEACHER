@@ -3,21 +3,20 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">查看错题</x-header>
         </div>
-        <div style="padding-top:46px;height:100%">
-            <div id='wrapper' style="height:100%">
-                <group>
-                    <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
-                        <span>{{item.name}}&nbsp;</span>
-                    </div>
-                </group>
-            </div>
+
+        <div style="padding-top:46px">
+            <group>
+                <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
+                    <span>{{item.name}}&nbsp;</span>
+                </div>
+            </group>
         </div>
     </view-box>
 </template>
 <script>
+
 import './myClass.less'
-import JRoll from 'jroll'
-import '../../common/pulldown.js'
+import store from '../../store'
 import { XHeader,Group,ViewBox }from 'vux'
 import { myClassList,setClassName,setClassCode } from '../../class/actions.js'
 import { fetchClassList } from '../../class/getters'
@@ -32,39 +31,18 @@ export default {
             myClassList,setClassName,setClassCode
         }
     },
+    store,
     methods: {
         _detail(code,name) {
             this.setClassName(name)
             this.setClassCode(code)
-            this.$router.go('/reportClass/'+code)
+            this.$router.go('/report/class/'+code)
         }
     },
-    ready(){
-        let self = this
-        self.myClassList({
-            token: self.token
+    created(){
+        this.myClassList({
+            token: this.token
         })
-        var jroll = new JRoll("#wrapper");
-        jroll.pulldown({
-            refresh: function(complete) {
-                self.myClassList({
-                    token: self.token
-                },()=>{
-                    complete()
-                })
-            }
-        });
     }
 }
 </script>
-<style lang="less" scoped>
-.myClass{
-    .cell{
-        padding:1rem;
-        span{
-            dispaly:inline-block !important;
-        }
-        border-bottom:1px solid #d9d9d9;
-    }
-}
-</style>

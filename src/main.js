@@ -46,7 +46,7 @@ import indexCheckErrorLevel from './check/pages/errorLevel'
 //知识图谱
 import reportIndex from './report/pages/index'
 import reportClass from './report/pages/class'
-import report from './report/pages/report'
+import reportStudent from './report/pages/student'
 import reportDetail from './report/pages/detail'
 //刷题型
 import indexBrushIndex from './brush/pages/index'
@@ -77,10 +77,10 @@ Vue.config.devtools = true
 FastClick.attach(document.body)
 
 //图片异步加载
-Vue.use(VueLazyload, {
-    preLoad: 1.3,
-    error: 'http://www.atool.org/placeholder.png?size=300x200&text=%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5&&bg=ccc&fg=fff',
-    loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
+Vue.use(VueLazyload,{
+  preLoad: 1.3,
+  error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
+  loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
 })
 
 //格式化时间
@@ -138,11 +138,17 @@ router.map({
     'message/system': { component: messageSystem },
     'message/correct': { component: messageCorrect },
     //个人中心
+    'user/info': { component: userInfo },
     'user/resetPwd': { component: userResetPwd },
     //设置
     'user/settings': { component: userSettingsIndex },
     'user/settings/advice': { component: userSettingsAdvice },
     'user/settings/advice/history': { component: userSettingsAdviceHistory },
+    //知识图谱
+    'report': {component:reportIndex},
+    'report/class/:code': {component:reportClass},
+    'report/student/:id': {component: reportStudent},
+    'report/detail/:chapterId': {component: reportDetail},
     //我的班级
     'index/class': { component: indexClassIndex },
     'index/createClass': { component: indexClassCreate },
@@ -172,11 +178,7 @@ router.map({
     'brush/list/:chapterId':{component: brushList},
     'index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
 
-    //知识图谱
-    'reportIndex': {component:reportIndex},
-    'reportClass/:id': {component:reportClass},
-    'report/:id': {component: report},
-    'report/detail/:chapterId': {component: reportDetail},
+  
 })
 
 router.redirect({

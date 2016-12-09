@@ -105,11 +105,6 @@ export default {
       }
     },
     _update() {
-       if(this.system == 'IOS' ){
-         window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"; 
-         return; 
-       }
-
         this.updateVersion({
           token: this.fetchToken
         }, () => {

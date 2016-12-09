@@ -54,7 +54,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import {fetchClassCode,fetchStudentId} from '../../class/getters.js'
 import {token,chapterId } from '../../common/getters'
 import {reportDetail,reportSubjectId} from '../getters'
-import {getReportDetail} from '../actions'
+import {getReportDetail,clearReport} from '../actions'
 import '../index.less'
 
 export default {
@@ -71,7 +71,7 @@ export default {
   },
   store,
   created(){
-    //   this.clearDetail();
+      this.clearDetail();
   },
   methods: {
     _onInfinite(){
