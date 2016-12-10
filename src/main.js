@@ -49,11 +49,12 @@ import reportClass from './report/pages/class'
 import reportStudent from './report/pages/student'
 import reportDetail from './report/pages/detail'
 //刷题型
-import indexBrushIndex from './brush/pages/index'
-import indexBrushDetail from './brush/pages/detail'
+import brush from './brush/pages/index'
+import brushClass from './brush/pages/class'
+import brushChapter from './brush/pages/chapter'
+
 import brushExample from './brush/pages/example'
 import brushList from './brush/pages/list'
-import indexBrushBrush from './brush/pages/brush'
 import indexBrushError from './brush/pages/error'
 import indexBrushErrorDetail from './brush/pages/errorDetail'
 //我的班级
@@ -149,6 +150,17 @@ router.map({
     'report/class/:code': {component:reportClass},
     'report/student/:id': {component: reportStudent},
     'report/detail/:chapterId': {component: reportDetail},
+    //刷题型 Brush
+    'brush': { component: brush },
+    'brush/class/:code': { component: brushClass},
+    'brush/charpter/:studentId': { component:brushChapter},
+
+    'index/brush/error/:id': { component:indexBrushError },
+    // 'index/brush/list/:id': { component:indexBrushList },
+    'brush/example/:id':{component: brushExample},
+    'brush/list/:chapterId':{component: brushList},
+    'index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
+
     //我的班级
     'index/class': { component: indexClassIndex },
     'index/createClass': { component: indexClassCreate },
@@ -168,15 +180,7 @@ router.map({
     'index/check/error/level/:id': { component: indexCheckErrorLevel },//错误程度
     'index/check/detail/error/:id': { component: indexCheckError},
     'index/check/detail/errorDetail/:id': { component: indexCheckErrorDetail},
-    //刷题型 Brush
-    'index/brush': { component: indexBrushIndex },
-    'index/brush/detail/:id': { component: indexBrushDetail },
-    'index/brush/brush/:id': { component:indexBrushBrush },
-    'index/brush/error/:id': { component:indexBrushError },
-    // 'index/brush/list/:id': { component:indexBrushList },
-    'brush/example/:id':{component: brushExample},
-    'brush/list/:chapterId':{component: brushList},
-    'index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
+    
 
   
 })

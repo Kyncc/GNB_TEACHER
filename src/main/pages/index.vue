@@ -16,7 +16,7 @@
                             <img src="../../assets/main/error.png"/>
                             <p>查看错题</p>
                         </div>
-                        <div class="flex-item right1px bottom1px" v-link="{ path: '/index/brush'}">
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/brush'}">
                             <img src="../../assets/main/types.png" alt="" />
                             <p >题型汇总</p>
                         </div>

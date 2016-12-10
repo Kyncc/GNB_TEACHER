@@ -54,7 +54,6 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group} from 'vux'
 import moment from 'moment'
 import store from '../../store'
-import './camera.less'
 
 export default {
 	components: {
