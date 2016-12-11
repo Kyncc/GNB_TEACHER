@@ -1,6 +1,6 @@
 // api env
 const mock = 'http://rap.taobao.org/rap.plugin.js?projectId=6273';
-const server = 'http://122.114.55.74:8070';
+const server = 'http://www.guinaben.com:8070';
 const version = '';
 
 // http dispatch code
@@ -139,3 +139,4 @@ export const API_PATHS = {
     userWorkbookDel: `${API_ENV}${API_VERSION}/v1/student/workbook/del`,
     userWorkbookSearch: `${API_ENV}${API_VERSION}/v1/student/workbook/search`,
 }
+ 

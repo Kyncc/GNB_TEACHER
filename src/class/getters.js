@@ -6,6 +6,8 @@ export const fetchApplyList = (state) => state.myClass.applyList
 
 export const fetchClassName = (state) => state.myClass.className
 
+export const fetchMyClass = (state) => state.myClass.className
+
 export const fetchClassCode = (state) => state.myClass.classCode
 
 export const fetchStudentId = (state) => state.myClass.studentId
