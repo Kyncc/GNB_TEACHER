@@ -10,7 +10,6 @@
                     <span>{{item.name}}&nbsp;</span>
                 </div>
             </group>
-
             <infinite-loading :on-infinite="_onInfinite" spinner="default">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -45,7 +44,7 @@ export default {
     methods: {
         _detail(code,name) {
             this.clearClassDetail();
-            this.$router.go('/report/class/'+code)
+            this.$router.go('/brush/class/'+code)
         },
         _onInfinite(){
             if(this.fetchClassList.length != 0){

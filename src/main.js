@@ -38,9 +38,9 @@ import userSettingsIndex from './user/pages/settings/index'
 import userSettingsAdvice from './user/pages/settings/advice'
 import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 //查错题
-import check from './check/pages/index'
-import checkClass from './check/pages/class'
-import checkStudent from './check/pages/list'
+import error from './error/pages/index'
+import errorClass from './error/pages/class'
+import errorByStudent from './error/pages/byStudent'
 //知识图谱
 import reportIndex from './report/pages/index'
 import reportClass from './report/pages/class'
@@ -51,7 +51,6 @@ import brush from './brush/pages/index'
 import brushClass from './brush/pages/class'
 import brushChapter from './brush/pages/chapter'
 
-import brushExample from './brush/pages/example'
 import brushList from './brush/pages/list'
 import indexBrushError from './brush/pages/error'
 
@@ -151,9 +150,9 @@ router.map({
     'report/student/:id': {component: reportStudent},
     'report/detail/:chapterId': {component: reportDetail},
     //查错题
-    'check': { component: check },
-    'check/class/:code': { component: checkClass },
-    'check/class/student/:id': { component: checkStudent},
+    'error': { component: error },
+    'error/class/:code': { component: errorClass },
+    'error/student/:id': { component: errorByStudent},
     //刷题型 Brush
     'brush': { component: brush },
     'brush/class/:code': { component: brushClass},
@@ -161,7 +160,6 @@ router.map({
 
     'index/brush/error/:id': { component:indexBrushError },
     // 'index/brush/list/:id': { component:indexBrushList },
-    'brush/example/:id':{component: brushExample},
     'brush/list/:chapterId':{component: brushList},
     //我的班级
     'index/class': { component: indexClassIndex },

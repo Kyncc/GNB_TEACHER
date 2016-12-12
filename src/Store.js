@@ -11,7 +11,7 @@ import index from './main/modules/index'
 import message from './message/modules/index'
 import report from './report/modules/index'
 import myClass from './class/modules/class'
-import check from './check/modules/check.js'
+import error from './error/modules/index.js'
 import brush from './brush/modules/index.js'
 
 
@@ -27,7 +27,7 @@ export default new Vuex.Store({
     message,
     myClass,
     user,
-    check,
+    error,
     report,
     brush
   }

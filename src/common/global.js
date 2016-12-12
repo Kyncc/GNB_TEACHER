@@ -1,7 +1,8 @@
 import {
   GET_TOAST_MESSAGE,
   GET_TOAST_SHOW,
-  GET_LOADING
+  GET_LOADING,
+  SET_SUBJECTYPE
 } from './mutationTypes'
 
 const state = {
@@ -9,8 +10,7 @@ const state = {
     toastShow:false,
     isLoading:false,
     system:'',
-    period_id:3,
-    subject_id:2
+    subjectType:['2']
 }
 
 const mutations = {
@@ -25,6 +25,9 @@ const mutations = {
     },
     SET_SYSTEM (state, type) {
       state.system = type
+    },
+    SET_SUBJECTYPE(state, data) {
+      state.subjectType = data;
     }
 }
 

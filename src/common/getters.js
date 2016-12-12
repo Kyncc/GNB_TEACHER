@@ -3,6 +3,8 @@ export const toastShow = (state) => state.Global.toastShow
 export const isLoading = (state) => state.Global.isLoading
 export const period_id = (state) => state.Global.period_id
 export const subject_id = (state) => state.Global.subject_id
+export const userSubjectList = (state) => state.Global.subjectType
+
 
 export const system = (state) => state.Global.system
 export const token = (state) => state.login.token

@@ -45,7 +45,7 @@ export default {
     methods: {
         _detail(code,name) {
             this.clearClassDetail();
-            this.$router.go('/check/class/'+code)
+            this.$router.go('/error/class/'+code)
         },
         _onInfinite(){
             if(this.fetchClassList.length != 0){

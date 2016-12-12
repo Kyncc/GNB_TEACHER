@@ -12,7 +12,7 @@
                 </div>
                 <section class="content">
                     <div class="flex-wrap">
-                        <div class="flex-item right1px bottom1px" v-link="{ path: '/check'}">
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/error'}">
                             <img src="../../assets/main/error.png"/>
                             <p>查看错题</p>
                         </div>
@@ -50,8 +50,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Swiper,SwiperItem,Panel,Scroller,ViewBox} from 'vux'
-import { collectCount,errorCount,cameraCount,swiper} from '../getters'
-import { period_id,subject_id,token } from '../../common/getters'
+import { swiper} from '../getters'
+import { subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import * as _ from '../../config/whole.js'
 
@@ -72,7 +72,7 @@ export default {
     },
     vuex: {
         getters: {
-            collectCount,errorCount,cameraCount,swiper,period_id,subject_id,token
+           swiper,subject_id,token
         },
         actions: {
             getStudentIndex
@@ -82,7 +82,6 @@ export default {
     ready(){
         let params = {
             options:{
-                period_id:this.period_id,
                 subject_id:this.subject_id
             },
             token:localStorage.getItem('token')

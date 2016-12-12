@@ -13,6 +13,12 @@ export const getToastShow = ({ dispatch }, status) => {
 export const getIsLoading = ({ dispatch }, status)=> {
     dispatch(types.GET_LOADING,status);
 }
+
+/**设置科目 */
+export const setSubjectType = ({ dispatch }, data)=> {
+    dispatch(types.SET_SUBJECTYPE,data);
+}
+
 //点评
 export const comment = ({ dispatch }, params) => {
   Api.comment({
