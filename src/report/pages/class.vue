@@ -5,7 +5,7 @@
         </div>
         <div style="padding-top:46px;">
             <group>
-                <cell v-for="item in fetchClassMateList" :title="item.name" v-touch:tap="_check(item.id)">
+                <cell v-for="item in fetchClassMateList" :title="item.name" v-touch:tap="_check(item.id)" is-link>
                     <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
                 </cell>
             </group>
@@ -23,7 +23,7 @@
 
 <script>
 import { XHeader,Cell,Group,ViewBox} from 'vux'
-import { myClassmateList,applyList} from '../../class/actions.js'
+import { getClassDetail} from '../../class/actions.js'
 import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
 import { token,code} from '../../common/getters.js'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -34,7 +34,7 @@ export default {
     },
     vuex:{
         actions:{
-            myClassmateList,applyList
+            getClassDetail
         },
         getters:{
             fetchClassMateList,token,code,fetchClassName
@@ -50,7 +50,7 @@ export default {
                 this.$broadcast('$InfiniteLoading:complete');
                 return;
             }
-			this.myClassmateList({
+			this.getClassDetail({
                 classCode:this.code,
 				token:this.token
 			},()=>{

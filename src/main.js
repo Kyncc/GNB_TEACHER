@@ -17,15 +17,15 @@ import User from './main/pages/user'
 import Message from './main/pages/message'
 import Index from './main/pages/index'
 import Photo from './main/pages/photo'
-//题目评注、纠错
+//题目评注、纠错、参考例题
 import correct from './common/pages/correct'
 import comment from './common/pages/comment'
+import example from './common/pages/example'
 //记错题
-import remember from './remember/pages/index'
-import rememberWorkbook from './remember/pages/workbook'
-import rememberExercise from './remember/pages/exercise'
-import rememberExample from './remember/pages/example'
-import rememberAdd from './remember/pages/add'
+// import remember from './remember/pages/index'
+// import rememberWorkbook from './remember/pages/workbook'
+// import rememberExercise from './remember/pages/exercise'
+// import rememberExample from './remember/pages/example'
 //通知
 import messageClass from './message/pages/class'
 import messageCorrect from './message/pages/correct'
@@ -38,11 +38,9 @@ import userSettingsIndex from './user/pages/settings/index'
 import userSettingsAdvice from './user/pages/settings/advice'
 import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
 //查错题
-import indexCheckIndex from './check/pages/index'
-import indexCheckDetail from './check/pages/detail'
-import indexCheckError from './check/pages/error'
-import indexCheckErrorDetail from './check/pages/errorDetail'
-import indexCheckErrorLevel from './check/pages/errorLevel'
+import check from './check/pages/index'
+import checkClass from './check/pages/class'
+import checkStudent from './check/pages/list'
 //知识图谱
 import reportIndex from './report/pages/index'
 import reportClass from './report/pages/class'
@@ -56,7 +54,7 @@ import brushChapter from './brush/pages/chapter'
 import brushExample from './brush/pages/example'
 import brushList from './brush/pages/list'
 import indexBrushError from './brush/pages/error'
-import indexBrushErrorDetail from './brush/pages/errorDetail'
+
 //我的班级
 import indexClassIndex from './class/pages/index'
 import indexClassCreate from './class/pages/createClass'
@@ -114,6 +112,8 @@ router.map({
     'forget/password': { component: resetPassword },
     //纠错
     'correct/:subjectId/:id':{component: correct},
+    //参考例题
+    'example/:subjectId/:id':{component: example},
     //评注
     'comment/:id':{component: comment},
     //主页
@@ -150,6 +150,10 @@ router.map({
     'report/class/:code': {component:reportClass},
     'report/student/:id': {component: reportStudent},
     'report/detail/:chapterId': {component: reportDetail},
+    //查错题
+    'check': { component: check },
+    'check/class/:code': { component: checkClass },
+    'check/class/student/:id': { component: checkStudent},
     //刷题型 Brush
     'brush': { component: brush },
     'brush/class/:code': { component: brushClass},
@@ -159,8 +163,6 @@ router.map({
     // 'index/brush/list/:id': { component:indexBrushList },
     'brush/example/:id':{component: brushExample},
     'brush/list/:chapterId':{component: brushList},
-    'index/brush/detail/errorDetail/:id': { component:indexBrushErrorDetail },
-
     //我的班级
     'index/class': { component: indexClassIndex },
     'index/createClass': { component: indexClassCreate },
@@ -169,18 +171,11 @@ router.map({
     'index/class/manage/:id': { component: indexClassManage },
     'index/class/apply/:id':{ component: indexClassApply},
     //记错题
-    'remember/:id':{component: remember},
-    'remember/add':{component: rememberAdd},
-    'remember/example/:id': { component:  rememberExample},
-    'remember/workbook/:bookId':{component: rememberWorkbook},
-    'remember/workbook/exercise/:chapterId':{component: rememberExercise},
-    //查错题
-    'index/check': { component: indexCheckIndex },
-    'index/check/detail/:id': { component: indexCheckDetail },
-    'index/check/error/level/:id': { component: indexCheckErrorLevel },//错误程度
-    'index/check/detail/error/:id': { component: indexCheckError},
-    'index/check/detail/errorDetail/:id': { component: indexCheckErrorDetail},
-    
+    // 'remember/:id':{component: remember},
+    // 'remember/example/:id': { component:  rememberExample},
+    // 'remember/workbook/:bookId':{component: rememberWorkbook},
+    // 'remember/workbook/exercise/:chapterId':{component: rememberExercise},
+
 
   
 })

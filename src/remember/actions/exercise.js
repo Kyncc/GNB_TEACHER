@@ -18,20 +18,6 @@ export const rememberExerciseGet = ({ dispatch }, params,success,wrong) => {
   })
 }
 
-/**提交章节练习题 */
-export const rememberExercisePost = ({ dispatch }, params,success,wrong) => {
-  Api.rememberExercisePost({
-    data: params,
-    ok: response => {
-      dispatch(types.REMEMBER_EXERCISE_POST, response.data);
-      success&&success();
-    },
-    wrong: response => {
-      wrong&&wrong();
-      _.toast(response.data.msg);
-    }
-  })
-}
 
 /**章节练习题数据清空 */
 export const rememberExerciseClear = ({ dispatch }) => {
@@ -39,7 +25,4 @@ export const rememberExerciseClear = ({ dispatch }) => {
 }
 
 
-/**章节练习题答案变更 */
-export const rememberExAnswerChange = ({ dispatch },pid,id) => {
-  dispatch(types.REMEMBER_EXERCISE_CHANGE,pid,id);
-}
+

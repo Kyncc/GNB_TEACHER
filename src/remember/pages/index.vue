@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import { Popup } from 'mint-ui'
 import {XHeader,Panel,ViewBox,Group,Cell,Search,Tabbar,XButton} from 'vux'
@@ -45,7 +43,6 @@ import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
 import {rememberWorkbook,rememberSubjectId} from '../getters'
 import {getWorkbook,setSubject} from '../actions/remember'
 import {delChapter} from '../actions/workbook'
-import {WorkbookAllDel} from '../actions/add'
 import '../../components/changesub/index.less'
 import '../index.less'
 
@@ -64,10 +61,6 @@ export default {
     },
     toError(){
         this.$router.go('/index/check/error/level/'+this.id)
-    },
-    _add(){
-        this.WorkbookAllDel();  //进去前清除所有练习册数据
-        this.$router.go('/remember/add');
     },
     _changeSub(){
         this.visible = true;

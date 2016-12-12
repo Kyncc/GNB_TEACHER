@@ -1,44 +1,46 @@
-import {GET_CLASS_LIST,GET_CLASS_MATE_LIST,GET_APPLY_LIST,SET_CLASS_NAME,SET_CLASS_CODE,SET_STUDENT_ID,CLASS_MYCLASS} from '../mutationTypes'
+import * as types from '../mutationTypes'
 
 const state = {
     classList: [],
-    classMateList: [],
     applyList: [],
-    className:'',
-    classCode:'',
-    studentId:'',
-    myClass:{
+    class:{
         classmate:[],
         name:'',
         code:'',
-        grade:''
+        grade:0
     }
 }
 
 const mutations = {
-    [GET_CLASS_LIST](state, data) {
+    [types.GET_CLASS_LIST](state, data) {
         state.classList = data
     },
-    [GET_CLASS_MATE_LIST](state, data) {
+    [types.GET_CLASS_MATE_LIST](state, data) {
         state.classMateList = data
     },
-    [GET_APPLY_LIST](state, data) {
+    [types.GET_APPLY_LIST](state, data) {
         state.applyList = data[0].students
     },
-    [SET_CLASS_NAME](state, data) {
+    [types.SET_CLASS_NAME](state, data) {
         state.className = data
     },
-    [SET_CLASS_CODE](state, data) {
+    [types.SET_CLASS_CODE](state, data) {
         state.classCode = data
     },
-    [SET_STUDENT_ID](state, data) {
+    [types.SET_STUDENT_ID](state, data) {
         state.studentId = data
     },
-    [CLASS_MYCLASS](state, data) {
-        state.myClass.classmate = data.classmates;
-        state.myClass.name = data.classname;
-        state.myClass.code = data.classCode;
-        state.myClass.grade = data.grade;
+    [types.CLASS_MYCLASS](state, data) {
+        state.class.classmate = data.classmates;
+        state.class.name = data.classname;
+        state.class.code = data.classCode;
+        state.class.grade = data.grade;
+    },
+    [types.CLASS_MYCLASS_CLEAR](state, data) {
+         state.class.classmate = [];
+        state.class.name = '';
+        state.class.code = '';
+        state.class.grade = 0;
     }
 
 }

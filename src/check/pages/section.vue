@@ -23,7 +23,6 @@
         </div>
     </view-box>
 
-
 </template>
 
 <script>

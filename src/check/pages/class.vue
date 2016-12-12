@@ -42,7 +42,7 @@ export default {
     },
     methods:{
         _check(id){
-            this.$router.go('/report/student/'+id)
+            this.$router.go('/check/student/'+id)
         },
         _onInfinite(){
             if(this.fetchClassMateList.length != 0){

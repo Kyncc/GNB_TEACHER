@@ -32,30 +32,17 @@ const mutations = {
   [types.REMEMBER_WORKBOOK_ALL_CLEAR](state){
       state.all = [];
   },
-  [types.REMEMBER_WORKBOOK_ADD](state){
-      state.all = [];
-      state.my = [];
-  },
   [types.REMEMBER_EXERCISE](state,data){
       state.exercise = data.data;
   },
   [types.REMEMBER_EXERCISE_CLEAR](state){
       state.exercise = [];
   },
-  [types.REMEMBER_EXERCISE_CHANGE](state,Pid,id){
-      state.exercise.a[Pid].b[id].answer = !state.exercise.a[Pid].b[id].answer;
-  },
   [types.REMEMBER_EXAMPLE](state,data){
       state.example = data.data;
   },
   [types.REMEMBER_EXAMPLE_CLEAR](state){
       state.example = [];
-  },
-  [types.REMEMBER_EXAMPLE_COLLECT_ADD](state){
-      state.example[0].collectTime = 1;
-  },
-  [types.REMEMBER_EXAMPLE_COLLECT_REMOVE](state){
-      state.example[0].collectTime = 0;
   }
 }
 

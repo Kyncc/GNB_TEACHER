@@ -12,7 +12,7 @@
                 </div>
                 <section class="content">
                     <div class="flex-wrap">
-                        <div class="flex-item right1px bottom1px" v-link="{ path: '/index/check'}">
+                        <div class="flex-item right1px bottom1px" v-link="{ path: '/check'}">
                             <img src="../../assets/main/error.png"/>
                             <p>查看错题</p>
                         </div>

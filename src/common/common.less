@@ -351,3 +351,43 @@ div.quizPutTag { display: inline; padding: 3px 10px 1px 10px; margin: 0 3px; fon
 .tap-highlight{
     -webkit-tap-highlight-color:rgba(0,0,255,0.5);
 }
+
+
+.myClass {
+    .weui_cells {
+        margin-top: 0;
+    }
+    .cell{
+        padding:1rem;
+        span{
+            dispaly:inline-block !important;
+        }
+        border-bottom:1px solid #d9d9d9;
+    }
+    .weui_search_bar:after {
+        border: none;
+    }
+    .vux-flexbox {
+        .vux-flexbox-item {
+            margin-left: 0 !important;
+        }
+    }
+    .btn-wrap {
+        height: 43px;
+        width: 100%;
+        position: relative;
+        .search-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 28px;
+            line-height: 28px;
+            font-size: 14px;
+            text-align: center;
+            width: 80%;
+            background: #fff;
+            border-radius: 5px;
+        }
+    }
+}

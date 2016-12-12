@@ -27,7 +27,7 @@
 import './myClass.less'
 import store from '../../store'
 import { XHeader,Group,ViewBox }from 'vux'
-import { myClassList,setClassName,setClassCode } from '../../class/actions.js'
+import { myClassList,clearClassDetail} from '../../class/actions.js'
 import { fetchClassList } from '../../class/getters'
 import { token } from '../../common/getters.js'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -39,14 +39,13 @@ export default {
             fetchClassList,token
         },
         actions: {
-            myClassList,setClassName,setClassCode
+            myClassList,clearClassDetail
         }
     },
     store,
     methods: {
         _detail(code,name) {
-            this.setClassName(name)
-            this.setClassCode(code)
+            this.clearClassDetail();
             this.$router.go('/report/class/'+code)
         },
         _onInfinite(){

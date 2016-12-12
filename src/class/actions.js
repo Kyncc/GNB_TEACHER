@@ -68,6 +68,7 @@ export const delClass= ({dispatch}, params, callback) => {
         wrong: response => {}
     })
 }
+
 export const myClassmateList = ({dispatch}, params, callback) => {
     Api.myClassmateList({
         data: params,
@@ -78,6 +79,9 @@ export const myClassmateList = ({dispatch}, params, callback) => {
         wrong: response => {}
     })
 }
+
+
+
 export const applyList = ({dispatch}, params, callback) => {
     Api.applyList({
         data: params,
@@ -97,4 +101,25 @@ export const replyApply = ({dispatch}, params, callback) => {
         },
         wrong: response => {}
     })
+}
+
+
+
+/**获取班级数据 */
+export const getClassDetail = ({dispatch}, params, success,wrong) => {
+    Api.myClassmateList({
+        data: params,
+        ok: response => {
+            dispatch(types.CLASS_MYCLASS, response.data.data)
+            success&&success()
+        },
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
+    })
+}
+
+/**清空班级数据 */
+export const clearClassDetail = ({dispatch}) => {
+    dispatch(types.CLASS_MYCLASS_CLEAR)
 }
