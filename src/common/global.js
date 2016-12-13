@@ -10,7 +10,9 @@ const state = {
     toastShow:false,
     isLoading:false,
     system:'',
-    subjectType:['2']
+    subjectType:['2'],
+    grade:0,
+    example:[]
 }
 
 const mutations = {
@@ -28,6 +30,12 @@ const mutations = {
     },
     SET_SUBJECTYPE(state, data) {
       state.subjectType = data;
+    },
+    SET_GRADE(state, data) {
+      state.grade = data;
+    },
+    GET_EXAMPLE(state, data) {
+      state.example = data;
     }
 }
 

@@ -1,5 +1,5 @@
 <template>
-	<view-box v-ref:view-box class="cameraRecord">
+	<view-box v-ref:view-box class="example">
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
 			<x-header :left-options="{showBack: true}">
 				参考例题
@@ -11,7 +11,7 @@
 				<div class="weui_panel_hd">
 					<flexbox :gutter="0" wrap="wrap">
 						<p style="width:25%;color:#4bb7aa">题干</p>
-						<p style="width:25%;text-align:right;color:#666" v-touch:tap="_comment(item.id)" ><i class="icon iconfont icon-error-login"></i>点评</p>
+						<p style="width:75%;text-align:right;color:#666" v-touch:tap="_correct(item.id)" ><i class="icon iconfont icon-error-login"></i>纠错</p>
 					</flexbox>				
 				</div>
 				<!--题目整体--> 
@@ -55,7 +55,7 @@
 				<i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
 				<p style="font-size:1rem;display:inline-block;">服务器出差了~</p>
 			</span>
-			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">(●'◡'●)已经到底啦~</span>
+			<span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
 		</infinite-loading>
 
 	</view-box>
@@ -64,9 +64,8 @@
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import { getCollectCameraDetail } from '../actions'
-import { token,id,subjectId } from '../../common/getters'
-import { CollectCameraDetail,CollectSubjectId } from '../getters'
+import { getExample } from '../actions'
+import { token,id,subjectId,exampleDetail,studentId } from '../../common/getters'
 import store from '../../store'
 
 export default {
@@ -76,10 +75,10 @@ export default {
 	store,
 	vuex: {
         getters: {
-            CollectSubjectId,token,id,CollectCameraDetail
+            token,id,subjectId,exampleDetail,studentId
         },
         actions: {
-            getCollectCameraDetail
+            getExample
         }
     },
 	methods: {
@@ -87,18 +86,19 @@ export default {
 			let params = {
 				options:{
 					ids:[this.id],
-					subject_id:this.CollectSubjectId
+					subject_id:this.subjectId
 				},
+				studentId:this.studentId,
 				token:this.token
 			};
-			this.getCollectCameraDetail(params,()=>{
-				this.list = this.CollectCameraDetail;
+			this.getExample(params,()=>{
+				this.list = this.exampleDetail.data;
 				if(this.list.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
 				this.$broadcast('$InfiniteLoading:complete');
 			});
 		},
-		_comment(id){
-			this.$router.go(`/camera/comment/${id}`);
+		_correct(id){
+			this.$router.go(`/correct/${this.subjectId}/${id}`);
 		}
 	},
 	data(){

@@ -4,10 +4,10 @@ const state = {
     student:{
       ids:[],
       list:[],
-      currentPage:'1',
-      totalPage:'1',
-      scoll:'0',
-      selected:'0',
+      currentPage:1,
+      totalPage:1,
+      scoll:0,
+      selected:0,
       subjectId:'2'
     }
 }
@@ -26,9 +26,10 @@ const mutations = {
   [types.ERROR_STUD_RELOAD](state){
     state.student.ids = [];
     state.student.list = [];
-    state.student.scoll = '0';
-    state.student.currentPage = '1';
-    state.student.totalPage = '1';
+    state.student.scoll = 0;
+    state.student.selected = 0;
+    state.student.currentPage = 1;
+    state.student.totalPage = 1;
   },
   [types.ERROR_STUD_SUBJECT_CHANGE](state, id){
      state.student.subjectId = id;

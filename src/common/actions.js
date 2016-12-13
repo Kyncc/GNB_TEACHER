@@ -19,6 +19,11 @@ export const setSubjectType = ({ dispatch }, data)=> {
     dispatch(types.SET_SUBJECTYPE,data);
 }
 
+/**设置年级 */
+export const setGrade = ({ dispatch }, data)=> {
+    dispatch(types.SET_GRADE,data);
+}
+
 //点评
 export const comment = ({ dispatch }, params) => {
   Api.comment({
@@ -36,6 +41,24 @@ export const comment = ({ dispatch }, params) => {
       }
   })
 }
+
+//获取例题详情
+export const getExample = ({ dispatch }, params,success) => {
+  Api.exerciseList({
+    data: params,
+    ok: response => {
+      dispatch(types.GET_EXAMPLE, response.data);
+      success&&success();
+    },
+    wrong: response => {
+      _.toast(response.data.msg);
+    }
+  })
+}
+
+
+
+
 
 //纠错
 export const correct = ({ dispatch }, params) => {

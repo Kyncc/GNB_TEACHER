@@ -31,7 +31,7 @@
 
 <script>
 import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
-import store from '../../store'
+import store from '../../store' 
 import { correct } from '../actions'
 import { token } from '../getters'
 import * as _ from '../../config/whole'
@@ -84,3 +84,4 @@ export default {
     }
 }
 </script>
+

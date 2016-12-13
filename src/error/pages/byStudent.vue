@@ -61,8 +61,8 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import gnbChangeSub from '../../components/changesub/index'
-import {token,userSubjectList,id} from '../../common/getters'
-import {errorStudIds,errorStudList,errorStudTotalPage,errorSubjectId,errorStudCurrentPage,errorStudTab,errorStudScoll} from '../getters'
+import {token,userSubjectList,id,userGrade} from '../../common/getters'
+import {errorStudIds,errorStudTotalPage,errorSubjectId,errorStudList,errorStudCurrentPage,errorStudTab,errorStudScoll} from '../getters'
 import {getErrorIds,getErrorList,setSubject,clearError,setTabTime,setScoll} from '../actions/byStudent'
 import moment from 'moment'
 
@@ -73,9 +73,8 @@ export default {
     },
     vuex: {
         getters: {
-            errorSubjectId,token,id,
-            userSubjectList,
-            errorStudIds,errorStudList,errorStudTotalPage,errorStudCurrentPage,
+            token,userSubjectList,id,userGrade,
+            errorSubjectId,errorStudIds,errorStudTotalPage,errorStudCurrentPage,errorStudList,
             errorStudTab,errorStudScoll
         },
         actions: {
@@ -95,7 +94,7 @@ export default {
         _intoDetail(id){
             //获取高度
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
-            this.$router.go(`/error/detail/${id}`);
+            this.$router.go(`/example/${this.id}/${this.errorSubjectId}/${id}`);
         },
         _isFirst(){
             /*判断当前页面是否大于总页数 若大于则不在请求数据*/
@@ -104,7 +103,6 @@ export default {
                  this.$broadcast('$InfiniteLoading:complete');
                  return true;
             }
-           
             return false;
         },
         _time(value) {
@@ -142,6 +140,7 @@ export default {
                     start:this.startTime,
                     end:this.endTime
                 },
+                grade:this.userGrade,
                 token: this.token,
                 studentId:this.id,
                 subject_id: this.errorSubjectId
@@ -165,7 +164,7 @@ export default {
         return{
             visible:false,
             endTime:moment().unix(),
-            startTime:moment().add(-7, 'd').unix()
+            startTime:moment().add(-1, 'd').unix()
         }
     },
     watch:{
@@ -182,6 +181,7 @@ export default {
                     ids: this.errorStudIds,
                     subject_id: this.errorSubjectId
                 },
+                studentId:this.id,
                 token: this.token
             };
             this.getErrorList(params,()=>{

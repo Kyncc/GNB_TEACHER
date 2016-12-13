@@ -24,9 +24,11 @@
 <script>
 import { XHeader,Cell,Group,ViewBox} from 'vux'
 import { getClassDetail} from '../../class/actions.js'
-import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
+import { fetchClassMateList,fetchClassName,fetchClassGrade } from '../../class/getters.js'
 import { token,code} from '../../common/getters.js'
-import { setSubjectType} from '../../common/actions.js'
+import { setSubjectType,setGrade} from '../../common/actions.js'
+import { clearError} from '../actions/byStudent'
+
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -35,16 +37,17 @@ export default {
     },
     vuex:{
         actions:{
-            getClassDetail,setSubjectType
+            getClassDetail,setSubjectType,setGrade,clearError
         },
         getters:{
-            fetchClassMateList,token,code,fetchClassName
+            fetchClassMateList,token,code,fetchClassName,fetchClassGrade
         }
     },
     methods:{
         _check(item){
-
-            this.setSubjectType(item.subjectType);
+            this.clearError();      //清空列表
+            this.setGrade(this.fetchClassGrade);    //设置年级
+            this.setSubjectType(item.subjectType);  //设置科目
             this.$router.go('/error/student/'+item.id);
         },
         _onInfinite(){

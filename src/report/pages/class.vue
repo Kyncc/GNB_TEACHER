@@ -5,7 +5,7 @@
         </div>
         <div style="padding-top:46px;">
             <group>
-                <cell v-for="item in fetchClassMateList" :title="item.name" v-touch:tap="_check(item.id)" is-link>
+                <cell v-for="item in fetchClassMateList" :title="item.name" v-touch:tap="_check(item)" is-link>
                     <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
                 </cell>
             </group>
@@ -24,8 +24,11 @@
 <script>
 import { XHeader,Cell,Group,ViewBox} from 'vux'
 import { getClassDetail} from '../../class/actions.js'
-import { fetchClassMateList,fetchClassName } from '../../class/getters.js'
+import { fetchClassMateList,fetchClassName,fetchClassGrade } from '../../class/getters.js'
 import { token,code} from '../../common/getters.js'
+import { setSubjectType,setGrade} from '../../common/actions.js'
+import { clearReport} from '../actions'
+
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -34,15 +37,18 @@ export default {
     },
     vuex:{
         actions:{
-            getClassDetail
+            getClassDetail,setSubjectType,setGrade,clearReport
         },
         getters:{
-            fetchClassMateList,token,code,fetchClassName
+            fetchClassMateList,token,code,fetchClassName,fetchClassGrade
         }
     },
     methods:{
-        _check(id){
-            this.$router.go('/report/student/'+id)
+        _check(item){
+            this.clearReport();      //清空列表
+            this.setGrade(this.fetchClassGrade);    //设置年级
+            this.setSubjectType(item.subjectType);  //设置科目
+            this.$router.go('/report/student/'+item.id);
         },
         _onInfinite(){
             if(this.fetchClassMateList.length != 0){

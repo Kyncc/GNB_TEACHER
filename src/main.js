@@ -112,7 +112,7 @@ router.map({
     //纠错
     'correct/:subjectId/:id':{component: correct},
     //参考例题
-    'example/:subjectId/:id':{component: example},
+    'example/:studentId/:subjectId/:id':{component: example},
     //评注
     'comment/:id':{component: comment},
     //主页
