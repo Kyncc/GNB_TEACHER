@@ -4,15 +4,13 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">{{fetchClassName}}<a slot="right" v-show="fetchClassMateList.length" v-touch:tap="_edit">{{edit}}</a></x-header>
         </div>
-        <div style="padding-top:46px;height:100%">
-            <div id='wrapper' style="height:100%">
-                <group>
-                    <cell v-for="item in fetchClassMateList" :title="item.name" >
-                        <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
-                        <div class="weui_cell_ft" v-show="delete" v-touch:tap="_delete(item.id)">删除</div>
-                    </cell>
-                </group>
-            </div>
+        <div style="padding-top:46px;">
+            <group>
+                <cell v-for="item in fetchClassMateList" :title="item.name" >
+                    <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
+                    <div class="weui_cell_ft" v-show="delete" v-touch:tap="_delete(item.id)">删除</div>
+                </cell>
+            </group>
         </div>
         <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定删除该学生吗?" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
     </view-box>
@@ -20,8 +18,6 @@
 
 <script>
 import './myClass.less'
-import JRoll from 'jroll'
-import '../../common/pulldown.js'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Cell,Group,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm} from 'vux'
 import { delStudent,myClassmateList} from '../actions.js'
@@ -77,28 +73,12 @@ export default {
             }
         }
     },
-    ready(){
-        var self = this
-        var jroll = new JRoll("#wrapper");
-        jroll.pulldown({
-            refresh: function(complete) {
-                self.myClassmateList({
-                    classCode:self.id,
-                    token:self.token
-                },()=>{
-                    complete()
-                })
-            }
+    created(){
+        this.myClassmateList({
+            classCode:this.id,
+            token:this.token
         })
     }
 }
 </script>
-<style lang="less" scoped>
 
-.weui_cell{
-    padding: 1rem;
-    &:last-child{
-        border: none;
-    }
-}
-</style>

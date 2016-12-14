@@ -8,14 +8,6 @@ export const BRUSH_ALL = 'BRUSH_ALL'
 export const BRUSH_CLEAR = 'BRUSH_CLEAR'
 /** 更换科目*/
 export const BRUSH_CHANGE_SUBJECT = 'BRUSH_CHANGE_SUBJECT'
-/** 例题查看 */
-export const BRUSH_EXAMPLE= 'BRUSH_EXAMPLE'
-/** 清空例题 */
-export const BRUSH_EXAMPLE_CLEAR = 'BRUSH_EXAMPLE_CLEAR'
-/** 例题收藏 */
-export const BRUSH_EXAMPLE_COLLECT_ADD = 'BRUSH_EXAMPLE_COLLECT_ADD'
-/** 例题取消 */
-export const BRUSH_EXAMPLE_COLLECT_REMOVE = 'BRUSH_EXAMPLE_COLLECT_REMOVE'
 /** 刷题型列表 */
 export const BRUSH_LIST= 'BRUSH_LIST'
 /** 清除刷题型列表 */

@@ -24,7 +24,7 @@
                             <img src="../../assets/main/knowledge.png"  />
                             <p class="disable">成绩报告单</p>
                         </div>
-                        <div class="flex-item right1px" v-link="{ path: '/index/class'}">
+                        <div class="flex-item right1px" v-link="{ path: '/class'}">
                             <img src="../../assets/main/class.png"  />
                             <p>我的班级</p>
                         </div>

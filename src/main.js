@@ -50,17 +50,15 @@ import reportDetail from './report/pages/detail'
 import brush from './brush/pages/index'
 import brushClass from './brush/pages/class'
 import brushChapter from './brush/pages/chapter'
-
 import brushList from './brush/pages/list'
-import indexBrushError from './brush/pages/error'
-
 //我的班级
-import indexClassIndex from './class/pages/index'
-import indexClassCreate from './class/pages/createClass'
-import indexClassDetail from './class/pages/classDetail'
-import indexClassInvite from './class/pages/invite'
-import indexClassManage from './class/pages/classManage'
-import indexClassApply from './class/pages/classApply'
+import classIndex from './class/pages/index'
+import classManage from './class/pages/manager'
+import classCreate from './class/pages/create'
+import classmate from './class/pages/classmate'
+import classInvite from './class/pages/invite'
+import classApply from './class/pages/apply'
+
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
@@ -156,17 +154,16 @@ router.map({
     //刷题型 Brush
     'brush': { component: brush },
     'brush/class/:code': { component: brushClass},
-    'brush/charpter/:studentId': { component:brushChapter},
-    'index/brush/error/:id': { component:indexBrushError },
-    // 'index/brush/list/:id': { component:indexBrushList },
-    'brush/list/:chapterId':{component: brushList},
+    'brush/chapter/:id': { component:brushChapter},
+    'brush/chapter/list/:id/:chapterId': { component:brushList},
     //我的班级
-    'index/class': { component: indexClassIndex },
-    'index/createClass': { component: indexClassCreate },
-    'index/class/detail/:id': { component: indexClassDetail },
-    'index/class/invite/:id': { component: indexClassInvite },
-    'index/class/manage/:id': { component: indexClassManage },
-    'index/class/apply/:id':{ component: indexClassApply},
+    'class': { component: classIndex },
+    'class/manager/:id': { component: classManage },
+    'class/create': { component: classCreate },
+    'class/classmate/:id': { component: classmate },
+    'class/invite/:id': { component: classInvite },
+    'class/apply/:id':{ component: classApply},
+
     //记错题
     // 'remember/:id':{component: remember},
     // 'remember/example/:id': { component:  rememberExample},
