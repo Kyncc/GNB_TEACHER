@@ -9,7 +9,7 @@
                     <span :class="{'vux-reddot':item.status=='1'}">{{item.name}}&nbsp;</span>
                 </div>
             </group>
-        </div>
+        </div> 
     </view-box>
 </template>
 

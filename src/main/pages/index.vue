@@ -17,27 +17,30 @@
                             <p>查看错题</p>
                         </div>
                         <div class="flex-item right1px bottom1px" v-link="{ path: '/brush'}">
-                            <img src="../../assets/main/types.png" alt="" />
+                            <img src="../../assets/main/types.png"  />
                             <p >题型汇总</p>
                         </div>
                         <div class="flex-item bottom1px" v-link="{ path: '/report'}" >
-                            <img src="../../assets/main/knowledge.png" alt="" />
+                            <img src="../../assets/main/knowledge.png"  />
                             <p class="disable">成绩报告单</p>
                         </div>
                         <div class="flex-item right1px" v-link="{ path: '/index/class'}">
-                            <img src="../../assets/main/class.png" alt="" />
+                            <img src="../../assets/main/class.png"  />
                             <p>我的班级</p>
                         </div>
-                        <div class="flex-item right1px" @click="_warn()">
-                            <img src="../../assets/main/homework.png" alt="" />
+                        <!--<div class="flex-item right1px" @click="_warn()">
+                            <img src="../../assets/main/homework.png"  />
                             <p class="disable">布置作业</p>
+                        </div>-->
+                        <div class="flex-item right1px"  v-link="{ path: '/pass'}">
+                            <img src="../../assets/main/pass.png"  />
+                            <p class="disable">弃题列表</p>
                         </div>
-
-                        <div class="flex-item" @click='_warn()'>
-                            <p class="disable">&nbsp;</p>
-                            <p class="disable">&nbsp;</p>
-                            <p class="disable">&nbsp;</p>
+                        <div class="flex-item right1px"  v-link="{ path: '/break'}">
+                            <img src="../../assets/main/break.png"  />
+                            <p class="disable">斩题列表</p>
                         </div>
+                       
                     </div>
                 </section>
             </div>
@@ -46,15 +49,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Router from 'vue-router'
 import store from '../../store'
 import { XHeader,Swiper,SwiperItem,Panel,Scroller,ViewBox} from 'vux'
 import { swiper} from '../getters'
 import { subject_id,token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import * as _ from '../../config/whole.js'
-
 import {shareReady} from '../../common/h5Plus/share.js';
 import './main.less'
 

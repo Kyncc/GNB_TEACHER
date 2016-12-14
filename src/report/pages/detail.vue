@@ -18,13 +18,13 @@
 
                     <article class="recordBlock">
                         <header><h1 style="color:#487d68">记录状况</h1></header>
-                        <div><p class="per-35 tl">1~5次</p><p class="per-40 advice">急需加强练习</p><p class="per-25 tr">{{reportDetail.record_times.less_five_time}}个</p></div>
-                        <div><p class="per-35 tl">6~20次</p><p class="per-40 advice">适当增加练习</p><p class="per-25 tr">{{reportDetail.record_times.less_twenty_time}}个</p></div>
-                        <div><p class="per-35 tl">≥21次</p><p class="per-40 advice">无需加强练习</p><p class="per-25 tr">{{reportDetail.record_times.greater_twenty_time}}个</p></div>
+                        <div><p class="per-35 tl">0次</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.zero_time}}个</p></div>
+                        <div><p class="per-35 tl">1~5次</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.less_five_time}}个</p></div>
+                        <div><p class="per-35 tl">6~20次</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.less_twenty_time}}个</p></div>
+                        <div><p class="per-35 tl">≥21次</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.greater_twenty_time}}个</p></div>
                         <div><p class="per-35 tl">斩题数</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.loose_time}}个</p></div>
                         <div><p class="per-35 tl">放弃数</p><p class="per-40 advice"></p><p class="per-25 tr">{{reportDetail.record_times.win_time}}个</p></div>
                     </article>
-
                     <!-- <article class="recordBlock">
                         <header><h1 style="color:#487d68">错误原因</h1></header>
                         <div><p class="per-35 tl">知识型错误</p><p class="per-40 advice">概念定理不清</p><p class="per-25 tr">{{reportDetail.error_reason.type1_count}}个</p></div>
@@ -51,10 +51,9 @@
 import store from '../../store'
 import { XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {fetchClassCode,fetchStudentId} from '../../class/getters.js'
-import {token,chapterId } from '../../common/getters'
+import {token,chapterId,id,userGrade } from '../../common/getters'
 import {reportDetail,reportSubjectId} from '../getters'
-import {getReportDetail,clearReport} from '../actions'
+import {getReportDetail,clearDetail} from '../actions'
 import '../index.less'
 
 export default {
@@ -63,10 +62,11 @@ export default {
   },
   vuex: {
     getters: {
-        reportSubjectId,token,reportDetail,chapterId,fetchClassCode,fetchStudentId
+        token,chapterId,id,userGrade,
+        reportDetail,reportSubjectId
     },
     actions: {
-        getReportDetail
+        getReportDetail,clearDetail
     }
   },
   store,
@@ -79,8 +79,8 @@ export default {
             token:this.token,
             chapter_id:this.chapterId,
             subject_id:this.reportSubjectId,
-            class_code:this.fetchClassCode,
-            studentId:this.fetchStudentId,
+            grade:this.userGrade,
+            studentId:this.id
         },()=>{
             this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');

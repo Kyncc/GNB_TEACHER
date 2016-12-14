@@ -4,7 +4,8 @@ import {
     REPORT_CHANGE_SUBJECT,
     CHAPTER_STATE_CHANGE,
     REPORT_SCOLLER_HEIGHT,
-    CLEAR_REPORT_CHAPTER
+    CLEAR_REPORT_CHAPTER,
+    CLEAR_REPORT_DETAIL
 } from '../mutationTypes'
 
 const state = {
@@ -26,6 +27,9 @@ const mutations = {
   },
   [REPORT_SCOLLER_HEIGHT](state,height){
       state.scoll = height;
+  },
+  [CLEAR_REPORT_DETAIL](state, data) {
+      state.detail = [];
   },
   [GET_REPORT_DETAIL_SUCCESS](state, data) {
       state.detail = data.data;

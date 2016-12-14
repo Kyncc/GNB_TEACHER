@@ -148,7 +148,7 @@ router.map({
     'report': {component:reportIndex},
     'report/class/:code': {component:reportClass},
     'report/student/:id': {component: reportStudent},
-    'report/detail/:chapterId': {component: reportDetail},
+    'report/student/detail/:id/:chapterId': {component: reportDetail},
     //查错题
     'error': { component: error },
     'error/class/:code': { component: errorClass },
@@ -157,7 +157,6 @@ router.map({
     'brush': { component: brush },
     'brush/class/:code': { component: brushClass},
     'brush/charpter/:studentId': { component:brushChapter},
-
     'index/brush/error/:id': { component:indexBrushError },
     // 'index/brush/list/:id': { component:indexBrushList },
     'brush/list/:chapterId':{component: brushList},
