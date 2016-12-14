@@ -21,9 +21,6 @@ export const API_PATHS = {
     resetPwd: `${API_ENV}${API_VERSION}/teacher/pwd/resetByMobile`,
     //首页
     index: `${API_ENV}${API_VERSION}/teacher/index`,
-    //收藏事件
-    collectAdd: `${API_ENV}${API_VERSION}/teacher/collect/add`,
-    collectRemove: `${API_ENV}${API_VERSION}/teacher/collect/remove`,
     //纠错
     correct: `${API_ENV}${API_VERSION}/teacher/correct`,
     //评注
@@ -32,9 +29,6 @@ export const API_PATHS = {
     exerciseList: `${API_ENV}${API_VERSION}/teacher/exerciseList`,
     //拍错题获取
     cameraList: `${API_ENV}${API_VERSION}/teacher/cameraList`,
-    //收藏本
-    collectExampleIds: `${API_ENV}${API_VERSION}/teacher/collect/example`,
-    collectCameraIds: `${API_ENV}${API_VERSION}/teacher/collect/camera`,
     /**拍错题模块
     *  camera:拍错题搜索
     *  cameraImportant:拍错题设为例题
@@ -46,12 +40,9 @@ export const API_PATHS = {
     cameraImportant: `${API_ENV}${API_VERSION}/teacher/camera/important`,
     cameraMatch: `${API_ENV}${API_VERSION}/teacher/camera/match`,
     cameraHistory: `${API_ENV}${API_VERSION}/teacher/camera/list`,
-    cameraRemove: `${API_ENV}${API_VERSION}/teacher/camera/remove`,
     /**归纳本模块
     *  error:归纳本首页获取数据
     *  errorList:归纳本错题列表
-    *  errorMore:归纳本首更多习题
-    *  errorRecommend:归纳本推荐习题
     */
     error: `${API_ENV}${API_VERSION}/teacher/error`,
     errorList: `${API_ENV}${API_VERSION}/teacher/error/camera`,
@@ -60,9 +51,6 @@ export const API_PATHS = {
     */
     //rememberChapter:`${API_ENV}${API_VERSION}/v1/student/remember/chapter`,
     //rememberDetail:`${API_ENV}${API_VERSION}/v1/student/remember/exercises`,
-    rememberDetailPost:`${API_ENV}${API_VERSION}/v1/student/remember/submit`,
-    rememberExample: `${API_ENV}${API_VERSION}/v1/student/exerciseList`,
-
     rememberChapter:`${API_ENV}${API_VERSION}/teacher/error/byWorkbook/chapter`,
     rememberDetail:`${API_ENV}${API_VERSION}/teacher/error/byWorkbook/exercise`,
     /**互动模块
@@ -126,6 +114,9 @@ export const API_PATHS = {
     summary: `${API_ENV}${API_VERSION}/teacher/summary`,
     brushList:`${API_ENV}${API_VERSION}/teacher/summary/list-exercises`,
     brushAction:`${API_ENV}${API_VERSION}/teacher/summary/loose-win-exercise`,
+    /** 获取弃题列表 */
+
+
     //我的教材
     userTextbook: `${API_ENV}${API_VERSION}/teacher/textbook`,
     userTextbookAll: `${API_ENV}${API_VERSION}/teacher/textbook/list`,
@@ -134,9 +125,5 @@ export const API_PATHS = {
     //习题册
     //userWorkbook: `${API_ENV}${API_VERSION}/v1/student/workbook`,
     userWorkbook: `${API_ENV}${API_VERSION}/teacher/error/byWorkbook`,
-    userWorkbookAll: `${API_ENV}${API_VERSION}/v1/student/workbook/list`,
-    userWorkbookAdd: `${API_ENV}${API_VERSION}/v1/student/workbook/add`,
-    userWorkbookDel: `${API_ENV}${API_VERSION}/v1/student/workbook/del`,
-    userWorkbookSearch: `${API_ENV}${API_VERSION}/v1/student/workbook/search`,
 }
  

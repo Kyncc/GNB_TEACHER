@@ -13,7 +13,8 @@ import report from './report/modules/index'
 import myClass from './class/modules/class'
 import error from './error/modules/index.js'
 import brush from './brush/modules/index.js'
-
+import pass from './pass/modules/index.js'
+import breakIndex from './break/modules/index.js'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -29,6 +30,8 @@ export default new Vuex.Store({
     user,
     error,
     report,
-    brush
+    brush,
+    pass,
+    breakIndex
   }
 })

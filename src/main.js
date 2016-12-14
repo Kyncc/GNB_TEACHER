@@ -51,6 +51,15 @@ import brush from './brush/pages/index'
 import brushClass from './brush/pages/class'
 import brushChapter from './brush/pages/chapter'
 import brushList from './brush/pages/list'
+//放弃列表
+import pass from './pass/pages/index'
+import passClass from './pass/pages/class'
+import passChapter from './pass/pages/chapter'
+// import passList from './brush/pages/list'
+//斩题列表
+import breakIndex from './break/pages/index'
+import breakClass from './break/pages/class'
+import breakChapter from './break/pages/chapter'
 //我的班级
 import classIndex from './class/pages/index'
 import classManage from './class/pages/manager'
@@ -156,6 +165,15 @@ router.map({
     'brush/class/:code': { component: brushClass},
     'brush/chapter/:id': { component:brushChapter},
     'brush/chapter/list/:id/:chapterId': { component:brushList},
+     //放弃列表
+    'pass': { component: pass },
+    'pass/class/:code': { component: passClass},
+    'pass/chapter/:id': { component:passChapter},
+    // 'pass/chapter/list/:id/:chapterId': { component:brushList},
+    //斩断列表
+    'break': { component: breakIndex },
+    'break/class/:code': { component: breakClass},
+    'break/chapter/:id': { component:breakChapter},
     //我的班级
     'class': { component: classIndex },
     'class/manager/:id': { component: classManage },

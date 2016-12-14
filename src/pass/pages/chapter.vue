@@ -3,12 +3,12 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">
                 选择章节
-                <a slot="right" @click="_changeSub()" class="changeSub">{{brushSubjectId | subName}}<span class="with_arrow"></span></a>
+                <a slot="right" @click="_changeSub()" class="changeSub">{{passSubjectId | subName}}<span class="with_arrow"></span></a>
             </x-header>
         </div>
 
         <div style="padding-top:46px">
-            <accordion :list="brushChapter" :link="_toDetail()" @on-click-back="_openChapter"></accordion>
+            <accordion :list="passChapter" :link="_toDetail()" @on-click-back="_openChapter"></accordion>
             <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
                 <span slot="no-results" style="color:#4bb7aa;">
                     <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
@@ -18,7 +18,7 @@
             </infinite-loading>
         </div>
     </view-box>
-    <gnb-change-sub :visible.sync="visible" :selected="brushSubjectId" :subject="userSubjectList" @on-click-back="_changeSubject"></gnb-change-sub>
+    <gnb-change-sub :visible.sync="visible" :selected="passSubjectId" :subject="userSubjectList" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 
 <script>
@@ -26,12 +26,11 @@ import store from '../../store'
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import {token,userSubjectList,id,userGrade} from '../../common/getters'
-import {brushChapter,brushScoll,brushSubjectId} from '../getters'
-import {getBrush,changeChapter,setScoll,setSubject} from '../actions/chapter'
-import { brushListClear } from '../actions/list'
+import {passChapter,passScoll,passSubjectId} from '../getters'
+import {getPass,changeChapter,setScoll,setSubject} from '../actions/chapter'
+import { passListClear } from '../actions/list'
 import gnbChangeSub from '../../components/changesub/index'
 import accordion from '../../components/accordion'
-import '../index.less'
 
 export default {
   components: {
@@ -40,10 +39,10 @@ export default {
   vuex: {
     getters: {
         token,userSubjectList,id,userGrade,
-        brushChapter,brushScoll,brushSubjectId
+        passChapter,passScoll,passSubjectId
     },
     actions: {
-        getBrush,changeChapter,setScoll,setSubject,brushListClear
+        getPass,changeChapter,setScoll,setSubject,passListClear
     }
   },
   filters: {
@@ -58,7 +57,7 @@ export default {
   store,
   methods: {
     _toDetail(){
-        this.brushListClear();
+        this.passListClear();
         return `list/${this.id}/`;
     },
     _changeSub(){
@@ -78,18 +77,18 @@ export default {
          this.changeChapter(index);
     },
     _onInfinite(){
-        if(this.brushChapter.length != 0){
+        if(this.passChapter.length != 0){
             this.$broadcast('$InfiniteLoading:loaded');
             this.$broadcast('$InfiniteLoading:complete');
             return;
         }
-        this.getBrush({
+        this.getPass({
             token:this.token,   
-            subject_id:this.brushSubjectId,
+            subject_id:this.passSubjectId,
             grade:this.userGrade,
             studentId:this.id
         },()=>{
-            if(this.brushChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+            if(this.passChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
             this.$broadcast('$InfiniteLoading:complete');
         });
     }   
