@@ -65,7 +65,7 @@
 import {XHeader,Flexbox,FlexboxItem,XButton,ViewBox,Group} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { getExample } from '../actions'
-import { token,id,subjectId,exampleDetail,studentId } from '../../common/getters'
+import { token,id,subjectId,exampleDetail,studentId,userGrade } from '../../common/getters'
 import store from '../../store'
 
 export default {
@@ -75,7 +75,7 @@ export default {
 	store,
 	vuex: {
         getters: {
-            token,id,subjectId,exampleDetail,studentId
+            token,id,subjectId,exampleDetail,studentId,userGrade
         },
         actions: {
             getExample
@@ -88,6 +88,7 @@ export default {
 					ids:[this.id],
 					subject_id:this.subjectId
 				},
+				grade:this.userGrade,
 				studentId:this.studentId,
 				token:this.token
 			};

@@ -68,7 +68,7 @@ export default {
              this.bushListAction({
                 studentId:this.id,
                 grade:this.userGrade,
-                subject_id:item.brushSubjectId,
+                subject_id:this.brushSubjectId,
                 chapter_id:this.chapterId,
                 excercise_id:item.excercise_id,
                 status:type,

@@ -55,7 +55,7 @@ import brushList from './brush/pages/list'
 import pass from './pass/pages/index'
 import passClass from './pass/pages/class'
 import passChapter from './pass/pages/chapter'
-// import passList from './brush/pages/list'
+import passList from './pass/pages/list'
 //斩题列表
 import breakIndex from './break/pages/index'
 import breakClass from './break/pages/class'
@@ -169,7 +169,7 @@ router.map({
     'pass': { component: pass },
     'pass/class/:code': { component: passClass},
     'pass/chapter/:id': { component:passChapter},
-    // 'pass/chapter/list/:id/:chapterId': { component:brushList},
+    'pass/chapter/list/:id/:chapterId': { component:passList},
     //斩断列表
     'break': { component: breakIndex },
     'break/class/:code': { component: breakClass},

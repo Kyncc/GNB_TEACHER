@@ -12,17 +12,18 @@ export const setScoll = ({ dispatch },height) => {
   dispatch(types.PASS_LIST_SCOLLER,height);
 }
 
-/**获取列表数据 */
-export const getPassList = ({ dispatch }, params,success) => {
+/**获取弃题列表 */
+export const getPassList = ({ dispatch }, params, success) => {
   Api.passList({
-      data:params,
-      ok:response=>{
-          dispatch(types.PASS_LIST,response.data);
-          success&&success();
-      },
-      wrong:response=>{
-        _.toast(response.data.msg);
-      }
+    data: params,
+    ok: response => {
+      dispatch(types.PASS_LIST, response.data);
+      success&&success();
+    },
+    wrong: response => {
+      _.toast(response.data.msg);
+    }
   })
 }
+
 

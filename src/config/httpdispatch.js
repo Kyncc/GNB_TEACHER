@@ -26,14 +26,6 @@ export default {
     index: (params) => {
         return http({ method: 'get', url: API_PATHS.index, data: params.data, ok: params.ok, wrong: params.wrong });
     },
-    //添加收藏
-    collectAdd: (params) => {
-        return http({ method: 'post', url: API_PATHS.collectAdd, data: params.data, ok: params.ok, wrong: params.wrong });
-    },
-    //取消收藏
-    collectRemove: (params) => {
-        return http({ method: 'post', url: API_PATHS.collectRemove, data: params.data, ok: params.ok, wrong: params.wrong });
-    },
     //评注
     comment: (params) => {
         return http({ method: 'post', url: API_PATHS.comment, data: params.data, ok: params.ok, wrong: params.wrong });
@@ -50,16 +42,6 @@ export default {
     exerciseList: (params) => {
         return http({ method: 'get', url: API_PATHS.exerciseList, data: params.data, ok: params.ok, wrong: params.wrong });
     },
-    /**收藏本模块
-    *  collectExampleIds:收藏习题IDS
-    *  collectCameraIds:收藏拍错题IDS
-    * **/
-    collectExampleIds: (params) => {
-        return http({ method: 'get', url: API_PATHS.collectExampleIds, data: params.data, ok: params.ok, wrong: params.wrong });
-    },
-    collectCameraIds: (params) => {
-        return http({ method: 'get', url: API_PATHS.collectCameraIds, data: params.data, ok: params.ok, wrong: params.wrong });
-    },
     /**记错题章节 */
     rememberCharpter: (params) => {
         return http({ method: 'get', url: API_PATHS.rememberChapter, data: params.data, ok: params.ok, wrong: params.wrong })
@@ -68,10 +50,6 @@ export default {
     rememberExercise: (params) => {
         return http({ method: 'get', url: API_PATHS.rememberDetail, data: params.data, ok: params.ok, wrong: params.wrong })
     },
-    /**记错题章节练习题提交 */
-    rememberExercisePost: (params) => {
-        return http({ method: 'post', url: API_PATHS.rememberDetailPost, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
     /**记错题例题获得 */
     rememberExampleGet: (params) => {
         return http({ method: 'get', url: API_PATHS.rememberExample, data: params.data, ok: params.ok, wrong: params.wrong })
@@ -79,24 +57,12 @@ export default {
     /**拍错题模块
     *  camera:拍错题搜索
     *  cameraImportant:拍错题设为例题
-    *  cameraSearch:拍错题匹配
-    *  cameraHistory:拍错题记录
-    *  cameraRemove:例题删除
     */
     camera: (params) => {
         return http({ method: 'post', url: API_PATHS.camera, data: params.data, ok: params.ok, wrong: params.wrong });
     },
     cameraHistory: (params) => {
         return http({ method: 'get', url: API_PATHS.cameraHistory, data: params.data, ok: params.ok, wrong: params.wrong });
-    },
-    cameraRemove: (params) => {
-        return http({ method: 'post', url: API_PATHS.cameraRemove, data: params.data, ok: params.ok, wrong: params.wrong });
-    },
-    cameraImportant: (params) => {
-        return http({ method: 'post', url: API_PATHS.cameraImportant, data: params.data, ok: params.ok, wrong: params.wrong });
-    },
-    cameraMatch: (params) => {
-        return http({ method: 'post', url: API_PATHS.cameraMatch, data: params.data, ok: params.ok, wrong: params.wrong });
     },
     /**归纳本模块
     *  error:归纳本首页获取数据
@@ -187,29 +153,9 @@ export default {
     adviceHistory: (params) => {
         return http({ method: 'get', url: API_PATHS.adviceHistory, data: params.data, ok: params.ok, wrong: params.wrong })
     },
-    //受邀同学
-    getInviteStudentList: (params) => {
-        return http({ method: 'get', url: API_PATHS.getInviteStudentList, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    //绑定邀请码
-    bindInviteCode: (params) => {
-        return http({ method: 'post', url: API_PATHS.bindInviteCode, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
     //获取邀请码
     getInviteCode: (params) => {
         return http({ method: 'get', url: API_PATHS.getInviteCode, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    //积分账单
-    numerical: (params) => {
-        return http({ method: 'get', url: API_PATHS.numerical, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    //我的账单
-    payList: (params) => {
-        return http({ method: 'get', url: API_PATHS.payList, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    //会员信息
-    member: (params) => {
-        return http({ method: 'get', url: API_PATHS.member, data: params.data, ok: params.ok, wrong: params.wrong })
     },
     //退出
     quitToken: (params) => {
@@ -222,52 +168,29 @@ export default {
     headImg: (params) => {
         return http({ method: 'post', url: API_PATHS.headImg, data: params.data, ok: params.ok, wrong: params.wrong })
     },
+    /** 章节列表*/
     summary: (params) => {
         return http({ method: 'get', url: API_PATHS.summary, data: params.data, ok: params.ok, wrong: params.wrong })
     },
-      /** 题型汇总题目列表*/
-      brushList: (params) => {
+    /** 题型汇总题目列表*/
+    brushList: (params) => {
         return http({ method: 'get', url: API_PATHS.brushList, data: params.data, ok: params.ok, wrong: params.wrong })
-      },
-      /** 题型汇总题目列表*/
-      brushAction: (params) => {
+    },
+    /** 放弃题目列表*/
+    passList: (params) => {
+        return http({ method: 'get', url: API_PATHS.passList, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
+    /** 斩断题目列表*/
+    breakList: (params) => {
+        return http({ method: 'get', url: API_PATHS.breakList, data: params.data, ok: params.ok, wrong: params.wrong })
+    },
+    /** 题型汇总题目列表*/
+    brushAction: (params) => {
         return http({ method: 'get', url: API_PATHS.brushAction, data: params.data, ok: params.ok, wrong: params.wrong })
-      },
-    /** 全部练习册*/
-    workbookList: (params) => {
-        return http({ method: 'get', url: API_PATHS.userWorkbookAll, data: params.data, ok: params.ok, wrong: params.wrong })
     },
     /** 我的练习册*/
     workbook: (params) => {
         return http({ method: 'get', url: API_PATHS.userWorkbook, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    /** 增加练习册*/
-    workbookAdd: (params) => {
-        return http({ method: 'post', url: API_PATHS.userWorkbookAdd, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    /** 删除练习册*/
-    workbookDel: (params) => {
-        return http({ method: 'post', url: API_PATHS.userTextbookDel, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    /** 搜索练习册*/
-    workbookSearch: (params) => {
-        return http({ method: 'post', url: API_PATHS.userWorkbookSearch, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    /** 全部教材*/
-    textbookList: (params) => {
-        return http({ method: 'get', url: API_PATHS.userTextbookAll, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    /** 我的教材*/
-    textbook: (params) => {
-        return http({ method: 'get', url: API_PATHS.userTextbook, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    /** 增加教材*/
-    textbookAdd: (params) => {
-        return http({ method: 'post', url: API_PATHS.userTextbookAdd, data: params.data, ok: params.ok, wrong: params.wrong })
-    },
-    /** 删除教材*/
-    textbookDel: (params) => {
-        return http({ method: 'post', url: API_PATHS.userTextbookDel, data: params.data, ok: params.ok, wrong: params.wrong })
     },
     /** 成绩报告单*/
     report: (params) => {

@@ -87,18 +87,8 @@ export const API_PATHS = {
     advice: `${API_ENV}${API_VERSION}/teacher/user/advice`,
     //反馈历史
     adviceHistory: `${API_ENV}${API_VERSION}/teacher/user/adviceHistory`,
-    //受邀同学
-    getInviteteacherList: `${API_ENV}${API_VERSION}/teacher/user/invite/getInviteteacherList`,
-    //绑定邀请码
-    bindInviteCode: `${API_ENV}${API_VERSION}/teacher/user/invite/bindInviteCode`,
     //获取邀请码
     getInviteCode: `${API_ENV}${API_VERSION}/teacher/user/invite/getInviteCode`,
-    //积分账单
-    numerical: `${API_ENV}${API_VERSION}/teacher/member/numerical/history`,
-    //我的账单
-    payList: `${API_ENV}${API_VERSION}/teacher/member/payList`,
-    //会员信息
-    member: `${API_ENV}${API_VERSION}/teacher/member`,
     //退出
     quitToken: `${API_ENV}${API_VERSION}/teacher/quitToken`,
     //检查版本
@@ -111,19 +101,17 @@ export const API_PATHS = {
     */
     reportChapter: `${API_ENV}${API_VERSION}/teacher/report`,
     reportDetail: `${API_ENV}${API_VERSION}/teacher/report/detail`,
+     /** 获取章节列表 */
     summary: `${API_ENV}${API_VERSION}/teacher/summary`,
+    /** 获取章节刷题型列表 */
     brushList:`${API_ENV}${API_VERSION}/teacher/summary/list-exercises`,
+    /** 获取章节刷题型动作 */
     brushAction:`${API_ENV}${API_VERSION}/teacher/summary/loose-win-exercise`,
     /** 获取弃题列表 */
-
-
-    //我的教材
-    userTextbook: `${API_ENV}${API_VERSION}/teacher/textbook`,
-    userTextbookAll: `${API_ENV}${API_VERSION}/teacher/textbook/list`,
-    userTextbookAdd: `${API_ENV}${API_VERSION}/teacher/textbook/add`,
-    userTextbookDel: `${API_ENV}${API_VERSION}/teacher/textbook/del`,
-    //习题册
-    //userWorkbook: `${API_ENV}${API_VERSION}/v1/student/workbook`,
+    passList:`${API_ENV}${API_VERSION}/teacher/summary/list-exercises-member`,
+    /** 获取斩题列表 */
+    breakList:`${API_ENV}${API_VERSION}/teacher/summary/list-exercises-member`,
+    /** 习题册*/
     userWorkbook: `${API_ENV}${API_VERSION}/teacher/error/byWorkbook`,
 }
  
