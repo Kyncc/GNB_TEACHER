@@ -1,18 +1,18 @@
 <template>
 
-  <view-box v-ref:view-box class="passList">
+  <view-box v-ref:view-box class="breakList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">放弃列表</x-header>
-      <header v-if="passList" class="sectionHeader">
-          <p class="ellipsis">{{passList.chapterName}}</p>
-          <font class="ellipsis">共<b>{{passList.count}}</b>个题型</font>
+      <header v-if="breakList" class="sectionHeader">
+          <p class="ellipsis">{{breakList.chapterName}}</p>
+          <font class="ellipsis">共<b>{{breakList.count}}</b>个题型</font>
        </header>
     </div>
 
     <!--空白间隔-->
       <div style="padding-top:80px;">
-        <template v-if="passList">
-            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in passList.list">
+        <template v-if="breakList">
+            <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in breakList.list">
                 <div class="weui_panel_hd">
                     {{{item.chapter_name}}}
                 </div>
@@ -47,8 +47,8 @@ import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabIte
 import InfiniteLoading from 'vue-infinite-loading'
 import store from '../../store'
 import {token,id,userGrade,chapterId} from '../../common/getters'
-import {passSubjectId,passListScoll,passListCurrentPage,passListTotalPage,passList} from '../getters'
-import {setScoll,getPassList } from '../actions/list'
+import {breakSubjectId,breakListScoll,breakListCurrentPage,breakListTotalPage,breakList} from '../getters'
+import {setScoll,getBreakList } from '../actions/list'
 import '../index.less'
 
 export default {
@@ -59,11 +59,11 @@ export default {
     methods: {
         _intoDetail(id){
             this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-            this.$router.go(`/example/${this.id}/${this.passSubjectId}/${id}`);
+            this.$router.go(`/example/${this.id}/${this.breakSubjectId}/${id}`);
         },
         _isFirst(){
             /*判断当前页面是否大于总页数 若大于则不在请求数据*/
-            if(Number(this.passListTotalPage) < Number(this.passListCurrentPage)){
+            if(Number(this.breakListTotalPage) < Number(this.breakListCurrentPage)){
                 this.$broadcast('$InfiniteLoading:loaded');
                 this.$broadcast('$InfiniteLoading:complete');
                 return true;
@@ -74,16 +74,17 @@ export default {
             if(this._isFirst()){
                 return;
             }
-            this.getPassList({
-                currentPage:this.passListCurrentPage,
-                status:2,
+            
+            this.getBreakList({
+                currentPage:this.breakListCurrentPage,
+                status:1,
                 grade:this.userGrade,
                 token:this.token,
                 chapter_id:this.chapterId,
-                subject_id:this.passSubjectId,
+                subject_id:this.breakSubjectId,
                 studentId:this.id
             },()=>{
-                if(this.passListTotalPage < this.passListCurrentPage){
+                if(this.breakListTotalPage < this.breakListCurrentPage){
                     this.$broadcast('$InfiniteLoading:loaded');
                     this.$broadcast('$InfiniteLoading:complete');
                     return;
@@ -94,16 +95,16 @@ export default {
     vuex: {
         getters: {
             token,id,userGrade,chapterId,
-            passList,passSubjectId,passListScoll,passListCurrentPage,passListTotalPage
+            breakList,breakSubjectId,breakListScoll,breakListCurrentPage,breakListTotalPage
         },
         actions: {
-          setScoll,getPassList
+          setScoll,getBreakList
         }
     },
     store,
     ready(){
         this.$nextTick(()=>{
-            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passListScoll;
+            document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakListScoll;
         });
     }
 }

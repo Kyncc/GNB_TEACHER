@@ -57,7 +57,7 @@ export default {
   store,
   methods: {
     _toDetail(){
-        this.passListClear();
+        // this.passListClear();
         return `list/${this.id}/`;
     },
     _changeSub(){
@@ -99,6 +99,7 @@ export default {
         }
     },
   ready(){
+        this.passListClear();
         this.$nextTick(()=>{
             document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
         });

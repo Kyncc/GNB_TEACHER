@@ -60,6 +60,7 @@ import passList from './pass/pages/list'
 import breakIndex from './break/pages/index'
 import breakClass from './break/pages/class'
 import breakChapter from './break/pages/chapter'
+import breakList from './break/pages/list'
 //我的班级
 import classIndex from './class/pages/index'
 import classManage from './class/pages/manager'
@@ -174,6 +175,7 @@ router.map({
     'break': { component: breakIndex },
     'break/class/:code': { component: breakClass},
     'break/chapter/:id': { component:breakChapter},
+    'break/chapter/list/:id/:chapterId': { component:breakList},
     //我的班级
     'class': { component: classIndex },
     'class/manager/:id': { component: classManage },

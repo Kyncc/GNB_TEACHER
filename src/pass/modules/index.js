@@ -34,11 +34,11 @@ const mutations = {
   [types.PASS_STATE_CHANGE](state,index){
       state.index.list[index].checked = !state.index.list[index].checked
   },
-  [types.PASS_LIST](state , data){
+  [types.PASS_LIST](state,data){
     state.list.count = data.data.count;
     state.list.chapterName = data.data.chapterName;
     state.list.totalPage = data.data.totalPage;  
-    state.list.list = state.student.list.concat(data.data);
+    state.list.list = state.list.list.concat(data.data.list);
     state.list.currentPage++;
   },
   [types.PASS_LIST_CLEAR](state){
