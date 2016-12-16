@@ -178,10 +178,10 @@ router.map({
     'break/chapter/list/:id/:chapterId': { component:breakList},
     //我的班级
     'class': { component: classIndex },
-    'class/manager/:id': { component: classManage },
+    'class/manager/:code': { component: classManage },
     'class/create': { component: classCreate },
-    'class/classmate/:id': { component: classmate },
-    'class/invite/:id': { component: classInvite },
+    'class/classmate/:code': { component: classmate },
+    'class/invite/:code': { component: classInvite },
     'class/apply/:id':{ component: classApply},
 
     //记错题

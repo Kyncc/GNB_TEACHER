@@ -10,7 +10,9 @@ export const myClassList = ({dispatch}, params,callback) => {
             dispatch(types.GET_CLASS_LIST, response.data.data)
             callback&&callback()
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
     })
 }
 
@@ -21,28 +23,21 @@ export const getMaterial = ({dispatch}, params,callback) => {
         ok: response => {
             callback&&callback(response.data.data.list)
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
     })
 }
-//设置标题
-export const setClassName = ({dispatch}, params) => {
-    dispatch(types.SET_CLASS_NAME,params)
-}
-//设置班级代码
-export const setClassCode = ({dispatch}, params) => {
-    dispatch(types.SET_CLASS_CODE,params)
-}
-//设置学生代码
-export const setStudentId = ({dispatch}, params) => {
-    dispatch(types.SET_STUDENT_ID,params)
-}
+
 export const createClass = ({dispatch}, params, callback) => {
     Api.createClass({
         data: params,
         ok: response => {
             callback && callback()
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
     })
 }
 
@@ -53,10 +48,11 @@ export const delStudent= ({dispatch}, params, callback) => {
         ok: response => {
             callback && callback()
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
     })
 }
-
 
 //删除班级
 export const delClass= ({dispatch}, params, callback) => {
@@ -65,7 +61,10 @@ export const delClass= ({dispatch}, params, callback) => {
         ok: response => {
             callback && callback()
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
+        
     })
 }
 
@@ -76,11 +75,11 @@ export const myClassmateList = ({dispatch}, params, callback) => {
             dispatch(types.GET_CLASS_MATE_LIST, response.data.data)
             callback&&callback()
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
     })
 }
-
-
 
 export const applyList = ({dispatch}, params, callback) => {
     Api.applyList({
@@ -89,7 +88,9 @@ export const applyList = ({dispatch}, params, callback) => {
             dispatch(types.GET_APPLY_LIST, response.data.data)
             callback&&callback()
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
     })
 }
 
@@ -99,11 +100,11 @@ export const replyApply = ({dispatch}, params, callback) => {
         ok: response => {
             callback && callback()
         },
-        wrong: response => {}
+        wrong: response => {
+            _.toast(response.data.msg);
+        }
     })
 }
-
-
 
 /**获取班级数据 */
 export const getClassDetail = ({dispatch}, params, success,wrong) => {

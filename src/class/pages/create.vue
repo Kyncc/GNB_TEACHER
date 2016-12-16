@@ -51,7 +51,7 @@ export default {
                     grade:this.value[0].substring(3),
                     edition_id:this.value[2].substring(3),
                 }, () => {
-                    this.$router.replace('/index/class')
+                    this.$router.replace('class')
                     _.toast('创建班级成功')
                 })
             } else {

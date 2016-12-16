@@ -181,6 +181,7 @@ export default {
                     ids: this.errorStudIds,
                     subject_id: this.errorSubjectId
                 },
+                grade:this.userGrade,
                 studentId:this.id,
                 token: this.token
             };
