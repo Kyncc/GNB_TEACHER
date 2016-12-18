@@ -10,7 +10,7 @@
         <div style="padding-top:46px">
             <group>
                 <div v-for="item in fetchClassList" class="cell" v-touch:tap="_detail(item.classCode,item.name)">
-                    <span>{{item.name}}&nbsp;</span>
+                    <span :class="(item.status == '1'?'vux-reddot':'')">{{item.name}}</span>
                 </div>
             </group>
 
