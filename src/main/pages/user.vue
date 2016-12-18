@@ -1,7 +1,10 @@
 <template>
     <view-box v-ref:view-box class='user vux-scroller-header-box'>
         <div style="height:46px;">
-            <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心<a slot="right" v-touch:tap="_quit">退出</a></x-header>
+            <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">
+            个人中心
+                <a slot="right" v-touch:tap="_quit" v-show="system != 'IOS'">退出</a>
+            </x-header>
         </div>
         <scroller lock-x v-ref:scroller height="-47px">
             <div>
@@ -38,6 +41,7 @@ import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from '../../config/whole.js'
 import {Userinfo} from '../../user/getters'
 import {fetchHeadImg,fetchPhone} from '../getters'
+import {system} from '../../common/getters'
 import { setHeadPhoto } from '../actions.js'
 
 export default {
@@ -46,7 +50,7 @@ export default {
     },
     vuex:{
         getters:{
-            Userinfo,fetchHeadImg,fetchPhone
+            Userinfo,fetchHeadImg,fetchPhone,system
         },
         actions:{
             setHeadPhoto

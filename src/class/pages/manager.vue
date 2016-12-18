@@ -68,8 +68,6 @@ export default {
                 },()=>{
                     this.myClassList({
                         token: this.token
-                    },()=>{
-                        this.$router.replace('/class');
                     })
                 })
             }
@@ -131,24 +129,4 @@ export default {
     }
 }
 </script>
-<style lang="less" scoped>
-.myClass{
 
-    .cell{
-        padding:1rem;
-        span{
-            dispaly:inline-block !important;
-        }
-        border-bottom:1px solid #d9d9d9;
-        &:last-child{
-            border: none;
-        }
-    }
-
-    .weui_cell_ft{
-        width: 20%;
-        float: right;
-    }
-}
-
-</style>

@@ -2,7 +2,7 @@
 
   <view-box v-ref:view-box class="passList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">放弃列表</x-header>
+      <x-header :left-options="{showBack: true}">弃题列表</x-header>
       <header v-if="passList" class="sectionHeader">
           <p class="ellipsis">{{passList.chapterName}}</p>
           <font class="ellipsis">共<b>{{passList.count}}</b>个题型</font>
@@ -83,11 +83,11 @@ export default {
                 subject_id:this.passSubjectId,
                 studentId:this.id
             },()=>{
-                if(this.passListTotalPage < this.passListCurrentPage){
-                    this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:loaded');
+                if(this.passListCurrentPage > this.passListTotalPage){
                     this.$broadcast('$InfiniteLoading:complete');
                     return;
-                }    
+                }
             })
         },
     },

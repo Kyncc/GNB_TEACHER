@@ -52,7 +52,7 @@
 import store from '../../store'
 import { XHeader,Swiper,SwiperItem,Panel,Scroller,ViewBox} from 'vux'
 import { swiper} from '../getters'
-import { subject_id,token } from '../../common/getters'
+import { token } from '../../common/getters'
 import { getStudentIndex } from '../actions'
 import * as _ from '../../config/whole.js'
 import {shareReady} from '../../common/h5Plus/share.js';
@@ -72,18 +72,15 @@ export default {
     },
     vuex: {
         getters: {
-           swiper,subject_id,token
+           swiper,token
         },
         actions: {
             getStudentIndex
         }
     },
     store,
-    ready(){
+    created(){
         let params = {
-            options:{
-                subject_id:this.subject_id
-            },
             token:localStorage.getItem('token')
         }
         this.getStudentIndex(params);

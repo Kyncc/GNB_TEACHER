@@ -84,8 +84,8 @@ export default {
                 subject_id:this.breakSubjectId,
                 studentId:this.id
             },()=>{
-                if(this.breakListTotalPage < this.breakListCurrentPage){
-                    this.$broadcast('$InfiniteLoading:loaded');
+                this.$broadcast('$InfiniteLoading:loaded');
+                if(this.breakListCurrentPage > this.breakListTotalPage){
                     this.$broadcast('$InfiniteLoading:complete');
                     return;
                 }    

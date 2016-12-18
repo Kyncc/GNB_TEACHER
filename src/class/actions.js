@@ -29,32 +29,8 @@ export const getMaterial = ({dispatch}, params,callback) => {
     })
 }
 
-export const createClass = ({dispatch}, params, callback) => {
-    Api.createClass({
-        data: params,
-        ok: response => {
-            callback && callback()
-        },
-        wrong: response => {
-            _.toast(response.data.msg);
-        }
-    })
-}
 
-//删除学生
-export const delStudent= ({dispatch}, params, callback) => {
-    Api.delStudent({
-        data: params,
-        ok: response => {
-            callback && callback()
-        },
-        wrong: response => {
-            _.toast(response.data.msg);
-        }
-    })
-}
-
-//删除班级
+/**删除班级 */
 export const delClass= ({dispatch}, params, callback) => {
     Api.delClass({
         data: params,
@@ -67,6 +43,40 @@ export const delClass= ({dispatch}, params, callback) => {
         
     })
 }
+
+
+/**创建新班级 */
+export const createClass = ({dispatch}, params, callback) => {
+    _.busy();
+    Api.createClass({
+        data: params,
+        ok: response => {
+            _.leave();
+            callback && callback()
+        },
+        wrong: response => {
+            _.leave();
+            _.toast(response.data.msg);
+        }
+    })
+}
+
+/**删除学生 */
+export const delStudent= ({dispatch}, params, callback) => {
+    _.busy();
+    Api.delStudent({
+        data: params,
+        ok: response => {
+            _.leave();
+            callback && callback()
+        },
+        wrong: response => {
+            _.leave();
+            _.toast(response.data.msg);
+        }
+    })
+}
+
 
 export const myClassmateList = ({dispatch}, params, callback) => {
     Api.myClassmateList({
