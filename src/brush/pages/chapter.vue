@@ -58,7 +58,6 @@ export default {
   store,
   methods: {
     _toDetail(){
-       
         return `list/${this.id}/`;
     },
     _changeSub(){

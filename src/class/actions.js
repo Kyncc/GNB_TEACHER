@@ -130,6 +130,12 @@ export const getClassDetail = ({dispatch}, params, success,wrong) => {
     })
 }
 
+/**清空班级列表 */
+export const clearClassList= ({dispatch}) => {
+    dispatch(types.CLASS_CLEAR);
+}
+
+
 /**清空班级数据 */
 export const clearClassDetail = ({dispatch}) => {
     dispatch(types.CLASS_MYCLASS_CLEAR)

@@ -3,7 +3,7 @@
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: true}">
                 班级列表
-                <a slot="right"  v-link="{ path: 'class/create'}">新建班级</a>
+                <a slot="right"  v-link="{path: 'class/create'}">新建班级</a>
             </x-header>
         </div>
 
@@ -29,7 +29,7 @@
 
 import store from '../../store'
 import { XHeader,Group,ViewBox }from 'vux'
-import { myClassList,clearClassDetail} from '../../class/actions.js'
+import { myClassList,clearClassDetail,clearClassList} from '../../class/actions.js'
 import { fetchClassList } from '../../class/getters'
 import { token } from '../../common/getters.js'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -41,10 +41,13 @@ export default {
             fetchClassList,token
         },
         actions: {
-            myClassList,clearClassDetail
+            myClassList,clearClassDetail,clearClassList
         }
     },
     store,
+    created(){
+        this.clearClassList();
+    },
     methods: {
         _detail(code,name) {
             this.clearClassDetail();

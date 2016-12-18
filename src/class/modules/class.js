@@ -36,8 +36,11 @@ const mutations = {
         state.class.code = data.classCode;
         state.class.grade = data.grade;
     },
-    [types.CLASS_MYCLASS_CLEAR](state, data) {
-         state.class.classmate = [];
+    [types.CLASS_CLEAR](state, data){
+        state.classList = [];
+    },
+    [types.CLASS_MYCLASS_CLEAR](state, data){
+        state.class.classmate = [];
         state.class.name = '';
         state.class.code = '';
         state.class.grade = 0;

@@ -13,6 +13,8 @@ export const SET_STUDENT_ID = 'SET_STUDENT_ID'
 
 export const CLEAR_REPORT_DETAIL = 'CLEAR_REPORT_DETAIL'
 
+/**班级列表清除 */
+export const CLASS_CLEAR = 'CLASS_CLEAR';
 /**班级信息 */
 export const CLASS_MYCLASS = 'CLASS_MYCLASS'
 /**班级信息晴空 */
