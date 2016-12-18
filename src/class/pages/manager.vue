@@ -51,9 +51,7 @@ export default {
                     classCode:this.code,
                     token:this.token
                 },()=>{
-                    this.myClassList({
-                        token: this.token
-                    })
+                    history.go(-1);
                 })
             }
         }

@@ -32,12 +32,15 @@ export const getMaterial = ({dispatch}, params,callback) => {
 
 /**删除班级 */
 export const delClass= ({dispatch}, params, callback) => {
+    _.busy();
     Api.delClass({
         data: params,
         ok: response => {
+            _.leave();
             callback && callback()
         },
         wrong: response => {
+            _.leave();
             _.toast(response.data.msg);
         }
         
