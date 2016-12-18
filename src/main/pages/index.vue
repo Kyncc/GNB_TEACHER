@@ -85,7 +85,8 @@ export default {
         }
         this.getStudentIndex(params);
         if(window.plus) {
-            plus.navigator.closeSplashscreen();
+             plus.navigator.closeSplashscreen(); //关闭等待
+             plus.navigator.setStatusBarBackground(75,183,170);      //设置系统状态条颜色
         }
     }
 }

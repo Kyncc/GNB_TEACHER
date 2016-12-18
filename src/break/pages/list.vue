@@ -2,7 +2,7 @@
 
   <view-box v-ref:view-box class="breakList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">放弃列表</x-header>
+      <x-header :left-options="{showBack: true}">斩题列表</x-header>
       <header v-if="breakList" class="sectionHeader">
           <p class="ellipsis">{{breakList.chapterName}}</p>
           <font class="ellipsis">共<b>{{breakList.count}}</b>个题型</font>

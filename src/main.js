@@ -238,6 +238,7 @@ function plusReady(){
             window.history.back();
         }
     });
+    
 }
 
 if(window.plus){
