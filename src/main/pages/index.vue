@@ -18,7 +18,7 @@
                         </div>
                         <div class="flex-item right1px bottom1px" v-link="{ path: '/brush'}">
                             <img src="../../assets/main/types.png"  />
-                            <p >题型汇总</p>
+                            <p>题型汇总</p>
                         </div>
                         <div class="flex-item bottom1px" v-link="{ path: '/report'}" >
                             <img src="../../assets/main/knowledge.png"  />
