@@ -152,12 +152,12 @@
             "splashscreen": {
                 "ios": {
                     "iphone": {
-                        "default": "", /*iPhone3启动图片选，分辨率：320x480*/
+                         /*iPhone3启动图片选，分辨率：320x480*/
                         /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
                         /*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
                         /*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
                         /*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
-                        "retina55l": ""/*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                        "retina55l": "","retina55":"unpackage/res/start/1242x2208.png","retina47":"unpackage/res/start/750x1334.png","retina40":"unpackage/res/start/640x1136.png","retina35":"unpackage/res/start/640x960.png"/*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
                     },
                     "ipad": {
                         "portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
