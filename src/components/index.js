@@ -1,9 +1,15 @@
-import GnbChangeSub from './changesub/index.vue'
-import accordion from './accordion/index.vue'
+import gnbChangeSub from './changesub/index'
+import accordion from './accordion/index'
+import accordionPage from './accordionPage/index'
+import accordionReport from './accordionReport/index'
+import changeTextBook from './changeTextBook/index'
+import onInfinite from './onInfinite/index'
 
-const GNB = {
-    GnbChangeSub,
-    accordion
+module.exports = {
+    gnbChangeSub,
+    accordion,
+    accordionPage,
+    changeTextBook,
+    accordionReport,
+    onInfinite
 }
-
-module.exports = GNB;
