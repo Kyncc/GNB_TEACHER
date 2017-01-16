@@ -1,6 +1,4 @@
-import {
-  GET_FORGET_MESSAGE_SUCCESS
-} from '../mutationTypes'
+import * as types from '../mutationTypes'
 
 const state = {
   code:'',
@@ -8,7 +6,7 @@ const state = {
 }
 
 const mutations = {
-  [GET_FORGET_MESSAGE_SUCCESS](state , data){
+  [types.FORGET_MESSAGE](state , data){
     state.code = data.data.code;
     state.mobile = data.data.mobile;
   }

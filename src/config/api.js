@@ -3,10 +3,6 @@ const mock = 'http://rap.taobao.org/rap.plugin.js?projectId=6273';
 const server = 'http://www.guinaben.com:8070';
 const version = '';
 
-// http dispatch code
-export const OK_CODE = 200;
-export const UNAUTHORIZED_CODE = 401;
-
 //change api
 export const API_ENV = `${server}`;
 export const API_VERSION = `${version}`;

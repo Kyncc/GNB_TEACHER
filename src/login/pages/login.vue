@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import '../main.less'
 import {XInput,Group,XButton} from 'vux'
 import { login } from '../actions'
 import { userInfo,registerMobile } from '../getters'

@@ -1,12 +1,11 @@
-/*短信注册账号*/
-export const GET_REGISTER_MESSAGE_SUCCESS = 'GET_REGISTER_MESSAGE_SUCCESS'
-/*设置密码*/
-export const SET_PASSWORD_SUCCESS = 'SET_PASSWORD_SUCCESS'
-/*登陆*/
-export const GET_LOGIN_SUCCESS = 'GET_LOGIN_SUCCESS'
-/*短信重置账号密码*/
-export const GET_FORGET_MESSAGE_SUCCESS = 'GET_FORGET_MESSAGE_SUCCESS'
-/*重置密码*/
-export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS'
-/*设置头像*/
-export const SET_HEAD_IMG = 'SET_HEAD_IMG'
+/** 登陆*/
+export const LOGIN = 'LOGIN'
+/** 短信注册账号*/
+export const REGISTER_MESSAGE = 'REGISTER_MESSAGE'
+/** 设置密码*/
+export const SET_PASSWORD = 'SET_PASSWORD'
+/** 短信重置账号密码*/
+export const FORGET_MESSAGE = 'FORGET_MESSAGE'
+/** 重置密码*/
+export const RESET_PASSWORD = 'RESET_PASSWORD'
+

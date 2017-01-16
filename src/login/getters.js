@@ -1,13 +1,12 @@
 /*用户登陆*/
 export const userInfo = (state) => state.userInfo
 /*手机号注册*/
-export const registerMessageCode = (state) => state.register.code
-export const registerMobile = (state) => state.register.mobile
-/** 获取教材信息*/
-export const TextBookMathVer  = (state) => state.register.version.math
-export const TextBookPhysicsVer = (state) => state.register.version.physics
+export const registerMessageCode = (state) => state.login.register.code
+export const registerMobile = (state) => state.login.register.mobile
+export const registerStudent = (state) => state.login.register.isStudent
 /*手机号重置*/
-export const forgetMessageCode = (state) => state.forget.code
-export const forgetMobile = (state) => state.forget.mobile
+export const forgetMessageCode = (state) => state.login.forget.code
+export const forgetMobile = (state) => state.login.forget.mobile
+
 
 

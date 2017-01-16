@@ -1,6 +1,5 @@
 import layout from './layout'
 import index from './index'
-import brush from '../../featrues/brush/router'
 import remember from '../../featrues/remember/router'
 
 export default {
@@ -8,8 +7,7 @@ export default {
     component: layout,
     subRoutes: {
       '/':{component: index},
-      ...brush,
-      ...remember,
+      ...remember
     }
   }
 }

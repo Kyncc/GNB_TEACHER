@@ -7,7 +7,7 @@ export const getRegisterCode = ({ dispatch }, params) => {
   Api.getCode({
       data:params,
       ok:response=>{
-        dispatch(types.GET_REGISTER_MESSAGE_SUCCESS,response.data);
+        dispatch(types.REGISTER_MESSAGE,response.data);
       },
       wrong:response=>{
          _.toast(response.data.msg);
@@ -20,7 +20,7 @@ export const addPwd = ({ dispatch }, params,success,wrong) => {
   Api.addPwd({
       data:params,
       ok:response=>{
-        dispatch(types.SET_PASSWORD_SUCCESS);
+        dispatch(types.SET_PASSWORD);
         success&&success();
       },
       wrong:response=>{
@@ -50,7 +50,7 @@ export const login = ({ dispatch }, params,success,wrong) => {
   Api.login({
       data:params,
       ok:response=>{
-        dispatch(types.GET_LOGIN_SUCCESS,response.data);
+        dispatch(types.LOGIN,response.data);
         // _.leave();
         success&&success();
       },
@@ -68,7 +68,7 @@ export const getForgetCode = ({ dispatch }, params) => {
   Api.getCode({
       data:params,
       ok:response=>{
-        dispatch(types.GET_FORGET_MESSAGE_SUCCESS,response.data);
+        dispatch(types.FORGET_MESSAGE,response.data);
       },
       wrong:response=>{
         _.toast(response.data.msg);
@@ -76,13 +76,12 @@ export const getForgetCode = ({ dispatch }, params) => {
   })
 }
 
-
 /*重置登陆密码*/
 export const resetPwd = ({ dispatch }, params,success,wrong) => {
   Api.resetPwd({
       data:params,
       ok:response=>{
-        dispatch(types.RESET_PASSWORD_SUCCESS);
+        dispatch(types.RESET_PASSWORD);
         success&&success();
       },
       wrong:response=>{
@@ -90,25 +89,6 @@ export const resetPwd = ({ dispatch }, params,success,wrong) => {
         _.toast(response.data.msg);
       }
   })
-}
-
-/**获得教材版本信息 */
-export const getTextbookVersion = ({ dispatch }, params,success,wrong) => {
-  Api.getTextbookVer({
-    data: params,
-    ok: response => {
-      dispatch(types.GET_TEXTBOOK_VERSION_SUCCESS, response.data.data);
-      success&&success();
-    },
-    wrong: response => {
-      wrong&&wrong();
-      _.toast(response.data.msg);
-    }
-  })
-}
-
-export const setHeadImg = ({ dispatch }, params) => {
-    dispatch(types.SET_HEAD_IMG, params)
 }
 
 

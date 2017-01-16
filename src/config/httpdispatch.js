@@ -211,14 +211,6 @@ export function http(params) {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             }
-            // headers: {
-            //   'Content-Type': 'application/json'
-            // },
-            // _timeout: 3000,
-            // onTimeout: (request) => {
-            //   _.toast("服务器繁忙");
-            //   _.leave();
-            // }
         })
     } else {
         resource = Vue.http.get(params.url,{
@@ -231,13 +223,6 @@ export function http(params) {
         })
     }
     resource
-    .then(resp => {
-        console.log(resp);
-        if (resp.code == 401) {
-            window.location.href = '/login';
-        }
-        return resp;
-    })
     .then(resp => {
         if (resp.data.code == 200) {
             params.ok(resp);
@@ -255,7 +240,6 @@ export function http(params) {
             _.toast('接口异常')
         }
         _.leave();
-        // _.toast(JSON.parse(err.body).msg);
         return err;
     })
     .catch(err => {

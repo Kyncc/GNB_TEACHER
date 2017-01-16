@@ -1,16 +1,16 @@
-import {
-  GET_REGISTER_MESSAGE_SUCCESS,
-} from '../mutationTypes'
+import * as register from '../mutationTypes'
 
 const state = {
   mobile:'',
-  code:''
+  code:'',
+  isTeacher:''
 }
 
 const mutations = {
-  [GET_REGISTER_MESSAGE_SUCCESS](state , data){
+  [register.REGISTER_MESSAGE](state , data){
     state.mobile = data.data.mobile;
     state.code = data.data.code;
+    state.isStudent = data.data.isStudent;
   }
 }
 

@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import '../main.less'
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
 import { getRegisterCode } from '../actions'
 import { registerMessageCode,registerMobile } from '../getters'
