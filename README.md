@@ -19,7 +19,7 @@
 
 -	[路由-VueRouter](http://router.vuejs.org/zh-cn/index.html)
 
--	[单项数据流-Vuex](http://vuex.vuejs.org/zh-cn/index.html)
+-	[单项数据流-Vuex(2版本)](http://vuex.vuejs.org/zh-cn/index.html)
 
 -	[VueRouter和Vuex流同步-Vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
 
@@ -31,7 +31,7 @@
 
 	### UI组件
 
--	[手机UI库-Vux](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
+-	[手机UI库-Vux(1版本)](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
 
 -	[触摸手势组件-VueTouch](https://github.com/vuejs/vue-touch)
 

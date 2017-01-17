@@ -6,11 +6,12 @@ import App from './app'
 import store from './store'
 import * as _ from './config/whole.js'
 //登陆、注册
-import Login from './login/pages/login'
-import register from './login/pages/register'
-import setPassword from './login/pages/setPassword'
-import forget from './login/pages/forget'
-import resetPassword from './login/pages/resetPassword'
+// import Login from './login/pages/login'
+// import register from './login/pages/register'
+// import setPassword from './login/pages/setPassword'
+// import forget from './login/pages/forget'
+// import resetPassword from './login/pages/resetPassword'
+import Login from './login/router'
 //首页
 import Main from './main/common/main'
 import User from './main/pages/user'
@@ -110,79 +111,81 @@ Vue.http.interceptors.push((request, next) => {
 
 const router = new Router()
 router.map({
-    '/login': { component: Login },
-    //注册账户
-    'register': { component: register },
-    'register/password': { component: setPassword },
-    //忘记密码
-    'forget': { component: forget },
-    'forget/password': { component: resetPassword },
-    //纠错
-    'correct/:subjectId/:id':{component: correct},
-    //参考例题
-    'example/:studentId/:subjectId/:id':{component: example},
-    //评注
-    'comment/:id':{component: comment},
-    //主页
-    'main/': {
-        component: Main,
-        subRoutes: {
-            'user/': {
-                component: User
-            },
-            'message/': {
-                component: Message
-            },
-            'index/': {
-                component: Index
-            }
-        }
-    },
-    'main/user/photo':{
-        component: Photo
-    },
-    //消息
-    'message/class': { component: messageClass },
-    'message/system': { component: messageSystem },
-    'message/correct': { component: messageCorrect },
-    //个人中心
-    'user/info': { component: userInfo },
-    'user/resetPwd': { component: userResetPwd },
-    //设置
-    'user/settings': { component: userSettingsIndex },
-    'user/settings/advice': { component: userSettingsAdvice },
-    'user/settings/advice/history': { component: userSettingsAdviceHistory },
-    //知识图谱
-    'report': {component:reportIndex},
-    'report/class/:code': {component:reportClass},
-    'report/student/:id': {component: reportStudent},
-    'report/student/detail/:id/:chapterId': {component: reportDetail},
-    //查错题
-    'error': { component: error },
-    'error/class/:code': { component: errorClass },
-    'error/student/:id': { component: errorByStudent},
-    //刷题型 Brush
-    'brush': { component: brush },
-    'brush/class/:code': { component: brushClass},
-    'brush/chapter/:id': { component:brushChapter},
-    'brush/chapter/list/:id/:chapterId': { component:brushList},
-     //放弃列表
-    'pass': { component: pass },
-    'pass/class/:code': { component: passClass},
-    'pass/chapter/:id': { component:passChapter},
-    'pass/chapter/list/:id/:chapterId': { component:passList},
-    //斩断列表
-    'break': { component: breakIndex },
-    'break/class/:code': { component: breakClass},
-    'break/chapter/:id': { component:breakChapter},
-    'break/chapter/list/:id/:chapterId': { component:breakList},
-    //我的班级
-    'class': { component: classIndex },
-    'class/manager/:code': { component: classManage },
-    'class/create': { component: classCreate },
-    'class/classmate/:code': { component: classmate },
-    'class/invite/:code': { component: classInvite },
-    'class/apply/:id':{ component: classApply},
+    Login
+
+    // '/login': { component: Login },
+    // //注册账户
+    // 'register': { component: register },
+    // 'register/password': { component: setPassword },
+    // //忘记密码
+    // 'forget': { component: forget },
+    // 'forget/password': { component: resetPassword },
+    // //纠错
+    // 'correct/:subjectId/:id':{component: correct},
+    // //参考例题
+    // 'example/:studentId/:subjectId/:id':{component: example},
+    // //评注
+    // 'comment/:id':{component: comment},
+    // //主页
+    // 'main/': {
+    //     component: Main,
+    //     subRoutes: {
+    //         'user/': {
+    //             component: User
+    //         },
+    //         'message/': {
+    //             component: Message
+    //         },
+    //         'index/': {
+    //             component: Index
+    //         }
+    //     }
+    // },
+    // 'main/user/photo':{
+    //     component: Photo
+    // },
+    // //消息
+    // 'message/class': { component: messageClass },
+    // 'message/system': { component: messageSystem },
+    // 'message/correct': { component: messageCorrect },
+    // //个人中心
+    // 'user/info': { component: userInfo },
+    // 'user/resetPwd': { component: userResetPwd },
+    // //设置
+    // 'user/settings': { component: userSettingsIndex },
+    // 'user/settings/advice': { component: userSettingsAdvice },
+    // 'user/settings/advice/history': { component: userSettingsAdviceHistory },
+    // //知识图谱
+    // 'report': {component:reportIndex},
+    // 'report/class/:code': {component:reportClass},
+    // 'report/student/:id': {component: reportStudent},
+    // 'report/student/detail/:id/:chapterId': {component: reportDetail},
+    // //查错题
+    // 'error': { component: error },
+    // 'error/class/:code': { component: errorClass },
+    // 'error/student/:id': { component: errorByStudent},
+    // //刷题型 Brush
+    // 'brush': { component: brush },
+    // 'brush/class/:code': { component: brushClass},
+    // 'brush/chapter/:id': { component:brushChapter},
+    // 'brush/chapter/list/:id/:chapterId': { component:brushList},
+    //  //放弃列表
+    // 'pass': { component: pass },
+    // 'pass/class/:code': { component: passClass},
+    // 'pass/chapter/:id': { component:passChapter},
+    // 'pass/chapter/list/:id/:chapterId': { component:passList},
+    // //斩断列表
+    // 'break': { component: breakIndex },
+    // 'break/class/:code': { component: breakClass},
+    // 'break/chapter/:id': { component:breakChapter},
+    // 'break/chapter/list/:id/:chapterId': { component:breakList},
+    // //我的班级
+    // 'class': { component: classIndex },
+    // 'class/manager/:code': { component: classManage },
+    // 'class/create': { component: classCreate },
+    // 'class/classmate/:code': { component: classmate },
+    // 'class/invite/:code': { component: classInvite },
+    // 'class/apply/:id':{ component: classApply},
 
     //记错题
     // 'remember/:id':{component: remember},
@@ -194,11 +197,12 @@ router.map({
   
 })
 
-router.redirect({
-    '/main/': '/main/index',
-});
+// router.redirect({
+//     '/main/': '/main/index',
+// });
 
 sync(store, router)
+
 router.beforeEach(function(transition) {
     if (transition.to.path == '/') {
         if(localStorage.token){

@@ -19,19 +19,19 @@ import breakIndex from './break/modules/index'
 Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
-    Global,
+    // Global,
     login,
-    register,
-    forget,
-    index,
-    remember,
-    message,
-    myClass,
-    user,
-    error,
-    report,
-    brush,
-    pass,
-    breakIndex
+    // register,
+    // forget,
+    // index,
+    // remember,
+    // message,
+    // myClass,
+    // user,
+    // error,
+    // report,
+    // brush,
+    // pass,
+    // breakIndex
   }
 })
