@@ -1,7 +1,7 @@
 <template>
   <div class="forget vux-scroller-header-box">
     <div style="height:46px;">
-			<x-header :left-options="{showBack: true,preventGoBack:true}"   @on-click-back="_back" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">重置密码</x-header>
+			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">重置密码</x-header>
 		</div>
     <div class="icon">
       <img src="../../assets/login/icon.jpg">
@@ -29,8 +29,7 @@
 
 <script>
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Countdown,Cell} from 'vux'
-import { getForgetCode } from '../actions'
-import { forgetMessageCode,forgetMobile } from '../getters'
+import { mapActions,mapGetters  } from 'vuex'
 import * as _ from '../../config/whole.js'
 
 export default {
@@ -44,15 +43,6 @@ export default {
      Countdown,
      Cell
   },
-  vuex: {
-    getters: {
-      forgetMessageCode,
-      forgetMobile
-    },
-    actions: {
-      getForgetCode
-    }
-  },
   data(){
     return{
       disableMobile: true,
@@ -64,9 +54,7 @@ export default {
     }
   },
   methods:{
-    _back(){
-        this.$router.replace('/')
-    },
+    ...mapActions(['getForgetCode']),
     _next(){
        if(this.forgetMessageCode == this.code){
           this.$router.replace('forget/password');
@@ -99,6 +87,7 @@ export default {
     }
   },
   computed: {
+     ...mapGetters(['forgetMessageCode','forgetMobile']),
      disableMobile(){
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },

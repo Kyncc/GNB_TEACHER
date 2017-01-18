@@ -13,62 +13,62 @@ import * as _ from './config/whole.js'
 // import resetPassword from './login/pages/resetPassword'
 import Login from './login/router'
 //首页
-import Main from './main/common/main'
-import User from './main/pages/user'
-import Message from './main/pages/message'
-import Index from './main/pages/index'
-import Photo from './main/pages/photo'
-//题目评注、纠错、参考例题
-import correct from './common/pages/correct'
-import comment from './common/pages/comment'
-import example from './common/pages/example'
-//记错题
-// import remember from './remember/pages/index'
-// import rememberWorkbook from './remember/pages/workbook'
-// import rememberExercise from './remember/pages/exercise'
-// import rememberExample from './remember/pages/example'
-//通知
-import messageClass from './message/pages/class'
-import messageCorrect from './message/pages/correct'
-import messageSystem from './message/pages/system'
-//个人中心
-import userResetPwd from './user/pages/resetPwd'
-import userInfo from './user/pages/info'
-//个人中心-设置
-import userSettingsIndex from './user/pages/settings/index'
-import userSettingsAdvice from './user/pages/settings/advice'
-import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
-//查错题
-import error from './error/pages/index'
-import errorClass from './error/pages/class'
-import errorByStudent from './error/pages/byStudent'
-//知识图谱
-import reportIndex from './report/pages/index'
-import reportClass from './report/pages/class'
-import reportStudent from './report/pages/student'
-import reportDetail from './report/pages/detail'
-//刷题型
-import brush from './brush/pages/index'
-import brushClass from './brush/pages/class'
-import brushChapter from './brush/pages/chapter'
-import brushList from './brush/pages/list'
-//放弃列表
-import pass from './pass/pages/index'
-import passClass from './pass/pages/class'
-import passChapter from './pass/pages/chapter'
-import passList from './pass/pages/list'
-//斩题列表
-import breakIndex from './break/pages/index'
-import breakClass from './break/pages/class'
-import breakChapter from './break/pages/chapter'
-import breakList from './break/pages/list'
-//我的班级
-import classIndex from './class/pages/index'
-import classManage from './class/pages/manager'
-import classCreate from './class/pages/create'
-import classmate from './class/pages/classmate'
-import classInvite from './class/pages/invite'
-import classApply from './class/pages/apply'
+// import Main from './main/common/main'
+// import User from './main/pages/user'
+// import Message from './main/pages/message'
+// import Index from './main/pages/index'
+// import Photo from './main/pages/photo'
+// //题目评注、纠错、参考例题
+// import correct from './common/pages/correct'
+// import comment from './common/pages/comment'
+// import example from './common/pages/example'
+// //记错题
+// // import remember from './remember/pages/index'
+// // import rememberWorkbook from './remember/pages/workbook'
+// // import rememberExercise from './remember/pages/exercise'
+// // import rememberExample from './remember/pages/example'
+// //通知
+// import messageClass from './message/pages/class'
+// import messageCorrect from './message/pages/correct'
+// import messageSystem from './message/pages/system'
+// //个人中心
+// import userResetPwd from './user/pages/resetPwd'
+// import userInfo from './user/pages/info'
+// //个人中心-设置
+// import userSettingsIndex from './user/pages/settings/index'
+// import userSettingsAdvice from './user/pages/settings/advice'
+// import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
+// //查错题
+// import error from './error/pages/index'
+// import errorClass from './error/pages/class'
+// import errorByStudent from './error/pages/byStudent'
+// //知识图谱
+// import reportIndex from './report/pages/index'
+// import reportClass from './report/pages/class'
+// import reportStudent from './report/pages/student'
+// import reportDetail from './report/pages/detail'
+// //刷题型
+// import brush from './brush/pages/index'
+// import brushClass from './brush/pages/class'
+// import brushChapter from './brush/pages/chapter'
+// import brushList from './brush/pages/list'
+// //放弃列表
+// import pass from './pass/pages/index'
+// import passClass from './pass/pages/class'
+// import passChapter from './pass/pages/chapter'
+// import passList from './pass/pages/list'
+// //斩题列表
+// import breakIndex from './break/pages/index'
+// import breakClass from './break/pages/class'
+// import breakChapter from './break/pages/chapter'
+// import breakList from './break/pages/list'
+// //我的班级
+// import classIndex from './class/pages/index'
+// import classManage from './class/pages/manager'
+// import classCreate from './class/pages/create'
+// import classmate from './class/pages/classmate'
+// import classInvite from './class/pages/invite'
+// import classApply from './class/pages/apply'
 
 //插件
 import moment from 'moment'
@@ -76,6 +76,7 @@ import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 
 import '../node_modules/cropperjs/dist/cropper.min.css'
+import './common/common.less'
 
 Vue.use(Router)
 Vue.use(VueTouch)
@@ -111,7 +112,7 @@ Vue.http.interceptors.push((request, next) => {
 
 const router = new Router()
 router.map({
-    Login
+    ...Login
 
     // '/login': { component: Login },
     // //注册账户
@@ -203,25 +204,25 @@ router.map({
 
 sync(store, router)
 
-router.beforeEach(function(transition) {
-    if (transition.to.path == '/') {
-        if(localStorage.token){
-            router.replace('/main/index');
-        }else{
-            router.replace('/login');
-        }
-    }
-    transition.next();
-})
+// router.beforeEach(function(transition) {
+//     if (transition.to.path == '/') {
+//         if(localStorage.token){
+//             router.replace('/main/index');
+//         }else{
+//             router.replace('/login');
+//         }
+//     }
+//     transition.next();
+// })
 
-//判断系统
-var ua = navigator.userAgent.toLowerCase();
-const commit = store.commit || store.dispatch
-if (/iphone|ipad|ipod/.test(ua)) {
-     commit('SET_SYSTEM', 'IOS')
-} else if (/android/.test(ua)) {
-     commit('SET_SYSTEM', 'Android')
-}
+// //判断系统
+// var ua = navigator.userAgent.toLowerCase();
+// const commit = store.commit || store.dispatch
+// if (/iphone|ipad|ipod/.test(ua)) {
+//      commit('SET_SYSTEM', 'IOS')
+// } else if (/android/.test(ua)) {
+//      commit('SET_SYSTEM', 'Android')
+// }
 
 function plusReady(){
     let first = null;

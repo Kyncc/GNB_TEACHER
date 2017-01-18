@@ -1,7 +1,7 @@
 <template>
   <div class="register vux-scroller-header-box">
     <div style="height:46px;">
-			<x-header :left-options="{showBack: true,preventGoBack:true}" @on-click-back="_back" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">用户注册</x-header>
+			<x-header :left-options="{showBack: true}"  style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">用户注册</x-header>
 		</div>
     <div class="icon">
       <img src="../../assets/login/icon.jpg">
@@ -29,8 +29,7 @@
 
 <script>
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
-import { getRegisterCode } from '../actions'
-import { registerMessageCode,registerMobile } from '../getters'
+import { mapActions,mapGetters  } from 'vuex'
 import * as _ from '../../config/whole.js'
 
 export default {
@@ -54,19 +53,8 @@ export default {
       btnValue:'获取验证码'
     }
   },
-  vuex: {
-    getters: {
-      registerMessageCode,
-      registerMobile
-    },
-    actions: {
-      getRegisterCode
-    }
-  },
   methods:{
-    _back(){
-        this.$router.replace('/');
-    },
+    ...mapActions(['getRegisterCode']),
     _next(){
        if(this.registerMessageCode == this.code){
           this.$router.replace({path: 'register/password', registerMobile:this.mobile});
@@ -101,6 +89,7 @@ export default {
   watch:{
   },
   computed: {
+     ...mapGetters(['registerMessageCode','registerMobile']),
      disableMobile(){
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },

@@ -22,23 +22,14 @@
 
 <script>
 import {XInput,Group,XButton} from 'vux'
-import { login } from '../actions'
-import { userInfo,registerMobile } from '../getters'
-import * as _ from '../../config/whole'
+import { mapActions,mapGetters  } from 'vuex'
+import * as _ from 'config/whole'
 
 export default {
   components: {
      XInput,
      Group,
      XButton
-  },
-  vuex: {
-    getters: {
-      userInfo,registerMobile
-    },
-    actions: {
-      login
-    }
   },
   data(){
     return{
@@ -48,6 +39,7 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['login']),
     _login(){
       let params = {
         mobile:this.mobile,
@@ -64,6 +56,9 @@ export default {
     }
   },
   computed: {
+     ...mapGetters([
+      'registerMobile'
+    ]),
      disable(){
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }

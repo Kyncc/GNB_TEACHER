@@ -27,8 +27,7 @@
 
 <script>
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader} from 'vux'
-import { addPwd } from '../actions'
-import { registerMobile } from '../getters'
+import { mapActions,mapGetters  } from 'vuex'
 import * as _ from '../../config/whole.js'
 
 export default {
@@ -40,14 +39,6 @@ export default {
      Flexbox,
      XHeader
   }, 
-  vuex: {
-    getters: {
-      registerMobile
-    },
-    actions: {
-      addPwd
-    }
-  },
   data(){
     return{
       disable: true,
@@ -56,6 +47,7 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['addPwd']),
     _complete(){
        let params = {
         mobile:this.registerMobile,
@@ -67,6 +59,7 @@ export default {
     }
   },
   computed:{
+     ...mapGetters(['registerMobile']),
      disable(){
          return (this.$refs.password.valid && this.$refs.passwordagain.valid ? false : true);
      }

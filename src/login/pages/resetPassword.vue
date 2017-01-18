@@ -27,8 +27,7 @@
 
 <script>
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader} from 'vux'
-import { resetPwd } from '../actions'
-import { forgetMobile } from '../getters'
+import { mapActions,mapGetters  } from 'vuex'
 import * as _ from '../../config/whole.js'
 
 export default {
@@ -40,14 +39,6 @@ export default {
      Flexbox,
      XHeader
   }, 
-  vuex: {
-    getters: {
-      forgetMobile
-    },
-    actions: {
-      resetPwd
-    }
-  },
   data(){
     return{
       disable: true,
@@ -56,8 +47,9 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['resetPwd']),
     _complete(){
-       let params = {
+      let params = {
         mobile:this.forgetMobile,
         pwd:this.password
       }
@@ -67,6 +59,7 @@ export default {
     }
   },
   computed:{
+      ...mapGetters(['forgetMobile']),
      disable(){
          return (this.$refs.password.valid && this.$refs.passwordagain.valid ? false : true);
      }

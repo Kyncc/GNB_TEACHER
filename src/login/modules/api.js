@@ -1,5 +1,5 @@
-import {API_ENV,API_VERSION} from '../config/api';
-import {http} from '../config/httpdispatch';
+import {API_ENV,API_VERSION} from '../../config/api';
+import {http} from '../../config/httpdispatch';
 
 export default {
   registerCode: (params) => {

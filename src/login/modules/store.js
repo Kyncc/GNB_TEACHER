@@ -1,4 +1,6 @@
-import * as types from '../mutationTypes'
+import * as types from './mutationTypes'
+import * as actions from './actions'
+import * as getters from './getters'
 
 const state = {
   register:{
@@ -33,7 +35,10 @@ const mutations = {
   }
 }
 
+
 export default {
   state,
-  mutations
+  mutations,
+  actions,
+  getters
 }

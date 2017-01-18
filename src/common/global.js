@@ -11,7 +11,6 @@ const state = {
     isLoading:false,
     system:'',
     subjectType:['2'],
-    grade:0,
     example:[]
 }
 
@@ -27,12 +26,6 @@ const mutations = {
     },
     SET_SYSTEM (state, type) {
       state.system = type
-    },
-    SET_SUBJECTYPE(state, data) {
-      state.subjectType = data;
-    },
-    SET_GRADE(state, data) {
-      state.grade = data;
     },
     GET_EXAMPLE(state, data) {
       state.example = data;

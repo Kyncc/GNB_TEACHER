@@ -2,30 +2,24 @@
   <div>
     <router-view></router-view>
     <loading :show="isLoading" text="请稍候"  position="absolute"></loading>
-    <toast :show="toastShow" type="text" :text="toastMsg" :time="1000"></toast>
+    <toast :show="show" type="text" :text="msg" :time="1000"></toast>
   </div>
 </template>
 
 <script>
 import store from './store'
-import './common/common.less'
 import {Loading,Toast} from 'vux'
-import {toastMsg,toastShow,isLoading} from './common/getters'
-import * as actions from './common/actions'
-
+import { mapState } from 'vuex'
 export default {
   components: {
      Loading,Toast
   },
   store,
-  vuex: {
-    getters: {
-      toastMsg,
-      toastShow,
-      isLoading
-    },
-    actions
-  }
+  computed: mapState({
+    msg: state => state.show.toastMsg,
+    show: state => state.show.toastShow,
+    isLoading: state => state.show.isLoading
+  })
 }
 </script>
 
