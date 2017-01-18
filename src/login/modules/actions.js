@@ -8,6 +8,7 @@ export const getRegisterCode = ({ commit }, params) => {
       data:params,
       ok:response=>{
         commit(types.REGISTER_MESSAGE,response.data);
+        _.toast("已发送短信");
       },
       wrong:response=>{
          _.toast(response.data.msg);
@@ -31,7 +32,7 @@ export const addPwd = ({ commit }, params,success,wrong) => {
 
 /*设置用户信息*/
 export const setUserInfo = ({ commit }, params,success,wrong) => {
-  Api.addUserInfo({
+  Api.info({
     data: params,
     ok: response => {
         success&&success()
@@ -45,17 +46,17 @@ export const setUserInfo = ({ commit }, params,success,wrong) => {
 
 /*用户登陆*/
 export const login = ({ commit }, params,success,wrong) => {
-  //  _.busy();
+   _.busy();
   Api.login({
       data:params,
       ok:response=>{
         commit(types.LOGIN,response.data);
-        // _.leave();
+        _.leave();
         success&&success();
       },
       wrong:response=>{
         wrong&&wrong();
-        // _.leave();
+        _.leave();
         _.toast(response.data.msg);
       }
   })

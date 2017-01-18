@@ -29,7 +29,7 @@
 
 <script>
 import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
-import { mapActions,mapGetters  } from 'vuex'
+import { mapActions,mapGetters } from 'vuex'
 import * as _ from '../../config/whole.js'
 
 export default {
@@ -56,8 +56,8 @@ export default {
   methods:{
     ...mapActions(['getRegisterCode']),
     _next(){
-       if(this.registerMessageCode == this.code){
-          this.$router.replace({path: 'register/password', registerMobile:this.mobile});
+       if(this.registerCode == this.code){
+          this.$router.replace({path: 'info', registerMobile:this.mobile});
        }else{
          this.code = '';
          _.toast('错误的验证码');
@@ -86,10 +86,8 @@ export default {
         this.getRegisterCode(params);
     }
   },
-  watch:{
-  },
   computed: {
-     ...mapGetters(['registerMessageCode','registerMobile']),
+     ...mapGetters(['registerCode','registerMobile']),
      disableMobile(){
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },

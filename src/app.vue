@@ -16,9 +16,9 @@ export default {
   },
   store,
   computed: mapState({
-    msg: state => state.show.toastMsg,
-    show: state => state.show.toastShow,
-    isLoading: state => state.show.isLoading
+    msg: state => state.tools.toastMsg,
+    show: state => state.tools.toastShow,
+    isLoading: state => state.tools.isLoading
   })
 }
 </script>

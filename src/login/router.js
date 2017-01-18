@@ -2,6 +2,7 @@ import layout from './pages/layout'
 import login from './pages/login'
 import register from './pages/register'
 import forget from './pages/forget'
+import info from './pages/info'
 import resetPassword from './pages/resetPassword'
 import setPassword from './pages/setPassword'
 import modules from './modules/store'
@@ -19,6 +20,9 @@ export default {
             },
             'setPassword': {
                 component: setPassword,
+            },
+            'info':{
+                 component: info,
             },
             'forget': {
                 component: forget,
