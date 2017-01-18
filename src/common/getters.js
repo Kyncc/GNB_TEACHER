@@ -1,7 +1,3 @@
-export const toastMsg = (state) => state.Global.toastMsg
-export const toastShow = (state) => state.Global.toastShow
-export const isLoading = (state) => state.Global.isLoading
-
 export const system = (state) => state.Global.system
 
 export const token = (state) => state.login.token

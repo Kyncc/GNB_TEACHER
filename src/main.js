@@ -4,14 +4,12 @@ import VueTouch from 'vue-touch'
 import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
-import * as _ from './config/whole.js'
-//登陆、注册
-// import Login from './login/pages/login'
-// import register from './login/pages/register'
-// import setPassword from './login/pages/setPassword'
-// import forget from './login/pages/forget'
-// import resetPassword from './login/pages/resetPassword'
-import Login from './login/router'
+
+import * as _ from 'config/whole.js'
+
+import Login from './router/login/router'
+import Correct from './features/correct/router'
+
 //首页
 // import Main from './main/common/main'
 // import User from './main/pages/user'
@@ -112,8 +110,8 @@ Vue.http.interceptors.push((request, next) => {
 
 const router = new Router()
 router.map({
-    ...Login
-
+    ...Login,
+    ...Correct
     // '/login': { component: Login },
     // //注册账户
     // 'register': { component: register },
