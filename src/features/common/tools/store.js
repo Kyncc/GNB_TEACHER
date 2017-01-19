@@ -17,6 +17,18 @@ const actions = {
   }
 } 
 
+const getters = {
+  token: (state,getters,rootState) => {
+    return rootState.token
+  },
+  path:(state,getters,rootState) => {
+    return rootState.route.path
+  },
+  User:(state,getters,rootState) => {
+    return rootState.user
+  }
+}
+
 const mutations = {
   'TOAST_MESSAGE'(state, msg) {
     state.toastMsg = msg
@@ -29,8 +41,10 @@ const mutations = {
   }
 }
 
+
 export default {
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

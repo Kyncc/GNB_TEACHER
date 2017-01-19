@@ -54,7 +54,6 @@ export default {
       name:'',
       school:'',
       subject:'2',
-      disable:false,
       subjectList: [{key: '2', value: '数学'},{key: '7', value: '物理'}]
     }
   },

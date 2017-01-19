@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import tools from './features/common/tools/store'
-// import forget from './login/modules/forget'
-// import user from './user/modules/index'
+import user from './router/user/modules/store'
 
+// import user from './user/modules/index'
 // import remember from './remember/modules/index'
 // import index from './main/modules/index'
 // import message from './message/modules/index'
@@ -18,7 +18,7 @@ import tools from './features/common/tools/store'
 Vue.use(Vuex)
 export default new Vuex.Store({
   modules:{
-    tools
-
+    tools,
+    user
   }
 })

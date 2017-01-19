@@ -4,12 +4,14 @@ import VueTouch from 'vue-touch'
 import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
-
 import * as _ from 'config/whole.js'
 
 import Login from './router/login/router'
 import Correct from './features/correct/router'
-
+import Layout from './router/layout'
+import User from './router/user/router'
+import Index from './router/index/router'
+import Classes from './router/Classes/router'
 //首页
 // import Main from './main/common/main'
 // import User from './main/pages/user'
@@ -91,106 +93,89 @@ Vue.use(VueLazyload,{
 
 //格式化时间
 Vue.filter('ymd', function(value) {
-    return moment.unix(value).format('YYYY-MM-DD');
+  return moment.unix(value).format('YYYY-MM-DD');
 });
 
 //请求超时
 Vue.http.interceptors.push((request, next) => {
-    var timeout;
-    if (request._timeout) {
-        timeout = setTimeout(() => {
-            if(request.onTimeout) request.onTimeout(request)
-            request.abort()
-        }, request._timeout);
-    }
-    next((response) => {
-        clearTimeout(timeout);
-    });
+  var timeout;
+  if (request._timeout) {
+    timeout = setTimeout(() => {
+      if(request.onTimeout) request.onTimeout(request)
+      request.abort()
+    }, request._timeout);
+  }
+  next((response) => {
+    clearTimeout(timeout);
+  });
 })
 
 const router = new Router()
 router.map({
-    ...Login,
-    ...Correct
-    // '/login': { component: Login },
-    // //注册账户
-    // 'register': { component: register },
-    // 'register/password': { component: setPassword },
-    // //忘记密码
-    // 'forget': { component: forget },
-    // 'forget/password': { component: resetPassword },
-    // //纠错
-    // 'correct/:subjectId/:id':{component: correct},
-    // //参考例题
-    // 'example/:studentId/:subjectId/:id':{component: example},
-    // //评注
-    // 'comment/:id':{component: comment},
-    // //主页
-    // 'main/': {
-    //     component: Main,
-    //     subRoutes: {
-    //         'user/': {
-    //             component: User
-    //         },
-    //         'message/': {
-    //             component: Message
-    //         },
-    //         'index/': {
-    //             component: Index
-    //         }
-    //     }
-    // },
-    // 'main/user/photo':{
-    //     component: Photo
-    // },
-    // //消息
-    // 'message/class': { component: messageClass },
-    // 'message/system': { component: messageSystem },
-    // 'message/correct': { component: messageCorrect },
-    // //个人中心
-    // 'user/info': { component: userInfo },
-    // 'user/resetPwd': { component: userResetPwd },
-    // //设置
-    // 'user/settings': { component: userSettingsIndex },
-    // 'user/settings/advice': { component: userSettingsAdvice },
-    // 'user/settings/advice/history': { component: userSettingsAdviceHistory },
-    // //知识图谱
-    // 'report': {component:reportIndex},
-    // 'report/class/:code': {component:reportClass},
-    // 'report/student/:id': {component: reportStudent},
-    // 'report/student/detail/:id/:chapterId': {component: reportDetail},
-    // //查错题
-    // 'error': { component: error },
-    // 'error/class/:code': { component: errorClass },
-    // 'error/student/:id': { component: errorByStudent},
-    // //刷题型 Brush
-    // 'brush': { component: brush },
-    // 'brush/class/:code': { component: brushClass},
-    // 'brush/chapter/:id': { component:brushChapter},
-    // 'brush/chapter/list/:id/:chapterId': { component:brushList},
-    //  //放弃列表
-    // 'pass': { component: pass },
-    // 'pass/class/:code': { component: passClass},
-    // 'pass/chapter/:id': { component:passChapter},
-    // 'pass/chapter/list/:id/:chapterId': { component:passList},
-    // //斩断列表
-    // 'break': { component: breakIndex },
-    // 'break/class/:code': { component: breakClass},
-    // 'break/chapter/:id': { component:breakChapter},
-    // 'break/chapter/list/:id/:chapterId': { component:breakList},
-    // //我的班级
-    // 'class': { component: classIndex },
-    // 'class/manager/:code': { component: classManage },
-    // 'class/create': { component: classCreate },
-    // 'class/classmate/:code': { component: classmate },
-    // 'class/invite/:code': { component: classInvite },
-    // 'class/apply/:id':{ component: classApply},
+  ...Login,
+  ...Correct,
+  'main': {
+    component: Layout,
+    subRoutes: {
+      ...Index,
+      ...User,
+      ...Classes
+    }
+  }
+  // //参考例题
+  // 'example/:studentId/:subjectId/:id':{component: example},
+  // //主页
+  // 'main/user/photo':{
+  //     component: Photo
+  // },
+  // //消息
+  // 'message/class': { component: messageClass },
+  // 'message/system': { component: messageSystem },
+  // 'message/correct': { component: messageCorrect },
+  // //个人中心
+  // 'user/info': { component: userInfo },
+  // 'user/resetPwd': { component: userResetPwd },
+  // //设置
+  // 'user/settings': { component: userSettingsIndex },
+  // 'user/settings/advice': { component: userSettingsAdvice },
+  // 'user/settings/advice/history': { component: userSettingsAdviceHistory },
+  // //知识图谱
+  // 'report': {component:reportIndex},
+  // 'report/class/:code': {component:reportClass},
+  // 'report/student/:id': {component: reportStudent},
+  // 'report/student/detail/:id/:chapterId': {component: reportDetail},
+  // //查错题
+  // 'error': { component: error },
+  // 'error/class/:code': { component: errorClass },
+  // 'error/student/:id': { component: errorByStudent},
+  // //刷题型 Brush
+  // 'brush': { component: brush },
+  // 'brush/class/:code': { component: brushClass},
+  // 'brush/chapter/:id': { component:brushChapter},
+  // 'brush/chapter/list/:id/:chapterId': { component:brushList},
+  //  //放弃列表
+  // 'pass': { component: pass },
+  // 'pass/class/:code': { component: passClass},
+  // 'pass/chapter/:id': { component:passChapter},
+  // 'pass/chapter/list/:id/:chapterId': { component:passList},
+  // //斩断列表
+  // 'break': { component: breakIndex },
+  // 'break/class/:code': { component: breakClass},
+  // 'break/chapter/:id': { component:breakChapter},
+  // 'break/chapter/list/:id/:chapterId': { component:breakList},
+  // //我的班级
+  // 'class': { component: classIndex },
+  // 'class/manager/:code': { component: classManage },
+  // 'class/create': { component: classCreate },
+  // 'class/classmate/:code': { component: classmate },
+  // 'class/invite/:code': { component: classInvite },
+  // 'class/apply/:id':{ component: classApply},
 
-    //记错题
-    // 'remember/:id':{component: remember},
-    // 'remember/example/:id': { component:  rememberExample},
-    // 'remember/workbook/:bookId':{component: rememberWorkbook},
-    // 'remember/workbook/exercise/:chapterId':{component: rememberExercise},
+  //记错题
+  // 'remember/:id':{component: remember},
+  // 'remember/example/:id': { component:  rememberExample},
+  // 'remember/workbook/:bookId':{component: rememberWorkbook},
+  // 'remember/workbook/exercise/:chapterId':{component: rememberExercise},
 
 
   
@@ -223,31 +208,31 @@ sync(store, router)
 // }
 
 function plusReady(){
-    let first = null;
-    plus.key.addEventListener("backbutton",function(){
-        if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
-            if (!first) {
-                first = new Date().getTime();
-                _.toast('再按一次退出')
-                setTimeout(function() {
-                    first = null;
-                }, 1000);
-            } else {
-                if (new Date().getTime() - first < 1000) {
-                    plus.runtime.quit();
-                }
-            }
-        }else{
-            window.history.back();
+  let first = null;
+  plus.key.addEventListener("backbutton",function(){
+    if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
+      if (!first) {
+        first = new Date().getTime();
+        _.toast('再按一次退出')
+        setTimeout(function() {
+          first = null;
+        }, 1000);
+      } else {
+        if (new Date().getTime() - first < 1000) {
+          plus.runtime.quit();
         }
-    });
-    
+      }
+    }else{
+      window.history.back();
+    }
+  });
+  
 }
 
 if(window.plus){
-    plusReady();
+  plusReady();
 }else{
-    document.addEventListener("plusready",plusReady,false);
+  document.addEventListener("plusready",plusReady,false);
 }
 
 router.start(App, '#App')

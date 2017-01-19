@@ -38,23 +38,23 @@
 
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
-import * as _ from '../../../config/whole'
-import {setHeadPhoto} from '../actions/photo'
-import {token,system,userName,userHeadImg,userMobile} from '../../../common/getters'
+import * as _ from 'config/whole'
+// import {setHeadPhoto} from '../actions/photo'
+// import {token,system,userName,userHeadImg,userMobile} from '../../../common/getters'
 import './index.less'
 
 export default {
   components: {
     XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
   },
-  vuex:{
-    getters:{
-       token,system,userName,userHeadImg,userMobile
-    },
-    actions:{
-      setHeadPhoto
-    }
-  },
+  // vuex:{
+  //   getters:{
+  //      token,system,userName,userHeadImg,userMobile
+  //   },
+  //   actions:{
+  //     setHeadPhoto
+  //   }
+  // },
   methods: {
     onAction(type) {
       if(type=='确认'){
@@ -106,7 +106,7 @@ export default {
       menus: {
         menu1: '拍照',
         menu2: '从相册选择'
-      },
+      }
     }
   },
   ready () {
