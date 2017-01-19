@@ -3,7 +3,8 @@ import * as _ from 'config/whole'
 import * as types from './mutationTypes'
 
 /** 获取用户信息*/
-export const getUserInfo = ({ commit }, params) => {
+export const getUserInfo = ({ rootState,commit }, params) => {
+  console.log(rootState);
   Api.userInfo({
       data:params,
       ok:response=>{

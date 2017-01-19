@@ -2,15 +2,15 @@
   <router-view keep-alive></router-view>
   <tabbar slot="bottom" class="homepage" v-show="isRoot">
     <tabbar-item link="index" :selected="indexState">
-      <i slot="icon" class="icon iconfont icon-brush"></i>
+      <i slot="icon" class="icon iconfont icon-home"></i>
       <span slot="label">主页</span>
     </tabbar-item>
-    <tabbar-item link="bag" :selected="bagState">
+    <!--<tabbar-item link="bag" :selected="bagState">
       <i slot="icon" class="icon iconfont icon-bag"></i>
       <span slot="label">题型</span>
-    </tabbar-item>
-    <tabbar-item link="classes" :selected="interactState">
-      <i slot="icon" class="icon iconfont icon-comment2"></i>
+    </tabbar-item>-->
+    <tabbar-item link="classes" :selected="classesState">
+      <i slot="icon" class="icon iconfont icon-yuanxiaobanji"></i>
       <span slot="label">班级</span>
     </tabbar-item>
     <tabbar-item link="user" :selected="userState">
@@ -29,46 +29,29 @@ export default {
     Tabbar,TabbarItem, ViewBox
   },
   methods: {
-    ...mapActions(['getUserInfo']),
-    _checkMain(){
-      this.indexState = this.interactState = this.userState = this.bagState = this.isRoot = false;
-      if(this.path == '/index'){
-          this.isRoot = this.indexState = true;
-      }else if(this.path == '/classes'){
-          this.isRoot = this.interactState = true;
-      }else if(this.path == '/user'){
-          this.isRoot = this.userState = true;
-      }else if(this.path == '/bag'){
-          this.isRoot = this.bagState = true;
-      }
-    }
+    ...mapActions(['getUserInfo'])
   },
-  data(){
-     return{
-          isRoot:true,
-      }
-  },
-  created(){
-      // ( this.userMobile.length ==0 ? this.getUserInfo({token: this.token}) : '' )
-  },
-  watch:{
-    path(){
-      this._checkMain();
-    }
+  ready(){
+    this.getUserInfo();
+    // console.log(this.store.path);
+    // ( this.userMobile.length ==0 ? this.getUserInfo({token: this.token}) : '' )
   },
   computed:{
-     ...mapGetters(['path','User','token']),
-     indexState(){
-       return (this.path.indexOf('index') >= 0 ? true : false);
+     ...mapGetters(['path']),
+     isRoot(){
+       return (this.indexState || this.classesState || this.userState ? true : false);
      },
-     interactState(){
-       return (this.path.indexOf('interact') >= 0 ? true : false);
+     indexState(){
+       return (this.path == '/main/index' ? true : false);
+     },
+     classesState(){
+       return (this.path == '/main/classes' ? true : false);
      },
      userState(){
-       return (this.path.indexOf('user') >= 0 ? true : false);
+       return (this.path == '/main/user' ? true : false);
      },
      bagState(){
-       return (this.path.indexOf('bag') >= 0 ? true : false);
+       return (this.path == '/main/bag' ? true : false);
      }
   }
 }
