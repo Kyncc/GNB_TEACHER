@@ -55,7 +55,7 @@ export default {
 
 </script>
 
-<style lang="less" >
+<style lang="less" scoped>
 .homepage{
    .weui_bar_item_on{
      .iconfont{color:#4bb7aa}

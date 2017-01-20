@@ -20,23 +20,6 @@ export const getRegisterCode = ({commit},params) => {
   }); 
 }
 
-/**设置用户信息*/
-export const setUserInfo = ({ rootState,commit },params) => {
-  return new Promise((resolve, reject)=> { 
-    axios({
-      method: 'get',
-      url: 'teacher/user/updateUserInfo',
-      params: {
-        ...params,
-        token:rootState.login.token
-      }
-    })
-    .then((response) => {
-      resolve(response);
-    })
-  });
-}
-
 /**设置登陆密码(注册账号)*/
 export const addPwd = ({ commit },params) => {
   return new Promise((resolve, reject)=> { 

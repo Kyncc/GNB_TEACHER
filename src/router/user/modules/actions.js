@@ -24,17 +24,19 @@ export const getUserInfo = ({ rootState,commit }) => {
   });
 }
 
-// /** 设置用户信息*/
-// export const setUserInfo = ({ commit }, params,success,wrong) => {
-//   Api.updateInfo({
-//     data: params,
-//     ok: response => {
-//         success&&success()
-//     },
-//     wrong: response => {
-//         _.toast(response.data.msg);
-//         wrong&&wrong();
-//     }
-//   })
-// }
-
+/**设置用户信息*/
+export const setUserInfo = ({ rootState,commit },params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method: 'get',
+      url: 'teacher/user/updateUserInfo',
+      params: {
+        ...params,
+        token:rootState.login.token
+      }
+    })
+    .then((response) => {
+      resolve(response);
+    })
+  });
+}

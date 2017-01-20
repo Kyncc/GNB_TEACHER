@@ -2,19 +2,19 @@
 <div class='settings'>
   <x-header :left-options="{showBack: true}">设置</x-header>
   <group>
-    <cell title="应用评分" link="javascript:;" v-show="(system == 'IOS'? false:true)" v-touch:tap="_openStore">
+    <cell title="应用评分" link="javascript:;" v-show="(system == 'IOS'? false:true)" @click:tap="_openStore">
       <span class="demo-icon" slot="icon"></span>
     </cell>
     <cell title="意见反馈" link="advice">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <cell title="退出登录" v-touch:tap="_quitlogin"    link="javascript:void(0);">
+    <cell title="退出登录" @click:tap="_quitlogin"  link="javascript:void(0);">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-     <cell title="清除缓存" v-touch:tap="_clear" v-show="(system == 'IOS'? false:true)">
+     <cell title="清除缓存" @click:tap="_clear" v-show="(system == 'IOS'? false:true)">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <cell title="检查更新" :value="'当前版本号:V'+ version" v-show="(system == 'IOS'? false:true)"  v-touch:tap="_update">
+    <cell title="检查更新" :value="'当前版本号:V'+ version" v-show="(system == 'IOS'? false:true)"  @click:tap="_update">
       <span class="demo-icon" slot="icon"></span>
     </cell>
   </group>
@@ -26,7 +26,6 @@
 
 <script>
 import {  XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
-import './setting.less'
 import {  updateVersion} from '../../actions/settings.js'
 import {  versionCurrent} from '../../getters.js'
 import {  system,token} from '../../../common/getters.js'
@@ -65,9 +64,6 @@ export default {
     },
     _quit(type) {
         if(type=='确认'){
-            localStorage.removeItem('headImg');
-            localStorage.removeItem('mobile');
-            localStorage.removeItem('name');
             localStorage.removeItem('token');
             this.$router.replace('/');
         }

@@ -2,7 +2,7 @@ const state = {
   toastMsg:'',
   toastShow:false,
   isLoading:false,
-  system:''
+  system:(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android')
 }
 
 const actions = {
@@ -26,6 +26,9 @@ const getters = {
   },
   User:(state,getters,rootState) => {
     return rootState.user
+  },
+  System:(state,getters,rootState) => {
+    return rootState.tools.system
   }
 }
 
@@ -40,7 +43,6 @@ const mutations = {
     state.isLoading = status
   }
 }
-
 
 export default {
   state,

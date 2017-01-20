@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import VueTouch from 'vue-touch'
 import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
@@ -18,10 +17,7 @@ import Classes from './router/Classes/router'
 // import Message from './main/pages/message'
 // import Index from './main/pages/index'
 // import Photo from './main/pages/photo'
-// //题目评注、纠错、参考例题
-// import correct from './common/pages/correct'
-// import comment from './common/pages/comment'
-// import example from './common/pages/example'
+
 // //记错题
 // // import remember from './remember/pages/index'
 // // import rememberWorkbook from './remember/pages/workbook'
@@ -31,13 +27,7 @@ import Classes from './router/Classes/router'
 // import messageClass from './message/pages/class'
 // import messageCorrect from './message/pages/correct'
 // import messageSystem from './message/pages/system'
-// //个人中心
-// import userResetPwd from './user/pages/resetPwd'
-// import userInfo from './user/pages/info'
-// //个人中心-设置
-// import userSettingsIndex from './user/pages/settings/index'
-// import userSettingsAdvice from './user/pages/settings/advice'
-// import userSettingsAdviceHistory from './user/pages/settings/adviceHistory'
+
 // //查错题
 // import error from './error/pages/index'
 // import errorClass from './error/pages/class'
@@ -79,7 +69,6 @@ import '../node_modules/cropperjs/dist/cropper.min.css'
 import './common/common.less'
 
 Vue.use(Router)
-Vue.use(VueTouch)
 
 Vue.config.devtools = true
 FastClick.attach(document.body)
@@ -96,19 +85,6 @@ Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
 });
 
-//请求超时
-Vue.http.interceptors.push((request, next) => {
-  var timeout;
-  if (request._timeout) {
-    timeout = setTimeout(() => {
-      if(request.onTimeout) request.onTimeout(request)
-      request.abort()
-    }, request._timeout);
-  }
-  next((response) => {
-    clearTimeout(timeout);
-  });
-})
 
 const router = new Router()
 router.map({
@@ -181,10 +157,6 @@ router.map({
   
 })
 
-// router.redirect({
-//     '/main/': '/main/index',
-// });
-
 sync(store, router)
 
 // router.beforeEach(function(transition) {
@@ -197,15 +169,6 @@ sync(store, router)
 //     }
 //     transition.next();
 // })
-
-// //判断系统
-// var ua = navigator.userAgent.toLowerCase();
-// const commit = store.commit || store.dispatch
-// if (/iphone|ipad|ipod/.test(ua)) {
-//      commit('SET_SYSTEM', 'IOS')
-// } else if (/android/.test(ua)) {
-//      commit('SET_SYSTEM', 'Android')
-// }
 
 function plusReady(){
   let first = null;

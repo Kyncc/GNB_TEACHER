@@ -3,6 +3,11 @@
 > 基于Vue.js和Dcloud(H5+)混合技术Hybrid App
 
 使用技术简介
+
+当时建立此项目时使用Vux基于Vue1.0，因此用的Vue1.X开发。
+目前已重构逻辑部分,换成Vuex2,http请求换成axios。
+日后等待VUX2.x成熟后全部切换到换到vue2.x。
+
 ------------
 
 ### 编译环境
