@@ -15,13 +15,15 @@
 
 	### 数据视图控制
 
--	[Vue.js](http://cn.vuejs.org/guide/)
+-	[Vue1.x](http://cn.vuejs.org/guide/)
 
--	[路由-VueRouter](http://router.vuejs.org/zh-cn/index.html)
+-	[路由-VueRouter1.x](http://router.vuejs.org/zh-cn/index.html)
 
--	[单项数据流-Vuex(2版本)](http://vuex.vuejs.org/zh-cn/index.html)
+-	[http请求-Axios](https://github.com/mzabriskie/axios)
 
--	[VueRouter和Vuex流同步-Vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
+-	[单项数据流-Vuex(2.x)](http://vuex.vuejs.org/zh-cn/index.html)
+
+-	[VueRouter和Vuex流同步-Vuex-router-sync(2.x)](https://github.com/vuejs/vuex-router-sync)
 
 	### 功能组件
 
@@ -31,7 +33,7 @@
 
 	### UI组件
 
--	[手机UI库-Vux(1版本)](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
+-	[手机UI库-Vux(1.x)](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
 
 -	[触摸手势组件-VueTouch](https://github.com/vuejs/vue-touch)
 

@@ -56,22 +56,20 @@ export default {
     }
   },
   computed: {
-     ...mapGetters([
-      'registerMobile'
-    ]),
+     ...mapGetters(['registerMobile']),
      disable(){
         return (this.$refs.mobile.valid && this.$refs.password.valid ? false : true);
      }
   },
   ready(){
-        function plusReady() {
-          plus.navigator.closeSplashscreen();
-        }
-        if(window.plus) {
-          plusReady();
-        } else {
-          document.addEventListener('plusready', plusReady, false);
-        }
+      function plusReady() {
+        plus.navigator.closeSplashscreen();
       }
+      if(window.plus) {
+        plusReady();
+      } else {
+        document.addEventListener('plusready', plusReady, false);
+      }
+    }
   }
 </script>

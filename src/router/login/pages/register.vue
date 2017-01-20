@@ -44,8 +44,6 @@ export default {
   },
   data(){
     return{
-      disableMobile: true,
-      disableNext:true,
       currentDown:false,
       agree:true,
       mobile:'',
@@ -80,10 +78,9 @@ export default {
             };
         },1000);
         let params = {
-            mobile: this.mobile,
-            type:1
+            mobile: this.mobile
         }
-        this.getRegisterCode(params);
+        this.getRegisterCode(params)
     }
   },
   computed: {

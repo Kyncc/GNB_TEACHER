@@ -2,16 +2,16 @@
   <view-box v-ref:view-box class='user vux-scroller-header-box'>
     <div style="height:46px;">
       <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心
-        <a slot="right" v-touch:tap="_quit" v-show="system != 'IOS'">退出</a>
+        <a slot="right" @click="_quit" v-show="system != 'IOS'">退出</a>
       </x-header>
     </div>
 
     <scroller lock-x v-ref:scroller height="-47px">
       <div>
         <div class="info">
-          <img class="defaultimg" :src="userHeadImg" v-touch:tap="_upload"/>
-          <p class="phone">&nbsp;{{userName ? userName:userMobile}}&nbsp;</p>
-          <div class="upload" v-touch:tap="_upload">
+          <img class="defaultimg" :src="userHeadImg" @click="_upload"/>
+          <p class="phone">&nbsp;{{userName}}&nbsp;</p>
+          <div class="upload" @click="_upload">
             上传头像
           </div>
         </div>
@@ -39,6 +39,8 @@
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
 import * as _ from 'config/whole'
+import { mapActions,mapGetters  } from 'vuex'
+
 // import {setHeadPhoto} from '../actions/photo'
 // import {token,system,userName,userHeadImg,userMobile} from '../../../common/getters'
 import './index.less'
@@ -47,14 +49,6 @@ export default {
   components: {
     XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
   },
-  // vuex:{
-  //   getters:{
-  //      token,system,userName,userHeadImg,userMobile
-  //   },
-  //   actions:{
-  //     setHeadPhoto
-  //   }
-  // },
   methods: {
     onAction(type) {
       if(type=='确认'){
@@ -113,5 +107,11 @@ export default {
     this.$nextTick(() => {
       this.$refs.scroller.reset()
     });
+  },
+  computed:{
+    ...mapGetters(['User']),
+    userName(){
+      return this.User.name;
+    }
   }
 }

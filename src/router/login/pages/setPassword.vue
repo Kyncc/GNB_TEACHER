@@ -53,9 +53,10 @@ export default {
         mobile:this.registerMobile,
         pwd:this.password
       }
-      this.addPwd(params,()=>{
-          this.$router.replace('/login');
-      });
+      this.addPwd(params)
+      .then(() => {
+          this.$router.replace('/info');
+      })
     }
   },
   computed:{

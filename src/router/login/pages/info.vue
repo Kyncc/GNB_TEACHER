@@ -44,9 +44,9 @@ export default {
         subjectId:this.subject,
         sex:1,
         mobile:this.registerMobile,
-      }, () => {
-          this.$router.replace('/setPassword');
-      })
+      }).then(()=>{
+          this.$router.replace('/main/index');
+      });
     }
   },
   data() {

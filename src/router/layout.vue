@@ -20,7 +20,6 @@
   </tabbar>
 </template>
 <script>
-
 import { Tabbar, TabbarItem,ViewBox } from 'vux'
 import { mapActions,mapGetters} from 'vuex'
 
@@ -33,8 +32,6 @@ export default {
   },
   ready(){
     this.getUserInfo();
-    // console.log(this.store.path);
-    // ( this.userMobile.length ==0 ? this.getUserInfo({token: this.token}) : '' )
   },
   computed:{
      ...mapGetters(['path']),
