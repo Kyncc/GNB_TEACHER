@@ -33,7 +33,7 @@
 
 <script>
 import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker,Selector} from 'vux'
-import { mapActions,mapGetters  } from 'vuex'
+import { mapActions,mapGetters } from 'vuex'
 import * as _ from 'config/whole.js'
 
 export default {

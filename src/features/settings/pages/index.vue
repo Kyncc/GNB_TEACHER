@@ -2,19 +2,19 @@
 <div class='settings'>
   <x-header :left-options="{showBack: true}">设置</x-header>
   <group>
-    <cell title="应用评分" link="javascript:;" v-show="(system == 'IOS'? false:true)" @click:tap="_openStore">
+    <cell title="应用评分" link="javascript:;" v-show="(System == 'IOS'? false:true)" @click="_openStore">
       <span class="demo-icon" slot="icon"></span>
     </cell>
     <cell title="意见反馈" link="advice">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <cell title="退出登录" @click:tap="_quitlogin"  link="javascript:void(0);">
+    <cell title="退出登录" @click="_quitlogin">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-     <cell title="清除缓存" @click:tap="_clear" v-show="(system == 'IOS'? false:true)">
+     <cell title="清除缓存" @click="_clear" v-show="(System == 'IOS'? false:true)">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <cell title="检查更新" :value="'当前版本号:V'+ version" v-show="(system == 'IOS'? false:true)"  @click:tap="_update">
+    <cell title="检查更新" :value="'当前版本号:V'+ version" v-show="(System == 'IOS'? false:true)"  @click="_update">
       <span class="demo-icon" slot="icon"></span>
     </cell>
   </group>
@@ -26,36 +26,22 @@
 
 <script>
 import {  XHeader,  Cell,  Group,  Alert,  Confirm} from 'vux'
-import {  updateVersion} from '../../actions/settings.js'
-import {  versionCurrent} from '../../getters.js'
-import {  system,token} from '../../../common/getters.js'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
-    XHeader,
-    Cell,
-    Group,
-    Alert,
-    Confirm
+    XHeader,Cell,Group,Alert,Confirm
   },
   data() {
     return {
-      version: '1.0.2',
+      version: '2.0.0',
       show: false,
       confirm: false,
       quit:false
     }
   },
-  vuex: {
-    actions: {
-      updateVersion
-    },
-    getters: {
-      versionCurrent,
-      system,token
-    }
-  },
   methods: {
+    ...mapActions(['updateVersion']),
     _clear() {
       this.show = true
     },
@@ -69,7 +55,7 @@ export default {
         }
     },
     onAction(type) {
-      if(this.system == 'IOS' && type == '确认'){
+      if(this.System == 'IOS' && type == '确认'){
         window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8";
         return;
       }
@@ -101,24 +87,26 @@ export default {
       }
     },
     _update() {
-        this.updateVersion({
-          token: this.fetchToken
-        }, () => {
-          if (this.fetchVersion.currentVersion != this.version) {
-            this.confirm = true
-          }
+        this.updateVersion().
+        then(()=>{
+            // if (this.fetchVersion.currentVersion != this.version) {
+            //   this.confirm = true
+            // }
         })
     },
     _openQQ() {
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
     _openStore() {
-      if(this.system == 'IOS' ){
+      if(this.System == 'IOS' ){
          window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"; 
          return; 
       }
       window.location.href = "market://details?id=com.sanbao.guinaben.teacher";
     }
-  }
+  },
+  computed:{
+    ...mapGetters(['versionCurrent','System'])
+	}
 }
 </script>

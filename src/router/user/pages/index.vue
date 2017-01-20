@@ -16,7 +16,7 @@
           </div>
         </div>
         <group style="padding-bottom:10px;">
-          <cell title="个人资料" link="/user/info/">
+          <cell title="个人资料" link="/main/user/settings/info">
             <span class="icon iconfont icon-userInfo" style="color:#5ECFE7" slot="icon"></span>
           </cell>
           <cell title="我的班级" link="/user/class/">
@@ -24,7 +24,7 @@
           </cell>
         </group>
         <group>
-          <cell title="设置" link="/user/settings/">
+          <cell title="设置" link="/main/user/settings/">
             <span class="icon iconfont icon-settingfull" style="color:#1296DB"  slot="icon"></span>
           </cell>
         </group>

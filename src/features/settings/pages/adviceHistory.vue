@@ -33,33 +33,24 @@
 <script>
 import {XHeader,XInput,Group,Cell,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import { adviceHistory } from '../../actions/advice'
-import { historyList } from '../../getters.js'
-import { token } from '../../../common/getters.js'
-import * as _  from '../../../config/whole.js'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
 	components: {
 		XHeader,XInput,Group,Cell,ViewBox,InfiniteLoading
 	},
-	vuex:{
-		actions:{
-			adviceHistory
-		},
-		getters:{
-			historyList,
-			token
-		}
-	},
 	 methods: {
-		 _onInfinite(){
-			this.adviceHistory({
-				token:this.token   
-			},()=>{
+		...mapActions(['adviceHistory']),
+		_onInfinite(){
+			this.adviceHistory().
+			then(()=>{
 				if(this.historyList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
 				this.$broadcast('$InfiniteLoading:complete');
 			});
-		 }
-	 }
+		}
+	},
+	computed:{
+    ...mapGetters(['historyList'])
+	}
 }
 </script>

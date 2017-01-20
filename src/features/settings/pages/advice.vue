@@ -15,8 +15,7 @@
 <script>
 
 import {XHeader,XInput,Group,XTextarea,XButton} from 'vux'
-import { advice } from '../../actions/advice'
-import { token } from '../../../common/getters.js'
+import { mapActions,mapGetters } from 'vuex'
 import * as _  from 'config/whole.js'
 
 export default {
@@ -30,27 +29,22 @@ export default {
 			contact:''
 		}
 	},
-	vuex:{
-		actions:{
-			advice
-		},
-		getters:{
-			token
-		}
-	},
 	methods: {
+		...mapActions(['updateAdvice']),
 		_history(){
-			this.$router.go('advice/history')
+			this.$router.go('adviceList')
 		},
 		_submit(){
 			if(this.title && this.content && this.contact){
-				this.advice({
-					token:this.token,
+				this.updateAdvice({
 					title:this.title,
 					content:this.content,
 					contact:this.contact
-				},()=>{
-					this.$router.go('advice/history');
+				})
+				.then(()=>{
+					 setTimeout(() => {
+							this.$router.go('adviceList');
+					 })
 				})
 			}else{
 				_.toast("请完善内容")

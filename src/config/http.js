@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as _ from './whole'
 
 axios.defaults.timeout = 5000;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.defaults.baseURL = ' http://www.guinaben.com:8070';
 
 //全局钩子
