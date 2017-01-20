@@ -1,33 +1,28 @@
 <template>
-<view-box v-ref:view-box class='bag vux-scroller-header-box'>
+<view-box v-ref:view-box class='classes vux-scroller-header-box'>
   <div style="height:46px;">
     <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">班级</x-header>
   </div>
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <group style="padding:10px 0;">
-        <cell title="知识图谱" link="bag/report/">
+        <cell title="知识图谱" link="classes/report/">
           <span class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></span>
         </cell>
       </group>
       <group style="padding-bottom:10px;">
-        <cell title="斩题本" link="bag/break/">
+        <cell title="斩题本" link="classes/break/">
           <span class="icon iconfont icon-book1" style="color:#5ECFE7" slot="icon"></span>
         </cell>
-        <cell title="弃题本" link="bag/pass/">
+        <cell title="弃题本" link="classes/pass/">
           <span class="icon iconfont icon-lajitong16" style="color:#ffb660" slot="icon"></span>
         </cell>
       </group>
-
       <group>
-        <cell title="班级消息" link="bag/textbook/">
-          <span class="icon iconfont icon-book2" style="color:#FF546B"  slot="icon"></span>
-        </cell>
-        <cell title="班级管理" link="bag/workbook/">
+        <cell title="班级管理" link="classes/manager/">
           <span class="icon iconfont icon-workbook" style="color:#ABC97C"  slot="icon"></span>
         </cell>
       </group>
-
     </div>
   </scroller>
 </view-box>

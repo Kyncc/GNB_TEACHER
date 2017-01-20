@@ -31,19 +31,6 @@ export const getMessageSystem = ({ dispatch },params,scuess) => {
   })
 }
 
-export const getMessageClass = ({ dispatch }, params,success) => {
-  Api.msgClass({
-      data:params,
-      ok:response=>{
-        dispatch(types.GET_MESSAGE_CLASS_SUCCESS,response.data);
-        success();
-      },
-      wrong:response=>{
-        dispatch(types.GET_MESSAGE_CLASS_ERROR,response.data);
-        _.toast(response.data.msg);
-      }
-  })
-}
 
 export const getMessageCorrect = ({ dispatch }, params,success) => {
   Api.msgCorrect({

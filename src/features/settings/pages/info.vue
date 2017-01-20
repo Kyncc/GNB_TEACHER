@@ -2,7 +2,7 @@
   <div class='userinfo'>
     <x-header :left-options="{showBack: true,preventGoBack: true}"  @on-click-back="_back()">
       个人资料
-      <a slot="right" @click:tap="_complete">{{edit}}</a>
+      <a slot="right" @click="_complete">{{edit}}</a>
     </x-header>
 
     <div v-show="edit=='编辑'">
@@ -47,9 +47,7 @@ export default {
     }
   },
   methods: {
-    methods: {
-      ...mapActions(['getUserInfo','setUserInfo'])
-    },
+    ...mapActions(['getUserInfo','setUserInfo']),
     _back(){
       if (this.edit == '完成'){
         this.show = true
@@ -72,18 +70,17 @@ export default {
       } else if (this.edit == '完成') {
         if(this.name && this.school){
           
-          // this.updateUserInfo({
-          //     name: this.name,
-          //     sex: this.sex,
-          //     school: this.school,
-          //     token: this.token
-          // }, () => {
-          //     this.getUserInfo({
-          //         token: this.token
-          //     },() => {
-          //         this.edit = '编辑'
-          //     })
-          // })
+          this.setUserInfo({
+              name: this.name,
+              sex: this.sex,
+              school: this.school,
+              token: this.token
+          }).then(()=>{
+               this.getUserInfo()
+               .then(()=>{
+                  this.edit = '编辑'
+               })
+          })
         }else{
           _.toast('请完善内容');
         }

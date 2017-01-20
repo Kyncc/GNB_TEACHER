@@ -9,10 +9,11 @@ export const updatePwd = ({ rootState,commit },params) => {
 		axios({
 			method:'post',
 			url: 'teacher/user/updatePwd',
-			params: {
-				"token":rootState.login.token,
-				...params,
-			}
+			params: 
+				_.toJson({
+					"token":rootState.login.token,
+					...params
+				})
 		})
 		.then((response) => {
 				localStorage.removeItem('token');

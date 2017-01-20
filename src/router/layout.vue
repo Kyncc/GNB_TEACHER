@@ -5,10 +5,10 @@
       <i slot="icon" class="icon iconfont icon-home"></i>
       <span slot="label">主页</span>
     </tabbar-item>
-    <!--<tabbar-item link="bag" :selected="bagState">
-      <i slot="icon" class="icon iconfont icon-bag"></i>
-      <span slot="label">题型</span>
-    </tabbar-item>-->
+    <tabbar-item link="interact" :selected="interactState">
+      <i slot="icon" class="icon iconfont icon-comment2"></i>
+      <span slot="label">互动</span>
+    </tabbar-item>
     <tabbar-item link="classes" :selected="classesState">
       <i slot="icon" class="icon iconfont icon-yuanxiaobanji"></i>
       <span slot="label">班级</span>
@@ -47,8 +47,8 @@ export default {
      userState(){
        return (this.path == '/main/user' ? true : false);
      },
-     bagState(){
-       return (this.path == '/main/bag' ? true : false);
+     interactState(){
+       return (this.path == '/main/interact' ? true : false);
      }
   }
 }
