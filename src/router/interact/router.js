@@ -1,6 +1,8 @@
 import layout from './pages/layout'
 import index from './pages/index'
 import message from '../../features/message/router'
+import modules from './modules/store'
+import store from 'src/store'
 
 export default {
   'interact': {
@@ -11,3 +13,7 @@ export default {
     }
   }
 }
+
+store.registerModule('interact', {
+  ...modules
+});

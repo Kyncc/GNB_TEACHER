@@ -1,5 +1,5 @@
-import layout from './layout'
-import index from './index'
+import layout from './pages/layout'
+import index from './pages/index'
 // import pass from '../../featrues/pass/router'
 // import Break from '../../featrues/break/router'
 // import workbook from '../../featrues/workbook/router'

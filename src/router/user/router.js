@@ -3,6 +3,8 @@ import index from './pages/index'
 import settings from '../../features/settings/router'
 // import myClass from '../../featrues/myClass/router'
 // import userInfo from '../../user/pages/info'
+import modules from './modules/store'
+import store from 'src/store'
 
 export default {
   'user': {
@@ -17,3 +19,8 @@ export default {
     }
   }
 }
+
+
+store.registerModule('user', {
+  ...modules
+});

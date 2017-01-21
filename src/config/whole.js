@@ -1,5 +1,4 @@
 import store from '../store'
-import qs from 'qs'
 
 /** 
 *   页面正在请求
@@ -25,12 +24,3 @@ export function toast(str){
         store.dispatch('toastShow', false); 
     },1500); 
 }
-
-
-/** 
-*   页面正在请求
-*/
-export function toJson(obj){
-    return qs.stringify(obj);
-}
-

@@ -1,6 +1,6 @@
 <template>
   <div style="height:100%" class="interact">
-  <x-header :left-options="{showBack: false}" class="vux-scroller-header">消息</x-header>
+  <x-header :left-options="{showBack: false}" class="vux-scroller-header">互动</x-header>
   <div id='wrapper' style="padding-bottom:10rem;">
     <div>
       <group style="padding:.5rem 0;">

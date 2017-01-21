@@ -9,11 +9,10 @@ export const updatePwd = ({ rootState,commit },params) => {
     axios({
       method:'post',
       url: 'teacher/user/updatePwd',
-      params: 
-        _.toJson({
+      params: {
           "token":rootState.login.token,
           ...params
-        })
+      }
     })
     .then((response) => {
       localStorage.removeItem('token');
@@ -46,7 +45,10 @@ export const updateAdvice = ({ rootState,commit }, params) => {
     axios({
       method:'post',
       url: 'teacher/user/advice',
-      data:_.toJson({"token":rootState.login.token,...params})
+      data:{
+        "token":rootState.login.token,
+        ...params
+      }
     })
     .then((response) => {
       _.toast("感谢您的反馈！");
