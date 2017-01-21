@@ -1,13 +1,13 @@
 import layout from './pages/layout'
 import index from './pages/index'
-// import remember from '../../featrues/remember/router'
+import message from '../../features/message/router'
 
 export default {
-  'index': {
+  'interact': {
     component: layout,
     subRoutes: {
       '/':{component: index},
-      // ...remember
+      ...message
     }
   }
 }

@@ -1,23 +1,22 @@
 import * as types from './mutationTypes'
 import * as getters from './getters'
+import * as actions from './actions'
 
 const state = {
-    newCorretMsg:'',
-    newSystemMsg:'',
-    system:[],
-    correct:[]
+  class:[],
+  system:[],
+  correct:[]
 }
 
 const mutations = {
-  [MESSAGE_HOME](state , data){
-    state.newCorretMsg = data.data.newCorretMsg;
-    state.newSystemMsg = data.data.newSystemMsg;
+  [types.MESSAGE_CLASS](state , data){
+    state.class = data;
   },
-  [MESSAGE_SYSTEM](state , data){
-    state.system = data.data;
+  [types.MESSAGE_SYSTEM](state , data){
+    state.system = data;
   },
-  [MESSAGE_CORRECT](state , data){
-    state.correct = data.data;
+  [types.MESSAGE_CORRECT](state , data){
+    state.correct = data;
   }
 }
 
@@ -25,4 +24,5 @@ export default {
   state,
   mutations,
   getters,
+  actions
 }

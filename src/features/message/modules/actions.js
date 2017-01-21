@@ -1,47 +1,55 @@
-import Api from '../config/httpdispatch'
+import axios from 'config/http'
 import * as types from './mutationTypes'
-import * as _ from '../config/whole'
+import * as _ from 'config/whole'
 
-
-export const getMessageIndex = ({ dispatch }, params,scuess) => {
-  Api.msg({
-      data:params,
-      ok:response=>{
-        dispatch(types.GET_MESSAGE_HOME_SUCCESS,response.data);
-        scuess&&scuess();
-      },
-      wrong:response=>{
-        dispatch(types.GET_MESSAGE_HOME_ERROR,response.data);
-        _.toast('获取信息失败');
+/** 班级消息列表*/
+export const getMessageClass = ({ rootState,commit }, params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'teacher/message/class',
+      params: {
+        "token":rootState.login.token,
       }
-  })
+    })
+    .then((response) => {
+        commit(types.MESSAGE_CLASS, response.data.data);
+        resolve(response);
+    })
+  });
 }
 
-export const getMessageSystem = ({ dispatch },params,scuess) => {
-  Api.msgSystem({
-      data:params,
-      ok:response=>{
-        dispatch(types.GET_MESSAGE_SYSTEM_SUCCESS,response.data);
-        scuess();
-      },
-      wrong:response=>{
-        dispatch(types.GET_MESSAGE_SYSTEM_ERROR,response.data);
-        _.toast(response.data.msg);
+/** 系统消息列表*/
+export const getMessageSystem = ({ rootState,commit }, params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'teacher/message/system',
+      params: {
+        "token":rootState.login.token,
       }
-  })
+    })
+    .then((response) => {
+        commit(types.MESSAGE_SYSTEM, response.data.data);
+        resolve(response);
+    })
+  });
 }
 
-
-export const getMessageCorrect = ({ dispatch }, params,success) => {
-  Api.msgCorrect({
-      data:params,
-      ok:response=>{
-        dispatch(types.GET_MESSAGE_CORRECT_SUCCESS,response.data);
-        success();
-      },
-      wrong:response=>{
-        dispatch(types.GET_MESSAGE_CORRECT_ERROR,response.data);
-        _.toast(response.data.msg);
+/** 纠错消息列表*/
+export const getMessageCorrect = ({ rootState,commit }, params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'teacher/message/correct',
+      params: {
+        "token":rootState.login.token,
       }
-  })
+    })
+    .then((response) => {
+        commit(types.MESSAGE_CORRECT, response.data.data);
+        resolve(response);
+    })
+  });
 }
+

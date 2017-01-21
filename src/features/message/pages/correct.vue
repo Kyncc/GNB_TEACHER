@@ -4,7 +4,7 @@
           <x-header :left-options="{showBack: true}">纠错消息</x-header>
       </div>
     <div style="padding-top:46px;" class="messageSection">
-      <section v-for="item in list">
+      <section v-for="item in messageCorrectList">
         <h3>{{item.time | ymd}}</h3>
         <article>
           {{item.content}}
@@ -24,24 +24,25 @@
 <script>
 import {XHeader,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
+import { mapActions,mapGetters } from 'vuex'
+
 
 export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
   },
   methods: {
+    ...mapActions(['getMessageCorrect']),
     onInfinite(){
-      let self = this;
-      this.getMessageCorrect({
-        "token":this.token
-      },()=>{
-        setTimeout(()=>{
-          self.list = self.messageCorrectList;
-          if(self.list.length != 0) {self.$broadcast('$InfiniteLoading:loaded');}
-          self.$broadcast('$InfiniteLoading:complete');
-        },300);
+      this.getMessageCorrect()
+      .then(()=>{
+        if(this.messageCorrectList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        this.$broadcast('$InfiniteLoading:complete');
       });
     }
+  },
+  computed:{
+    ...mapGetters(['messageCorrectList'])
   }
 }
 </script>

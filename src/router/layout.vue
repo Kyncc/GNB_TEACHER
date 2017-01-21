@@ -36,7 +36,7 @@ export default {
   computed:{
      ...mapGetters(['path']),
      isRoot(){
-       return (this.indexState || this.classesState || this.userState ? true : false);
+       return (this.indexState || this.classesState || this.userState || this.interactState? true : false);
      },
      indexState(){
        return (this.path == '/main/index' ? true : false);

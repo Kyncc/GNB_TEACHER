@@ -4,22 +4,22 @@
   <div id='wrapper' style="padding-bottom:10rem;">
     <div>
       <group style="padding:.5rem 0;">
-        <cell title="班级消息" link="class/">
-          <span class="icon iconfont icon-correct2" v-bind:class="{'vux-reddot':hasNewClassMsg}"  style="color:#FF5454" slot="icon"></span>
+        <cell title="班级消息" link="/main/interact/message/class/">
+          <span class="icon iconfont icon-class" v-bind:class="{'vux-reddot':hasNewClassMsg}"  style="color:#1296DB" slot="icon"></span>
         </cell>
-        <cell title="纠错消息" link="correct/">
+        <cell title="纠错消息" link="/main/interact/message/correct/">
           <span class="icon iconfont icon-correct2" v-bind:class="{'vux-reddot':hasNewCorretMsg}"  style="color:#FF5454" slot="icon"></span>
         </cell>
-        <cell title="系统消息" link="system/">
+        <cell title="系统消息" link="/main/interact/message/system/">
           <span class="icon iconfont icon-info" v-bind:class="{'vux-reddot':hasNewSystemMsg}"  style="color:#FFD34E" slot="icon"></span>
         </cell>
       </group>
       <group>
         <cell title="参与归纳本讨论群"   @click="_openQQ">
-          <span class="icon iconfont icon-qq1" v-bind:class="{'vux-reddot':interactIndex.hasNewClassMsg}"  style="color:#1296DB" slot="icon"></span>
+          <span class="icon iconfont icon-qq1"  style="color:#1296DB" slot="icon"></span>
         </cell>
         <cell title="关注我们的公众号"   @click="show=true">
-          <span class="icon iconfont icon-wechat" v-bind:class="{'vux-reddot':interactIndex.hasNewClassMsg}"  style="color:#1FDD00" slot="icon"></span>
+          <span class="icon iconfont icon-wechat" style="color:#1FDD00" slot="icon"></span>
         </cell>
       </group>
     </div>
@@ -39,12 +39,14 @@ import JRoll from 'jroll'
 import '../../../common/pulldown.js'
 import {XHeader,Group,Scroller,Cell,Spinner,Dialog} from 'vux'
 import * as _ from 'config/whole'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
     XHeader,Scroller,Group,Cell,Spinner,Dialog
   },
   methods: {
+    ...mapActions(['getInteract']),
     _openQQ(){
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
@@ -55,7 +57,8 @@ export default {
       }, 1000)
     },
     _refresh(){
-      this.getInteractIndex({"token":this.token},()=>{
+      this.getInteract()
+      .then(()=>{
         _.toast('刷新成功');
       });
     }
@@ -66,13 +69,17 @@ export default {
       show:false
     }
   },
+  computed:{
+    ...mapGetters(['hasNewClassMsg','hasNewCorretMsg','hasNewSystemMsg'])
+	},
   ready(){
     let self = this
-    this.getInteractIndex({"token":this.token});
+    this.getInteract();
     var jroll = new JRoll("#wrapper");
     jroll.pulldown({
       refresh: function(complete) {
-        self.getInteractIndex({"token":self.token},()=>{
+        self.getInteract()
+        .then(()=>{
           complete();
         });
       }

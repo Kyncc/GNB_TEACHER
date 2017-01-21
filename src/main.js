@@ -11,47 +11,8 @@ import Layout from './router/layout'
 import User from './router/user/router'
 import Index from './router/index/router'
 import Classes from './router/Classes/router'
-//首页
-// import Main from './main/common/main'
-// import User from './main/pages/user'
-// import Message from './main/pages/message'
-// import Index from './main/pages/index'
-// import Photo from './main/pages/photo'
+import Interact from './router/interact/router'
 
-// //记错题
-// // import remember from './remember/pages/index'
-// // import rememberWorkbook from './remember/pages/workbook'
-// // import rememberExercise from './remember/pages/exercise'
-// // import rememberExample from './remember/pages/example'
-// //通知
-// import messageClass from './message/pages/class'
-// import messageCorrect from './message/pages/correct'
-// import messageSystem from './message/pages/system'
-
-// //查错题
-// import error from './error/pages/index'
-// import errorClass from './error/pages/class'
-// import errorByStudent from './error/pages/byStudent'
-// //知识图谱
-// import reportIndex from './report/pages/index'
-// import reportClass from './report/pages/class'
-// import reportStudent from './report/pages/student'
-// import reportDetail from './report/pages/detail'
-// //刷题型
-// import brush from './brush/pages/index'
-// import brushClass from './brush/pages/class'
-// import brushChapter from './brush/pages/chapter'
-// import brushList from './brush/pages/list'
-// //放弃列表
-// import pass from './pass/pages/index'
-// import passClass from './pass/pages/class'
-// import passChapter from './pass/pages/chapter'
-// import passList from './pass/pages/list'
-// //斩题列表
-// import breakIndex from './break/pages/index'
-// import breakClass from './break/pages/class'
-// import breakChapter from './break/pages/chapter'
-// import breakList from './break/pages/list'
 // //我的班级
 // import classIndex from './class/pages/index'
 // import classManage from './class/pages/manager'
@@ -95,66 +56,16 @@ router.map({
     subRoutes: {
       ...Index,
       ...User,
-      ...Classes
+      ...Classes,
+      ...Interact
     }
   }
-  // //参考例题
-  // 'example/:studentId/:subjectId/:id':{component: example},
-  // //主页
-  // 'main/user/photo':{
-  //     component: Photo
-  // },
-  // //消息
-  // 'message/class': { component: messageClass },
-  // 'message/system': { component: messageSystem },
-  // 'message/correct': { component: messageCorrect },
-  // //个人中心
-  // 'user/info': { component: userInfo },
-  // 'user/resetPwd': { component: userResetPwd },
-  // //设置
-  // 'user/settings': { component: userSettingsIndex },
-  // 'user/settings/advice': { component: userSettingsAdvice },
-  // 'user/settings/advice/history': { component: userSettingsAdviceHistory },
-  // //知识图谱
-  // 'report': {component:reportIndex},
-  // 'report/class/:code': {component:reportClass},
-  // 'report/student/:id': {component: reportStudent},
-  // 'report/student/detail/:id/:chapterId': {component: reportDetail},
-  // //查错题
-  // 'error': { component: error },
-  // 'error/class/:code': { component: errorClass },
-  // 'error/student/:id': { component: errorByStudent},
-  // //刷题型 Brush
-  // 'brush': { component: brush },
-  // 'brush/class/:code': { component: brushClass},
-  // 'brush/chapter/:id': { component:brushChapter},
-  // 'brush/chapter/list/:id/:chapterId': { component:brushList},
-  //  //放弃列表
-  // 'pass': { component: pass },
-  // 'pass/class/:code': { component: passClass},
-  // 'pass/chapter/:id': { component:passChapter},
-  // 'pass/chapter/list/:id/:chapterId': { component:passList},
-  // //斩断列表
-  // 'break': { component: breakIndex },
-  // 'break/class/:code': { component: breakClass},
-  // 'break/chapter/:id': { component:breakChapter},
-  // 'break/chapter/list/:id/:chapterId': { component:breakList},
   // //我的班级
   // 'class': { component: classIndex },
   // 'class/manager/:code': { component: classManage },
   // 'class/create': { component: classCreate },
   // 'class/classmate/:code': { component: classmate },
   // 'class/invite/:code': { component: classInvite },
-  // 'class/apply/:id':{ component: classApply},
-
-  //记错题
-  // 'remember/:id':{component: remember},
-  // 'remember/example/:id': { component:  rememberExample},
-  // 'remember/workbook/:bookId':{component: rememberWorkbook},
-  // 'remember/workbook/exercise/:chapterId':{component: rememberExercise},
-
-
-  
 })
 
 sync(store, router)

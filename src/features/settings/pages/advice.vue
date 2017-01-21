@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 import {XHeader,XInput,Group,XTextarea,XButton} from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 import * as _  from 'config/whole.js'

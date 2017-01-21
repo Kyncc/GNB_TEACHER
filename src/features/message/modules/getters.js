@@ -1,4 +1,3 @@
-export const newCorretMsg  = (state) => state.newCorretMsg
-export const newSystemMsg  = (state) => state.newSystemMsg
+export const messageClassList  = (state) => state.class
 export const messageSystemList  = (state) => state.system
 export const messageCorrectList  = (state) => state.correct
