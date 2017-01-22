@@ -11,8 +11,8 @@
 						<span>{{item.studentName}}</span>
 						<p v-show="item.status == 1" class="state disable">已同意</p>
 						<p v-show="item.status == 0" class="state disable">已拒绝</p>
-						<x-button v-show="item.status == 2" v-touch:tap="_apply('1',item.classCode,item.studentId)" class="btn" type='primary' mini>同意</x-button>
-						<x-button v-show="item.status == 2" v-touch:tap="_apply('0',item.classCode,item.studentId)" class="btn" type='warn' mini>拒绝</x-button>
+						<x-button v-show="item.status == 2" @click="_apply('1',item.classCode,item.studentId)" class="btn" type='primary' mini>同意</x-button>
+						<x-button v-show="item.status == 2" @click="_apply('0',item.classCode,item.studentId)" class="btn" type='warn' mini>拒绝</x-button>
 					</div>
 				</group>
 			</div>
@@ -24,12 +24,12 @@
 import './myClass.less'
 import JRoll from 'jroll'
 import '../../common/pulldown.js'
-import {XHeader,Cell,Group,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
+import {XHeader,Cell,Group,XButton,ViewBox} from 'vux'
 import { replyApply,applyList} from '../actions.js'
 import { fetchApplyList,fetchClassName } from '../getters.js'
 import { token,id } from '../../common/getters.js'
 export default {
-	components: {XHeader,Cell,Group,ViewBox,ButtonTab,ButtonTabItem,XButton},
+	components: {XHeader,Cell,Group,ViewBox,XButton},
 	vuex:{
 		actions:{
 			replyApply,applyList

@@ -25,7 +25,7 @@ export default {
 	},
 	methods: {
 		...mapActions(['addClass']),
-		_complete() {
+		_complete(){
 			if (this.name){
 				this.addClass({
 					name: this.name,
