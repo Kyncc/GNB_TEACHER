@@ -32,12 +32,7 @@
 import {XHeader,Cell,Group,Confirm,Scroller,ViewBox} from 'vux'
 
 export default {
-    components: {
-        XHeader,Cell,Group,Confirm,Scroller,ViewBox
-    },
-    ready(){
-        this.$nextTick(() => {
-            this.$refs.scroller.reset()
-        });
-    }
+  components: {
+    XHeader,Cell,Group,Confirm,Scroller,ViewBox
+  }
 }

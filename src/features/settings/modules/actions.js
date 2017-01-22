@@ -41,7 +41,7 @@ export const updateVersion = ({commit}) => {
 
 /** 提交反馈*/
 export const updateAdvice = ({ rootState,commit }, params) => {
-  return new Promise((resolve, reject)=> { 
+  return new Promise((resolve,reject)=> { 
     axios({
       method:'post',
       url: 'teacher/user/advice',
