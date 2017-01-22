@@ -1,6 +1,6 @@
 import * as types from './mutationTypes'
 import * as getters from './getters'
-import * as actions from './actions/index'
+import * as actions from './actions'
 
 const state = {
   classList: {
@@ -31,10 +31,14 @@ const mutations = {
 		state.classList.reset = true;
 	},
 	[types.CLASSMATE](state,data) {
-		state.class.classmate.list = data;
+		state.class.name = data.classname;
+		state.class.code = data.classCode;
+		state.class.classmate.list = data.classmates;
 		state.class.classmate.reset = false;
 	},
 	[types.RESET_CLASSMATE](state) {
+		state.class.name = '';
+		state.class.code = '';
 		state.class.classmate.list = []
 		state.class.classmate.reset = true;
 	},
@@ -46,11 +50,12 @@ const mutations = {
 		state.class.applyList.list = []
 		state.class.applyList.reset = true;
 	},
-	[types.CLASSDETAIL](state,index) {
-		state.class.name = data.classList.list[index].name;
-		state.class.code = data.classList.list[index].code;
+	[types.CLASSDETAIL](state,data) {
+		state.class.name = data.name;
+		state.class.code = data.code;
 	}
 }
+
 
 export default {
 	state,

@@ -6,15 +6,15 @@
   <scroller lock-x v-ref:scroller height="-47px">
     <div>
       <group style="padding:10px 0;">
-        <cell title="知识图谱" link="classes/report/">
+        <cell title="知识图谱" link="classes/report">
           <span class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></span>
         </cell>
       </group>
       <group style="padding-bottom:10px;">
-        <cell title="斩题本" link="classes/break/">
+        <cell title="斩题本" link="classes/break">
           <span class="icon iconfont icon-book1" style="color:#5ECFE7" slot="icon"></span>
         </cell>
-        <cell title="弃题本" link="classes/pass/">
+        <cell title="弃题本" link="classes/pass">
           <span class="icon iconfont icon-lajitong16" style="color:#ffb660" slot="icon"></span>
         </cell>
       </group>

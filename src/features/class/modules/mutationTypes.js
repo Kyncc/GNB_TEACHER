@@ -8,6 +8,8 @@ export const DEL_CLASS_LIST = 'DEL_CLASS_LIST'
 export const UPDATE_CLASS_LIST = 'UPDATE_CLASS_LIST'
 /** 重置班级信息*/
 export const RESET_CLASS_LIST = 'RESET_CLASS_LIST'
+/** 获取班级信息*/
+export const CLASSDETAIL = 'CLASSDETAIL'
 
 
 /** 获取同学列表*/

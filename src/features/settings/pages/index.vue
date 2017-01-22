@@ -2,16 +2,16 @@
 <div class='settings'>
   <x-header :left-options="{showBack: true}">设置</x-header>
   <group>
-    <cell title="应用评分" link="javascript:;" v-show="(System == 'IOS'? false:true)" @click="_openStore">
+    <cell title="应用评价" link="javascript:;" @click="_openStore">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <cell title="意见反馈" link="advice">
+    <!--<cell title="意见反馈" link="advice">
       <span class="demo-icon" slot="icon"></span>
-    </cell>
+    </cell>-->
     <cell title="退出登录" @click="_quitlogin">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-     <cell title="清除缓存" @click="_clear" v-show="(System == 'IOS'? false:true)">
+     <cell title="清除缓存" @click="_clear" >
       <span class="demo-icon" slot="icon"></span>
     </cell>
     <cell title="检查更新" :value="'当前版本号:V'+ version" v-show="(System == 'IOS'? false:true)"  @click="_update">

@@ -26,6 +26,7 @@ axios.interceptors.response.use((res) =>{
   return res;
 }, (error) => {
   _.toast("网络异常");
+  _.leave();
   return Promise.reject(error);
 });
 

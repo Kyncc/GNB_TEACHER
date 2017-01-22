@@ -22,10 +22,12 @@
           <cell title="设置" link="/main/user/settings/">
             <span class="icon iconfont icon-settingfull" style="color:#1296DB"  slot="icon"></span>
           </cell>
+          <cell title="意见反馈" link="/main/user/settings/advice">
+            <span class="icon iconfont icon-banjitongzhi"  style="color:#ffb660" slot="icon"></span>
+          </cell>
         </group>
       </div>
     </scroller>
-    
     <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
     <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="确定退出归纳本吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
   </view-box>

@@ -3,35 +3,32 @@
         <x-header :left-options="{showBack: true}">邀请学生</x-header>
         <section class="copyCode">
             <h3>我的邀请码</h3>
-            <b >{{code}}</b>
+            <b >{{ClassCode}}</b>
         </section>
         <div class="button">
-            <x-button type="primary" v-touch:tap="_cppyCode(id)">复制邀请码</x-button>
+            <x-button type="primary" @click="_cppyCode()">复制邀请码</x-button>
         </div>
     </view-box>
 </template>
 
 <script>
-import './myClass.less'
 import {XHeader,XButton,Cell,Group,ViewBox} from 'vux'
-import {code} from '../../common/getters.js'
-import * as _ from '../../config/whole.js'
+import * as _ from 'config/whole.js'
+import { mapActions,mapGetters } from 'vuex'
 
 export default {
     components: {XHeader,XButton,Cell,Group,ViewBox},
-    vuex: {
-        getters: {
-            code
-        }
-    },
     methods: {
-        _cppyCode(code) {
+        _cppyCode() {
             var Context = plus.android.importClass("android.content.Context")
             var main = plus.android.runtimeMainActivity()
             var clip = main.getSystemService(Context.CLIPBOARD_SERVICE)
-            plus.android.invoke(clip,"setText",code)
+            plus.android.invoke(clip,"setText",this.ClassCode)
             _.toast('复制成功')
         }
+    },
+    computed: {
+       ...mapGetters(['ClassCode'])
     }
 }
 </script>

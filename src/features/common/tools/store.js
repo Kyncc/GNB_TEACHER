@@ -24,6 +24,9 @@ const getters = {
   path:(state,getters,rootState) => {
     return rootState.route.path
   },
+  ClassCode:(state,getters,rootState) => {
+    return rootState.route.params.code
+  },
   User:(state,getters,rootState) => {
     return rootState.user
   },
