@@ -36,6 +36,15 @@ import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   components: {XHeader,Group,ViewBox,InfiniteLoading,Cell,Badge},
+  route: {
+    data:function(transition){
+			if(this.classListReset){
+				this.$nextTick(() => {
+					this.$broadcast('$InfiniteLoading:reset');
+				})
+			}
+    }
+  },
   methods: {
     ...mapActions(['getClass','resetClassmate']),
     _detail(code) {
@@ -51,14 +60,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['classList','classListReset','path'])
-	},
-  watch: {
-    path(){
-      if(this.path == '/main/classes/manager/' && this.classListReset){
-          this.$broadcast('$InfiniteLoading:reset');
-      }
-    }
-  }
+    ...mapGetters(['classList','classListReset'])
+	}
 }
 </script>

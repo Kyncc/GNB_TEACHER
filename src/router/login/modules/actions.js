@@ -49,7 +49,7 @@ export const login = ({ commit },params) => {
       }
     })
     .then((response) => {
-        commit(types.LOGIN,response.data);
+        commit(types.LOGIN,response.data.data);
         _.leave();
         resolve(response);
     })

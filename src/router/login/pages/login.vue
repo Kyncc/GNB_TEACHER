@@ -45,12 +45,14 @@ export default {
         mobile:this.mobile,
         pwd:this.password
       }
-      this.login(params,()=>{
+      this.login(params).
+      then(()=>{
         setTimeout(()=>{
            _.leave();
-          this.$router.replace('/main');
+          this.$router.replace('/main/index');
         },500);
-      },()=>{
+      })
+      .catch((error)=>{
           this.pwd = '';
       });
     }

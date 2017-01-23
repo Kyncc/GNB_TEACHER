@@ -43,7 +43,7 @@ const mutations = {
 		state.class.classmate.reset = true;
 	},
 	[types.APPLY_LIST](state,data) {
-		state.class.applyList.list = data;
+		state.class.applyList.list = data[0].students;
 		state.class.applyList.reset = false;
 	},
 	[types.RESET_APPLY](state) {

@@ -4,6 +4,8 @@ import create from './pages/create'
 import classes from './pages/detail/class'
 import invite from './pages/detail/invite'
 import classmate from './pages/detail/classmate'
+import apply from './pages/detail/apply'
+
 
 import modules from './modules/store'
 import store from 'src/store'
@@ -23,6 +25,9 @@ export default {
       },
       'class/invite/:code':{
         component: invite
+      },
+      'class/apply/:code':{
+        component: apply
       },
       'class/classmate/:code':{
         component: classmate

@@ -36,7 +36,7 @@
 
 <script>
 import JRoll from 'jroll'
-import '../../../common/pulldown.js'
+import 'src/common/libs/jroll/jroll-pulldown.js'
 import {XHeader,Group,Scroller,Cell,Spinner,Dialog} from 'vux'
 import * as _ from 'config/whole'
 import { mapActions,mapGetters } from 'vuex'
