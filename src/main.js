@@ -6,21 +6,12 @@ import store from './store'
 import * as _ from 'config/whole.js'
 
 import Login from './router/login/router'
-import Correct from './features/correct/router'
+// import Correct from './features/correct/router'
 import Layout from './router/layout'
 import User from './router/user/router'
 import Index from './router/index/router'
 import Classes from './router/Classes/router'
 import Interact from './router/interact/router'
-
-// //我的班级
-// import classIndex from './class/pages/index'
-// import classManage from './class/pages/manager'
-// import classCreate from './class/pages/create'
-// import classmate from './class/pages/classmate'
-// import classInvite from './class/pages/invite'
-// import classApply from './class/pages/apply'
-
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
@@ -49,7 +40,7 @@ Vue.filter('ymd', function(value) {
 const router = new Router()
 router.map({
   ...Login,
-  ...Correct,
+  // ...Correct,
   'main': {
     component: Layout,
     subRoutes: {
@@ -59,12 +50,7 @@ router.map({
       ...Interact
     }
   }
-  // //我的班级
-  // 'class': { component: classIndex },
-  // 'class/manager/:code': { component: classManage },
-  // 'class/create': { component: classCreate },
-  // 'class/classmate/:code': { component: classmate },
-  // 'class/invite/:code': { component: classInvite },
+
 })
 
 sync(store, router)

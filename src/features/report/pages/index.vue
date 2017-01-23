@@ -11,35 +11,24 @@
       <accordion-report :list="reportChapter" @on-click-open="_openChapter" @on-click-chapter="_intoChapter"></accordion-report>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
-          <p style="font-size:1rem;display:inline-block;">请先添加教材吧~</p>
+          <p style="font-size:1rem;display:inline-block;">该学生尚未添加教材~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
     </div>
   </view-box>
-  <gnb-change-sub :visible.sync="visible" :subject="userSubjectList" :selected="reportSubjectId" @on-click-back="_changeSubject"></gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :subject="Student.subjectType" :selected="reportSubjectId" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
 import {XHeader,ViewBox} from 'vux'
-import {token,userSubjectList,path } from '../../../common/getters'
-import {reportChapter,reportScoll,reportSubjectId} from '../getters'
-import {getReport,changeChapter,setScoll,clearReport,setSubject,clearDetail} from '../actions'
+import { mapActions,mapGetters } from 'vuex'
 import {gnbChangeSub,accordionReport} from 'components'
 
 export default {
   components: {
     XHeader,ViewBox,accordionReport,gnbChangeSub,InfiniteLoading
-  },
-  vuex: {
-    getters: {
-      token,userSubjectList,path,
-      reportSubjectId,reportChapter,reportScoll
-    },
-    actions: {
-      changeChapter,getReport,setScoll,setSubject,clearDetail
-    }
   },
   filters: {
     subName(id){
@@ -50,31 +39,40 @@ export default {
       }
     }
   },
+  route: {
+    data:function(transition){
+      if(this.reportReset){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        });
+      }
+    }
+  },
   methods: {
+    ...mapActions(['getReport','changeReportChapter','setReportScoll','setReportSubject','clearReportDetail']),
     _changeSub(){
       this.visible = true;
     },
     _intoChapter(index){
-      this.clearDetail();
+      this.setReportScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.clearReportDetail();
       this.$router.go(`detail/${index}`);
     },
-    /** 切换科目*/
+    //切换科目
     _changeSubject(item){
       this.subjectName = item.value;
       this.visible = false;
-      this.setSubject(item.id);       //更换科目
+      this.setReportSubject(item.id);      
       this.$broadcast('$InfiniteLoading:reset');
     },
-    //打开结点
+    //打开节点
     _openChapter(index){
-      this.setScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-      this.changeChapter(index);
+      this.setReportScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.changeReportChapter(index);
     },
     _onInfinite(){
-      this.getReport({
-        token:this.token,
-        subject_id:this.reportSubjectId
-      },()=>{
+      this.getReport()
+      .then(()=>{
         if(this.reportChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       });
@@ -85,12 +83,9 @@ export default {
       visible:false,
     }
   },
-  watch:{
-     path(){
-      if(this.path == '/bag/report/'){
-        document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
-      }
-    }
-  }
+	computed:{
+    ...mapGetters(['reportChapter','reportSubjectId','Student','reportScoll','reportReset'])
+	}
+ 
 }
 </script>

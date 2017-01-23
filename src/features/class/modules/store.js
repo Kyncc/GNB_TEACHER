@@ -7,6 +7,14 @@ const state = {
 		reset:false,
 		list:[]
   },
+	student:{
+		grade:'',
+		headImg:'',
+		id:'',
+		name:'',
+		subjectType:[],
+		textbook:[]
+	},
   class:{
 		classmate:{
 			reset:false,
@@ -53,6 +61,14 @@ const mutations = {
 	[types.CLASSDETAIL](state,data) {
 		state.class.name = data.name;
 		state.class.code = data.code;
+	},
+	[types.STUDENT_INFO](state,data){
+		state.student.grade = data.grade;
+		state.student.id = data.id;
+		state.student.name = data.name;
+		state.student.headImg = data.headImg;
+		state.student.subjectType = data.subjectType;
+		state.student.textbook = data.textbook;
 	}
 }
 

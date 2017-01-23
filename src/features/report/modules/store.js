@@ -1,17 +1,20 @@
 import * as types from './mutationTypes'
+import * as actions from './actions'
+import * as getters from './getters'
+
 
 const state = {
    chapter:[],
    detail:[],
    scoll:0,
-   isReset:true,
+   isReset:false,
    subjectId:'2'
 }
 
 const mutations = {
   [types.REPORT_CHAPTER](state, data) {
     state.isReset = false;
-    state.chapter = data.data;
+    state.chapter = data;
   },
   [types.REPORT_CHANGE_SUBJECT](state,id){
     state.subjectId = id;
@@ -24,10 +27,7 @@ const mutations = {
     state.scoll = height;
   },
   [types.REPORT_DETAIL](state, data) {
-    state.detail = data.data;
-  },
-  [types.CLEAR_REPORT_DETAIL](state, data) {
-    state.detail = [];
+    state.detail = data;
   },
   [types.CHAPTER_STATE_CHANGE](state,index){
     state.chapter[index].checked = !state.chapter[index].checked
@@ -36,5 +36,7 @@ const mutations = {
 
 export default {
   state,
-  mutations
+  mutations,
+  getters,
+  actions
 }

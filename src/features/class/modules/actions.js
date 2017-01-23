@@ -44,7 +44,6 @@ export const delClass= ({ rootState,commit }, params) => {
   });
 }
 
-
 /** 更改班级*/
 export const updateClass = ({ rootState,commit }, params) => {
   _.busy();
@@ -68,7 +67,6 @@ export const updateClass = ({ rootState,commit }, params) => {
   });
 }
 
-
 /** 获取班级*/
 export const getClass = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
@@ -85,8 +83,6 @@ export const getClass = ({ rootState,commit }, params) => {
     })
   });
 }
-
-
 
 /** 获取申请列表*/
 export const getApplyList = ({ rootState,commit }, params) => {
@@ -169,3 +165,28 @@ export const delClassmate = ({ rootState,commit }, params) => {
     })
   });
 }
+
+/** 获取同学信息*/
+export const getStudentInfo = ({ rootState,commit },params) => {
+  _.busy();
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'teacher/class/student',
+      params: {
+        "token":rootState.login.token,
+        "id":params.id
+      }
+    })
+    .then((response) => {
+        _.leave();
+        commit(types.STUDENT_INFO,response.data.data);
+        resolve(response);
+    })
+    .catch((error) => {
+        _.leave();
+        _.toast("获取同学信息失败");
+    })
+  });
+}
+

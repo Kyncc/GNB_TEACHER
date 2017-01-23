@@ -2,7 +2,7 @@ import layout from './pages/layout'
 import index from './pages/index'
 import select from './pages/select'
 import myClasses from '../../features/class/router'
-// import Break from '../../featrues/break/router'
+import report from '../../features/report/router'
 
 export default {
   'classes': {
@@ -15,6 +15,7 @@ export default {
         component: select
       },
       ...myClasses,
+      ...report
       // ...pass,
       // ...Break,
     }

@@ -50,9 +50,15 @@ export default {
     this.selectCode = this.classCode;
   },
   methods: {
-    ...mapActions(['getClassmate','resetClassmate']),
+    ...mapActions(['getClassmate','resetClassmate','getStudentInfo','clearReport']),
     _into(id){
-      this.$router.go(`${this.pageType}/${this.classCode}/${id}`);
+      this.getStudentInfo({
+        id:id
+      })
+      .then(()=>{
+        this.clearReport();
+        this.$router.go(`${this.pageType}/${this.classCode}/${id}`);
+      })
     },
     _onInfinite(){
        this.getClassmate({
