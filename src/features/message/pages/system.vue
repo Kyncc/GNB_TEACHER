@@ -30,6 +30,13 @@ export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
   },
+  route: {
+    data:function(transition){
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
+    }
+  },
   methods: {
     ...mapActions(['getMessageSystem']),
     onInfinite(){

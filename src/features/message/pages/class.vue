@@ -1,7 +1,7 @@
 <template>
   <view-box v-ref:view-box class="messageSystem">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-        <x-header :left-options="{showBack: true}">系统消息</x-header>
+        <x-header :left-options="{showBack: true}">班级消息</x-header>
     </div>
     <div style="padding-top:46px;" class="messageSection">
       <section v-for="item in messageClassList">
@@ -29,6 +29,13 @@ import { mapActions,mapGetters } from 'vuex'
 export default {
   components: {
     XHeader,ViewBox,InfiniteLoading
+  },
+  route: {
+    data:function(transition){
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
+    }
   },
   methods: {
     ...mapActions(['getMessageClass']),

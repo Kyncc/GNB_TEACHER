@@ -2,8 +2,7 @@
   <view-box v-ref:view-box class="reportIndex">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-          知识图谱
-          <a slot="right" @click="_changeSub()" class="changeSub">{{reportSubjectId | subName}}<span class="with_arrow"></span></a>
+          知识图谱<a slot="right" @click="_changeSub()" class="changeSub">{{reportSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
 
@@ -41,9 +40,16 @@ export default {
   },
   route: {
     data:function(transition){
+      /**
+      * 标志为reset则重置，否则加载上次高度
+      */
       if(this.reportReset){
         this.$nextTick(() => {
           this.$broadcast('$InfiniteLoading:reset');
+        });
+      }else{
+        this.$nextTick(() => {
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
         });
       }
     }
@@ -86,6 +92,5 @@ export default {
 	computed:{
     ...mapGetters(['reportChapter','reportSubjectId','Student','reportScoll','reportReset'])
 	}
- 
 }
 </script>

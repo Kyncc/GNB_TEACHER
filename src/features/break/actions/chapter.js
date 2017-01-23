@@ -7,7 +7,7 @@ export const getBreak = ({ dispatch }, params, success) => {
   Api.brush({
     data: params,
     ok: response => {
-       dispatch(types.BREAK_ALL, response.data);
+       dispatch(types.BREAK, response.data);
        success&&success();
     },
     wrong: response => {

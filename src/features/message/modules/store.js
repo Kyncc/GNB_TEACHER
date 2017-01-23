@@ -17,6 +17,11 @@ const mutations = {
   },
   [types.MESSAGE_CORRECT](state , data){
     state.correct = data;
+  },
+  [types.MESSAGE_CLEAR](state){
+    state.class = []
+    state.system = []
+    state.correct = []
   }
 }
 

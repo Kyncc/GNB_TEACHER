@@ -53,3 +53,8 @@ export const getMessageCorrect = ({ rootState,commit }, params) => {
   });
 }
 
+/** 清除消息*/
+export const clearMessage = ({ commit }) => {
+  commit(types.MESSAGE_CLEAR);
+}
+

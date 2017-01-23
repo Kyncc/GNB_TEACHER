@@ -6,8 +6,6 @@ export const breakListScoll = (state) => state.break.list.scoll
 export const breakListOffset = (state) => state.break.list.offset
 export const breakListIsReset = (state) => state.break.list.isReset
 
-export const breakExample = (state) => state.break.example
-
 export const breakSubjectId = (state) => state.break.subjectId
 
 

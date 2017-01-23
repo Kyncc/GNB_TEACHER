@@ -45,8 +45,13 @@ export default {
   components: {
     XHeader,Scroller,Group,Cell,Spinner,Dialog
   },
+  route: {
+    data:function(transition){
+      this.clearMessage();
+    }
+  },
   methods: {
-    ...mapActions(['getInteract']),
+    ...mapActions(['getInteract','clearMessage']),
     _openQQ(){
       window.location.href = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode";
     },
