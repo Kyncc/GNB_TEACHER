@@ -30,7 +30,7 @@ export default {
   methods: {
     ...mapActions(['getUserInfo'])
   },
-  ready(){
+  created(){
     this.getUserInfo();
   },
   computed:{

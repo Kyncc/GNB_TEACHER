@@ -24,6 +24,9 @@ const getters = {
   path:(state,getters,rootState) => {
     return rootState.route.path
   },
+  Query:(state,getters,rootState) => {
+    return rootState.route.query
+  },
   ClassCode:(state,getters,rootState) => {
     return rootState.route.params.code
   },

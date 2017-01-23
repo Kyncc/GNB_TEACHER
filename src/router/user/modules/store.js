@@ -8,14 +8,16 @@ const state = {
   name:'',
   school:'',
   sex:'', 
-  subjectId:''
+  subjectId:'',
+  mobile:''
 }
 
 const mutations = {
   [types.USERINFO](state , data){
-    state.class = data.data.mobile;
+    state.class = data.data.classes;
     state.headImg = data.data.headImg;
     state.name = data.data.name;
+    state.mobile = data.data.mobile;
     state.school = data.data.school;
     state.sex = data.data.sex;
     state.subjectId = data.data.subjectId;
