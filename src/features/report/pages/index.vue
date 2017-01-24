@@ -46,11 +46,11 @@ export default {
       if(this.reportReset){
         this.$nextTick(() => {
           this.$broadcast('$InfiniteLoading:reset');
-        });
+        })
       }else{
         this.$nextTick(() => {
           document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
-        });
+        })
       }
     }
   },
@@ -81,7 +81,7 @@ export default {
       .then(()=>{
         if(this.reportChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
-      });
+      })
     }
   },
   data(){

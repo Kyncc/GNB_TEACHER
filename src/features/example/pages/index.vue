@@ -67,6 +67,7 @@
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
+import { mapActions,mapGetters  } from 'vuex'
 
 export default {
   components: {

@@ -53,7 +53,6 @@ router.map({
       ...Interact
     }
   }
-
 })
 
 sync(store, router)

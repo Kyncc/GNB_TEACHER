@@ -5,8 +5,6 @@ import classes from './pages/detail/class'
 import invite from './pages/detail/invite'
 import classmate from './pages/detail/classmate'
 import apply from './pages/detail/apply'
-
-
 import modules from './modules/store'
 import store from 'src/store'
 

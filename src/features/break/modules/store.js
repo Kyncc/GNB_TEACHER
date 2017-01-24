@@ -1,15 +1,17 @@
 import * as types from './mutationTypes'
+import * as getters from './getters'
+import * as actions from './actions'
 
 const state = {
-  example: [],
   index: {
     list: [],
-    scoll: 0
+    scoll: 0,
+    isReset:false,
   },
   list: {
     list:[],
     count:0,
-    isReset:true,
+    isReset:false,
     chapterName:'',
     scoll:0,
     offset:''
@@ -18,8 +20,9 @@ const state = {
 }
 
 const mutations = {
-  [types.BREAK_ALL](state, data) {
+  [types.BREAK](state, data) {
     state.index.list = data.data;
+    state.index.isReset = false;
   },
   [types.BREAK_CHANGE_SUBJECT](state, id) {
     state.subjectId = id;
@@ -27,6 +30,7 @@ const mutations = {
   [types.BREAK_CLEAR](state) {
     state.index.list = [];
     state.index.scoll = 0;
+    state.index.isReset = true;
   },
   [types.BREAK_SCOLLER](state, height) {
     state.index.scoll = height;
@@ -36,8 +40,8 @@ const mutations = {
   },
   [types.BREAK_LIST](state, data) {
     if(data.data.length == 0){return;}
-    state.list.isReset = false;
     state.list.chapterName = data.data.chapterName;
+    state.list.isReset = false;
     state.list.count = data.data.recordSize;
     state.list.offset = data.data.offset;
     state.list.list = state.list.list.concat(data.data.detail);
@@ -45,29 +49,19 @@ const mutations = {
   [types.BREAK_LIST_CLEAR](state) {
     state.list.isReset = true;
     state.list.list = [];
-    state.list.count=0;
-    state.list.chapterName='',
-    state.list.scoll=0;
+    state.list.count = 0;
+    state.list.chapterName = '',
+    state.list.scoll = 0;
     state.list.offset = '';
   },
   [types.BREAK_LIST_SCOLLER](state, height) {
     state.list.scoll = height;
-  },
-  [types.BREAK_EXAMPLE](state, data) {
-    state.example = data.data;
-  },
-  [types.BREAK_EXAMPLE_CLEAR](state) {
-    state.example = [];
-  },
-  [types.BREAK_EXAMPLE_COLLECT_ADD](state) {
-    state.example[0].collectTime = 1;
-  },
-  [types.BREAK_EXAMPLE_COLLECT_REMOVE](state) {
-    state.example[0].collectTime = 0;
   }
 }
 
 export default {
   state,
-  mutations
+  mutations,
+  getters,
+  actions
 }
