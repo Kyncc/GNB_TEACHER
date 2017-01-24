@@ -3,6 +3,7 @@
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}" style="position:absolute;left:0;top:0;width:100%;z-index:100">
         <change-class :value.sync="selectCode" :class-list="classList"></change-class>
+        <a slot="right" @click="_edit"><i class="icon iconfont icon-bianji" style="font-size:22px"></i></a>
       </x-header>
     </div>
 
@@ -51,6 +52,10 @@ export default {
   },
   methods: {
     ...mapActions(['getClassmate','resetClassmate','getStudentInfo','clearAll']),
+    _edit(){
+        // console.log()
+        this.$router.go(`manager/class/${this.classCode}`);
+    },
     _into(id){
       this.getStudentInfo({
         id:id

@@ -25,7 +25,7 @@
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {gnbChangeSub,accordion,changeTextBook} from 'components'
-import { mapActions,mapGetters  } from 'vuex'
+import { mapActions,mapGetters} from 'vuex'
 export default {
   components: {
     XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,InfiniteLoading,

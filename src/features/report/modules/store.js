@@ -29,6 +29,9 @@ const mutations = {
   [types.REPORT_DETAIL](state, data) {
     state.detail = data;
   },
+  [types.REPORT_DETAIL_CLEAR](state, data) {
+    state.detail = [];
+  },
   [types.CHAPTER_STATE_CHANGE](state,index){
     state.chapter[index].checked = !state.chapter[index].checked
   }

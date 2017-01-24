@@ -1,7 +1,10 @@
 <template>
   <view-box v-ref:view-box class="passList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">弃题列表</x-header>
+      <x-header :left-options="{showBack: true}">
+          弃题列表
+         <a slot="right" @click="_intoBan"><i class="icon iconfont icon-ban" style="font-size:22px"></i></a>
+      </x-header>
       <header v-if="passList" class="sectionHeader">
         <p class="ellipsis">{{passList.chapterName}}</p>
         <font class="ellipsis">共<b>{{passList.count}}</b>个题型</font>
@@ -66,6 +69,9 @@ export default {
   },
   methods: {
     ...mapActions(['getPassList','setPassListScoll']),
+    _intoBan(){
+      history.go(-2);
+    },
     _intoDetail(id){
       this.setPassListScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.passSubjectId}/${id}`);

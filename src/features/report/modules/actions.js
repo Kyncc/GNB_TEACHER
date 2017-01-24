@@ -11,7 +11,7 @@ export const getReport = ({rootState,commit},params) => {
 			params: {
 				"token":rootState.login.token,
 				"subject_id":rootState.report.subjectId,
-				"studentId":rootState.route.params.studentId
+				"student_id":rootState.route.params.studentId
 			}
 		})
 		.then((response) => {
@@ -26,12 +26,12 @@ export const getReportDetail = ({rootState,commit}, params) => {
 	return new Promise((resolve, reject)=> { 
 		axios({
 			method:'get',
-			url: 'teacher/report',
+			url: 'teacher/report/detail',
 			params: {
 					"token":rootState.login.token,
 					"subject_id":rootState.report.subjectId,
 					"chapter_id":rootState.route.params.chapterId,
-					"studentId":rootState.route.params.studentId
+					"student_id":rootState.route.params.studentId
 			}
 		})
 		.then((response) => {
@@ -54,6 +54,11 @@ export const setReportScoll = ({ commit },height) => {
 /**清除章节数据 */
 export const clearReport = ({ commit }) => {
 		commit(types.CLEAR_REPORT_CHAPTER);
+}
+
+/**清除详细数据 */
+export const clearReportDetail = ({ commit }) => {
+		commit(types.REPORT_DETAIL_CLEAR);
 }
 
 /**更换科目 */

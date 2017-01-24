@@ -1,7 +1,9 @@
 <template >
   <view-box v-ref:view-box class="reportDetail">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">知识图谱</x-header>
+      <x-header :left-options="{showBack: true}">知识图谱
+       <a slot="right" @click="_intoBan"><i class="icon iconfont icon-ban" style="font-size:22px"></i></a>
+      </x-header>
     </div>
 
     <div style="padding-top:46px;">
@@ -68,6 +70,9 @@ export default {
   },
   methods: {
     ...mapActions(['getReportDetail']),
+     _intoBan(){
+      history.go(-2);
+    },
     _onInfinite(){
       this.getReportDetail()
       .then(()=>{

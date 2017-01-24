@@ -12,7 +12,6 @@
 }
 
 
-
 .icon-comment:before { content: "\e60c"; }
 
 .icon-home:before { content: "\e612"; }
@@ -32,6 +31,8 @@
 .icon-book1:before { content: "\e607"; }
 
 .icon-icon:before { content: "\e614"; }
+
+.icon-bianji:before { content: "\e615"; }
 
 .icon-iconfontsousuo:before { content: "\e620"; }
 
@@ -93,3 +94,4 @@
 
 .icon-z-brush-copy:before { content: "\e90b"; }
 
+.icon-ban:before { content: "\e90c"; }

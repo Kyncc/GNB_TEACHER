@@ -1,5 +1,8 @@
 /** 获取详细成绩报告单数据*/
 export const REPORT_DETAIL = 'REPORT_DETAIL'
+/** 清除详细成绩报告单数据*/
+export const REPORT_DETAIL_CLEAR = 'REPORT_DETAIL_CLEAR'
+
 /**下拉框展现*/
 export const CHAPTER_STATE_CHANGE = 'CHAPTER_STATE_CHANGE'
 /**滚动条高度*/

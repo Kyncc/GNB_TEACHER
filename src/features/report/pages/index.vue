@@ -62,7 +62,7 @@ export default {
     _intoChapter(index){
       this.setReportScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
       this.clearReportDetail();
-      this.$router.go(`detail/${index}`);
+      this.$router.go(`../detail/${this.Params.studentId}/${index}`);
     },
     //切换科目
     _changeSubject(item){
@@ -90,7 +90,7 @@ export default {
     }
   },
 	computed:{
-    ...mapGetters(['reportChapter','reportSubjectId','Student','reportScoll','reportReset'])
+    ...mapGetters(['reportChapter','reportSubjectId','Student','reportScoll','reportReset','Params'])
 	}
 }
 </script>
