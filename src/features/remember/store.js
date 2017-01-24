@@ -10,7 +10,6 @@ const state = {
     chapterScroll:0,
     exercise:[],        //练习记错
     exerciseScroll:0,
-    example:[]         
 }
 
 const mutations = {

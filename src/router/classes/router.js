@@ -6,6 +6,9 @@ import report from '../../features/report/router'
 import pass from '../../features/pass/router'
 import Break from '../../features/break/router'
 
+import modules from './modules/store'
+import store from 'src/store'
+
 export default {
   'classes': {
     component: layout,
@@ -23,3 +26,8 @@ export default {
     }
   }
 }
+
+
+store.registerModule('classes', {
+  ...modules
+});

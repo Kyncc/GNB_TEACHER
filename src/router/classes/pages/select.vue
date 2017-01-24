@@ -50,13 +50,13 @@ export default {
     this.selectCode = this.classCode;
   },
   methods: {
-    ...mapActions(['getClassmate','resetClassmate','getStudentInfo','clearReport']),
+    ...mapActions(['getClassmate','resetClassmate','getStudentInfo','clearAll']),
     _into(id){
       this.getStudentInfo({
         id:id
       })
       .then(()=>{
-        this.clearReport();
+        this.clearAll();    //清除所有数据
         this.$router.go(`${this.pageType}/${this.classCode}/${id}`);
       })
     },

@@ -9,10 +9,3 @@ export const rememberPagerScroll = (state) => state.remember.pageScroll
 
 export const rememberExercise = (state) => state.remember.exercise
 export const rememberExerciseScroll = (state) => state.remember.exerciseScroll
-export const rememberExample = (state) => state.remember.example
-/** 获得练习册ID*/
-export const wookbookId = (state) => state.route.params.bookId
-/** 获得章节ID*/
-export const chapterId = (state) => state.route.params.chapterId
-/** 获得章节ID*/
-export const exampleId = (state) => state.route.params.id

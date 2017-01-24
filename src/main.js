@@ -57,16 +57,16 @@ router.map({
 
 sync(store, router)
 
-// router.beforeEach(function(transition) {
-//     if (transition.to.path == '/') {
-//         if(localStorage.token){
-//             router.replace('/main/index');
-//         }else{
-//             router.replace('/login');
-//         }
-//     }
-//     transition.next();
-// })
+router.beforeEach(function(transition) {
+  if (transition.to.path == '/') {
+    if(localStorage.token){
+        router.replace('/main/index');
+    }else{
+        router.replace('/login');
+    }
+  }
+  transition.next();
+})
 
 function plusReady(){
   let first = null;
