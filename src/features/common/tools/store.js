@@ -30,6 +30,9 @@ const getters = {
   ClassCode:(state,getters,rootState) => {
     return rootState.route.params.code
   },
+  Params:(state,getters,rootState) => {
+    return rootState.route.params
+  },
   User:(state,getters,rootState) => {
     return rootState.user
   },

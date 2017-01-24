@@ -6,7 +6,7 @@
 
     <div style="padding-top:46px;">
       <!--内容-->
-      <div v-for="detail in breakExample">
+      <div v-for="detail in Example">
         <div class="weui_panel weui_panel_access exerciseDetail" >
           <div class="weui_panel_hd">
             <p style="width:25%;color:#4bb7aa">题干</p>
@@ -66,67 +66,39 @@
 
 <script>
 import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
-import {getBreakExample,collectAdd,collectRemove} from '../actions/example'
-import {breakExample,breakSubjectId} from '../getters'
-import {token,id,path} from '../../../common/getters'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   components: {
     XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
   },
-  vuex: {
-    getters: {
-      token,breakExample,breakSubjectId,id,path
-    },
-    actions: {
-       getBreakExample,collectAdd,collectRemove
+  route: {
+    data:function(transition){
+      this.exampleClear();
+      this.$nextTick(() => {
+        this.$broadcast('$InfiniteLoading:reset');
+      });
     }
   },
   methods: {
+    ...mapActions(['getExample','exampleClear']),
     _onInfinite(){
-      this.getBreakExample({
-        options:{
-          ids:[this.id],
-          subject_id:this.breakSubjectId
-        },
-        token:this.token
-      },()=>{
-          if(this.breakExample.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+      this.getExample()
+      .then(()=>{
+          this.$broadcast('$InfiniteLoading:loaded');
           this.$broadcast('$InfiniteLoading:complete');
         }
       )
+      .catch((error)=>{
+         this.$broadcast('$InfiniteLoading:complete');
+      })
     },
     _correct(){
-      this.$router.go(`/correct/${this.breakSubjectId}/${this.id}`);
-    },
-    _collect(state){
-      let parma = {
-        options:{
-          id:this.id,
-          subject_id:this.breakSubjectId
-        },
-        token:this.token,
-        type:'example'
-      }
-      
-      if(state != 0){
-        //已收藏
-        this.collectRemove(parma);
-      }else{
-        //未收藏
-        this.collectAdd(parma);
-      }
+      this.$router.go(`/correct/${this.Params.subjectId}/${this.Params.id}`);
     }
   },
-  watch:{
-    path(){
-      if(this.path.indexOf('/bag/break/example/') >=0 ){
-        this.$nextTick(() => {
-          this.$broadcast('$InfiniteLoading:reset');
-        });
-      }
-    }
-  }
+	computed:{
+    ...mapGetters(['Example','Params'])
+	}
 }
 </script>

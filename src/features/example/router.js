@@ -1,13 +1,13 @@
-import correct from './pages/correct'
+import index from './pages/index'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
-  '/correct/:subjectId/:id': {
-    component: correct
+  '/example/:subjectId/:id': {
+    component: index
   }
 }
 
-store.registerModule('correct', {
+store.registerModule('example', {
   ...modules
 });

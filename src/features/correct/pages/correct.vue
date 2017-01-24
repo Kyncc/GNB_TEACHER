@@ -2,7 +2,7 @@
   <div class='errorCorrect  vux-scroller-header-box'>
     <div style="height:46px;">
       <x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错
-        <a slot="right" v-touch:tap="_commit">提交</a>
+        <a slot="right" @click="_commit">提交</a>
       </x-header>
     </div>
     <div>
@@ -40,7 +40,7 @@ export default {
     Checker, CheckerItem, XTextarea, Group,Flexbox,FlexboxItem
   },
   methods: {
-    ...mapActions(['correct']),
+    ...mapActions(['postCorrect']),
     _commit(){
       if(!this.type[0] && this.type[0]!='0'){
          _.toast("请选择纠错类型");
@@ -50,18 +50,16 @@ export default {
         _.toast("请填写纠错内容");
          return;
       }
-       let params = {
-        options:{
-          id:Number(this.id),
-          subject_id:this.subejectId
-        },
+      let params = {
         data:{
           content:this.content,
           type:this.type
-        },
-        token:this.token
+        }
       }
-      this.correct(params);
+      this.correct(params)
+      .then(()=>{
+        history.back();
+      });
     }
   },
   data(){
