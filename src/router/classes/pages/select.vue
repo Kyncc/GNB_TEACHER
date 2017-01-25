@@ -53,7 +53,6 @@ export default {
   methods: {
     ...mapActions(['getClassmate','resetClassmate','getStudentInfo','clearAll']),
     _edit(){
-        // console.log()
         this.$router.go(`manager/class/${this.classCode}`);
     },
     _into(id){

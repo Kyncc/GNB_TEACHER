@@ -7,7 +7,6 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.baseURL = 'http://www.guinaben.com:8070';
 // axios.defaults.baseURL = 'http://192.168.1.129:8383';
 
-
 //POST传参序列化
 axios.interceptors.request.use((config) => {
   if(config.method  === 'post'){
