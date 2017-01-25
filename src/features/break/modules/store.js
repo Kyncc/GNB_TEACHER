@@ -20,14 +20,14 @@ const state = {
 }
 
 const mutations = {
-  [types.BREAK](state, data) {
+  [types.BREAK](state, data){
     state.index.list = data.data;
     state.index.isReset = false;
   },
-  [types.BREAK_CHANGE_SUBJECT](state, id) {
+  [types.BREAK_CHANGE_SUBJECT](state, id){
     state.subjectId = id;
   },
-  [types.BREAK_CLEAR](state) {
+  [types.BREAK_CLEAR](state){
     state.index.list = [];
     state.index.scoll = 0;
     state.index.isReset = true;

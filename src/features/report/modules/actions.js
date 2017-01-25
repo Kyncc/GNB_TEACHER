@@ -35,7 +35,7 @@ export const getReportDetail = ({rootState,commit}, params) => {
 			}
 		})
 		.then((response) => {
-			commit(types.REPORT_CHAPTER,response.data.data)
+			commit(types.REPORT_DETAIL,response.data.data)
 			resolve(response);
 		})
 	});
