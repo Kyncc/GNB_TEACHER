@@ -62,36 +62,34 @@ export default {
         })
       }else{
         this.$nextTick(() => {
-          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passListScoll;
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.passListScroll;
         })
       }
     }
   },
   methods: {
-    ...mapActions(['getPassList','setPassListScoll']),
+    ...mapActions(['getPassList','setPassListScroll']),
     _intoBan(){
       history.go(-2);
     },
     _intoDetail(id){
-      this.setPassListScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+      this.setPassListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.passSubjectId}/${id}`);
     },
     _onInfinite(){
       this.getPassList()
       .then((res)=>{
         this.$broadcast('$InfiniteLoading:loaded');
-        this.$broadcast('$InfiniteLoading:complete');
-        console.log(res);
-        // let length = Number(res.data.data.detail.length);
-        // if(length  < 5){
-        //     this.$broadcast('$InfiniteLoading:complete');
-        //     return;
-        // }
+        let length = Number(res.data.data.list.length);
+        if(length  < 5){
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+        }
       })
     }
   },
   computed:{
-    ...mapGetters(['passList','passListIsReset','passSubjectId','passListScoll'])
+    ...mapGetters(['passList','passListIsReset','passSubjectId','passListScroll'])
   }
 }
 </script>

@@ -17,7 +17,7 @@
           {{{item.chapter_name}}}
         </div>
         <div class="weui_panel_bd">
-          <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
+          <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.excercise_id)">
             <div class="weui_media_bd">
               <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
               <p class="weui_media_desc">
@@ -61,36 +61,34 @@ export default {
         })
       }else{
         this.$nextTick(() => {
-          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakListScoll;
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.breakListScroll;
         })
       }
     }
   },
   methods: {
-    ...mapActions(['getBreakList','setBreakListScoll']),
+    ...mapActions(['getBreakList','setBreakListScroll']),
     _intoBan(){
       history.go(-2);
     },
     _intoDetail(id){
-      this.setBreakListScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+      this.setBreakListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.breakSubjectId}/${id}`);
     },
     _onInfinite(){
       this.getBreakList()
       .then((res)=>{
         this.$broadcast('$InfiniteLoading:loaded');
-        this.$broadcast('$InfiniteLoading:complete');
-        console.log(res);
-        // let length = Number(res.data.data.detail.length);
-        // if(length  < 5){
-        //     this.$broadcast('$InfiniteLoading:complete');
-        //     return;
-        // }
+        let length = Number(res.data.data.list.length);
+        if(length  < 5){
+            this.$broadcast('$InfiniteLoading:complete');
+            return;
+        }
       })
     }
   },
   computed:{
-    ...mapGetters(['breakList','breakListIsReset','breakSubjectId','breakListScoll'])
+    ...mapGetters(['breakList','breakListIsReset','breakSubjectId','breakListScroll'])
   }
 }
 </script>

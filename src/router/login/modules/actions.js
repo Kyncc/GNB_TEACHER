@@ -82,14 +82,13 @@ export const getForgetCode = ({ commit },params) => {
 export const resetPwd = ({ commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
-      method:'get',
-      url: 'pwd/resetByMobile',
-      params: {
+      method:'post',
+      url: 'teacher/pwd/resetByMobile',
+      data: {
        ...params
       }
     })
     .then((response) => {
-        commit(types.RESET_PASSWORD,response.data);
         _.toast(response.data.msg);
         resolve(response);
     })

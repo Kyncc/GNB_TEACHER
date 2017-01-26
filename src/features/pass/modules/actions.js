@@ -27,8 +27,8 @@ export const passChangeChapter = ({ commit },index) => {
 }
 
 /**浏览器高度 */
-export const setPassScoll = ({ commit },height) => {
-  commit(types.PASS_SCOLLER,height);
+export const setPassScroll = ({ commit },height) => {
+  commit(types.PASS_SCROLL,height);
 }
 
 /**清除刷题型数据 */
@@ -58,7 +58,7 @@ export const getPassList = ({ state,rootState,commit }, params) => {
       }
     })
     .then((response) => {
-      commit(types.PASS_LIST,response.data);
+      commit(types.PASS_LIST,response.data.data);
       resolve(response);
     })
   });
@@ -70,7 +70,7 @@ export const passListClear = ({ commit }) => {
 }
 
 /**设置列表高度 */
-export const setPassListScoll = ({ commit },height) => {
-  commit(types.PASS_LIST_SCOLLER,height);
+export const setPassListScroll = ({ commit },height) => {
+  commit(types.PASS_LIST_SCROLL,height);
 }
 

@@ -42,6 +42,11 @@ export default {
       delete:false
     }
   },
+  route: {
+    data:function(transition){
+        this.delete = false;
+    }  
+  },
   computed:{
     ...mapGetters(['classmate','ClassCode']),
     className(){

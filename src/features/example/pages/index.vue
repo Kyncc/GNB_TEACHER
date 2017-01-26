@@ -4,16 +4,16 @@
       <x-header :left-options="{showBack:true}">例题详情</x-header>
     </div>
 
-    <div style="padding-top:46px;">
+    <div style="padding-top:46px;" >
       <!--内容-->
       <div v-for="detail in Example">
         <div class="weui_panel weui_panel_access exerciseDetail" >
           <div class="weui_panel_hd">
             <p style="width:25%;color:#4bb7aa">题干</p>
-            <p style="width:50%;text-align:right;" v-touch:tap="_collect(detail.collectTime)">
+            <p style="width:50%;text-align:right;" @click="_collect(detail.collectTime)">
               <span style="color:#666"><i class="icon iconfont icon-collect"></i>{{( detail.collectTime == 0 ?  '收藏' :  '取消' )}}</span>
             </p>
-            <p style="width:25%;text-align:right" v-touch:tap="_correct"> 
+            <p style="width:25%;text-align:right" @click="_correct"> 
               <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
             </p>
           </div>

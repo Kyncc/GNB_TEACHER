@@ -30,14 +30,14 @@
 </template>
 
 <script>
-import {XHeader,XButton,Checker, Flexbox,FlexboxItem,CheckerItem,Group,XTextarea} from 'vux'
+import {XHeader,XButton,Checker,CheckerItem,Group,XTextarea} from 'vux'
 import { mapActions,mapGetters  } from 'vuex'
 import * as _ from 'config/whole'
 
 export default {
   components: {
     XHeader,XButton,
-    Checker, CheckerItem, XTextarea, Group,Flexbox,FlexboxItem
+    Checker, CheckerItem, XTextarea, Group
   },
   methods: {
     ...mapActions(['postCorrect']),
@@ -58,6 +58,8 @@ export default {
       }
       this.correct(params)
       .then(()=>{
+        this.content = '';
+        this.type = [];
         history.back();
       });
     }
@@ -74,9 +76,6 @@ export default {
      },
      subejectId(){
        return this.$store.state.route.params.subjectId
-     },
-     token(){
-       return this.$store.state.token
      }
   }
 }

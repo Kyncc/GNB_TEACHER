@@ -42,7 +42,7 @@ export default {
         })
       }else{
         this.$nextTick(() => {
-          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScoll;
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScroll;
         })
       }
     }
@@ -57,9 +57,10 @@ export default {
     }
   },
   methods: {
-     ...mapActions(['getPass','passChangeChapter','setPassScoll','setPassSubject','clearPass']),
+     ...mapActions(['getPass','passChangeChapter','setPassScroll','setPassSubject','clearPass','passListClear']),
      _toDetail(chapterId){
-      this.setPassScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.setPassScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.passListClear();
       this.$router.go(`../list/${this.Params.studentId}/${chapterId}`);
     },
     _changeSub(){
@@ -73,7 +74,8 @@ export default {
       this.$broadcast('$InfiniteLoading:reset');
     },
     _openChapter(index){
-      this.setPassScoll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.setPassScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+
       this.passChangeChapter(index);
     },
     _onInfinite(){
@@ -96,7 +98,7 @@ export default {
     }
   },
 	computed:{
-    ...mapGetters(['passScoll','passChapter','Student','passSubjectId','passIsReset','Params'])
+    ...mapGetters(['passScroll','passChapter','Student','passSubjectId','passIsReset','Params'])
 	},
   watch: {
     textbookId(){

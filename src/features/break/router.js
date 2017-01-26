@@ -18,7 +18,6 @@ export default {
 	}
 }
 
-
 store.registerModule('break', {
   ...modules
 });

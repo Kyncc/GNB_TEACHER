@@ -56,8 +56,8 @@ export default {
   methods:{
     ...mapActions(['getForgetCode']),
     _next(){
-       if(this.forgetMessageCode == this.code){
-          this.$router.replace('forget/password');
+       if(this.forgetCode == this.code){
+          this.$router.replace('resetPassword');
        }else{
          this.code = '';
          _.toast('错误的验证码');
@@ -87,7 +87,7 @@ export default {
     }
   },
   computed: {
-     ...mapGetters(['forgetMessageCode','forgetMobile']),
+     ...mapGetters(['forgetCode','forgetMobile']),
      disableMobile(){
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },

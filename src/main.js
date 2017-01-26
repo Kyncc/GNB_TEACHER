@@ -70,24 +70,30 @@ router.beforeEach(function(transition) {
 
 function plusReady(){
   let first = null;
-  plus.key.addEventListener("backbutton",function(){
-    if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
-      if (!first) {
-        first = new Date().getTime();
-        _.toast('再按一次退出')
-        setTimeout(function() {
-          first = null;
-        }, 1000);
-      } else {
-        if (new Date().getTime() - first < 1000) {
-          plus.runtime.quit();
+  setTimeout(function(){
+    try{
+      plus.key.addEventListener("backbutton",function(){
+        if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
+          if (!first) {
+            first = new Date().getTime();
+            _.toast('再按一次退出')
+            setTimeout(function() {
+              first = null;
+            }, 1000);
+          } else {
+            if (new Date().getTime() - first < 1000) {
+              plus.runtime.quit();
+            }
+          }
+        }else{
+          window.history.back();
         }
-      }
-    }else{
-      window.history.back();
+      });
     }
-  });
-  
+    catch(e){
+        
+    }
+  },2000);
 }
 
 if(window.plus){

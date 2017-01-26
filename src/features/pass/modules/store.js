@@ -5,7 +5,7 @@ import * as actions from './actions'
 const state = {
   index: {
     list: [],
-    scoll: 0,
+    scroll: 0,
     isReset:false,
   },
   list: {
@@ -13,7 +13,7 @@ const state = {
     count:0,
     isReset:false,
     chapterName:'',
-    scoll:0,
+    scroll:0,
     offset:''
   },
   subjectId: '2'
@@ -29,33 +29,33 @@ const mutations = {
   },
   [types.PASS_CLEAR](state) {
     state.index.list = [];
-    state.index.scoll = 0;
+    state.index.scroll = 0;
     state.index.isReset = true;
   },
-  [types.PASS_SCOLLER](state, height) {
-    state.index.scoll = height;
+  [types.PASS_SCROLL](state, height) {
+    state.index.scroll = height;
   },
   [types.PASS_STATE_CHANGE](state, index) {
     state.index.list[index].checked = !state.index.list[index].checked
   },
   [types.PASS_LIST](state, data) {
-    if(data.data.length == 0){return;}
-    state.list.chapterName = data.data.chapterName;
+    if(data.length == 0){return;}
+    state.list.chapterName = data.chapterName;
     state.list.isReset = false;
-    state.list.count = data.data.recordSize;
-    state.list.offset = data.data.offset;
-    state.list.list = state.list.list.concat(data.data.detail);
+    state.list.count = data.recordSize;
+    state.list.offset = data.offset;
+    state.list.list = state.list.list.concat(data.list);
   },
   [types.PASS_LIST_CLEAR](state) {
     state.list.isReset = true;
     state.list.list = [];
     state.list.count = 0;
     state.list.chapterName = '',
-    state.list.scoll = 0;
+    state.list.scroll = 0;
     state.list.offset = '';
   },
-  [types.PASS_LIST_SCOLLER](state, height) {
-    state.list.scoll = height;
+  [types.PASS_LIST_SCROLL](state, height) {
+    state.list.scroll = height;
   }
 }
 

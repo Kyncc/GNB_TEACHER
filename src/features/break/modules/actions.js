@@ -27,7 +27,7 @@ export const breakChangeChapter = ({ commit },index) => {
 }
 
 /**浏览器高度 */
-export const setBreakScoll = ({ commit },height) => {
+export const setBreakScroll = ({ commit },height) => {
   commit(types.BREAK_SCOLLER,height);
 }
 
@@ -58,7 +58,7 @@ export const getBreakList = ({ state,rootState,commit }, params) => {
       }
     })
     .then((response) => {
-      commit(types.BREAK_LIST,response.data);
+      commit(types.BREAK_LIST,response.data.data);
       resolve(response);
     })
   });
@@ -70,7 +70,7 @@ export const breakListClear = ({ commit }) => {
 }
 
 /**设置列表高度 */
-export const setBreakListScoll = ({ commit },height) => {
+export const setBreakListScroll = ({ commit },height) => {
   commit(types.BREAK_LIST_SCOLLER,height);
 }
 
