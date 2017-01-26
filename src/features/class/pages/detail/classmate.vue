@@ -68,7 +68,7 @@ export default {
     },
     onAction(type) {
       if(type=='确认'){
-        this.delStudent({
+        this.delClassmate({
           "studentId":this.delId,
           "classCode":this.ClassCode,
         })

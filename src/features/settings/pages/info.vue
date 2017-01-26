@@ -43,8 +43,18 @@ export default {
   data() {
     return {
       edit: '编辑',
-      show: false
+      show: false,
+      name:"",
+      school:'',
+      sex:'',
+      subjectId:""
     }
+  },
+  created(){
+     this.name = this.User.name,
+     this.school = this.User.school,
+     this.sex = this.User.sex,
+     this.subjectId = this.User.subjectId
   },
   methods: {
     ...mapActions(['getUserInfo','setUserInfo']),
@@ -88,19 +98,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['User']),
-    name(){
-      return this.User.name;
-    },
-    school(){
-      return this.User.school;
-    },
-    sex(){
-      return this.User.sex;
-    },
-    subjectId(){
-      return this.User.subjectId;
-    }
+    ...mapGetters(['User'])
   }
 }
 </script>

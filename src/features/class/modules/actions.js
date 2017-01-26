@@ -85,14 +85,14 @@ export const getClass = ({ rootState,commit }, params) => {
 }
 
 /** 获取申请列表*/
-export const getApplyList = ({ rootState,commit }, params) => {
+export const getApplyList = ({ rootState,commit }) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
       url: 'teacher/class/applyList',
       params: {
         "token":rootState.login.token,
-        "classCode":params.classCode
+        "classCode":rootState.route.params.code
       }
     })
     .then((response) => {
@@ -117,6 +117,7 @@ export const updateApplyList = ({ rootState,commit }, params) => {
     })
     .then((response) => {
         commit(types.RESET_APPLY );  //重置申请列表
+        commit(types.RESET_CLASS_LIST);   //刷新班级列表
         commit(types.RESET_CLASSMATE);   //重置同学列表
         resolve(response);
     })
@@ -161,6 +162,7 @@ export const delClassmate = ({ rootState,commit }, params) => {
     })
     .then((response) => {
         commit(types.RESET_CLASSMATE);
+        commit(types.RESET_CLASS_LIST);
         resolve(response);
     })
   });

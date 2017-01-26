@@ -48,6 +48,7 @@ export default {
   route: {
     data:function(transition){
       this.clearMessage();
+      this.getInteract();
     }
   },
   methods: {
@@ -79,7 +80,7 @@ export default {
 	},
   ready(){
     let self = this
-    this.getInteract();
+    // this.getInteract();
     var jroll = new JRoll("#wrapper");
     jroll.pulldown({
       refresh: function(complete) {

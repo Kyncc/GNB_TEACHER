@@ -45,24 +45,21 @@ export default {
 	methods:{
 		...mapActions(['getApplyList','updateApplyList']),
 		 _onInfinite(){
-       this.getApplyList({
-          "code":this.ClassCode
-       })
+       this.getApplyList()
       .then(()=>{
         if(this.classApply.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       })
     },
 		_apply(status,classCode,studentId){
-			// this.replyApply({
-			// 	classCode: classCode,
-			// 	status: status,
-			// 	studentId: studentId,
-			// },()=>{
-			// 	this.applyList({
-			// 		classCode: this.id,
-			// 	})
-			// })
+			this.updateApplyList({
+				classCode: classCode,
+				status: status,
+				studentId: studentId,
+			})
+			.then(()=>{
+				this.getApplyList()
+			})
 		}
 	},
 	computed:{
