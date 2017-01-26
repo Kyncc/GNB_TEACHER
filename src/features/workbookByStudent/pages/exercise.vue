@@ -1,5 +1,5 @@
 <template >
-  <view-box v-ref:view-box class="workbookClassExercise">
+  <view-box v-ref:view-box class="workbookStuExercise">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">章节练习</x-header>
     </div>
@@ -65,7 +65,7 @@ export default {
   },
   route: {
     data:function(transition){
-      if(this.workbookClassExercise.isReset){
+      if(this.workbookStuExercise.isReset){
         this.$nextTick(() => {
           this.$broadcast('$InfiniteLoading:reset');
         })
@@ -73,7 +73,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getWorkbookClassExercise']),
+    ...mapActions(['getWorkbookStuExercise']),
     /**获取答案*/
     _getAnswerList(){
       this.answerListId = [];
@@ -102,7 +102,7 @@ export default {
       }
     },
     _onInfinite(){
-      this.getWorkbookClassExercise()
+      this.getWorkbookStuExercise()
       .then(()=>{
         this.$broadcast('$InfiniteLoading:loaded');
         this.$broadcast('$InfiniteLoading:complete');
@@ -125,9 +125,9 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['workbookClassExercise']),
+    ...mapGetters(['workbookStuExercise']),
     Exercise(){
-      return workbookClassExercise.list;
+      return this.workbookStuExercise.list;
     }
 	}
 }

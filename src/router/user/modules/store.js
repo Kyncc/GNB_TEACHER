@@ -9,7 +9,8 @@ const state = {
   school:'',
   sex:'', 
   subjectId:'',
-  mobile:''
+  mobile:'',
+  subjectType:[]
 }
 
 const mutations = {
@@ -21,6 +22,7 @@ const mutations = {
     state.school = data.data.school;
     state.sex = data.data.sex;
     state.subjectId = data.data.subjectId;
+    state.subjectType = data.data.subjectType;
   }
 }
 

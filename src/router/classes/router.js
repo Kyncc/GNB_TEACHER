@@ -5,7 +5,7 @@ import myClasses from '../../features/class/router'
 import report from '../../features/report/router'
 import pass from '../../features/pass/router'
 import Break from '../../features/break/router'
-
+import workbookByStudent from '../../features/workbookByStudent/router'
 import modules from './modules/store'
 import store from 'src/store'
 
@@ -23,6 +23,7 @@ export default {
       ...report,
       ...pass,
       ...Break,
+      ...workbookByStudent
     }
   }
 }

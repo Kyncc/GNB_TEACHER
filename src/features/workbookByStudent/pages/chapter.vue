@@ -1,5 +1,5 @@
 <template >
-  <view-box v-ref:view-box class="workbookClassSelect">
+  <view-box v-ref:view-box class="workbookStuSelect">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">章节选择
         <a slot="right" @click="_changeType()" class="changeSub">
@@ -60,38 +60,38 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['workbookClassChapter','Params']),
+    ...mapGetters(['workbookStuChapter','Params']),
     Chapter(){
-      return this.workbookClassChapter.list;
+      return this.workbookStuChapter.list;
     }
 	},
   route: {
     data:function(transition){
-      if(this.workbookClassChapter.isReset){
+      if(this.workbookStuChapter.isReset){
         this.$nextTick(() => {
           this.$broadcast('$InfiniteLoading:reset');
         })
       }else{
         this.$nextTick(()=>{
-          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.workbookClassChapter.scroll;
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.workbookStuChapter.scroll;
         });
       }
     }
   },
   methods:{
-    ...mapActions(['getWorkbookClassChapter','setWorkbookClassChapterScroll','workbookClassExerciseClear']),
+    ...mapActions(['getWorkbookStuChapter','setWorkbookStuChapterScroll','workbookStuExerciseClear']),
     _intoPage(){
       this.visible = false;
-      this.$router.replace(`../../page/${this.Params.code}/${this.Params.workbookId}`);
+      this.$router.replace(`../../page/${this.Params.studentId}/${this.Params.workbookId}`);
     },
     _changeType(){
       this.visible = true;
     },
     _isLink(item){
       if(item.isLink == 'true'){
-        this.workbookClassExerciseClear();//进去前清空数据
-        this.setWorkbookClassChapterScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
-        this.$router.go(`../../exercise/${this.Params.code}/${item.id}`);
+        this.workbookStuExerciseClear();//进去前清空数据
+        this.setWorkbookStuChapterScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
+        this.$router.go(`../../exercise/${this.Params.studentId}/${item.id}`);
       }
       return;
     },
@@ -102,7 +102,7 @@ export default {
       return (item.isLink == 'true' ? '✐  '+item.name:'♢  '+item.name);
     },
     _onInfinite(){
-      this.getWorkbookClassChapter()
+      this.getWorkbookStuChapter()
       .then(()=>{
         this.$broadcast('$InfiniteLoading:loaded');
         this.$broadcast('$InfiniteLoading:complete');

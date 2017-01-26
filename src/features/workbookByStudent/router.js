@@ -7,19 +7,19 @@ import modules from './modules/store'
 import store from 'src/store'
 
 export default {
-  'workbookByClass': {
+  'workbookByStu': {
     component: layout,
     subRoutes: {
-      '/': {
+      '/:code/:studentId': {
         component: index
       },
-      'chapter/:code/:workbookId': {
+      'chapter/:studentId/:workbookId': {
         component: chapter
       },
-      'page/:code/:workbookId': {
+      'page/:studentId/:workbookId': {
         component: page
       },
-      'exercise/:code/:chapterId': {
+      'exercise/:studentId/:chapterId': {
         component: exercise
       }
     }
@@ -27,6 +27,6 @@ export default {
 }
 
 
-store.registerModule('rememberClass', {
+store.registerModule('rememberStudent', {
   ...modules
 });

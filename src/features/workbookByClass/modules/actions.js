@@ -33,7 +33,8 @@ export const workbookSetSubject = ({ commit },id) => {
 
 
 /**获取练习册数据 */
-export const getWorkbookClassPage = ({state,rootState,commit}) => {
+export const getWorkbookClassPage = ({rootState,commit}) => {
+  
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -55,7 +56,7 @@ export const workbookClassPageClear = ({ commit }) => {
   commit(types.WORKBOOK_CLASS_PAGE_CLEAR);
 }
 /**页码高度设置 */
-export const workbookClassPageScoll = ({ commit },height) => {
+export const setWorkbookClassPageScroll = ({ commit },height) => {
   commit(types.WORKBOOK_CLASS_PAGE_SCROLL,height);
 }
 
@@ -83,7 +84,7 @@ export const workbookClassChapterClear = ({ commit }) => {
   commit(types.WORKBOOK_CLASS_CHAPTER_CLEAR);
 }
 /**章节高度设置 */
-export const setWorkbookClassChapterScoll = ({ commit },height) => {
+export const setWorkbookClassChapterScroll = ({ commit },height) => {
   commit(types.WORKBOOK_CLASS_CHAPTER_SCROLL,height);
 }
 

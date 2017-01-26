@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view keep-alive></router-view>
-    <loading :show="isLoading" text="请稍候"  position="absolute"></loading>
+    <loading :show="isLoading" text="请稍候" position="absolute"></loading>
     <toast :show="show" type="text" :text="msg" :time="1000"></toast>
   </div>
 </template>
