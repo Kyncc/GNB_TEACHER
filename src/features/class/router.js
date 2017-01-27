@@ -3,6 +3,7 @@ import index from './pages/index'
 import create from './pages/create'
 import classes from './pages/detail/class'
 import invite from './pages/detail/invite'
+import update from './pages/detail/update'
 import classmate from './pages/detail/classmate'
 import apply from './pages/detail/apply'
 import modules from './modules/store'
@@ -23,6 +24,9 @@ export default {
       },
       'class/invite/:code':{
         component: invite
+      },
+      'class/update/:code':{
+        component: update
       },
       'class/apply/:code':{
         component: apply

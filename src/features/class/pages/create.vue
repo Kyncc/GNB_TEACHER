@@ -31,19 +31,12 @@ export default {
 					name: this.name,
 				})
 				.then(() => {
+					this.name = ""
 					history.back();
 				})
 			} else {
 				_.toast('请填写班级名称')
 			}
-		}
-	},
-	computed:{
-    ...mapGetters(['path'])
-	},
-	watch:{
-		path(){
-				(this.path.indexOf("/manager/create") >= 0 ? this.name = "" : '' );
 		}
 	}
 }

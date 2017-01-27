@@ -3,7 +3,7 @@ import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
 /**获取例题信息 */
-export const getExample = ({ rootState,commit },params) => {
+export const getExample = ({ rootState,commit }) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -13,6 +13,7 @@ export const getExample = ({ rootState,commit },params) => {
           "ids":[rootState.route.params.id],
           "subject_id":rootState.route.params.subjectId,
         },
+        "studentId":rootState.route.params.studentId,
         "token":rootState.login.token,
       }
     })

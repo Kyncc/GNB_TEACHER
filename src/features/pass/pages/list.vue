@@ -74,7 +74,7 @@ export default {
     },
     _intoDetail(id){
       this.setPassListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
-      this.$router.go(`/example/${this.passSubjectId}/${id}`);
+      this.$router.go(`/example/${this.Params.studentId}/${this.passSubjectId}/${id}`);
     },
     _onInfinite(){
       this.getPassList()
@@ -89,7 +89,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['passList','passListIsReset','passSubjectId','passListScroll'])
+    ...mapGetters(['passList','passListIsReset','passSubjectId','passListScroll','Params'])
   }
 }
 </script>

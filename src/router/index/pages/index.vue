@@ -9,7 +9,7 @@
         <a class="brush" v-link="{ path: 'classes/select?type=workbookByStu'}"></a>
       </div>
       <div>
-        <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">学生作业</x-button>
+        <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">班级统计</x-button>
       </div>
     </div>
   </view-box>
@@ -18,7 +18,6 @@
 <script>
 import { XHeader,ViewBox,XButton} from 'vux'
 import './index.less'
-
 export default {
   components: {
     XHeader,ViewBox,XButton

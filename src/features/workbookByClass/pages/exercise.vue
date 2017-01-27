@@ -13,10 +13,7 @@
               <group v-for="itemB in item.b" :title="itemB.name">
                 <cell v-for="itemC in itemB.c" :title="itemC.name">
                   <p slot="value">
-                    <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index,1)">
-                      <i v-if="itemC.answer" class="icon iconfont exampleIcon icon-correct"></i>
-                      <i v-else class="icon iconfont icon-error exampleIcon"></i>
-                    </section>
+                      错{{itemC.number}}人
                     <!--<x-button mini plain type="primary" @click="_intoExample(itemC.eid)">例题</x-button>-->
                   </p>
                 </cell>
@@ -27,10 +24,7 @@
               <group :title="item.name">
                 <cell v-for="itemB in item.b" :title="itemB.name">
                   <div slot="value">
-                    <section style="display:inline-block;" @click="_changeAnswer($parent.$index,$index,2)">
-                      <i v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct"></i>
-                      <i v-else class="icon iconfont icon-error exampleIcon"></i>
-                    </section>
+                   错{{itemB.number}}人
                     <!--<x-button mini plain type="primary" @click="_intoExample(itemB.eid)">例题</x-button>-->
                   </div>
                 </cell>
@@ -127,7 +121,7 @@ export default {
   computed:{
     ...mapGetters(['workbookClassExercise']),
     Exercise(){
-      return workbookClassExercise.list;
+      return this.workbookClassExercise.list;
     }
 	}
 }

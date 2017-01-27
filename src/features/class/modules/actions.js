@@ -3,7 +3,7 @@ import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
 /** 新增班级*/
-export const addClass = ({ rootState,commit }, params) => {
+export const addClass = ({ rootState,commit,dispatch }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
@@ -14,7 +14,8 @@ export const addClass = ({ rootState,commit }, params) => {
       }
     })
     .then((response) => {
-        commit(types.RESET_CLASS_LIST);
+         dispatch('resetClassmate');      //更新数据
+         dispatch('getUserInfo');         //更新角色信息
          _.toast('创建班级成功');
         resolve(response);
     })
@@ -22,7 +23,7 @@ export const addClass = ({ rootState,commit }, params) => {
 }
 
 /**删除班级 */
-export const delClass= ({ rootState,commit }, params) => {
+export const delClass= ({ rootState,commit,dispatch }, params) => {
     _.busy();
    return new Promise((resolve, reject)=> { 
       axios({
@@ -35,7 +36,8 @@ export const delClass= ({ rootState,commit }, params) => {
       })
       .then((response) => {
            _.leave();
-          commit(types.RESET_CLASS_LIST);
+          dispatch('resetClassmate');
+          dispatch('getUserInfo');         //更新角色信息 
           resolve(response);
       })
       .catch((error) => {
@@ -45,7 +47,7 @@ export const delClass= ({ rootState,commit }, params) => {
 }
 
 /** 更改班级*/
-export const updateClass = ({ rootState,commit }, params) => {
+export const updateClass = ({ rootState,commit,dispatch }, params) => {
   _.busy();
   return new Promise((resolve, reject)=> { 
     axios({
@@ -53,12 +55,14 @@ export const updateClass = ({ rootState,commit }, params) => {
       url: 'teacher/class/updateClass',
       data: {
         "token":rootState.login.token,
+        "classCode":rootState.route.params.code,
         "name":params.name
       }
     })
     .then((response) => {
         _.leave();
-        commit(types.RESET_CLASS_LIST);
+        dispatch('resetClassmate');
+        dispatch('getUserInfo');         //更新角色信息  
         resolve(response);
     })
     .catch((error) => {
@@ -103,7 +107,7 @@ export const getApplyList = ({ rootState,commit }) => {
 }
 
 /** 操作申请列表*/
-export const updateApplyList = ({ rootState,commit }, params) => {
+export const updateApplyList = ({ rootState,commit,dispatch }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
@@ -116,9 +120,7 @@ export const updateApplyList = ({ rootState,commit }, params) => {
       }
     })
     .then((response) => {
-        commit(types.RESET_APPLY );  //重置申请列表
-        commit(types.RESET_CLASS_LIST);   //刷新班级列表
-        commit(types.RESET_CLASSMATE);   //重置同学列表
+        dispatch('resetClassmate');        //重置申请列表
         resolve(response);
     })
   });
@@ -126,7 +128,8 @@ export const updateApplyList = ({ rootState,commit }, params) => {
 
 /**清空数据 */
 export const resetClassmate = ({ commit }, params) => {
-    commit(types.RESET_APPLY );  //重置申请列表
+    commit(types.RESET_APPLY);       //重置申请列表
+    commit(types.RESET_CLASS_LIST);  //重置申请列表
     commit(types.RESET_CLASSMATE);   //重置同学列表
 }
 
@@ -138,7 +141,7 @@ export const getClassmate = ({ rootState,commit },params) => {
       url: 'teacher/class/myClassmateList',
       params: {
         "token":rootState.login.token,
-        "classCode":params.code
+        "classCode":(rootState.route.params.code ? rootState.route.params.code : params.code)
       }
     })
     .then((response) => {
@@ -149,7 +152,7 @@ export const getClassmate = ({ rootState,commit },params) => {
 }
 
 /** 删除同学*/
-export const delClassmate = ({ rootState,commit }, params) => {
+export const delClassmate = ({ rootState,commit,dispatch }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
@@ -161,8 +164,7 @@ export const delClassmate = ({ rootState,commit }, params) => {
       }
     })
     .then((response) => {
-        commit(types.RESET_CLASSMATE);
-        commit(types.RESET_CLASS_LIST);
+        dispatch('resetClassmate'); 
         resolve(response);
     })
   });

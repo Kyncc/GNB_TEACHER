@@ -1,8 +1,8 @@
 <template>
 	<div class='createClass'>
 		<x-header :left-options="{showBack: true}">
-			创建班级
-			<a slot="right" @click="_complete">创建</a>
+			班级编辑
+			<a slot="right" @click="_complete">完成</a>
 		</x-header>
 
 		<group>
@@ -23,11 +23,16 @@ export default {
 			name: '',
 		}
 	},
+	route: {
+    data:function(transition){
+			this.name = this.classmate.name;
+    }
+  },
 	methods: {
-		...mapActions(['addClass']),
+		...mapActions(['updateClass']),
 		_complete() {
 			if (this.name){
-				this.addClass({
+				this.updateClass({
 					name: this.name,
 				})
 				.then(() => {
@@ -39,12 +44,7 @@ export default {
 		}
 	},
 	computed:{
-    ...mapGetters(['path'])
-	},
-	watch:{
-		path(){
-				(this.path.indexOf("/manager/create") >= 0 ? this.name = "" : '' );
-		}
+    ...mapGetters(['classmate'])
 	}
 }
 </script>

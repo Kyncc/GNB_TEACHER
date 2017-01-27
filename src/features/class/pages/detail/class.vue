@@ -5,11 +5,11 @@
     </div>
     <div style="padding-top:46px;">
       <group>
-        <!--<cell title="编辑班级" :link="{ path: 'update/'+ ClassCode}"></cell>-->
-        <cell title="申请通知" :link="{ path: 'apply/'+ ClassCode}"></cell>
-        <cell title="班级成员" :link="{ path: 'classmate/'+ClassCode}">
+        <cell title="成员管理" :link="{ path: 'classmate/'+ClassCode}">
           <span>{{classmateCount}}人</span>
         </cell>
+        <cell title="编辑班级" :link="{ path: 'update/'+ ClassCode}"></cell>
+        <cell title="申请通知" :link="{ path: 'apply/'+ ClassCode}"></cell>
         <cell title="邀请学生" :link="{ path: 'invite/'+ ClassCode}"></cell>
         <cell title="删除班级" @click="_delete()"></cell>
       </group>
@@ -55,15 +55,9 @@ export default {
     },
     _getData(){
        _.busy();
-      this.getClassmate({
-        "code":this.ClassCode
-      })
-      .then(()=>{
-        _.leave();
-      })
-      .catch((error)=>{
-        _.leave();
-      });
+      this.getClassmate()
+      .then(()=>{_.leave();})
+      .catch((error)=>{ _.leave();});
     }
   },
   computed:{

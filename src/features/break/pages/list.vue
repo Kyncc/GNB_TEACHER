@@ -73,7 +73,7 @@ export default {
     },
     _intoDetail(id){
       this.setBreakListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
-      this.$router.go(`/example/${this.breakSubjectId}/${id}`);
+      this.$router.go(`/example/${this.Params.studentId}/${this.breakSubjectId}/${id}`);
     },
     _onInfinite(){
       this.getBreakList()
@@ -88,7 +88,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['breakList','breakListIsReset','breakSubjectId','breakListScroll'])
+    ...mapGetters(['breakList','breakListIsReset','breakSubjectId','breakListScroll','Params'])
   }
 }
 </script>
