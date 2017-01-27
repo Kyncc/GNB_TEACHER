@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import 'babel-polyfill'
 import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
@@ -68,38 +69,38 @@ router.beforeEach(function(transition) {
   transition.next();
 })
 
-function plusReady(){
-  let first = null;
-  setTimeout(function(){
-    try{
-      plus.key.addEventListener("backbutton",function(){
-        if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
-          if (!first) {
-            first = new Date().getTime();
-            _.toast('再按一次退出')
-            setTimeout(function() {
-              first = null;
-            }, 1000);
-          } else {
-            if (new Date().getTime() - first < 1000) {
-              plus.runtime.quit();
-            }
-          }
-        }else{
-          window.history.back();
-        }
-      });
-    }
-    catch(e){
+// function plusReady(){
+//   let first = null;
+//   setTimeout(function(){
+//     try{
+//       plus.key.addEventListener("backbutton",function(){
+//         if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
+//           if (!first) {
+//             first = new Date().getTime();
+//             _.toast('再按一次退出')
+//             setTimeout(function() {
+//               first = null;
+//             }, 1000);
+//           } else {
+//             if (new Date().getTime() - first < 1000) {
+//               plus.runtime.quit();
+//             }
+//           }
+//         }else{
+//           window.history.back();
+//         }
+//       });
+//     }
+//     catch(e){
         
-    }
-  },2000);
-}
+//     }
+//   },2000);
+// }
 
-if(window.plus){
-  plusReady();
-}else{
-  document.addEventListener("plusready",plusReady,false);
-}
+// if(window.plus){
+//   plusReady();
+// }else{
+//   document.addEventListener("plusready",plusReady,false);
+// }
 
 router.start(App, '#App')
