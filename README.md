@@ -55,27 +55,31 @@
 ├── build       # webpack编译配置
 ├── config      # webpack配置
 ├── distT       # 打包后文件（此目录放在HBuilder中）
-├── App.vue     # 入口页面
+├── app.vue     # 入口页面
 ├── main.js     # 入口JS
-├── store.js    # Store
+├── store.js    # store
 ├── index.html  # html模版
+├── components  # 公用的组件
 ├── src         # 开发目录
-├── router      # 大模块
-    ├── classes     # 班级
-    ├── index       # 首页
-    ├── login       # 注册、登陆
-    ├── interact    # 互动
-    ├── user        # 个人中心
-├── features    # 功能模块
-    ├── camera      # 拍错题模块
-    ├── remember    # 记错题模块
-    ├── message     # 消息模块
-    ├── report      # 成绩报告单模块
-    ├── brush       # 题型汇总模块
-    ├── error       # 题型归纳
-    ├── break       # 斩题列表
-    ├── pass        # 弃题列表
-    ├── settings    # 设置
+    ├── router      # 大模块
+        ├── classes     # 班级
+        ├── index       # 首页
+        ├── login       # 注册、登陆
+        ├── interact    # 互动
+        ├── user        # 个人中心
+    ├── features    # 功能模块
+        ├── common      # 全局功能函数（HTTP,弹窗等）
+        ├── camera      # 拍错题模块
+        ├── remember    # 记错题模块
+        ├── message     # 消息模块
+        ├── report      # 成绩报告单模块
+        ├── brush       # 题型汇总模块
+        ├── error       # 题型归纳
+        ├── break       # 斩题列表
+        ├── pass        # 弃题列表
+        ├── settings    # 设置
+        ├── workbookByClass    # 作业统计
+        ├── workbookByStudent  # 个人作业
 ```
 
 ### 安装
