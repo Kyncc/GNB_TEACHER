@@ -133,6 +133,12 @@ export const resetClassmate = ({ commit }, params) => {
     commit(types.RESET_CLASSMATE);   //重置同学列表
 }
 
+/**清空数据 */
+export const resetClassApply = ({ commit }, params) => {
+    commit(types.RESET_APPLY);       //重置申请列表
+}
+
+
 /** 获取同学列表*/
 export const getClassmate = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 

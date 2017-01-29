@@ -61,14 +61,14 @@
 ├── index.html  # html模版
 ├── components  # 公用的组件
 ├── src         # 开发目录
-    ├── router      # 大模块
+    ├── router      # 主体模块
         ├── classes     # 班级
         ├── index       # 首页
         ├── login       # 注册、登陆
         ├── interact    # 互动
         ├── user        # 个人中心
     ├── features    # 功能模块
-        ├── common      # 全局功能函数（HTTP,弹窗等）
+        ├── common      # 全局功能函数（HTTP配置,弹窗等）
         ├── camera      # 拍错题模块
         ├── remember    # 记错题模块
         ├── message     # 消息模块

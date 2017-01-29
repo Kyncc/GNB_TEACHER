@@ -5,7 +5,7 @@ import * as actions from './actions'
 const state = {
   classList: {
 		reset:false,
-		list:[]
+		list:[],
   },
 	student:{
 		grade:'',
@@ -18,7 +18,8 @@ const state = {
   class:{
 		classmate:{
 			reset:false,
-			list:[]
+			list:[],
+			applyState:false
 		},
 		applyList:{
 			reset:false,
@@ -40,13 +41,15 @@ const mutations = {
 	},
 	[types.CLASSMATE](state,data) {
 		state.class.name = data.classname;
-		state.class.code = data.classCode;
+		state.class.code = data.classcode;
+		state.class.classmate.applyState = data.applyState;
 		state.class.classmate.list = data.classmates;
 		state.class.classmate.reset = false;
 	},
 	[types.RESET_CLASSMATE](state) {
 		state.class.name = '';
 		state.class.code = '';
+		state.class.classmate.applyState = false;
 		state.class.classmate.list = []
 		state.class.classmate.reset = true;
 	},

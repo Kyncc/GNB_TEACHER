@@ -1,9 +1,11 @@
 <template>
 	<view-box v-ref:view-box class='myClassApply'>
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-			<x-header :left-options="{showBack: true}">{{className}}</x-header>
+			<x-header :left-options="{showBack: true}">{{className}}
+				<a slot="right" @click="_refresh">刷新</a>
+			</x-header>
 		</div>
-		<div style="padding-top:46px;height:100%">
+		<div style="padding-top:46px;">
 			<group>
 				<div v-for="item in classApply" class="cell">
 					<img style="display:block;margin-right:5px;width:25px;height:25px;float:left;" :src="item.headImg">
@@ -43,8 +45,14 @@ export default {
     }
   },
 	methods:{
-		...mapActions(['getApplyList','updateApplyList']),
-		 _onInfinite(){
+		...mapActions(['getApplyList','updateApplyList','resetClassApply']),
+		_refresh(){
+			this.resetClassApply();
+			this.$nextTick(() => {
+				this.$broadcast('$InfiniteLoading:reset');
+			})
+		},
+		_onInfinite(){
        this.getApplyList()
       .then(()=>{
         if(this.classApply.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
