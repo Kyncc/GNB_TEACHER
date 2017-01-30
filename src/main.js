@@ -20,7 +20,6 @@ import moment from 'moment'
 import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 
-import '../node_modules/cropperjs/dist/cropper.min.css'
 import './common/common.less'
 
 Vue.use(Router)

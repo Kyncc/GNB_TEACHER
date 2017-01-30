@@ -40,3 +40,31 @@ export const setUserInfo = ({ rootState,commit },params) => {
     })
   });
 }
+
+/**上传头像*/
+export const uploadHeadImg = ({ rootState,commit }, params) => {
+  _.busy();
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'post',
+      url: 'teacher/user/headImg',
+      data: {
+        file:params.file,
+        token:rootState.login.token
+      }
+    })
+    .then((response) => {
+        commit(types.UPLOAD_USER_PHOTO,response.data);
+        resolve(response);
+        _.leave();
+    })
+    .catch((error) => {
+        _.leave();
+    })
+  });
+}
+
+/**上传头像*/
+export const setHeadImg = ({ commit }, data) => {
+  commit(types.SET_USER_PHOTO,data);
+}

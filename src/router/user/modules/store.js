@@ -10,7 +10,8 @@ const state = {
   sex:'', 
   subjectId:'',
   mobile:'',
-  subjectType:[]
+  subjectType:[],
+  bufferImg:'https://fengyuanchen.github.io/cropperjs/images/picture.jpg'
 }
 
 const mutations = {
@@ -23,6 +24,12 @@ const mutations = {
     state.sex = data.data.sex;
     state.subjectId = data.data.subjectId;
     state.subjectType = data.data.subjectType;
+  },
+  [types.UPLOAD_USER_PHOTO](state,data){
+    state.headImg = data.data.headImg;
+  },
+  [types.SET_USER_PHOTO](state,data){
+    state.bufferImg = data;
   }
 }
 

@@ -9,7 +9,7 @@
     <scroller lock-x v-ref:scroller height="-47px">
       <div>
         <div class="info">
-          <img class="defaultimg" :src="userHeadImg" @click="_upload"/>
+          <img class="defaultimg" :src="userImg" @click="_upload"/>
           <p class="phone">&nbsp;{{userName}}&nbsp;</p>
           <div class="upload" @click="_upload">
             上传头像
@@ -20,11 +20,12 @@
             <span class="icon iconfont icon-userInfo" style="color:#5ECFE7" slot="icon"></span>
           </cell>
           <cell title="设置" link="/main/user/settings/">
-            <span class="icon iconfont icon-settingfull" style="color:#1296DB"  slot="icon"></span>
+            <span class="icon iconfont icon-settingfull" style="color:#794BB8"  slot="icon"></span>
           </cell>
-          <cell title="意见反馈" link="/main/user/settings/advice">
-            <span class="icon iconfont icon-banjitongzhi"  style="color:#ffb660" slot="icon"></span>
+           <cell title="在线客服" @click="_openQQ" link="javascript:;">
+            <span class="icon iconfont icon-qq1"  style="color:#1296DB;" slot="icon"></span>
           </cell>
+          
         </group>
       </div>
     </scroller>
@@ -35,11 +36,8 @@
 
 <script>
 import {XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox} from 'vux'
+import {mapActions,mapGetters} from 'vuex'
 import * as _ from 'config/whole'
-import { mapActions,mapGetters  } from 'vuex'
-
-// import {setHeadPhoto} from '../actions/photo'
-// import {token,system,userName,userHeadImg,userMobile} from '../../../common/getters'
 import './index.less'
 
 export default {
@@ -47,9 +45,13 @@ export default {
     XHeader,Cell,Group,Confirm,Scroller,Actionsheet,ViewBox
   },
   methods: {
+    ...mapActions(['setHeadImg']),
+    _openQQ(){
+      window.location.href = "mqqwpa://im/chat?chat_type=wpa&uin=459322602&version=1&src_type=web&web_src=oicqzone.com";
+    },
     onAction(type) {
       if(type=='确认'){
-        plus.runtime.quit()
+        plus.runtime.quit();      //退出APP
       }else{
         return
       }
@@ -57,21 +59,25 @@ export default {
     _quit(){
       this.show = true
     },
+    //从相机获取图片
     getImage(){
       let self  = this
+      //唤起本机相机
       let cmr = plus.camera.getCamera();
       cmr.captureImage(function(p) {
-        plus.io.resolveLocalFileSystemURL(p, function(entry) {
-          self.setHeadPhoto(entry.toLocalURL())
-          self.$router.go('/user/photo');
+        plus.io.resolveLocalFileSystemURL(p,function(entry){
+          self.setHeadImg(entry.toLocalURL())
+          self.$router.go('user/photo');
         })
       });
     },
+    //从相册获取图片
     galleryImgs(){
       let self = this
+      //唤起本机相册选择图片并获取路径
       plus.gallery.pick(function(e) {
-        self.setHeadPhoto(e.files[0])
-        self.$router.go('/user/photo');
+        self.setHeadImg(e.files[0])
+        self.$router.go('user/photo');
       }, function(e) {
          _.toast("取消选择图片")
       }, {
@@ -109,6 +115,9 @@ export default {
     ...mapGetters(['User']),
     userName(){
       return this.User.name;
+    },
+    userImg(){
+      return this.User.headImg;
     }
   }
 }

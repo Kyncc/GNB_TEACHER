@@ -5,9 +5,9 @@
     <cell title="应用评价" link="javascript:;" @click="_openStore">
       <span class="demo-icon" slot="icon"></span>
     </cell>
-    <!--<cell title="意见反馈" link="advice">
+    <cell title="意见反馈" link="advice">
       <span class="demo-icon" slot="icon"></span>
-    </cell>-->
+    </cell>
     <cell title="退出登录" @click="_quitlogin">
       <span class="demo-icon" slot="icon"></span>
     </cell>
