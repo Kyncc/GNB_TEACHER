@@ -18,9 +18,7 @@ import Interact from './router/interact/router'
 //插件
 import moment from 'moment'
 import FastClick from 'fastclick'
-import VueLazyload from 'vue-lazyload'
-
-import './common/common.less'
+// import VueLazyload from 'vue-lazyload'
 
 Vue.use(Router)
 
@@ -28,11 +26,11 @@ Vue.config.devtools = true
 FastClick.attach(document.body)
 
 //图片异步加载
-Vue.use(VueLazyload,{
-  preLoad: 1.3,
-  error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
-  loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
-})
+// Vue.use(VueLazyload,{
+//   preLoad: 1.3,
+//   error: 'http://www.chinasanbao.com/new/upload/headimg/headimg.png',
+//   loading: 'http://hilongjw.github.io/vue-lazyload/dist/loading-spin.svg'
+// })
 
 //格式化时间
 Vue.filter('ymd', function(value) {

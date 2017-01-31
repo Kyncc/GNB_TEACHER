@@ -12,6 +12,7 @@
 }
 
 
+
 .icon-comment:before { content: "\e60c"; }
 
 .icon-home:before { content: "\e612"; }
@@ -46,6 +47,8 @@
 
 .icon-error:before { content: "\e610"; }
 
+.icon-htmal5icon31:before { content: "\e643"; }
+
 .icon-camera:before { content: "\e606"; }
 
 .icon-class:before { content: "\e60a"; }
@@ -70,6 +73,8 @@
 
 .icon-filterclear:before { content: "\e6b7"; }
 
+.icon-cf-c23:before { content: "\e62a"; }
+
 .icon-workbook:before { content: "\e639"; }
 
 .icon-settingfull:before { content: "\e638"; }
@@ -79,6 +84,8 @@
 .icon-info:before { content: "\e608"; }
 
 .icon-bag:before { content: "\e611"; }
+
+.icon-addclass:before { content: "\e641"; }
 
 .icon-userInfo:before { content: "\e601"; }
 
@@ -95,3 +102,6 @@
 .icon-z-brush-copy:before { content: "\e90b"; }
 
 .icon-ban:before { content: "\e90c"; }
+
+.icon-icon-refresh:before { content: "\e90d"; }
+

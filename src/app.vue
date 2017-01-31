@@ -10,6 +10,9 @@
 import store from './store'
 import {Loading,Toast} from 'vux'
 import { mapState } from 'vuex'
+
+import './common/common.less'
+
 export default {
   components: {
      Loading,Toast
@@ -24,5 +27,7 @@ export default {
 </script>
 
 <style>
-   @import 'assets/vux.css';
+  @import 'assets/vux.css';
 </style>
+
+

@@ -23,7 +23,7 @@
             <span class="icon iconfont icon-settingfull" style="color:#794BB8"  slot="icon"></span>
           </cell>
            <cell title="在线客服" @click="_openQQ" link="javascript:;">
-            <span class="icon iconfont icon-qq1"  style="color:#1296DB;" slot="icon"></span>
+            <span class="icon iconfont icon-htmal5icon31"  style="color:#1296DB;" slot="icon"></span>
           </cell>
           
         </group>
@@ -47,7 +47,7 @@ export default {
   methods: {
     ...mapActions(['setHeadImg']),
     _openQQ(){
-      window.location.href = "mqqwpa://im/chat?chat_type=wpa&uin=459322602&version=1&src_type=web&web_src=oicqzone.com";
+      window.location.href = "mqqwpa://im/chat?chat_type=wpa&uin=1879831346&version=1&src_type=web&web_src=oicqzone.com";
     },
     onAction(type) {
       if(type=='确认'){
