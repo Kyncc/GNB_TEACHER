@@ -27,13 +27,6 @@ export default {
   components: {
     Tabbar,TabbarItem, ViewBox
   },
-  route: {
-    data:function(transition){
-      if(this.User.reset){
-        this.getUserInfo();
-      }
-    }
-  },
   methods: {
     ...mapActions(['getUserInfo'])
   },
@@ -41,7 +34,7 @@ export default {
     this.getUserInfo();
   },
   computed:{
-     ...mapGetters(['path','User']),
+     ...mapGetters(['path']),
      isRoot(){
        return (this.indexState || this.classesState || this.userState || this.interactState? true : false);
      },

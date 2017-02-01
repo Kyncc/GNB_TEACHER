@@ -68,8 +68,3 @@ export const uploadHeadImg = ({ rootState,commit }, params) => {
 export const setHeadImg = ({ commit }, data) => {
   commit(types.SET_USER_PHOTO,data);
 }
-
-/**清除信息*/
-export const clearUser = ({ commit }) => {
-  commit(types.RESET_USERINFO);
-}

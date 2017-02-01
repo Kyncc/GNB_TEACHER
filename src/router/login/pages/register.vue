@@ -24,11 +24,12 @@
       </flexbox-item>
       <flexbox-item :span="1/20"></flexbox-item>
     </flexbox>
+    <confirm :show.sync="quit" confirm-text="确定" cancel-text="取消" title="注册会清空学生数据" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>
   </div>
 </template>
 
 <script>
-import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell} from 'vux'
+import {XInput,Group,XButton,Flexbox,FlexboxItem,XHeader,Cell,Confirm} from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 import * as _ from 'config/whole.js'
 
@@ -40,12 +41,13 @@ export default {
      FlexboxItem,
      Flexbox,
      XHeader,
-     Cell
+     Cell,Confirm
   },
   data(){
     return{
       currentDown:false,
-      agree:true,
+      confirm: false,
+      cover:false,
       mobile:'',
       code:'',
       btnValue:'获取验证码'
@@ -53,6 +55,11 @@ export default {
   },
   methods:{
     ...mapActions(['getRegisterCode']),
+    _quit(type) {
+        if(type=='确认'){
+            this.cover = true;
+        }
+    },
     _next(){
        if(this.registerCode == this.code){
           this.$router.replace({path: 'setPassword', registerMobile:this.mobile});
@@ -78,9 +85,14 @@ export default {
             };
         },1000);
         let params = {
+            cover:this.cover,
             mobile: this.mobile
         }
+        //如果是已注册学生，则同意清空学生账户后在发送接口获取验证码
         this.getRegisterCode(params)
+        .then((response) => {
+            console.log(response);
+        });
     }
   },
   computed: {
@@ -89,7 +101,7 @@ export default {
          return (this.$refs.mobile.valid && !this.currentDown ? false : true);
      },
      disableNext(){
-         return  (this.$refs.mobile.valid && this.$refs.code.valid && this.agree ? false : true);
+         return  (this.$refs.mobile.valid && this.$refs.code.valid ? false : true);
      }
   }
 }

@@ -3,7 +3,6 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 const state = {
-  reset:false,
   class:[],
   headImg:'',
   name:'',
@@ -17,7 +16,6 @@ const state = {
 
 const mutations = {
   [types.USERINFO](state , data){
-    state.reset = false;
     state.class = data.data.classes;
     state.headImg = data.data.headImg;
     state.name = data.data.name;
@@ -29,9 +27,6 @@ const mutations = {
   },
   [types.UPLOAD_USER_PHOTO](state,data){
     state.headImg = data.data.headImg;
-  },
-  [types.RESET_USERINFO](state){
-    state.reset = true;
   },
   [types.SET_USER_PHOTO](state,data){
     state.bufferImg = data;

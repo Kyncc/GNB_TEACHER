@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateVersion','clearUser']),
+    ...mapActions(['updateVersion']),
     _clear() {
       this.show = true
     },
@@ -51,8 +51,7 @@ export default {
     _quit(type) {
         if(type=='确认'){
             localStorage.removeItem('token');
-            this.clearUser();
-            this.$router.replace('/');
+            plus.runtime.restart(); //重启应用
         }
     },
     onAction(type) {

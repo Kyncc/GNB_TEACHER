@@ -9,7 +9,8 @@ export const getRegisterCode = ({commit},params) => {
       method:'get',
       url: 'teacher/getCode',
       params: {
-        mobile: params.mobile
+        "mobile": params.mobile,
+        "cover": params.cover
       }
     })
     .then((response) => {
