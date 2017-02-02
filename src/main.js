@@ -53,6 +53,7 @@ router.map({
   }
 })
 
+//讲路由和store同步
 sync(store, router)
 
 router.beforeEach(function(transition) {
@@ -66,38 +67,26 @@ router.beforeEach(function(transition) {
   transition.next();
 })
 
-// function plusReady(){
-//   let first = null;
-//   setTimeout(function(){
-//     try{
-//       plus.key.addEventListener("backbutton",function(){
-//         if(store.state.route.path == '/main/index' || store.state.route.path =='/main/message' || store.state.route.path =='/main/user'){
-//           if (!first) {
-//             first = new Date().getTime();
-//             _.toast('再按一次退出')
-//             setTimeout(function() {
-//               first = null;
-//             }, 1000);
-//           } else {
-//             if (new Date().getTime() - first < 1000) {
-//               plus.runtime.quit();
-//             }
-//           }
-//         }else{
-//           window.history.back();
-//         }
-//       });
-//     }
-//     catch(e){
-        
-//     }
-//   },2000);
-// }
 
-// if(window.plus){
-//   plusReady();
-// }else{
-//   document.addEventListener("plusready",plusReady,false);
-// }
-
+/*在首页 或者loading启动的时候,返回键失效
+* 其他页面则直接返回上一页
+*/
+document.addEventListener('plusready', function(){
+  setInterval(function(){
+    plus.key.addEventListener('backbutton',function(){
+      if(
+        store.state.route.path == '/login' || 
+        store.state.route.path == '/main/index' || 
+        store.state.route.path == '/main/classes' || 
+        store.state.route.path =='/main/interact' || 
+        store.state.route.path =='/main/user' ||
+        store.state.tools.isLoading
+      ){
+        return;
+      }
+      history.back();
+    },false);
+  },500)
+});
+    
 router.start(App, '#App')

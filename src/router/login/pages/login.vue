@@ -64,14 +64,7 @@ export default {
      }
   },
   ready(){
-      function plusReady() {
-        plus.navigator.closeSplashscreen();
-      }
-      if(window.plus) {
-        plusReady();
-      } else {
-        document.addEventListener('plusready', plusReady, false);
-      }
+      plus.navigator.closeSplashscreen();
     }
   }
 </script>
