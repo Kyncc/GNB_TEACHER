@@ -24,7 +24,7 @@
       </flexbox-item>
       <flexbox-item :span="1/20"></flexbox-item>
     </flexbox>
-    <confirm :show.sync="quit" confirm-text="确定" cancel-text="取消" title="注册会清空学生数据" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>
+    <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" title="已是学生用户,注册会清空数据" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
   data(){
     return{
       currentDown:false,
-      confirm: false,
+      confirmShow: false,
       cover:false,
       mobile:'',
       code:'',
@@ -57,7 +57,14 @@ export default {
     ...mapActions(['getRegisterCode']),
     _quit(type) {
         if(type=='确认'){
-            this.cover = true;
+          this.cover = true;
+            this.getRegisterCode({
+              cover:this.cover,
+              mobile: this.mobile
+          })
+          .then(()=>{
+            _.toast("注册码已发送");
+          })
         }
     },
     _next(){
@@ -91,7 +98,11 @@ export default {
         //如果是已注册学生，则同意清空学生账户后在发送接口获取验证码
         this.getRegisterCode(params)
         .then((response) => {
-            console.log(response);
+            if(response.data.data.isStudent){
+              this.confirmShow = true;
+            }else{
+              _.toast("注册码已发送");
+            }
         });
     }
   },

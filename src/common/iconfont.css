@@ -12,7 +12,6 @@
 }
 
 
-
 .icon-comment:before { content: "\e60c"; }
 
 .icon-home:before { content: "\e612"; }
@@ -93,6 +92,8 @@
 
 .icon-brush:before { content: "\e67f"; }
 
+.icon-update:before { content: "\e616"; }
+
 .icon-pie-chart:before { content: "\e7a7"; }
 
 .icon-yuanxiaobanji:before { content: "\e613"; }
@@ -104,4 +105,3 @@
 .icon-ban:before { content: "\e90c"; }
 
 .icon-icon-refresh:before { content: "\e90d"; }
-

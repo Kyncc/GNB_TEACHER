@@ -11,6 +11,7 @@ const state = {
   subjectId:'',
   mobile:'',
   subjectType:[],
+  version:'',
   bufferImg:'https://fengyuanchen.github.io/cropperjs/images/picture.jpg'
 }
 
@@ -22,6 +23,7 @@ const mutations = {
     state.mobile = data.data.mobile;
     state.school = data.data.school;
     state.sex = data.data.sex;
+    state.version = data.data.version;
     state.subjectId = data.data.subjectId;
     state.subjectType = data.data.subjectType;
   },
