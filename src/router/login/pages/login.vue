@@ -64,7 +64,11 @@ export default {
      }
   },
   ready(){
-      plus.navigator.closeSplashscreen();
+      try{
+        plus.navigator.closeSplashscreen();
+      }catch(e){
+        console.log(e);
+      }
     }
   }
 </script>

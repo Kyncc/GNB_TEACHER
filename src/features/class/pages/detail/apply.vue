@@ -1,7 +1,7 @@
 <template>
 	<view-box v-ref:view-box class='myClassApply'>
 		<div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-			<x-header :left-options="{showBack: true}">{{className}}
+			<x-header :left-options="{showBack: true}">申请通知
 				<a slot="right" @click="_refresh">刷新</a>
 			</x-header>
 		</div>

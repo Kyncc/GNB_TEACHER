@@ -1,5 +1,5 @@
 <template>
-  <div class='errorCorrect  vux-scroller-header-box'>
+  <div class='correctDetail  vux-scroller-header-box'>
     <div style="height:46px;">
       <x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">我要纠错
         <a slot="right" @click="_commit">提交</a>
@@ -51,12 +51,10 @@ export default {
          return;
       }
       let params = {
-        data:{
-          content:this.content,
-          type:this.type
-        }
+        content:this.content,
+        type:this.type
       }
-      this.correct(params)
+      this.postCorrect(params)
       .then(()=>{
         this.content = '';
         this.type = [];

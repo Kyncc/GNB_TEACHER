@@ -7,7 +7,7 @@
         </div>
 
 		 <div style="padding-top:46px;" class="messageSection">
-			<section v-for="item in fetchHistory" >
+			<section v-for="item in historyList" >
 				<h3>{{item.createTime}}</h3>
 				<article>
 					<h4>{{item.title}}</h4>

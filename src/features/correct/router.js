@@ -3,7 +3,7 @@ import modules from './modules/store'
 import store from 'src/store'
 
 export default {
-  '/correct/:subjectId/:id': {
+  '/correct/:studentId/:subjectId/:id': {
     component: correct
   }
 }

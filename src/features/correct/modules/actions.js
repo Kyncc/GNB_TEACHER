@@ -9,16 +9,15 @@ export const postCorrect = ({ rootState,commit }, params) => {
       url: 'teacher/correct',
       data: {
         "token":rootState.login.token,
-        "options":{
-          "id":rootState.route.params.id,
-          "subject_id":rootState.route.params.subjectId
-        },
-        ...params
+        "id":rootState.route.params.id,
+        "subject_id":rootState.route.params.subjectId,
+        "studentId":rootState.route.params.studentId,
+        "content":params.content,
+        "type":params.type
       }
     })
     .then((response) => {
         _.toast("纠错成功");
-        commit('CORRECT');
         resolve(response);
     })
   });

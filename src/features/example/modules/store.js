@@ -7,7 +7,7 @@ const state = {
 
 const getters = {
   Example: (state,getters) => {
-     return state;
+     return state.example;
   }
 }
 

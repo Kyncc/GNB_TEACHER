@@ -1,5 +1,5 @@
 export const classList = (state) => state.classList.list
-export const classListState = (state) => state.classList.applyState
+export const classListState = (state) => state.class.classmate.applyState
 export const classListReset = (state) => state.classList.reset
 
 export const applyList = (state) => state.class.applyList.list

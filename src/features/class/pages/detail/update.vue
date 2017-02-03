@@ -6,7 +6,7 @@
 		</x-header>
 
 		<group>
-			<x-input type="text" name="name" placeholder="请输入班级名称" keyboard="text" :value.sync="name"></x-input>
+			<x-input type="text" name="name" placeholder="请输入班级名称" keyboard="text" :value.sync="name" :max="6"></x-input>
 		</group>
 	</div>
 </template>
@@ -31,15 +31,18 @@ export default {
 	methods: {
 		...mapActions(['updateClass']),
 		_complete() {
-			if (this.name){
+			if(this.name.length == 0 ){
+					_.toast('请填写班级名称');
+			}else if(this.name.length > 6){
+					_.toast('班级名称最大6个字');
+			}else{
 				this.updateClass({
 					name: this.name,
 				})
 				.then(() => {
+					this.name = ""
 					history.back();
 				})
-			} else {
-				_.toast('请填写班级名称')
 			}
 		}
 	},

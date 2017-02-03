@@ -9,16 +9,14 @@ export const getExample = ({ rootState,commit }) => {
       method:'get',
       url: 'teacher/exerciseList',
       params: {
-        "options":{
-          "ids":[rootState.route.params.id],
-          "subject_id":rootState.route.params.subjectId,
-        },
+        "ids":[rootState.route.params.id],
+        "subject_id":rootState.route.params.subjectId,
         "studentId":rootState.route.params.studentId,
         "token":rootState.login.token,
       }
     })
     .then((response) => {
-      commit(types.EXAMPLE);
+      commit(types.EXAMPLE,response.data.data);
       resolve(response);
     })
   });
