@@ -19,7 +19,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">还未有练习呢~</p>
+          <p style="font-size:1rem;display:inline-block;">该同学尚未练习~</p>
         </span>
         <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
       </infinite-loading>
@@ -63,7 +63,7 @@ export default {
     _toChapter(id){
       this.workbookStuChapterClear();      //进去前清除章节数据
       this.workbookStuPageClear();      //进去前清除页码数据
-      this.$router.go(`../chapter/${this.Params.studentId}/${id}`);
+      this.$router.go(`../page/${this.Params.studentId}/${id}`);
     }, 
     _changeSub(){
       this.visible = true;

@@ -5,7 +5,7 @@
         <input :id="'ac-'+$index" name="accordion-1" type="checkbox" checked="true" @click="onClickOpen($index)"/>
         <label class="header" :for="'ac-'+$index">{{items.name}}<span class="with_arrow"></span></label>
         <article class="ac-small">
-          <div style="background: #fff;padding:.5rem;">
+          <div style="background: #fff;padding:.5rem;margin-left:-.5rem;">
             <div class="vux-checker-item vux-tap-active select-item "  v-for="item in items.pages" :class="(item.isUsed == 'true' ? 'select-item-selected':'')" @click="onClickChapter(item.id)"> 第{{item.number}}页 </div>
           </div>
         </article>
@@ -37,19 +37,17 @@ export default {
 }
 </script>
 
-
-
 <style scoped>
 .select-item{
-  width: 4.5rem;
-  height: 1.5rem;
-  line-height: 1.5rem;
+  width: 5.3rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
   text-align: center;
   border-radius: 3px;
   color: #4bb7aa;
   border: 1px solid #4bb7aa;
   background-color: #fff;
-  margin-right: 0.5rem;
+  margin-left: 0.6rem;
   margin-top: 0.75rem;
   font-size:.85rem;
 }

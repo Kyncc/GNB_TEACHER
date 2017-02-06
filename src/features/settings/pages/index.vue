@@ -8,13 +8,15 @@
       <cell title="意见反馈" link="advice">
         <span class="demo-icon" slot="icon"></span>
       </cell>
+      <cell title="修改密码" link="resetPwd">
+        <span class="demo-icon" slot="icon"></span>
+      </cell>
       <cell title="退出登录" @click="_quitlogin">
         <span class="demo-icon" slot="icon"></span>
       </cell>
       <cell title="清除缓存" @click="_clear" >
         <span class="demo-icon" slot="icon"></span>
       </cell>
-      
     </group>
     <alert :show.sync="show" title="清除缓存成功"></alert>
     <confirm :show.sync="quit" confirm-text="确定" cancel-text="取消" title="是否退出登录" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>

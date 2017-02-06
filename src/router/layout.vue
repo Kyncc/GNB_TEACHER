@@ -5,13 +5,13 @@
       <i slot="icon" class="icon iconfont icon-home"></i>
       <span slot="label">主页</span>
     </tabbar-item>
-    <tabbar-item link="interact" :selected="interactState">
-      <i slot="icon" class="icon iconfont icon-comment2"></i>
-      <span slot="label">互动</span>
-    </tabbar-item>
     <tabbar-item link="classes" :selected="classesState">
       <i slot="icon" class="icon iconfont icon-yuanxiaobanji"></i>
       <span slot="label">班级</span>
+    </tabbar-item>
+     <tabbar-item link="interact" :selected="interactState">
+      <i slot="icon" class="icon iconfont icon-comment2"></i>
+      <span slot="label">互动</span>
     </tabbar-item>
     <tabbar-item link="user" :selected="userState">
       <i slot="icon" class="icon iconfont icon-user"></i>

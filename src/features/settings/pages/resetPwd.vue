@@ -40,7 +40,11 @@ export default {
           }).then(() => {
             _.toast('修改成功');
             setTimeout(()=>{
-              this.$router.replace('/');
+              try{
+                plus.runtime.restart(); //重启应用
+              }catch(e){
+                this.$router.go('/login');
+              }
             },500);
           })
         } else {
