@@ -10,7 +10,7 @@ axios.defaults.baseURL = 'http://www.guinaben.com:8070';
 //POST传参序列化
 axios.interceptors.request.use((config) => {
   if(config.method  === 'post'){
-    config.data = qs.stringify(config.data);
+    config.data = qs.stringify(config.data,{arrayFormat:'brackets'});
   }
   return config;
 },(error) =>{

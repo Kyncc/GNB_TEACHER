@@ -15,7 +15,7 @@ import './common/common.less'
 
 export default {
   components: {
-     Loading,Toast
+    Loading,Toast
   },
   store,
   computed: mapState({

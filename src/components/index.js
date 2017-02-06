@@ -6,10 +6,10 @@ import gnbChangeSub from './changesub/index'
 import changeTextBook from './changeTextBook/index'
 
 module.exports = {
-    gnbChangeSub,
-    accordion,
-    accordionPage,
-    changeClass,
-    changeTextBook,
-    accordionReport
+	gnbChangeSub,
+	accordion,
+	accordionPage,
+	changeClass,
+	changeTextBook,
+	accordionReport
 }
