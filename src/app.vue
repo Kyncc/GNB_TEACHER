@@ -10,7 +10,6 @@
 import store from './store'
 import {Loading,Toast} from 'vux'
 import { mapState } from 'vuex'
-
 import './common/common.less'
 
 export default {

@@ -25,20 +25,6 @@ export const updatePwd = ({ rootState,commit },params) => {
   });
 }
 
-/** 检查版本*/
-export const updateVersion = ({commit}) => {
-  return new Promise((resolve, reject)=> { 
-    axios({
-      method:'get',
-      url: 'teacher/updateVersion',
-    })
-    .then((response) => {
-      commit(types.VERSION,response.data.data)
-      resolve(response);
-    })
-  });
-}
-
 /** 提交反馈*/
 export const updateAdvice = ({ rootState,commit }, params) => {
   return new Promise((resolve,reject)=> { 
