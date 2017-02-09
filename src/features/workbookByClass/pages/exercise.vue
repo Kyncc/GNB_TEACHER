@@ -1,7 +1,9 @@
 <template >
   <view-box v-ref:view-box class="workbookClassExercise">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">章节练习</x-header>
+      <x-header :left-options="{showBack: true}">章节练习
+        <a slot="right" @click="_intoBan"><i class="icon iconfont icon-ban" style="font-size:22px"></i></a>
+      </x-header>
     </div>
 
     <div style="padding-top:46px;">
@@ -69,6 +71,9 @@ export default {
   methods: {
     ...mapActions(['getWorkbookClassExercise']),
     /**获取答案*/
+    _intoBan(){
+      history.go(-2);
+    },
     _getAnswerList(){
       this.answerListId = [];
       this.answerListAnswer = [];
