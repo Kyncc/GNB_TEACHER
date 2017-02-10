@@ -28,7 +28,6 @@ export default {
   }
 }
 
-
 store.registerModule('classes', {
   ...modules
 });

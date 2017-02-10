@@ -91,9 +91,8 @@ export default {
     _isLink(item){
       if(item.isUsed == 'false'){
         _.toast("该同学尚未做题");
-        return;
       }
-      if(item.isLink == 'true'){
+      else{
         this.workbookStuExerciseClear();//进去前清空数据
         this.setWorkbookStuChapterScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop); 
         this.$router.go(`../../exercise/${this.Params.studentId}/${item.id}`);

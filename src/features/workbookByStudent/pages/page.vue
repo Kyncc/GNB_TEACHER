@@ -75,9 +75,14 @@ export default {
 
     },
     _intoChapter(id){
-      this.workbookStuExerciseClear();//进去前清空数据
-      this.setWorkbookStuPageScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
-      this.$router.go(`../../exercise/${this.Params.studentId}/${id}`);
+       if(item.isUsed == 'false'){
+        _.toast("该同学尚未做题");
+      }
+      else{
+        this.workbookStuExerciseClear();//进去前清空数据
+        this.setWorkbookStuPageScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
+        this.$router.go(`../../exercise/${this.Params.studentId}/${id}`);
+      }
     },
     _onInfinite(){
       this.getWorkbookStuPage()
