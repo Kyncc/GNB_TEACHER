@@ -47,15 +47,6 @@ export default {
       }
     }
   },
-  filters: {
-    subName(id){
-      switch(id){
-        case '2':return '数学';
-        case '7':return '物理';
-        case '8':return '化学';
-      }
-    }
-  },
   methods: {
      ...mapActions(['getPass','passChangeChapter','setPassScroll','setPassSubject','clearPass','passListClear']),
      _toDetail(chapterId){

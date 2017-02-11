@@ -6,7 +6,7 @@
         <label class="header" :for="'ac-'+$index">{{items.name}}<span class="with_arrow"></span></label>
         <article class="ac-small">
           <div style="background: #fff;padding:.5rem;margin-left:-.5rem;">
-            <div class="vux-checker-item vux-tap-active select-item "  v-for="item in items.pages" :class="(item.isUsed == 'true' ? 'select-item-selected':'')" @click="onClickChapter(item.id)"> 第{{item.number}}页 </div>
+            <div class="vux-checker-item vux-tap-active select-item "  v-for="item in items.pages" :class="(item.isUsed == 'true' ? 'select-item-selected':'')" @click="onClickChapter(item)"> 第{{item.number}}页 </div>
           </div>
         </article>
       </div>
@@ -29,8 +29,8 @@ export default {
     onClickOpen(index){
       this.$emit('on-click-open',index);
     },
-    onClickChapter(index){
-      this.$emit('on-click-chapter',index);
+    onClickChapter(item){
+      this.$emit('on-click-chapter',item);
     }
   },
   props: ['list']

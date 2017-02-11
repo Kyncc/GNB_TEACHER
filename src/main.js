@@ -37,6 +37,15 @@ Vue.filter('ymd', function(value) {
   return moment.unix(value).format('YYYY-MM-DD');
 });
 
+//课程ID的转换
+Vue.filter('subName', (id) => {
+  switch(id){
+    case '2':return '数学';
+    case '7':return '物理';
+    case '8':return '化学';
+  }
+});
+
 const router = new Router()
 router.map({
   ...Login,

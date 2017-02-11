@@ -62,16 +62,14 @@ export default {
       if (this.edit == '完成'){
         this.show = true
       }else if(this.edit = '编辑'){
-        setTimeout(() => {
-          this.$router.go('/main/user')
-        }, 500)
+        this.$router.go('/main/user')
       }
     },
     onAction(type) {
       if(type=='确认'){
         setTimeout(() => {
           this.$router.go('/main/user')
-        }, 500)
+        }, 300)
       }
     },
     _complete() {
@@ -79,7 +77,6 @@ export default {
         this.edit = '完成'
       } else if (this.edit == '完成') {
         if(this.name && this.school){
-          
           this.setUserInfo({
               name: this.name,
               sex: this.sex,
