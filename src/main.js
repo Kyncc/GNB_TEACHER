@@ -5,11 +5,9 @@ import { sync } from 'vuex-router-sync'
 import App from './app'
 import store from './store'
 import * as _ from 'config/whole.js'
-
 import Login from './router/login/router'
 import Correct from './features/correct/router'
 import Example from './features/example/router'
-
 import Layout from './router/layout'
 import User from './router/user/router'
 import Index from './router/index/router'
