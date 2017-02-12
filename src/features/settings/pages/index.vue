@@ -60,7 +60,7 @@ export default {
     },
     _openStore() {
       if(this.System == 'IOS' ){
-         window.location.href = "itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id391945719?mt=8"; 
+         window.location.href = "itms-apps://itunes.apple.com/cn/app/gui-na-ben-jiao-shi-duan-zai/id1190013249?l=en&mt=8"; 
          return; 
       }
       window.location.href = "market://details?id=com.sanbao.guinaben.teacher";
