@@ -7,7 +7,7 @@ export const addClass = ({ rootState,commit,dispatch }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/class/createClass',
+      url: 'class/createClass',
       data: {
         "token":rootState.login.token,
         "name":params.name
@@ -28,7 +28,7 @@ export const delClass= ({ rootState,commit,dispatch }, params) => {
    return new Promise((resolve, reject)=> { 
       axios({
         method:'post',
-        url: 'teacher/class/delClass',
+        url: 'class/delClass',
         data: {
           "token":rootState.login.token,
           "classCode":	params.classCode
@@ -52,7 +52,7 @@ export const updateClass = ({ rootState,commit,dispatch }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/class/updateClass',
+      url: 'class/updateClass',
       data: {
         "token":rootState.login.token,
         "classCode":rootState.route.params.code,
@@ -76,7 +76,7 @@ export const getClass = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/class/myClassList',
+      url: 'class/myClassList',
       params: {
         "token":rootState.login.token,
       }
@@ -93,7 +93,7 @@ export const getApplyList = ({ rootState,commit }) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/class/applyList',
+      url: 'class/applyList',
       params: {
         "token":rootState.login.token,
         "classCode":rootState.route.params.code
@@ -111,7 +111,7 @@ export const updateApplyList = ({ rootState,commit,dispatch }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/class/replyApply',
+      url: 'class/replyApply',
       data: {
         "token":rootState.login.token,
         "status":params.status,
@@ -144,7 +144,7 @@ export const getClassmate = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/class/myClassmateList',
+      url: 'class/myClassmateList',
       params: {
         "token":rootState.login.token,
         "classCode":(rootState.route.params.code ? rootState.route.params.code : params.code)
@@ -162,7 +162,7 @@ export const delClassmate = ({ rootState,commit,dispatch }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/class/delStudent',
+      url: 'class/delStudent',
       data: {
         "token":rootState.login.token,
         "studentId":params.studentId,
@@ -182,7 +182,7 @@ export const getStudentInfo = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/class/student',
+      url: 'class/student',
       params: {
         "token":rootState.login.token,
         "id":params.id

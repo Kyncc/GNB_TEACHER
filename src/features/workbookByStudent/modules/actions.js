@@ -9,7 +9,7 @@ export const getWorkbookStu = ({state,rootState,commit},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/student',
+      url: 'workbook/student',
       params: {
         "token":rootState.login.token,
         "studentId":rootState.route.params.studentId,
@@ -39,7 +39,7 @@ export const getWorkbookStuPage = ({rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/student/page',
+      url: 'workbook/student/page',
       params: {
         "token":rootState.login.token,
         "studentId":rootState.route.params.studentId,
@@ -67,7 +67,7 @@ export const getWorkbookStuChapter = ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/student/chapter',
+      url: 'workbook/student/chapter',
       params: {
         "token":rootState.login.token,
         "studentId":rootState.route.params.studentId,
@@ -95,7 +95,7 @@ export const getWorkbookStuExercise = ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/student/exercise',
+      url: 'workbook/student/exercise',
       params: {
         "token":rootState.login.token,
         "studentId":rootState.route.params.studentId,

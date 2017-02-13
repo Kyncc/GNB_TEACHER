@@ -8,7 +8,7 @@ export const getUserInfo = ({ rootState,commit }) => {
    return new Promise((resolve, reject)=> { 
       axios({
         method: 'get',
-        url: 'teacher/user/getUserInfo',
+        url: 'user/getUserInfo',
         params: {
           token:rootState.login.token
         }
@@ -29,7 +29,7 @@ export const setUserInfo = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method: 'get',
-      url: 'teacher/user/updateUserInfo',
+      url: 'user/updateUserInfo',
       params: {
         ...params,
         token:rootState.login.token
@@ -47,7 +47,7 @@ export const uploadHeadImg = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/user/headImg',
+      url: 'user/headImg',
       data: {
         file:params.file,
         token:rootState.login.token

@@ -7,7 +7,7 @@ export const getMessageClass = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/message/class',
+      url: 'message/class',
       params: {
         "token":rootState.login.token,
       }
@@ -24,7 +24,7 @@ export const getMessageSystem = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/message/system',
+      url: 'message/system',
       params: {
         "token":rootState.login.token,
       }
@@ -41,7 +41,7 @@ export const getMessageCorrect = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/message/correct',
+      url: 'message/correct',
       params: {
         "token":rootState.login.token,
       }

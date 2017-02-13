@@ -8,7 +8,7 @@ export const getWorkbookClass = ({state,rootState,commit},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/class',
+      url: 'workbook/class',
       params: {
         "token":rootState.login.token,
         "classCode":params.code,
@@ -38,7 +38,7 @@ export const getWorkbookClassPage = ({rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/class/page',
+      url: 'workbook/class/page',
       params: {
         "token":rootState.login.token,
         "classCode":rootState.route.params.code,
@@ -66,7 +66,7 @@ export const getWorkbookClassChapter = ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/class/chapter',
+      url: 'workbook/class/chapter',
       params: {
         "token":rootState.login.token,
         "classCode":rootState.route.params.code,
@@ -94,7 +94,7 @@ export const getWorkbookClassExercise = ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/workbook/class/exercise',
+      url: 'workbook/class/exercise',
       params: {
         "token":rootState.login.token,
         "classCode":rootState.route.params.code,

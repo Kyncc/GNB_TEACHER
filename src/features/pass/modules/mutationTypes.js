@@ -15,3 +15,5 @@ export const PASS_LIST = 'PASS_LIST'
 export const PASS_LIST_CLEAR = 'PASS_LIST_CLEAR'
   /** 弃题列表高度 */
 export const PASS_LIST_SCROLL = 'PASS_LIST_SCROLL'
+  /** 弃题列表撤回 */
+export const PASS_LIST_BACK = 'PASS_LIST_BACK'

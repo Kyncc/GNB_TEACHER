@@ -26,7 +26,11 @@
             </div>
           </a>
         </div>
+         <div class="abandon">
+            <span @click="_abandon(item.loose_win_excercise_id,$index)">撤回</span>
+         </div>
       </div>
+     
       </template>
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">
         <span slot="no-results" style="color:#4bb7aa;">
@@ -67,9 +71,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getBreakList','setBreakListScroll']),
+    ...mapActions(['getBreakList','setBreakListScroll','breakAction']),
     _intoBan(){
       history.go(-2);
+    },
+    //撤回动作
+    _abandon(id,index){
+      this.breakAction({
+        "id":id,
+        "index":index
+      });
     },
     _intoDetail(id){
       this.setBreakListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);

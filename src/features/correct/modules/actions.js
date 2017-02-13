@@ -6,7 +6,7 @@ export const postCorrect = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/correct',
+      url: 'correct',
       data: {
         "token":rootState.login.token,
         "id":rootState.route.params.id,

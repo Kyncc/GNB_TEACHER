@@ -8,7 +8,7 @@ export const updatePwd = ({ rootState,commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/user/updatePwd',
+      url: 'user/updatePwd',
       params: {
           "token":rootState.login.token,
           ...params
@@ -30,7 +30,7 @@ export const updateAdvice = ({ rootState,commit }, params) => {
   return new Promise((resolve,reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/user/advice',
+      url: 'user/advice',
       data:{
         "token":rootState.login.token,
         ...params
@@ -48,7 +48,7 @@ export const adviceHistory = ({ rootState,commit }, params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/user/adviceHistory',
+      url: 'user/adviceHistory',
       params: {
         "token":rootState.login.token,
       }

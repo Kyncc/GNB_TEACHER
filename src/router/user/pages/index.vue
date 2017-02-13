@@ -156,7 +156,7 @@ export default {
         }
         return true;
       }else{
-         if(this.android_version == '2.0.0'){
+         if(this.android_version == '2.0.1'){
           return false;
         }
         return true;

@@ -7,7 +7,7 @@ export const getReport = ({rootState,commit},params) => {
 	return new Promise((resolve, reject)=> { 
 		axios({
 			method:'get',
-			url: 'teacher/report',
+			url: 'report',
 			params: {
 				"token":rootState.login.token,
 				"subject_id":rootState.report.subjectId,
@@ -26,7 +26,7 @@ export const getReportDetail = ({rootState,commit}, params) => {
 	return new Promise((resolve, reject)=> { 
 		axios({
 			method:'get',
-			url: 'teacher/report/detail',
+			url: 'report/detail',
 			params: {
 					"token":rootState.login.token,
 					"subject_id":rootState.report.subjectId,

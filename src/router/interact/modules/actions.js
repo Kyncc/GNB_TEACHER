@@ -7,7 +7,7 @@ export const getInteract = ({ rootState,commit }) => {
    return new Promise((resolve, reject)=> { 
       axios({
         method: 'get',
-        url: 'teacher/message',
+        url: 'message',
         params: {
           token:rootState.login.token
         }

@@ -7,7 +7,7 @@ export const getRegisterCode = ({commit},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/getCode',
+      url: 'getCode',
       params: {
         "mobile": params.mobile,
         "cover": params.cover
@@ -26,7 +26,7 @@ export const addPwd = ({ commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/pwd/add',
+      url: 'pwd/add',
       params: {
         ...params
       }
@@ -44,7 +44,7 @@ export const login = ({ commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/login',
+      url: 'login',
       params: {
         ...params
       }
@@ -66,7 +66,7 @@ export const getForgetCode = ({ commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'teacher/pwd/code',
+      url: 'pwd/code',
       params: {
         mobile: params.mobile
       }
@@ -84,7 +84,7 @@ export const resetPwd = ({ commit },params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
-      url: 'teacher/pwd/resetByMobile',
+      url: 'pwd/resetByMobile',
       data: {
        ...params
       }
