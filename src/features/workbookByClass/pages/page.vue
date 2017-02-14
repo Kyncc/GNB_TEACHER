@@ -66,7 +66,7 @@ export default {
     ...mapActions(['getWorkbookClassPage','setWorkbookClassPageScroll','workbookClassExerciseClear']),
     _intoPage(){
        this.visible = false;
-       this.$router.replace(`../../chapter/${this.Params.code}/${this.Params.wookbookId}`);
+       this.$router.replace(`../../chapter/${this.Params.code}/${this.Params.workbookId}`);
      },
     _changeType(){
       this.visible = true;
@@ -74,10 +74,10 @@ export default {
     _openChapter(){
 
     },
-    _intoChapter(id){
+    _intoChapter(item){
       this.workbookClassExerciseClear();//进去前清空数据
       this.setWorkbookClassPageScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
-      this.$router.go(`../../exercise/${this.Params.code}/${id}`);
+      this.$router.go(`../../exercise/${this.Params.code}/${item.id}`);
     },
     _onInfinite(){
       this.getWorkbookClassPage()
