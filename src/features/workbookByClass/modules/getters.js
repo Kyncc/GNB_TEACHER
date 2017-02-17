@@ -1,6 +1,6 @@
 /** 科目 */
 export const workbookClassSubject = (state) => state.subjectId
-/** 练习册 */
+/** 习题册 */
 export const workbookClassWorkbook = (state) => state.workbook
 /** 页码 */
 export const workbookClassPage = (state) => state.page

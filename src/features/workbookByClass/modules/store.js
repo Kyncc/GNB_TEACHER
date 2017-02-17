@@ -4,16 +4,16 @@ import * as getters from './getters'
 
 const state = {
   subjectId:'2',
-  workbook:{             //练习册列表
+  workbook:{             //习题册列表
     list:[],
     isReset:false 
   },         
-  page:{                //练习册页码
+  page:{                //习题册页码
     list:[],
     scroll:0,
     isReset:false 
   },           
-  chapter:{            //练习册章节
+  chapter:{            //习题册章节
     list:[],
     scroll:0,
     isReset:false 
@@ -25,7 +25,7 @@ const state = {
 }
 
 const mutations = {
-  //练习册
+  //习题册
   [types.WORKBOOK_CLASS_SUBJECT_CHANGE](state,id){
       state.subjectId = id;
   },

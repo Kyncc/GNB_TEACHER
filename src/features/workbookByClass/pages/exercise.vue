@@ -10,7 +10,7 @@
         <template v-if="Exercise.chaper">
           <header class="sectionHeader">{{Exercise.chaper.name}}</header>
           <template v-for="item in Exercise.a">
-            <!--2级别练习册-->
+            <!--2级别习题册-->
             <template v-if="item.b[0].type == '1'">
               <group v-for="itemB in item.b" :title="itemB.name">
                 <cell v-for="itemC in itemB.c" :title="itemC.name">
@@ -21,7 +21,7 @@
                 </cell>
               </group>
             </template>
-            <!--3级别练习册-->
+            <!--3级别习题册-->
             <template v-if="item.b[0].type == '2'">
               <group :title="item.name">
                 <cell v-for="itemB in item.b" :title="itemB.name">
@@ -81,7 +81,7 @@ export default {
         return;
       }
       if(this.workbookType == '1'){
-        //三级练习册嵌套
+        //三级习题册嵌套
         let array = this.rememberExercise.a[0].b;
         for(let i = 0; i< array.length ; i++){
           for(let j = 0;j< array[i].c.length;j++){
@@ -90,7 +90,7 @@ export default {
           }
         }
       }else{
-        //二级练习册嵌套
+        //二级习题册嵌套
         let array = this.Exercise.a;
         for(let i = 0; i< array.length ; i++){
           for(let j = 0;j< array[i].b.length;j++){

@@ -3,7 +3,7 @@ import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
 
-/**获取练习册数据 */
+/**获取习题册数据 */
 export const getWorkbookClass = ({state,rootState,commit},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
@@ -21,7 +21,7 @@ export const getWorkbookClass = ({state,rootState,commit},params) => {
     })
   });
 }
-/**练习册数据清空 */
+/**习题册数据清空 */
 export const workbookClassClear = ({ commit }) => {
   commit(types.WORKBOOK_CLASS_CLEAR);
 }
@@ -32,7 +32,7 @@ export const workbookSetSubject = ({ commit },id) => {
 }
 
 
-/**获取练习册数据 */
+/**获取习题册数据 */
 export const getWorkbookClassPage = ({rootState,commit}) => {
   
   return new Promise((resolve, reject)=> { 
@@ -61,7 +61,7 @@ export const setWorkbookClassPageScroll = ({ commit },height) => {
 }
 
 
-/**获取练习册章节数据 */
+/**获取习题册章节数据 */
 export const getWorkbookClassChapter = ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
@@ -89,7 +89,7 @@ export const setWorkbookClassChapterScroll = ({ commit },height) => {
 }
 
 
-/**获取练习册章节数据 */
+/**获取习题册章节数据 */
 export const getWorkbookClassExercise = ({state,rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
