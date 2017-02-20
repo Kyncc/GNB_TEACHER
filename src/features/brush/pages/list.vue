@@ -6,7 +6,7 @@
       </x-header>
       <header v-if="brushList" class="sectionHeader">
         <p class="ellipsis">{{brushList.chapterName}}</p>
-        <font class="ellipsis">共<b>{{brushList.count}}</b>个题型</font>
+        <font class="ellipsis"><b>{{brushList.count}}/{{brushList.totalCount}}</b></font>
       </header>
     </div>
     <!--空白间隔-->
@@ -27,8 +27,9 @@
           </a>
         </div>
         <div class="abandon">
-          <span @click="_abandon('back',item.exercises_id,$index)">斩题</span>
-          <span @click="_abandon('drop',item.exercises_id,$index)">弃题</span>
+          <span @click="_abandon('1',item.exercises_id,$index)">斩题</span>
+          <span @click="_abandon('2',item.exercises_id,$index)">弃题</span>
+          <span @click="_abandon('3',item.exercises_id,$index)">刷题</span>
         </div>
       </div>
       </template>
@@ -79,10 +80,10 @@ export default {
       this.setBrushListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.Params.studentId}/${this.brushSubjectId}/${id}`);
     },
-    _abandon(type,id,index){
+    _abandon(status,id,index){
         let parm = {
           'id':id,
-          'status':( type == 'back' ? '1' :'2'),
+          'status': status,
           'index':index
         }
         this.brushAction(parm)

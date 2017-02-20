@@ -6,6 +6,7 @@ import report from '../../features/report/router'
 import pass from '../../features/pass/router'
 import Break from '../../features/break/router'
 import brush from '../../features/brush/router'
+import brushed from '../../features/brushed/router'
 import workbookByStudent from '../../features/workbookByStudent/router'
 import modules from './modules/store'
 import store from 'src/store'
@@ -24,6 +25,7 @@ export default {
       ...report,
       ...pass,
       ...brush,
+      ...brushed,
       ...Break,
       ...workbookByStudent
     }

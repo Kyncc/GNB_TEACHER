@@ -11,7 +11,7 @@
         </cell>
       </group>
       <group style="padding-bottom:10px;">
-        <cell title="刷题本" link="classes/select?type=brush">
+        <cell title="刷题本" link="classes/select?type=brushed">
           <span class="icon iconfont icon-brush" style="color:#FF5454" slot="icon"></span>
         </cell>
         <cell title="斩题本" link="classes/select?type=break">
