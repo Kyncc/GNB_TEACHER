@@ -1,12 +1,12 @@
 <template>
-  <view-box v-ref:view-box class="brushList">
+  <view-box  class="brushList">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">刷题列表
         <a slot="right" @click="_intoBan"><i class="icon iconfont icon-ban" style="font-size:22px"></i></a>
       </x-header>
       <header v-if="brushList" class="sectionHeader">
         <p class="ellipsis">{{brushList.chapterName}}</p>
-        <font class="ellipsis"><b>{{brushList.count}}/{{brushList.totalCount}}</b></font>
+        <font class="ellipsis"><b>{{brushList.count}}/{{brushList.total}}</b></font>
       </header>
     </div>
     <!--空白间隔-->
@@ -43,16 +43,20 @@
     </div>
   </view-box>
 
+  <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" title="" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')">
+    <p>   <color-picker :colors="['#dddddd']" :value.sync="remBrush"></color-picker>111122233<p>
+  </confirm>
+
 </template>
 
 <script>
-import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem} from 'vux'
+import {ColorPicker,XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { mapActions,mapGetters  } from 'vuex'
 
 export default {
   components: {
-    XHeader,XButton,InfiniteLoading,
+    XHeader,XButton,InfiniteLoading,Confirm,ColorPicker,
     Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
   },
   route: {
@@ -86,8 +90,16 @@ export default {
           'status': status,
           'index':index
         }
-        this.brushAction(parm)
+        if(localStorage.getItem("brushFirst")){
+          this.brushAction(parm)
+        }else{
+          this.confirmShow = true
+          // localstorage.setitem("brushFirst","true")
+        }
+
+
     },
+    // onAction
     _onInfinite(){
       this.getBrushList()
       .then((res)=>{
@@ -102,6 +114,12 @@ export default {
   },
   computed:{
     ...mapGetters(['brushList','brushListIsReset','brushSubjectId','brushListScroll','Params'])
+  },
+  data(){
+    return {
+      confirmShow:false,
+      remBrush:''
+    }
   }
 }
 </script>

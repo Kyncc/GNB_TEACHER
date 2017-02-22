@@ -1,5 +1,5 @@
 <template >
-  <view-box v-ref:view-box class="reportStudent">
+  <view-box  class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
          <change-text-book :value.sync="textbookId" :user-textbook="Student.textbook" :subject-id="brushSubjectId"></change-text-book>
@@ -18,6 +18,7 @@
       </infinite-loading>
     </div>
   </view-box>
+
   <gnb-change-sub :visible.sync="visible" :selected="brushSubjectId" :subject="Student.subjectType" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 
@@ -84,6 +85,7 @@ export default {
   data(){
     return {
       visible:false,
+      confirmShow:false,
       textbookId:'',
     }
   },

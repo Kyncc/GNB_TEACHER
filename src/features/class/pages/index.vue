@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class='myClass'>
+  <view-box  class='myClass'>
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
         班级列表<a slot="right"  v-link="{path: 'create'}">新建</a>

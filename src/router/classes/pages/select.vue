@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class='classes'>
+  <view-box  class='classes'>
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}" style="position:absolute;left:0;top:0;width:100%;z-index:100">
         <change-class :value.sync="selectCode" :class-list="classList"></change-class>
