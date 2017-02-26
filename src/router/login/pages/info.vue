@@ -60,7 +60,7 @@ export default {
   computed:{
      ...mapGetters(['registerMobile']),
      disable(){
-         return (this.name && this.school ? false : true);
+         return (this.name ? false : true);
      }
   }
 }

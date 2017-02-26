@@ -4,6 +4,10 @@
 
 使用技术简介
 
+
+![商店下载](http://okkula0y9.bkt.clouddn.com/teacher.png)
+
+
 当时建立此项目时使用Vux基于Vue1.0，因此用的Vue1.X开发。
 目前已重构逻辑部分,换成Vuex2,http请求换成axios。
 日后等待Vux2.x成熟后全部切换到换到vue2.x。
