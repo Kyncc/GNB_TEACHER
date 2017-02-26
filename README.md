@@ -1,28 +1,20 @@
 ﻿# 归纳本教师端
 
-> 基于Vue.js和Dcloud(H5+)混合技术Hybrid App
+> 基于Vue.js(1.x)和Dcloud(H5+)混合技术Hybrid App
 
-# 苹果安卓市场下载
+## 苹果安卓市场下载
 
 ![商店下载](http://okkula0y9.bkt.clouddn.com/teacher.png)
-
-# 使用技术简介
-
-当时建立此项目时使用Vux基于Vue1.0，因此用的Vue1.X开发。
-目前已重构逻辑部分,换成Vuex2,http请求换成axios。
-日后等待Vux2.x成熟后全部切换到换到vue2.x。
-
-------------
 
 ### 编译环境
 
 -	[VueLoader](http://vue-loader.vuejs.org/en/index.html)
 
-	### Hybird框架
+### Hybird框架
 
 -	[跨平台技术-H5+](http://www.dcloud.io/runtime.html)
 
-	### 数据视图控制
+### 数据视图控制
 
 -	[Vue1.x](http://cn.vuejs.org/guide/)
 
@@ -34,17 +26,15 @@
 
 -	[VueRouter和Vuex流同步-Vuex-router-sync(2.x)](https://github.com/vuejs/vuex-router-sync)
 
-	### 功能组件
+### 功能组件
 
 -	[时间格式化-Moment.js](http://momentjs.cn/)
 
 -	[图片控制剪裁-Cropper.js](https://fengyuanchen.github.io/cropperjs/)
 
-	### UI组件
+### UI组件
 
--	[手机UI库-Vux(1.x)](https://vuxjs.gitbooks.io/vux/content/about/component-standard.html)
-
--	[触摸手势组件-VueTouch](https://github.com/vuejs/vue-touch)
+-	[手机UI库-Vux(0.x)](https://vux.li/#/zh-CN/README?id=-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8webpack)
 
 -	[加载数据组件-Vue-infinite-loading](https://peachscript.github.io/vue-infinite-loading/#!/slots)
 
@@ -52,8 +42,7 @@
 
 -	[灯箱-PhotoSwipe](https://github.com/dimsemenov/PhotoSwipe)
 
-文件夹结构
-----------
+### 文件夹结构
 
 ```
 ├── build       # webpack编译配置
@@ -77,8 +66,8 @@
         ├── remember    # 记错题模块
         ├── message     # 消息模块
         ├── report      # 成绩报告单模块
-        ├── brush       # 题型汇总模块
-        ├── error       # 题型归纳
+        ├── brushed     # 管理学生题型
+        ├── brush       # 刷题列表
         ├── break       # 斩题列表
         ├── pass        # 弃题列表
         ├── settings    # 设置
