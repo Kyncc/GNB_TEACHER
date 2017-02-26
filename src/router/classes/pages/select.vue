@@ -10,7 +10,7 @@
     <div style="padding-top:46px">
       <group>
         <cell v-for="item in classmateList" :title="item.name" @click="_into(item.id)">
-          <img slot="icon" width="30" style="display:block;margin-right:5px;" :src="item.headImg">
+          <img slot="icon" height="30" width="30" style="display:block;margin-right:5px;border-radius:50%" v-lazy="item.headImg">
         <cell>
       </group>
       <infinite-loading :on-infinite="_onInfinite" spinner="default">

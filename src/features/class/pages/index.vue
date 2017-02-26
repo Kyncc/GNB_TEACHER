@@ -38,11 +38,11 @@ export default {
   components: {XHeader,Group,ViewBox,InfiniteLoading,Cell,Badge},
   route: {
     data:function(transition){
-			if(this.classListReset){
-				this.$nextTick(() => {
-					this.$broadcast('$InfiniteLoading:reset');
-				})
-			}
+      if(this.classListReset){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        })
+      }
     }
   },
   methods: {
@@ -61,6 +61,6 @@ export default {
   },
   computed:{
     ...mapGetters(['classList','classListReset'])
-	}
+  }
 }
 </script>

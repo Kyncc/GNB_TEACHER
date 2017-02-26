@@ -25,7 +25,7 @@
            <cell title="在线客服" @click="_openQQ" link="javascript:;">
             <span class="icon iconfont icon-htmal5icon31"  style="color:#1296DB;" slot="icon"></span>
           </cell>
-          <cell title="检查更新" @click="_update" is-link>
+          <cell title="检查更新" @click="_update" is-link v-if="System != 'IOS'">
             <div v-if="isUpdate" class="badge-value" slot="value" class="vux-center-v" style="display:inline-block">
               <badge text="新版本"></badge>
             </div>
@@ -85,10 +85,6 @@ export default {
     //更新APP
     _update(){
         if(this.isUpdate){
-            if(this.System == 'IOS'){
-              window.location.href = "itms-apps://https://itunes.apple.com/cn/app/gui-na-ben-jiao-shi-duan-zai/id1190013249?l=en&mt=8";
-              return;
-            }
             let start = true;
             let dtask = plus.downloader.createDownload(`http://www.guinaben.com/app/com.sanbao.guinaben.${this.android_version}.teacher.apk`, {}, (d, status)=> {
               if (status == 200) {
@@ -146,21 +142,11 @@ export default {
     android_version(){
       return this.User.version;
     },
-    ios_version(){
-       return this.User.ios_version;
-    },
     isUpdate(){
-      if(this.System == 'IOS'){
-        if(this.ios_version == '2.0.0'){
-          return false;
-        }
-        return true;
-      }else{
-         if(this.android_version == '2.0.0'){
-          return false;
-        }
-        return true;
-      } 
+      if(this.android_version == '2.0.0'){
+        return false;
+      }
+      return true;
     }
   }
 }
