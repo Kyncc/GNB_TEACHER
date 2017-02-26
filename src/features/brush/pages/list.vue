@@ -33,7 +33,7 @@
               {{ $key }} : {{{ value }}}
             </p>
           </div>
-        </a> 
+        </a>
         <div class="abandon">
           <span @click="_abandon('1',item.exercises_id,$index)">斩题</span>
           <span @click="_abandon('2',item.exercises_id,$index)">弃题</span>
