@@ -2,10 +2,10 @@
   <view-box  class="workbookClassSelect">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">章节选择
-        <a slot="right" @click="_changeType()" class="changeSub">
+        <!--<a slot="right" @click="_changeType()" class="changeSub">
           按章节
           <span class="with_arrow"></span>
-        </a>
+        </a>-->
       </x-header>
     </div>
 
@@ -21,7 +21,7 @@
                     <cell :title="_isLinkTitle(c)" class="indent1" @click="_isLink(c)" link="javascript:;"></cell>
                     <template v-for="d in c.d">
                         <cell :title="_isLinkTitle(d)" class="indent2" @click="_isLink(d)" link="javascript:;"></cell>
-                    </template>    
+                    </template>
                   </template>
                 </template>
               </group>
@@ -37,10 +37,10 @@
       </infinite-loading>
     </div>
 
-    <Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
+    <!--<Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
       <p class="active">按章节</p>
       <p @click="_intoPage()">按页码</p>
-    </Popup>
+    </Popup>-->
   </view-box>
 </template>
 

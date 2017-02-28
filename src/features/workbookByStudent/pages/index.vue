@@ -60,7 +60,7 @@ export default {
     _toChapter(id){
       this.workbookStuChapterClear();      //进去前清除章节数据
       this.workbookStuPageClear();      //进去前清除页码数据
-      this.$router.go(`../page/${this.Params.studentId}/${id}`);
+      this.$router.go(`../chapter/${this.Params.studentId}/${id}`);
     }, 
     _changeSub(){
       this.visible = true;

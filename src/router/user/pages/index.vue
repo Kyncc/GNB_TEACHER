@@ -3,8 +3,6 @@
     <div style="height:46px;">
       <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">个人中心</x-header>
     </div>
-
-    <scroller lock-x v-ref:scroller height="-47px">
       <div>
         <div class="info">
           <img class="defaultimg" :src="userImg" @click="_upload"/>
@@ -33,7 +31,6 @@
           </cell>
         </group>
       </div>
-    </scroller>
     <actionsheet :show.sync="showsheet" cancel-text="取消" :menus="menus" @on-click-menu="_uploadclick" show-cancel></actionsheet>
   </view-box>
 </template>

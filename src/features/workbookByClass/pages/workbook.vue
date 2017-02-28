@@ -57,7 +57,7 @@ export default {
     _toChapter(id){
       this.workbookClassChapterClear();      //进去前清除章节数据
       this.workbookClassPageClear();      //进去前清除页码数据
-      this.$router.go(`page/${this.selectCode}/${id}`);
+      this.$router.go(`chapter/${this.selectCode}/${id}`);
     }, 
     _changeSub(){
       this.visible = true;
