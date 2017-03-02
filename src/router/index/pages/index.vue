@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class="mainIndex">
+  <view-box  class="mainIndex">
     <div slot="header" style="position:fixed;left:0;top:0;width:100%;z-index:2016" >
       <x-header :left-options="{showBack: false}">归纳本</x-header>
     </div>
@@ -10,6 +10,9 @@
       </div>
       <div>
         <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">班级统计</x-button>
+      </div>
+      <div>
+        <x-button type='primary' v-link="{ path: 'classes/select?type=brush'}" mini class="rememberBtn">管理学生题型</x-button>
       </div>
     </div>
   </view-box>

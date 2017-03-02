@@ -1,8 +1,9 @@
 import layout from './pages/layout'
-import index from './pages/index'
+import workbook from './pages/workbook'
 import chapter from './pages/chapter'
 import page from './pages/page'
 import exercise from './pages/exercise'
+import classList from './pages/class'
 import modules from './modules/store'
 import store from 'src/store'
 
@@ -11,7 +12,10 @@ export default {
     component: layout,
     subRoutes: {
       '/': {
-        component: index
+        component: classList
+      },
+      'workbook/:code': {
+        component: workbook
       },
       'chapter/:code/:workbookId': {
         component: chapter

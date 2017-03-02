@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class="workbookStuIndex">
+  <view-box  class="workbookStuIndex">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}" >
         习题册
@@ -11,7 +11,10 @@
       <template v-for="item in stuWorkBook">
          <template v-if="item">
           <group :title="item.textbookName">
-            <cell v-for="workbook in item.list" :title="workbook.workbookName" link="javascript:;" @click="_toChapter(workbook.workbookId)"></cell>
+            <cell v-for="workbook in item.list" link="javascript:;" >
+              <div slot="icon"><img v-lazy="workbook.img.url+'?imageView2/0/format/webp/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+              <div slot="after-title" @click="_toChapter(workbook.workbookId)" style="padding:.8rem 0">{{workbook.workbookName}}</div>
+            </cell>
           </group>
         </template>
       </template>
@@ -50,11 +53,14 @@ export default {
     }
   },
   methods: {
+    _open(){
+      alert(1)
+    },
     ...mapActions(['workbookStuClear','getWorkbookStu','workbookStuChapterClear','workbookStuPageClear','workbookStuSetSubject']),
     _toChapter(id){
       this.workbookStuChapterClear();      //进去前清除章节数据
       this.workbookStuPageClear();      //进去前清除页码数据
-      this.$router.go(`../page/${this.Params.studentId}/${id}`);
+      this.$router.go(`../chapter/${this.Params.studentId}/${id}`);
     }, 
     _changeSub(){
       this.visible = true;

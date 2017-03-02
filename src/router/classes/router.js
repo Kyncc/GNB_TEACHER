@@ -6,6 +6,8 @@ import report from '../../features/report/router'
 import pass from '../../features/pass/router'
 import Break from '../../features/break/router'
 import brush from '../../features/brush/router'
+import brushed from '../../features/brushed/router'
+import introduction from '../../features/introduction/router'
 import workbookByStudent from '../../features/workbookByStudent/router'
 import modules from './modules/store'
 import store from 'src/store'
@@ -21,9 +23,11 @@ export default {
         component: select
       },
       ...myClasses,
+      ...introduction,
       ...report,
       ...pass,
       ...brush,
+      ...brushed,
       ...Break,
       ...workbookByStudent
     }

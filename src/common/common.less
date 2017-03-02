@@ -21,6 +21,7 @@ body {
 //控制图片最大
 img {
   max-width: 100%;
+  background: #ccc;
 }
 
 @import 'iconfont.css';
@@ -219,6 +220,10 @@ img[lazy=error] {
 }
 
 
+.weui_btn_dialog.primary{
+  color: #4bb7aa;
+}
+
 /**
 *   Vux-XHeader
 */
@@ -298,6 +303,9 @@ img[lazy=error] {
   border-width: 2px 0 0 2px;
 }
 
+.vux-slider .vux-indicator-right>a>.vux-icon-dot.active, .vux-slider>.vux-indicator>a>.vux-icon-dot.active{
+  background: #4bb7aa
+}
 
 /**
 *   Vux-Scoll
@@ -322,7 +330,7 @@ img[lazy=error] {
   }
   .options {
     .weui_media_desc {
-      padding: .5rem .3rem;
+      padding:.3rem;
     }
   }
   .weui_media_box {

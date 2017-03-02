@@ -76,7 +76,6 @@ export default {
       if (this.edit == '编辑') {
         this.edit = '完成'
       } else if (this.edit == '完成') {
-        if(this.name && this.school){
           this.setUserInfo({
               name: this.name,
               sex: this.sex,
@@ -88,9 +87,6 @@ export default {
                   this.edit = '编辑'
                })
           })
-        }else{
-          _.toast('请完善内容');
-        }
       }
     }
   },

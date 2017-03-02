@@ -1,5 +1,5 @@
 <template>
-  <view-box v-ref:view-box class="workbookClassIndex">
+  <view-box  class="workbookClassIndex">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}" >
         <a slot="right" @click="_changeSub()" class="changeSub">{{workbookClassSubject | subName}}<span class="with_arrow"></span></a>
@@ -11,7 +11,10 @@
       <template v-for="item in classWorkBook">
          <template v-if="item">
           <group :title="item.textbookName">
-            <cell v-for="workbook in item.list" :title="workbook.workbookName" link="javascript:;" @click="_toChapter(workbook.workbookId)"></cell>
+            <cell v-for="workbook in item.list" link="javascript:;" >
+              <div slot="icon"><img v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+              <div slot="after-title" @click="_toChapter(workbook.workbookId)" style="padding:.8rem 0">{{workbook.workbookName}}</div>
+            </cell>
           </group>
         </template>
       </template>
@@ -19,7 +22,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">该同学尚未练习~</p>
+          <p style="font-size:1rem;display:inline-block;">还未有同学练习~</p>
         </span>
         <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
       </infinite-loading>
@@ -53,8 +56,8 @@ export default {
     ...mapActions(['workbookClassClear','getWorkbookClass','workbookClassChapterClear','workbookClassPageClear','workbookSetSubject']),
     _toChapter(id){
       this.workbookClassChapterClear();      //进去前清除章节数据
-      this.workbookClassPageClear();      //进去前清除页码数据
-      this.$router.go(`page/${this.selectCode}/${id}`);
+      this.workbookClassPageClear();        //进去前清除页码数据
+      this.$router.go(`chapter/${this.selectCode}/${id}`);
     }, 
     _changeSub(){
       this.visible = true;

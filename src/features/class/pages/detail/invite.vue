@@ -1,5 +1,5 @@
 <template>
-    <view-box v-ref:view-box class='classInvite'>
+    <view-box  class='classInvite'>
         <x-header :left-options="{showBack: true}">邀请学生</x-header>
         <section class="copyCode">
             <h3>我的邀请码</h3>

@@ -2,31 +2,30 @@
   <view-box  class="reportStudent">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}">
-         <change-text-book :value.sync="textbookId" :user-textbook="Student.textbook" :subject-id="brushSubjectId"></change-text-book>
-         <a slot="right" @click="_changeSub" class="changeSub">{{brushSubjectId | subName}}<span class="with_arrow"></span></a>
+         <change-text-book :value.sync="textbookId" :user-textbook="Student.textbook" :subject-id="brushedSubjectId"></change-text-book>
+         <a slot="right" @click="_changeSub" class="changeSub">{{brushedSubjectId | subName}}<span class="with_arrow"></span></a>
       </x-header>
     </div>
 
     <div style="padding-top:46px">
-      <accordion :list="brushChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
+      <accordion :list="brushedChapter" @on-click-chapter="_toDetail" @on-click-open="_openChapter"></accordion>
       <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
         <span slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">数据异常~</p>
+          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+          <p style="font-size:1rem;display:inline-block;">服务异常~</p>
         </span>
         <span slot="no-more"></span>
       </infinite-loading>
     </div>
   </view-box>
-
-  <gnb-change-sub :visible.sync="visible" :selected="brushSubjectId" :subject="Student.subjectType" @on-click-back="_changeSubject"></gnb-change-sub>
+  <gnb-change-sub :visible.sync="visible" :selected="brushedSubjectId" :subject="Student.subjectType" @on-click-back="_changeSubject"></gnb-change-sub>
 </template>
 
 <script>
 import {XHeader,Panel,ViewBox,Flexbox,FlexboxItem,XButton,Group,Cell} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import {gnbChangeSub,accordion,changeTextBook} from 'components'
-import { mapActions,mapGetters  } from 'vuex'
+import { mapActions,mapGetters} from 'vuex'
 export default {
   components: {
     XHeader,ViewBox,Panel,Flexbox,FlexboxItem,XButton,Group,Cell,InfiniteLoading,
@@ -37,22 +36,22 @@ export default {
       /**
       * 标志为reset则重置，否则加载上次高度
       */
-      if(this.brushIsReset){
+      if(this.brushedIsReset){
         this.$nextTick(() => {
           this.$broadcast('$InfiniteLoading:reset');
         })
       }else{
         this.$nextTick(() => {
-          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.brushScroll;
+          document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.reportScroll;
         })
       }
     }
   },
   methods: {
-     ...mapActions(['getBrush','brushChangeChapter','setBrushScroll','setBrushSubject','clearBrush','brushListClear']),
+     ...mapActions(['getBrushed','brushedChangeChapter','setBrushedScroll','setBrushedSubject','clearBrushed','brushedListClear']),
      _toDetail(chapterId){
-      this.setBrushScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-      this.brushListClear();
+      this.setBrushedScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+      this.brushedListClear();
       this.$router.go(`../list/${this.Params.studentId}/${chapterId}`);
     },
     _changeSub(){
@@ -62,19 +61,20 @@ export default {
     _changeSubject(item){
       this.subjectName = item.value;
       this.visible = false;
-      this.setBrushSubject(item.id);       //更换科目
+      this.setBrushedSubject(item.id);       //更换科目
       this.$broadcast('$InfiniteLoading:reset');
     },
     _openChapter(index){
-      this.setBrushScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
-      this.brushChangeChapter(index);
+      this.setBrushedScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop+100);
+
+      this.brushedChangeChapter(index);
     },
     _onInfinite(){
-      this.getBrush({
+      this.getBrushed({
         "textbook_id":this.textbookId
       })
       .then(()=>{
-        if(this.brushChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
+        if(this.brushedChapter.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
         this.$broadcast('$InfiniteLoading:complete');
       })
     }
@@ -85,16 +85,15 @@ export default {
   data(){
     return {
       visible:false,
-      confirmShow:false,
       textbookId:'',
     }
   },
 	computed:{
-    ...mapGetters(['brushScroll','brushChapter','Student','brushSubjectId','brushIsReset','Params'])
+    ...mapGetters(['brushedScroll','brushedChapter','Student','brushedSubjectId','brushedIsReset','Params'])
 	},
   watch: {
     textbookId(){
-      this.clearBrush();
+      this.clearBrushed();
       this.$broadcast('$InfiniteLoading:reset');
     }
   }

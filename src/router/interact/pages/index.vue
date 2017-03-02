@@ -37,13 +37,21 @@
 <script>
 import JRoll from 'jroll'
 import 'src/common/libs/jroll/jroll-pulldown.js'
-import {XHeader,Group,Scroller,Cell,Spinner,Dialog} from 'vux'
+import {XHeader,Group,Scroller,Cell,Spinner,Dialog,Swiper} from 'vux'
 import * as _ from 'config/whole'
 import { mapActions,mapGetters } from 'vuex'
 
+const baseList =
+[{
+  url: 'javascript:;',
+  img: 'https://ygxdxx.coding.me/img/daily_pic.jpg',
+  title: '茶包VS原叶茶'
+}]
+
+
 export default {
   components: {
-    XHeader,Scroller,Group,Cell,Spinner,Dialog
+    XHeader,Scroller,Group,Cell,Spinner,Dialog,Swiper
   },
   route: {
     data:function(transition){
@@ -72,7 +80,8 @@ export default {
   data () {
     return {
       pulldownStatus: 'default',
-      show:false
+      show:false,
+      demo01_list:baseList
     }
   },
   computed:{

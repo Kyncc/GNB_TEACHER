@@ -1,5 +1,5 @@
 <template >
-    <view-box v-ref:view-box class="registerInfo">
+    <view-box  class="registerInfo">
         <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
             <x-header :left-options="{showBack: false}">
                 资料填写
@@ -13,8 +13,8 @@
               <img src="../../../assets/login/title.png">
             </div>
             <group title="基本资料">
-                <x-input title="姓名" name="name" :value.sync="name"></x-input>
-                <x-input title="学校" name="school" :value.sync="school"></x-input>
+                <!--<x-input title="姓名" name="name" :value.sync="name"></x-input>
+                <x-input title="学校" name="school" :value.sync="school"></x-input>-->
                 <selector title="主教科目" :options="subjectList" :value.sync="subject" @on-change="_onChangeSunject"></selector>
             </group>
             <div style="width:90%;margin:1.5rem auto;">
@@ -60,7 +60,8 @@ export default {
   computed:{
      ...mapGetters(['registerMobile']),
      disable(){
-         return (this.name && this.school ? false : true);
+        //  return (this.name ? false : true);
+        return false
      }
   }
 }
