@@ -13,8 +13,8 @@
               <img src="../../../assets/login/title.png">
             </div>
             <group title="基本资料">
-                <x-input title="姓名" name="name" :value.sync="name"></x-input>
-                <x-input title="学校" name="school" :value.sync="school"></x-input>
+                <!--<x-input title="姓名" name="name" :value.sync="name"></x-input>
+                <x-input title="学校" name="school" :value.sync="school"></x-input>-->
                 <selector title="主教科目" :options="subjectList" :value.sync="subject" @on-change="_onChangeSunject"></selector>
             </group>
             <div style="width:90%;margin:1.5rem auto;">
@@ -60,7 +60,8 @@ export default {
   computed:{
      ...mapGetters(['registerMobile']),
      disable(){
-         return (this.name ? false : true);
+        //  return (this.name ? false : true);
+        return false
      }
   }
 }

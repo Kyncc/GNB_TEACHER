@@ -12,7 +12,7 @@
          <template v-if="item">
           <group :title="item.textbookName">
             <cell v-for="workbook in item.list" link="javascript:;" >
-              <div slot="icon"><img v-lazy="workbook.img+'?imageView2/0/format/webp/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+              <div slot="icon"><img v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
               <div slot="after-title" @click="_toChapter(workbook.workbookId)" style="padding:.8rem 0">{{workbook.workbookName}}</div>
             </cell>
           </group>
@@ -56,7 +56,7 @@ export default {
     ...mapActions(['workbookClassClear','getWorkbookClass','workbookClassChapterClear','workbookClassPageClear','workbookSetSubject']),
     _toChapter(id){
       this.workbookClassChapterClear();      //进去前清除章节数据
-      this.workbookClassPageClear();      //进去前清除页码数据
+      this.workbookClassPageClear();        //进去前清除页码数据
       this.$router.go(`chapter/${this.selectCode}/${id}`);
     }, 
     _changeSub(){

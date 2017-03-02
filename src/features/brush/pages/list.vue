@@ -12,34 +12,34 @@
     <!--空白间隔-->
     <div style="padding-top:80px;">
       <template v-if="brushList">
-      <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in brushList.list">
-        <div class="weui_panel_hd">
-          {{{item.chapter_name}}}
-        </div>
-        <div class="weui_panel_bd ">
-          <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
-            <div class="weui_media_bd">
-              <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
-              <p class="weui_media_desc">
-                {{{item.stem}}}
+        <div class="weui_panel weui_panel_access exerciseExampleList" v-for="item in brushList.list">
+          <div class="weui_panel_hd">
+            {{{item.chapter_name}}}
+          </div>
+          <div class="weui_panel_bd ">
+            <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
+              <div class="weui_media_bd">
+                <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
+                <p class="weui_media_desc">
+                  {{{item.stem}}}
+                </p>
+              </div>
+            </a>
+          </div>
+          <!--选项-->
+          <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
+            <div class="weui_media_bd weui_media_box options">
+              <p class="weui_media_desc" v-for="value in item.opt_jo">
+                {{ $key }} : {{{ value }}}
               </p>
             </div>
           </a>
-        </div>
-        <!--选项-->
-        <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
-          <div class="weui_media_bd weui_media_box options">
-            <p class="weui_media_desc" v-for="value in item.opt_jo">
-              {{ $key }} : {{{ value }}}
-            </p>
+          <div class="abandon">
+            <span @click="_abandon('1',item.exercises_id,$index)">斩题</span>
+            <span @click="_abandon('3',item.exercises_id,$index)">刷题</span>
+            <span @click="_abandon('2',item.exercises_id,$index)">弃题</span>
           </div>
-        </a>
-        <div class="abandon">
-          <span @click="_abandon('1',item.exercises_id,$index)">斩题</span>
-          <span @click="_abandon('2',item.exercises_id,$index)">弃题</span>
-          <span @click="_abandon('3',item.exercises_id,$index)">刷题</span>
         </div>
-      </div>
       </template>
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">
         <span slot="no-results" style="color:#4bb7aa;">
@@ -51,20 +51,22 @@
     </div>
   </view-box>
 
-  <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" title="" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')">
-    <p>   <color-picker :colors="['#dddddd']" :value.sync="remBrush"></color-picker>111122233<p>
+  <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" :title="confrimTitle" @on-confirm="_onAction">
+    <p style="padding:.35rem 0 ;font-size:16px;" @click="_noticeAgain" :class="notAgain ? 'notAgain':''">
+      <b><i class="icon iconfont exampleIcon icon-correct"></i></b>  选我以后不在提示
+    </p>
   </confirm>
 
 </template>
 
 <script>
-import {ColorPicker,XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm} from 'vux'
+import {XHeader,Panel,Flexbox,FlexboxItem,XButton,ViewBox,ButtonTab,ButtonTabItem,Confirm,Checker, CheckerItem,} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import { mapActions,mapGetters  } from 'vuex'
 
 export default {
   components: {
-    XHeader,XButton,InfiniteLoading,Confirm,ColorPicker,
+    XHeader,XButton,InfiniteLoading,Confirm,Checker, CheckerItem,
     Panel,Flexbox,FlexboxItem,ViewBox,ButtonTab,ButtonTabItem
   },
   route: {
@@ -93,22 +95,26 @@ export default {
       this.$router.go(`/example/${this.Params.studentId}/${this.brushSubjectId}/${id}`);
     },
     _abandon(status,id,index){
-        let parm = {
-          'id':id,
-          'status': status,
-          'index':index
+        this.selectItem.id = id;
+        this.selectItem.status = status;
+        this.selectItem.index = index;
+        if(localStorage.getItem("brushFirst")){
+          this.brushAction(this.selectItem)
+        }else{
+          this.confirmShow = true
         }
-          this.brushAction(parm)
-        // if(localStorage.getItem("brushFirst")){
-        //   this.brushAction(parm)
-        // }else{
-        //   this.confirmShow = true
-        //   // localstorage.setitem("brushFirst","true")
-        // }
-
-
     },
-    // onAction
+    //动作的提示
+    _noticeAgain(){
+      this.notAgain = !this.notAgain
+    },
+    //确认不提示
+    _onAction(){
+      if(this.notAgain){
+        localStorage.setItem("brushFirst","true")
+      }
+      this.brushAction(this.selectItem)
+    },
     _onInfinite(){
       this.getBrushList()
       .then((res)=>{
@@ -122,13 +128,32 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['brushList','brushListIsReset','brushSubjectId','brushListScroll','Params'])
+    ...mapGetters(['brushList','brushListIsReset','brushSubjectId','brushListScroll','Params']),
+    confrimTitle(){
+      if(this.selectItem.status == '2'){
+        return '真的很简单，确定放进弃题本？'
+      }else if(this.selectItem.status == '3'){
+        return '真的需要练习，确定放进刷题本？'
+      }else{
+        return '真的很难，确定放进斩题本？'
+      }
+    }
   },
   data(){
     return {
       confirmShow:false,
-      remBrush:''
+      selectItem:{
+        'id':'',
+        'status': '',
+        'index':''
+      },
+      notAgain: false,
     }
   }
 }
 </script>
+<style scoped>
+.notAgain{
+  color:#4bb7aa;
+}
+</style>
