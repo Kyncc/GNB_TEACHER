@@ -4,10 +4,9 @@
     <x-header :left-options="{showBack: false}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">班级</x-header>
   </div>
   <div>
-    <swiper :aspect-ratio="360/750" :show-dots="true" dots-position="center" :dots-class="swiperdots" :show-desc-mask="false">
+    <!--<swiper :aspect-ratio="360/750" :show-dots="true" dots-position="center" :dots-class="swiperdots" :show-desc-mask="false">
       <swiper-item class="swiper-demo-img" v-for="item in demo01_list"><img :src="item.img" height="100%" width="100%"></swiper-item>
-    </swiper>
-
+    </swiper>-->
     <group style="padding:10px 0;">
       <cell title="知识图谱" link="classes/select?type=report">
         <span class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></span>

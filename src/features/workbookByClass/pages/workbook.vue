@@ -3,7 +3,7 @@
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
       <x-header :left-options="{showBack: true}" >
         <a slot="right" @click="_changeSub()" class="changeSub">{{workbookClassSubject | subName}}<span class="with_arrow"></span></a>
-        <change-class :value.sync="selectCode" :class-list="classList"></change-class>
+        <change-text-book :value.sync="textbookId" :user-textbook="workbookClassWorkbook.textbook" :subject-id="workbookClassSubject"></change-text-book>
       </x-header>
     </div>
 
@@ -36,12 +36,12 @@
 <script>
 import {XHeader,Panel,ViewBox,Group,Cell,XButton} from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
-import {gnbChangeSub,changeClass} from 'components'
+import {gnbChangeSub,changeTextBook} from 'components'
 import { mapActions,mapGetters} from 'vuex'
 
 export default {
   components:{
-    XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,XButton,changeClass
+    XHeader,ViewBox,Panel,Group,Cell,gnbChangeSub,InfiniteLoading,XButton,changeTextBook
   },
   route: {
     data:function(transition){
@@ -57,8 +57,8 @@ export default {
     _toChapter(id){
       this.workbookClassChapterClear();      //进去前清除章节数据
       this.workbookClassPageClear();        //进去前清除页码数据
-      this.$router.go(`chapter/${this.selectCode}/${id}`);
-    }, 
+      this.$router.go(`../chapter/${this.Params.code}/${id}`);
+    },
     _changeSub(){
       this.visible = true;
     },
@@ -73,7 +73,7 @@ export default {
     },
     _onInfinite(){
       this.getWorkbookClass({
-        "code":this.selectCode
+        "textbookId":this.textbookId
       })
       .then(()=>{
         if(this.classWorkBook.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
@@ -81,21 +81,19 @@ export default {
       });
     }
   },
-  watch:{
-    selectCode(){
-      this.workbookClassClear();
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
-    }
-  },
-  created(){
-    this.selectCode = this.classCode;
-  },
   data(){
     return {
       visible:false,
-      selectCode:''
+      textbookId:''
+    }
+  },
+  created(){
+    this.textbookId = this.workbookClassWorkbook.textbook['math'][0].id;
+  },
+  watch: {
+    textbookId(){
+      this.workbookClassClear();
+      this.$broadcast('$InfiniteLoading:reset');
     }
   },
   computed:{
