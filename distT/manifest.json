@@ -3,8 +3,8 @@
     "id": "H5B579B59",/*应用的标识，创建应用时自动生成，勿手动修改*/
     "name": "归纳本-教师端",/*应用名称，程序桌面图标名称*/
     "version": {
-        "name": "2.0.0",/*应用版本名称*/
-        "code": "200"
+        "name": "2.2.0",/*应用版本名称*/
+        "code": "220"
     },
     "description": "",/*应用描述信息*/
     "icons": {
@@ -17,9 +17,7 @@
         "url": ""/*开发者个人主页地址*/
     },
     "permissions": {
-        "Accelerometer": {
-            "description": "访问加速度感应器"
-        },
+        
         "Audio": {
             "description": "访问麦克风"
         },
@@ -64,9 +62,7 @@
         "XMLHttpRequest": {
             "description": "跨域网络访问"
         },
-        "Zip": {
-            "description": "文件压缩与解压缩"
-        },
+        
         
         
         
@@ -81,7 +77,7 @@
         },
         "NativeObj":{
         	"description": "原生对象"
-        },"Statistic":{},"Camera":{},"Uploader":{}
+        },"Statistic":{},"Camera":{}
     },
     "plus": {
         "splashscreen": {
@@ -91,7 +87,7 @@
         "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
         "runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
         "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-        "distribute": {"plugins":{"statics":{"umeng":{"appkey_ios":"58412619677baa2509000e1c ","channelid_ios":"2.0","appkey_android":"5833f4a33eae256274001322","channelid_android":"2.0"}}},
+        "distribute": {"plugins":{"statics":{"umeng":{"appkey_ios":"58412619677baa2509000e1c ","channelid_ios":"2.2","appkey_android":"5833f4a33eae256274001322","channelid_android":"2.2"}}},
             "apple": {
                 "appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
                 "mobileprovision": "",/*iOS应用打包配置文件*/

@@ -16,24 +16,24 @@
           <div class="weui_panel_hd">
             {{{item.chapter_name}}}
           </div>
-          <div class="weui_panel_bd ">
-            <a class="weui_media_box weui_media_appmsg" @click="_intoDetail(item.exercises_id)">
-              <div class="weui_media_bd">
-                <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
-                <p class="weui_media_desc">
-                  {{{item.stem}}}
-                </p>
+          <div @click="_intoDetail(item.exercises_id)">
+            <div class="weui_panel_bd ">
+              <div class="weui_media_box weui_media_appmsg" >
+                <div class="weui_media_bd">
+                  <p class="example_title">参考例题<b>难度：{{item.degree}}</b></p>
+                  <p class="weui_media_desc">
+                    {{{item.stem}}}
+                  </p>
+                </div>
               </div>
-            </a>
-          </div>
+            </div>
           <!--选项-->
-          <a v-if=" item.opt_jo.hasOwnProperty('A') " @click="_intoDetail(item.exercises_id)">
-            <div class="weui_media_bd weui_media_box options">
+            <div v-if=" item.opt_jo.hasOwnProperty('A')"  class="weui_media_bd weui_media_box options">
               <p class="weui_media_desc" v-for="value in item.opt_jo">
                 {{ $key }} : {{{ value }}}
               </p>
             </div>
-          </a>
+         </div>
           <div class="abandon">
             <span @click="_abandon('1',item.exercises_id,$index)">斩题</span>
             <span @click="_abandon('3',item.exercises_id,$index)">刷题</span>
@@ -44,7 +44,7 @@
       <infinite-loading :on-infinite="_onInfinite" spinner="waveDots" style="height:60px">
         <span slot="no-results" style="color:#4bb7aa;">
           <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">还未刷题~</p>
+          <p style="font-size:1rem;display:inline-block;">遇到一些问题~</p>
         </span>
         <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;">已加载全部</span>
       </infinite-loading>
@@ -52,7 +52,7 @@
   </view-box>
 
   <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" :title="confrimTitle" @on-confirm="_onAction">
-    <p style="padding:.35rem 0 ;font-size:16px;" @click="_noticeAgain" :class="notAgain ? 'notAgain':''">
+    <p style="padding:.35rem 0 ;font-size:16px;" @click="_noticeAgain" :class="notice ? 'notAgain':''">
       <b><i class="icon iconfont exampleIcon icon-correct"></i></b>  选我以后不在提示
     </p>
   </confirm>
@@ -94,23 +94,60 @@ export default {
       this.setBrushListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop);
       this.$router.go(`/example/${this.Params.studentId}/${this.brushSubjectId}/${id}`);
     },
+    //动作
     _abandon(status,id,index){
         this.selectItem.id = id;
         this.selectItem.status = status;
         this.selectItem.index = index;
-        if(localStorage.getItem("brushFirst")){
-          this.brushAction(this.selectItem)
-        }else{
-          this.confirmShow = true
+        /**不同动作的判断
+        *1.为斩题目，若localStorage 内 breakFirst为true则不显示对话框
+        *2.为弃题 3.为刷题
+        */
+        if(this.selectItem.status == '1'){
+          if(localStorage.getItem("breakFirst")){
+            this.brushAction(this.selectItem)
+            return
+          }else{
+            this.notice = this.notAgain.break
+          }
         }
+        else if(this.selectItem.status == '2'){
+          if(localStorage.getItem("passFirst")){
+            this.brushAction(this.selectItem)
+            return
+          }else{
+            this.notice = this.notAgain.pass
+          }
+        }else{
+          if(localStorage.getItem("brushFirst")){
+            this.brushAction(this.selectItem)
+            return
+          }else{
+            this.notice = this.notAgain.brush
+          }
+        }
+        this.confirmShow = true
     },
     //动作的提示
     _noticeAgain(){
-      this.notAgain = !this.notAgain
+      if(this.selectItem.status == '1'){
+        this.notice = !this.notAgain.break
+        this.notAgain.break = !this.notAgain.break
+      }else if(this.selectItem.status == '2'){
+        this.notice = !this.notAgain.pass
+        this.notAgain.pass = !this.notAgain.pass
+      }else{
+        this.notice = !this.notAgain.brush
+        this.notAgain.brush = !this.notAgain.brush
+      }
     },
     //确认不提示
     _onAction(){
-      if(this.notAgain){
+      if(this.selectItem.status == '1' && this.notAgain.break){
+        localStorage.setItem("breakFirst","true")
+      }else if(this.selectItem.status == '2'  && this.notAgain.pass){
+        localStorage.setItem("passFirst","true")
+      }else if(this.selectItem.status == '3'  && this.notAgain.brush){
         localStorage.setItem("brushFirst","true")
       }
       this.brushAction(this.selectItem)
@@ -120,7 +157,7 @@ export default {
       .then((res)=>{
         this.$broadcast('$InfiniteLoading:loaded');
         let length = Number(res.data.data.list.length);
-        if(length  < 5){
+        if(length < 5){
             this.$broadcast('$InfiniteLoading:complete');
             return;
         }
@@ -147,7 +184,12 @@ export default {
         'status': '',
         'index':''
       },
-      notAgain: false,
+      notAgain:{
+        'brush':false,
+        'break':false,
+        'pass':false
+      },
+      notice:false
     }
   }
 }

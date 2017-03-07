@@ -72,6 +72,7 @@ router.beforeEach(function(transition) {
 /*在首页 或者loading启动的时候,返回键失效
 * 其他页面则直接返回上一页
 */
+
 document.addEventListener('plusready', function(){
   setInterval(function(){
     plus.key.addEventListener('backbutton',function(){
