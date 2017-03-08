@@ -7,14 +7,9 @@
     <!--<swiper :aspect-ratio="360/750" :show-dots="true" dots-position="center" :dots-class="swiperdots" :show-desc-mask="false">
       <swiper-item class="swiper-demo-img" v-for="item in demo01_list"><img :src="item.img" height="100%" width="100%"></swiper-item>
     </swiper>-->
-    <group style="padding:10px 0;">
-      <cell title="知识图谱" link="classes/select?type=report">
-        <span class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></span>
-      </cell>
-    </group>
     <group style="padding-bottom:10px;">
       <cell title="刷题本" link="classes/select?type=brushed">
-        <span class="icon iconfont icon-brush" style="color:#FF5454" slot="icon"></span>
+        <span class="icon iconfont icon-brush" style="color:#33CC99" slot="icon"></span>
       </cell>
       <cell title="斩题本" link="classes/select?type=break">
         <span class="icon iconfont icon-book1" style="color:#5ECFE7" slot="icon"></span>
@@ -24,8 +19,11 @@
       </cell>
     </group>
     <group>
+      <cell title="知识图谱" link="classes/select?type=report">
+        <span class="icon iconfont icon-pie-chart" style="color:#794BB8" slot="icon"></span>
+      </cell>
       <cell title="班级管理" link="classes/manager/">
-        <span class="icon iconfont icon-workbook" style="color:#ABC97C"  slot="icon"></span>
+        <span class="icon iconfont icon-hat" style="color:#ABC97C"  slot="icon"></span>
       </cell>
     </group>
   </div>

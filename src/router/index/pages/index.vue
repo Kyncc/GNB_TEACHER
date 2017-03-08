@@ -12,7 +12,7 @@
         <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">班级统计</x-button>
       </div>
       <div>
-        <x-button type='primary' v-link="{ path: 'classes/select?type=brush'}" mini class="rememberBtn">管理学生题型</x-button>
+        <x-button type='primary' v-link="{ path: 'classes/select?type=brush'}" mini class="rememberBtn1">管理学生题型</x-button>
       </div>
     </div>
   </view-box>
