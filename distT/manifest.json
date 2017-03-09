@@ -153,7 +153,7 @@
                         /*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
                         /*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
                         /*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
-                        "retina55l": "","retina55":"unpackage/res/start/1242x2208.png","retina47":"unpackage/res/start/750x1334.png","retina40":"unpackage/res/start/640x1136.png","retina35":"unpackage/res/start/640x960.png"/*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                        "retina55l": "","retina55":"unpackage/res/start/1242×2208.png","retina47":"unpackage/res/start/750×1334.png","retina40":"unpackage/res/start/640×1136.png","retina35":"unpackage/res/start/640x960.png"/*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
                     },
                     "ipad": {
                         "portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -168,7 +168,7 @@
                 },
                 "android": {
                     "mdpi": "", /*普通屏启动图片，分辨率：240x282*/
-                    "ldpi": "","hdpi":"unpackage/res/start/640x960.png","xhdpi":"unpackage/res/start/720x1242.png","xxhdpi":"unpackage/res/start/1080x1882.png"/*1080P高分屏启动图片，分辨率：1080x1882*/
+                    "ldpi": "","hdpi":"unpackage/res/start/480×762.png","xhdpi":"unpackage/res/start/640×960.png","xxhdpi":"unpackage/res/start/1080×1882.png"/*1080P高分屏启动图片，分辨率：1080x1882*/
                 }
             }
         }

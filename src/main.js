@@ -84,7 +84,7 @@ document.addEventListener('plusready', function(){
       ){
         if(!first){
             first = new Date().getTime();
-              _.toast('再按一次退出')
+            _.toast('再按一次退出')
             setTimeout(function() {
                 first = null;
             }, 1000);
