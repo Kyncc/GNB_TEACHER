@@ -6,13 +6,13 @@
 
     <div style="padding-top:46px">
       <div>
-        <a class="brush" v-link="{ path: 'classes/select?type=workbookByStu'}"></a>
+        <a class="brush" v-link="{ path: 'classes/select?type=brush'}"></a>
       </div>
       <div>
-        <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">班级统计</x-button>
+        <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">作业统计</x-button>
       </div>
       <div>
-        <x-button type='primary' v-link="{ path: 'classes/select?type=brush'}" mini class="rememberBtn1">管理学生题型</x-button>
+        <x-button type='primary' v-link="{ path: 'classes/select?type=workbookByStu'}" mini class="rememberBtn1">批改作业</x-button>
       </div>
     </div>
   </view-box>

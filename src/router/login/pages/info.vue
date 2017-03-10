@@ -7,7 +7,7 @@
         </div>
         <div style="padding-top:46px;">
             <div class="icon">
-              <img src="../../../assets/login/icon.jpg">
+              <img src="../../../assets/login/icon.png">
             </div>
             <div class="title">
               <img src="../../../assets/login/title.png">
