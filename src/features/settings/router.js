@@ -26,4 +26,4 @@ export default {
 
 store.registerModule('settings', {
   ...modules
-});
+})

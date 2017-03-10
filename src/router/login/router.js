@@ -15,7 +15,7 @@ export default {
         component: r => require.ensure([], () => r(require('./pages/setPassword')), '/setPassword') ,
       },
       'info':{
-         component: r => require.ensure([], () => r(require('./pages/info')), '/info')  ,
+         component: r => require.ensure([], () => r(require('./pages/info')), '/info'),
       },
       'forget': {
         component: r => require.ensure([], () => r(require('./pages/forget')), '/forget') ,
@@ -29,4 +29,4 @@ export default {
 
 store.registerModule('login', {
   ...modules
-});
+})
