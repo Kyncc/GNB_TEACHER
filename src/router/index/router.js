@@ -1,12 +1,10 @@
-import layout from './pages/layout'
-import index from './pages/index'
 import workbookByClass from '../../features/workbookByClass/router'
 
 export default {
   'index': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/index'),
     subRoutes: {
-      '/':{component: index},
+      '/':{component:r => require.ensure([], () => r(require('./pages/index')), '/index/')},
       ...workbookByClass
     }
   }

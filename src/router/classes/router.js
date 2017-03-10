@@ -1,6 +1,3 @@
-import layout from './pages/layout'
-import index from './pages/index'
-import select from './pages/select'
 import myClasses from '../../features/class/router'
 import report from '../../features/report/router'
 import pass from '../../features/pass/router'
@@ -14,13 +11,13 @@ import store from 'src/store'
 
 export default {
   'classes': {
-    component: layout,
+    component:  r => require.ensure([], () => r(require('./pages/layout')), '/classes'),
     subRoutes: {
       '/': {
-        component: index
+        component:  r => require.ensure([], () => r(require('./pages/index')), '/classes/')
       },
       '/select': {
-        component: select
+        component:  r => require.ensure([], () => r(require('./pages/select')), '/classes/select') 
       },
       ...myClasses,
       ...introduction,

@@ -14,7 +14,7 @@ import Index from './router/index/router'
 import Classes from './router/Classes/router'
 import Interact from './router/interact/router'
 //插件
-import moment from 'moment'
+// import moment from 'moment'
 import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 
@@ -25,9 +25,9 @@ FastClick.attach(document.body)
 Vue.use(VueLazyload)
 
 //格式化时间
-Vue.filter('ymd', function(value) {
-  return moment.unix(value).format('YYYY-MM-DD');
-})
+// Vue.filter('ymd', function(value) {
+//   return moment.unix(value).format('YYYY-MM-DD');
+// })
 
 //课程ID的转换
 Vue.filter('subName', (id) => {
@@ -39,6 +39,7 @@ Vue.filter('subName', (id) => {
 })
 
 const router = new Router()
+
 router.map({
   ...Login,
   ...Correct,

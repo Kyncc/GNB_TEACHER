@@ -1,38 +1,30 @@
-import layout from './pages/layout'
-import index from './pages/index'
-import create from './pages/create'
-import classes from './pages/detail/class'
-import invite from './pages/detail/invite'
-import update from './pages/detail/update'
-import classmate from './pages/detail/classmate'
-import apply from './pages/detail/apply'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   'manager': {
-    component: layout,
+    component:  r => require.ensure([], () => r(require('./pages/layout')), '/manager'),
     subRoutes: {
       '/': {
-        component: index
+        component:  r => require.ensure([], () => r(require('./pages/index')), '/manager/'), 
       },
       'create/': {
-        component: create
+        component:  r => require.ensure([], () => r(require('./pages/create')), '/manager/create/'),
       },
       'class/:code':{
-        component: classes
+        component:  r => require.ensure([], () => r(require('./pages/detail/class')), '/manager/class/'),
       },
       'class/invite/:code':{
-        component: invite
+        component:  r => require.ensure([], () => r(require('./pages/detail/invite')), '/manager/class/invite/'), 
       },
       'class/update/:code':{
-        component: update
+        component:  r => require.ensure([], () => r(require('./pages/detail/update')), '/manager/class/update/'), 
       },
       'class/apply/:code':{
-        component: apply
+        component:  r => require.ensure([], () => r(require('./pages/detail/apply')), '/manager/class/apply/'),
       },
       'class/classmate/:code':{
-        component: classmate
+        component:  r => require.ensure([], () => r(require('./pages/detail/classmate')), '/manager/class/classmate/'), 
       }
     }
   }

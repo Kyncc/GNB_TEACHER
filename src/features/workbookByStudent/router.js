@@ -1,26 +1,21 @@
-import layout from './pages/layout'
-import index from './pages/index'
-import chapter from './pages/chapter'
-import page from './pages/page'
-import exercise from './pages/exercise'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   'workbookByStu': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/workbookByStu'),
     subRoutes: {
       '/:code/:studentId': {
-        component: index
+        component: r => require.ensure([], () => r(require('./pages/index')), '/workbookByStu/'),
       },
       'chapter/:studentId/:workbookId': {
-        component: chapter
+        component: r => require.ensure([], () => r(require('./pages/chapter')), '/workbookByStu/chapter/')
       },
       'page/:studentId/:workbookId': {
-        component: page
+        component: r => require.ensure([], () => r(require('./pages/page')), '/workbookByStu/page/')
       },
       'exercise/:studentId/:chapterId': {
-        component: exercise
+        component: r => require.ensure([], () => r(require('./pages/exercise')), '/workbookByStu/exercise/')
       }
     }
   }
