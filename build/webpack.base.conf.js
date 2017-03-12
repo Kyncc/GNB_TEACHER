@@ -22,6 +22,9 @@ module.exports = {
       'config': path.resolve(__dirname, '../src/config')
     }
   },
+  externals: {
+    'moment': true
+  },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]
   },
