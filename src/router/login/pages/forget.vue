@@ -4,7 +4,7 @@
 			<x-header :left-options="{showBack: true}" style="position:fixed;left:0;top:0;width:100%;" class="vux-scroller-header">重置密码</x-header>
 		</div>
     <div class="icon">
-      <img src="../../../assets/login/icon.jpg">
+      <img src="../../../assets/login/icon.png">
     </div>
     <div class="title">
       <img src="../../../assets/login/title.png">

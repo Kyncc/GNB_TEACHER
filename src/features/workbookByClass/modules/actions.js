@@ -11,15 +11,34 @@ export const getWorkbookClass = ({state,rootState,commit},params) => {
       url: 'workbook/class',
       params: {
         "token":rootState.login.token,
-        "classCode":params.code,
-        "subjectId":state.subjectId
+        "classCode":rootState.route.params.code,
+        "subjectId":state.subjectId,
+        "textbookId":params.textbookId
       }
     })
     .then((response) => {
       commit(types.WORKBOOK_CLASS,response.data.data)
       resolve(response);
     })
-  });
+  })
+}
+/**获取课本数据 */
+export const getTextbookClass = ({state,rootState,commit},params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'class/textbook',
+      params: {
+        "token":rootState.login.token,
+        "classCode":params.code
+        // "subject_id":state.subjectId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_CLASS_TEXTBOOK,response.data.data)
+      resolve(response)
+    })
+  })
 }
 /**习题册数据清空 */
 export const workbookClassClear = ({ commit }) => {
@@ -34,7 +53,6 @@ export const workbookSetSubject = ({ commit },id) => {
 
 /**获取习题册数据 */
 export const getWorkbookClassPage = ({rootState,commit}) => {
-  
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',

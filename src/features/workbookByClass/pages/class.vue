@@ -8,7 +8,7 @@
     <div style="padding-top:46px">
       <group>
         <template v-for="item in User.class" >
-          <cell :title="item.name" :link="'workbook/'+item.code"></cell>
+          <cell :title="item.name"  @click="_into(item.classCode)"></cell>
         </template>
       </group>
     </div>
@@ -17,12 +17,23 @@
 <script>
 
 import { XHeader,Group,ViewBox,Cell }from 'vux'
-import { mapGetters } from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 
 export default {
   components: {XHeader,Group,ViewBox,Cell},
   computed:{
     ...mapGetters(['User'])
+  },
+  methods:{
+     ...mapActions(['getTextbookClass']),
+     _into(code){
+       this.getTextbookClass({
+          "code":code
+       })
+       .then(()=>{
+         this.$router.go(`workbook/${code}`)
+       })
+     }
   }
 }
 </script>

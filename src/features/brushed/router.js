@@ -1,18 +1,15 @@
-import layout from './pages/layout'
-import chapter from './pages/chapter'
-import list from './pages/list'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   '/brushed': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/brushed/'),
     subRoutes: {
       '/:code/:studentId': {
-          component: chapter,
+          component: r => require.ensure([], () => r(require('./pages/chapter')), '/brushed/chapter/'),
       },
       '/list/:studentId/:chapterId': {
-          component: list,
+          component: r => require.ensure([], () => r(require('./pages/list')), '/brushed/list/'),
       }
     }
   }

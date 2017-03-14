@@ -1,35 +1,28 @@
-import layout from './pages/layout'
-import workbook from './pages/workbook'
-import chapter from './pages/chapter'
-import page from './pages/page'
-import exercise from './pages/exercise'
-import classList from './pages/class'
 import modules from './modules/store'
 import store from 'src/store'
 
 export default {
   'workbookByClass': {
-    component: layout,
+    component: r => require.ensure([], () => r(require('./pages/layout')), '/workbookByClass'),
     subRoutes: {
       '/': {
-        component: classList
+        component: r => require.ensure([], () => r(require('./pages/class')), '/workbookByClass/'),
       },
       'workbook/:code': {
-        component: workbook
+        component: r => require.ensure([], () => r(require('./pages/workbook')), '/workbookByClass/workbook'),
       },
       'chapter/:code/:workbookId': {
-        component: chapter
+        component:  r => require.ensure([], () => r(require('./pages/chapter')), '/workbookByClass/chapter'),
       },
       'page/:code/:workbookId': {
-        component: page
+        component:  r => require.ensure([], () => r(require('./pages/page')), '/workbookByClass/page'), 
       },
       'exercise/:code/:chapterId': {
-        component: exercise
+        component: r => require.ensure([], () => r(require('./pages/exercise')), '/workbookByClass/exercise'), 
       }
     }
   }
 }
-
 
 store.registerModule('rememberClass', {
   ...modules
