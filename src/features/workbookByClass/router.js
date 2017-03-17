@@ -14,16 +14,11 @@ export default {
       'chapter/:code/:workbookId': {
         component:  r => require.ensure([], () => r(require('./pages/chapter')), '/workbookByClass/chapter'),
       },
-      '/exercise': {
-        component: r => require.ensure([], () => r(require('./pages/exercise/layout')), '/workbookByClass/exercise'),
-        subRoutes: {
-          '/main/:code/:chapterId/:name/':{
-            component: r => require.ensure([], () => r(require('./pages/exercise/exercise')), '/remember/exercise/'),
-          },
-          '/answer/:code/:chapterId/:name/':{
-            component: r => require.ensure([], () => r(require('./pages/exercise/answer')), '/remember/exercise/answer'),
-          }
-        }
+      'page/:code/:workbookId': {
+        component:  r => require.ensure([], () => r(require('./pages/page')), '/workbookByClass/page'), 
+      },
+      'exercise/:code/:chapterId': {
+        component: r => require.ensure([], () => r(require('./pages/exercise')), '/workbookByClass/exercise'), 
       }
     }
   }
