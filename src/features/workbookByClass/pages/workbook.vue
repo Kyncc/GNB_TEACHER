@@ -53,10 +53,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['workbookClassClear','getWorkbookClass','workbookClassChapterClear','workbookClassPageClear','workbookSetSubject']),
+    ...mapActions(['workbookClassClear','getWorkbookClass','workbookClassChapterClear','workbookSetSubject']),
     _toChapter(id){
       this.workbookClassChapterClear();      //进去前清除章节数据
-      this.workbookClassPageClear();        //进去前清除页码数据
       this.$router.go(`../chapter/${this.Params.code}/${id}`);
     },
     _changeSub(){

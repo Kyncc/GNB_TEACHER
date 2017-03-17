@@ -2,7 +2,6 @@ import axios from 'config/http'
 import * as types from './mutationTypes'
 import * as _ from 'config/whole'
 
-
 /**获取习题册数据 */
 export const getWorkbookClass = ({state,rootState,commit},params) => {
   return new Promise((resolve, reject)=> { 
@@ -18,12 +17,12 @@ export const getWorkbookClass = ({state,rootState,commit},params) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_CLASS,response.data.data)
-      resolve(response);
+      resolve(response)
     })
   })
 }
 /**获取课本数据 */
-export const getTextbookClass = ({state,rootState,commit},params) => {
+export const getTextbookClass = ({rootState,commit},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -31,7 +30,6 @@ export const getTextbookClass = ({state,rootState,commit},params) => {
       params: {
         "token":rootState.login.token,
         "classCode":params.code
-        // "subject_id":state.subjectId
       }
     })
     .then((response) => {
@@ -42,45 +40,16 @@ export const getTextbookClass = ({state,rootState,commit},params) => {
 }
 /**习题册数据清空 */
 export const workbookClassClear = ({ commit }) => {
-  commit(types.WORKBOOK_CLASS_CLEAR);
+  commit(types.WORKBOOK_CLASS_CLEAR)
 }
 /**切换科目 */
 export const workbookSetSubject = ({ commit },id) => {
-  commit(types.WORKBOOK_CLASS_SUBJECT_CHANGE,id);
-  commit(types.WORKBOOK_CLASS_CLEAR);
+  commit(types.WORKBOOK_CLASS_SUBJECT_CHANGE,id)
+  commit(types.WORKBOOK_CLASS_CLEAR)
 }
-
-
-/**获取习题册数据 */
-export const getWorkbookClassPage = ({rootState,commit}) => {
-  return new Promise((resolve, reject)=> { 
-    axios({
-      method:'get',
-      url: 'workbook/class/page',
-      params: {
-        "token":rootState.login.token,
-        "classCode":rootState.route.params.code,
-        "workbookId":rootState.route.params.workbookId
-      }
-    })
-    .then((response) => {
-      commit(types.WORKBOOK_CLASS_PAGE,response.data.data)
-      resolve(response);
-    })
-  });
-}
-/**页码数据清空 */
-export const workbookClassPageClear = ({ commit }) => {
-  commit(types.WORKBOOK_CLASS_PAGE_CLEAR);
-}
-/**页码高度设置 */
-export const setWorkbookClassPageScroll = ({ commit },height) => {
-  commit(types.WORKBOOK_CLASS_PAGE_SCROLL,height);
-}
-
 
 /**获取习题册章节数据 */
-export const getWorkbookClassChapter = ({state,rootState,commit}) => {
+export const getWorkbookClassChapter = ({rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -93,22 +62,21 @@ export const getWorkbookClassChapter = ({state,rootState,commit}) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_CLASS_CHAPTER,response.data.data)
-      resolve(response);
+      resolve(response)
     })
-  });
+  })
 }
 /**章节数据清空 */
 export const workbookClassChapterClear = ({ commit }) => {
-  commit(types.WORKBOOK_CLASS_CHAPTER_CLEAR);
+  commit(types.WORKBOOK_CLASS_CHAPTER_CLEAR)
 }
 /**章节高度设置 */
 export const setWorkbookClassChapterScroll = ({ commit },height) => {
-  commit(types.WORKBOOK_CLASS_CHAPTER_SCROLL,height);
+  commit(types.WORKBOOK_CLASS_CHAPTER_SCROLL,height)
 }
 
-
-/**获取习题册章节数据 */
-export const getWorkbookClassExercise = ({state,rootState,commit}) => {
+/**获取习题册章节练习题数据 */
+export const getWorkbookClassExercise = ({rootState,commit}) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -121,13 +89,55 @@ export const getWorkbookClassExercise = ({state,rootState,commit}) => {
     })
     .then((response) => {
       commit(types.WORKBOOK_CLASS_EXERCISE,response.data.data)
-      resolve(response);
+      resolve(response)
     })
-  });
+  })
 }
+
+/**获取习题册章节练习照片 */
+export const getWorkbookClassExerciseAnswer = ({rootState,commit}) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'get',
+      url: 'workbook/class/camera',
+      params: {
+        "token":rootState.login.token,
+        "classCode":rootState.route.params.code,
+        "chapterId":rootState.route.params.chapterId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_CLASS_EXERCISE_ANSWER,response.data.data)
+      resolve(response)
+    })
+  })
+}
+
+/**习题册章节已阅 */
+export const postWorkbookClassRead = ({rootState,commit}) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'post',
+      url: 'workbook/class/chapter/read',
+      params: {
+        "token":rootState.login.token,
+        "classCode":rootState.route.params.code,
+        "chapterId":rootState.route.params.chapterId
+      }
+    })
+    .then((response) => {
+      commit(types.WORKBOOK_CLASS_EXERCISE_READ)
+      resolve(response)
+    })
+  })
+}
+
 /** 练习数据清空 */
 export const workbookClassExerciseClear = ({ commit }) => {
-  commit(types.WORKBOOK_CLASS_EXERCISE_CLEAR);
+  commit(types.WORKBOOK_CLASS_EXERCISE_CLEAR)
 }
+
+
+
 
 
