@@ -6,7 +6,6 @@ import gnbChangeSub from './changesub/index'
 import changeTextBook from './changeTextBook/index'
 import photoswiper from './photoswiper/index'
 
-
 module.exports = {
 	gnbChangeSub,
 	accordion,

@@ -58,12 +58,11 @@ export default {
 	},
   route: {
     data:function(transition){
-      if(!this.workbookClassChapter.isReset){
+      if(this.workbookClassChapter.isReset){
         this.$nextTick(() => { 
           this.$broadcast('$InfiniteLoading:reset');
         })
       }else{
-        console.log(1)
         this.$nextTick(()=>{
           document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.workbookClassChapter.scroll;
         });
