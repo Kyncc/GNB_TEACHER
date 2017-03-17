@@ -4,6 +4,8 @@ import accordionReport from './accordionReport/index'
 import changeClass from './changeClass/index'
 import gnbChangeSub from './changesub/index'
 import changeTextBook from './changeTextBook/index'
+import photoswiper from './photoswiper/index'
+
 
 module.exports = {
 	gnbChangeSub,
@@ -11,5 +13,6 @@ module.exports = {
 	accordionPage,
 	changeClass,
 	changeTextBook,
-	accordionReport
+	accordionReport,
+	photoswiper
 }

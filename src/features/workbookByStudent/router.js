@@ -11,16 +11,12 @@ export default {
       'chapter/:studentId/:workbookId': {
         component: r => require.ensure([], () => r(require('./pages/chapter')), '/workbookByStu/chapter/')
       },
-      'page/:studentId/:workbookId': {
-        component: r => require.ensure([], () => r(require('./pages/page')), '/workbookByStu/page/')
-      },
       'exercise/:studentId/:chapterId': {
         component: r => require.ensure([], () => r(require('./pages/exercise')), '/workbookByStu/exercise/')
       }
     }
   }
 }
-
 
 store.registerModule('rememberStudent', {
   ...modules

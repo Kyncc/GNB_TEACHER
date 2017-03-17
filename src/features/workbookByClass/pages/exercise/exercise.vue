@@ -25,6 +25,9 @@
           </group>
         </template>
       </template>
+
+      <x-button v-if="!Exercise.isRead" style="width:95%;text-align:center;margin-top:1rem;border-radius:0px;background:#4bb7aa;color:#fff" type="primary" @click="_post">已阅</x-button>
+      <x-button v-else style="width:95%;margin-top:1rem;" type="primary" disabled>已阅</x-button>
     </template>
 
     <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
@@ -57,11 +60,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getWorkbookClassExercise']),
-    /**获取答案*/
-    _intoBan(){
-      history.go(-2);
-    },
+    ...mapActions(['getWorkbookClassExercise','postWorkbookClassRead']),
     _getAnswerList(){
       this.answerListId = [];
       this.answerListAnswer = [];
@@ -95,6 +94,9 @@ export default {
         this.$broadcast('$InfiniteLoading:complete');
       });
     },
+    _post(){
+      this.postWorkbookClassRead()
+    },
     _intoExample(id){
       if(Number(id) == 0){
         _.toast('暂无例题');
@@ -107,7 +109,7 @@ export default {
   data(){
     return {
       answerListId:[],         //答案的列表
-      answerListAnswer:[],         //答案的列表
+      answerListAnswer:[],     //答案的列表
       workbookType:''
     }
   },

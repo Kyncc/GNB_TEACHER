@@ -56,10 +56,9 @@ export default {
     _open(){
       alert(1)
     },
-    ...mapActions(['workbookStuClear','getWorkbookStu','workbookStuChapterClear','workbookStuPageClear','workbookStuSetSubject']),
+    ...mapActions(['workbookStuClear','getWorkbookStu','workbookStuChapterClear','workbookStuSetSubject']),
     _toChapter(id){
       this.workbookStuChapterClear();      //进去前清除章节数据
-      this.workbookStuPageClear();      //进去前清除页码数据
       this.$router.go(`../chapter/${this.Params.studentId}/${id}`);
     }, 
     _changeSub(){

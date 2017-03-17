@@ -8,11 +8,6 @@ const state = {
     list:[],
     isReset:false 
   },         
-  page:{                //习题册页码
-    list:[],
-    scroll:0,
-    isReset:false 
-  },           
   chapter:{            //习题册章节
     list:[],
     scroll:0,
@@ -42,6 +37,7 @@ const mutations = {
   [types.WORKBOOK_STU_CHAPTER](state,data){
       state.chapter.list =  data;
       state.chapter.isReset =  true;
+      state.exercise.isReset =  false;
   },
   [types.WORKBOOK_STU_CHAPTER_CLEAR](state){
       state.chapter.list =  [];
@@ -52,28 +48,14 @@ const mutations = {
      state.chapter.scroll = height;
   },
   
-  //按页码
-  [types.WORKBOOK_STU_PAGE](state,data){
-      state.page.list =  data;
-      state.page.isReset =  false;
-  },
-  [types.WORKBOOK_STU_PAGE_CLEAR](state){
-      state.page.scroll = 0;
-      state.page.list =  [];
-      state.page.isReset =  true;
-  }, 
-  [types.WORKBOOK_STU_PAGE_SCROLL](state, height){
-     state.page.scroll = height;
-  },
-  
   //练习
   [types.WORKBOOK_STU_EXERCISE](state,data){
       state.exercise.list = data;
-      state.exercise.isReset =  false;
+      state.exercise.isReset =  true;
   },
   [types.WORKBOOK_STU_EXERCISE_CLEAR](state){
       state.exercise.list = [];
-      state.exercise.isReset = true;    
+      state.exercise.isReset = true;
   }
 
 }

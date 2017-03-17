@@ -1,12 +1,7 @@
 <template >
   <view-box  class="workbookClassSelect">
     <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-      <x-header :left-options="{showBack: true}">章节选择
-        <!--<a slot="right" @click="_changeType()" class="changeSub">
-          按章节
-          <span class="with_arrow"></span>
-        </a>-->
-      </x-header>
+      <x-header :left-options="{showBack: true}">章节选择</x-header>
     </div>
 
     <div style="padding-top:46px;">
@@ -37,10 +32,6 @@
       </infinite-loading>
     </div>
 
-    <!--<Popup :visible.sync="visible"  popup-transition="popup-fade" class="gnb-changeSub">
-      <p class="active">按章节</p>
-      <p @click="_intoPage()">按页码</p>
-    </Popup>-->
   </view-box>
 </template>
 
@@ -67,11 +58,12 @@ export default {
 	},
   route: {
     data:function(transition){
-      if(this.workbookClassChapter.isReset){
-        this.$nextTick(() => {
+      if(!this.workbookClassChapter.isReset){
+        this.$nextTick(() => { 
           this.$broadcast('$InfiniteLoading:reset');
         })
       }else{
+        console.log(1)
         this.$nextTick(()=>{
           document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.workbookClassChapter.scroll;
         });
@@ -80,10 +72,6 @@ export default {
   },
   methods:{
     ...mapActions(['getWorkbookClassChapter','setWorkbookClassChapterScroll','workbookClassExerciseClear']),
-    _intoPage(){
-      this.visible = false;
-      this.$router.replace(`../../page/${this.Params.code}/${this.Params.workbookId}/`);
-    },
     _changeType(){
       this.visible = true;
     },
