@@ -40,7 +40,7 @@ const mutations = {
   //按章节
   [types.WORKBOOK_CLASS_CHAPTER](state,data){
       state.chapter.list =  data
-      state.chapter.isReset =  true
+      state.chapter.isReset =  false
   },
   [types.WORKBOOK_CLASS_CHAPTER_CLEAR](state){
       state.chapter.list =  []
