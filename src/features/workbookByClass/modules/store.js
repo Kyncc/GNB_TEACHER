@@ -17,9 +17,11 @@ const state = {
   exercise:{            //练习
     list:[],
     answer:[],
-    isReset:false 
+    isReset:false ,
+    isAnswerReset:false 
   }
 }
+
 
 const mutations = {
   //习题册
@@ -44,7 +46,7 @@ const mutations = {
   },
   [types.WORKBOOK_CLASS_CHAPTER_CLEAR](state){
       state.chapter.list =  []
-      state.chapter.isReset =  true
+      state.chapter.isReset =  true 
   }, 
   [types.WORKBOOK_CLASS_CHAPTER_SCROLL](state, height){
      state.chapter.scroll = height
@@ -56,15 +58,19 @@ const mutations = {
   },
   //练习照片
   [types.WORKBOOK_CLASS_EXERCISE_ANSWER](state,data){
-    state.exercise.answer = []
+    state.exercise.answer = data
+    state.exercise.isAnswerReset = false
   },
   [types.WORKBOOK_CLASS_EXERCISE_READ](state,data){
+    state.chapter.list =  []
+    state.chapter.isReset =  true
     state.exercise.list.isRead = true
   },
   [types.WORKBOOK_CLASS_EXERCISE_CLEAR](state){
     state.exercise.list = []
     state.exercise.answer = []
     state.exercise.isReset = true
+    state.exercise.isAnswerReset = true
   }
 }
 

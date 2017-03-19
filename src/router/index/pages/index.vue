@@ -9,11 +9,11 @@
         <a class="brush" v-link="{ path: 'classes/select?type=brush'}"></a>
       </div>
       <div>
-        <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">作业统计</x-button>
+        <x-button type='primary' v-link="{ path: 'index/workbookByClass/'}" mini class="rememberBtn">批改作业</x-button>
       </div>
-      <div>
+      <!--<div>
         <x-button type='primary' v-link="{ path: 'classes/select?type=workbookByStu'}" mini class="rememberBtn1">批改作业</x-button>
-      </div>
+      </div>-->
     </div>
   </view-box>
 </template>

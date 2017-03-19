@@ -83,7 +83,7 @@ export default {
       return;
     },
     _isLinkTitle(item){
-      if(item.isLink == 'true' && item.isUsed == 'true'){
+      if(item.isLink.toString() == 'true' && item.isRead.toString() == 'true'){
           return  '✔ '+item.name
       }
       return (item.isLink == 'true' ? '✐  '+item.name:'♢  '+item.name);

@@ -21,6 +21,7 @@ export const getWorkbookClass = ({state,rootState,commit},params) => {
     })
   })
 }
+
 /**获取课本数据 */
 export const getTextbookClass = ({rootState,commit},params) => {
   return new Promise((resolve, reject)=> { 
@@ -126,7 +127,8 @@ export const postWorkbookClassRead = ({rootState,commit}) => {
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK_CLASS_EXERCISE_READ)
+      commit(types.WORKBOOK_CLASS_EXERCISE_READ,rootState.route.params.chapterId)
+      _.toast('已阅成功')
       resolve(response)
     })
   })

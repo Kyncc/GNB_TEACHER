@@ -3,5 +3,5 @@ export const clearAll = ({ dispatch}) => {
 	dispatch('clearBreak');
 	dispatch('clearReport');
 	dispatch('clearPass');
-	dispatch('workbookStuClear');
+	// dispatch('workbookStuClear');
 }

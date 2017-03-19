@@ -3,20 +3,26 @@
     <section class="header">
       <h3>未提交作业名单</h3>
       <article>
-        <span v-for="n in 5">田馥甄</span>
+        <span v-for="name in classmateName">{{name}}</span>
       </article>
     </section>
 
-    <div class="weui_cells_title">
-      <div class="weui-cells vux-no-group-title">
-        <div class="weui-cell" v-for="n in 5">
-          <divider>寶同学 2017.08.12</divider>
-          <div>
-             <img v-for="n in 5" @click="_show" src="http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/0/format/png/w/90/" />
-          </div>
+    <template v-for="list in cameraList">
+      <div class="weui-cell">
+        <divider>{{studentName}} {{time|ymd}}</divider>
+        <div>
+          <img v-for="img in list.camera" @click="_show(item)" :src="img.url"+"?imageView2/0/format/png/w/90/" />
         </div>
       </div>
-    </div>
+    </template>
+
+    <infinite-loading :on-infinite="_onInfinite" spinner="spiral">
+      <span slot="no-results" style="color:#4bb7aa;">
+        <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
+        <p style="font-size:1rem;display:inline-block;">数据发生一点问题~</p>
+      </span>
+      <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
+    </infinite-loading>
 
     <photoswiper :list="list" :options="options" v-ref:previewer></photoswiper>
   </div>
@@ -32,8 +38,24 @@ export default {
   components:{
     Group,InfiniteLoading,Cell,Divider,photoswiper 
   },
+  route: {
+    data:function(transition){
+      if(this.workbookClassExercise.isAnswerReset){
+        this.$nextTick(() => {
+          this.$broadcast('$InfiniteLoading:reset');
+        })
+      }
+    }
+  },
   methods:{
     ...mapActions(['getWorkbookClassExerciseAnswer']),
+    _onInfinite(){
+        this.getWorkbookClassExerciseAnswer()
+        .then(()=>{
+          this.$broadcast('$InfiniteLoading:loaded');
+          this.$broadcast('$InfiniteLoading:complete');
+        })
+    },
     _show(){
       // this.list[0].src = `http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/2/w/700/h/1050/q|imageslim`
       // this.list[0].w = item.img.width
@@ -78,7 +100,13 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['workbookClassExercise','Params'])
+    ...mapGetters(['workbookClassExercise','Params']),
+    classmateName(){
+      return this.workbookClassExercise.answer.notPost
+    },
+    cameraList(){
+      return this.workbookClassExercise.answer.list
+    }
   }
 }
 </script>
