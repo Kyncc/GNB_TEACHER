@@ -32,7 +32,13 @@
 <script>
 import {XHeader,XButton,Checker,CheckerItem,Group,XTextarea} from 'vux'
 import { mapActions,mapGetters  } from 'vuex'
+import modules from '../modules/store'
+import store from 'src/store'
 import * as _ from 'config/whole'
+
+store.registerModule('correct', {
+  ...modules
+})
 
 export default {
   components: {

@@ -1,6 +1,3 @@
-import modules from './modules/store'
-import store from 'src/store'
-
 export default {
   'workbookByClass': {
     component: r => require.ensure([], () => r(require('./pages/layout')), '/workbookByClass'),
@@ -28,7 +25,3 @@ export default {
     }
   }
 }
-
-store.registerModule('rememberClass', {
-  ...modules
-});

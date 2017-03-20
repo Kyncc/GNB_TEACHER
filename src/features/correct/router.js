@@ -1,6 +1,3 @@
-import modules from './modules/store'
-import store from 'src/store'
-
 export default {
   '/correct/:studentId/:subjectId/:id': {
     component: r => require.ensure([], () => r(require('./pages/correct')), '/correct/')
@@ -8,6 +5,3 @@ export default {
 }
 
 
-store.registerModule('correct', {
-  ...modules
-});

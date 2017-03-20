@@ -1,7 +1,7 @@
 <template>
   <div class="workbookClassAnswer">
     <section class="header">
-      <h3>未提交作业名单</h3>
+      <h3>未提交作业同学</h3>
       <article>
         <span v-for="name in classmateName">{{name}}</span>
       </article>
@@ -11,7 +11,7 @@
       <div class="weui-cell">
         <divider>{{studentName}} {{time|ymd}}</divider>
         <div>
-          <img v-for="img in list.camera" @click="_show(item)" :src="img.url"+"?imageView2/0/format/png/w/90/" />
+          <img v-for="img in list.camera" @click="_show(item)" :src="img.url.'?imageView2/0/format/png/w/90/'" />
         </div>
       </div>
     </template>

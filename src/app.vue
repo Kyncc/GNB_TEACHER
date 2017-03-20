@@ -23,4 +23,5 @@ export default {
     isLoading: state => state.tools.isLoading
   })
 }
+
 </script>

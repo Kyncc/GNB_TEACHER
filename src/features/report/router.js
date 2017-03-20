@@ -1,6 +1,3 @@
-import modules from './modules/store'
-import store from 'src/store'
-
 export default  {
   'report': {
     component: r => require.ensure([], () => r(require('./pages/layout')), '/report'),
@@ -15,6 +12,3 @@ export default  {
   }
 }
 
-store.registerModule('report', {
-  ...modules
-});

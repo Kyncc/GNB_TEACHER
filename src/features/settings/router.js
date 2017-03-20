@@ -1,6 +1,3 @@
-import modules from './modules/store'
-import store from 'src/store'
-
 export default {
   'settings': {
     component:  r => require.ensure([], () => r(require('./pages/layout')), '/settings'),
@@ -23,7 +20,3 @@ export default {
     }
   }
 }
-
-store.registerModule('settings', {
-  ...modules
-})
