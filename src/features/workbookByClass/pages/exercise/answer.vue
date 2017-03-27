@@ -8,10 +8,10 @@
     </section>
 
     <template v-for="list in cameraList">
-      <div class="weui-cell">
-        <divider>{{studentName}} {{time|ymd}}</divider>
-        <div>
-          <img v-for="img in list.camera" @click="_show(item)" :src="img.url.'?imageView2/0/format/png/w/90/'" />
+      <div class="weui-cell" style="padding:.8rem 0 .8rem .8rem">
+        <divider style="font-size:14px;">{{list.studentName}}&nbsp&nbsp{{list.time}}</divider>
+        <div style="">
+          <img class="previewer-answer-img" v-for="img in list.camera" @click="_show(list.camera,$index)" v-lazy="img.url+'-answer'" />
         </div>
       </div>
     </template>
@@ -24,7 +24,10 @@
       <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
     </infinite-loading>
 
-    <photoswiper :list="list" :options="options" v-ref:previewer></photoswiper>
+    <div style="z-index:2017;position:relative">
+      <photoswiper :list="list" :options="options" v-ref:photoswiper></photoswiper>
+    </div>
+
   </div>
 </template>
 
@@ -56,46 +59,33 @@ export default {
           this.$broadcast('$InfiniteLoading:complete');
         })
     },
-    _show(){
-      // this.list[0].src = `http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/2/w/700/h/1050/q|imageslim`
-      // this.list[0].w = item.img.width
-      // this.list[0].h = item.img.height
-      // this.$refs.previewer.items.pop()
-      // this.$refs.previewer.items.push(this.list)
-      this.$refs.previewer.show()
+    _show(obj,index){
+      this.list = []
+      for(let i = 0 ; i< obj.length ; i++){
+        this.list.push({
+          'src':`${obj[i].url}?imageView2|imageslim`,
+          'h':obj[i].height,
+          'w':obj[i].width,
+        })
+      }
+      setTimeout(()=>{
+        this.$refs.photoswiper.show(index)
+      },200)
     }
   },
   data(){
     return{
-      list: [{
-        src: 'http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/2/w/700/h/1050/q|imageslim',
-        w: 750,
-        h: 1040
-      },
-      {
-        src: 'http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/2/w/700/h/1050/q|imageslim',
-        w: 750,
-        h: 1040
-      },
-      {
-        src: 'http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/2/w/700/h/1050/q|imageslim',
-        w: 750,
-        h: 1040
-      },
-      {
-        src: 'http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/2/w/700/h/1050/q|imageslim',
-        w: 750,
-        h: 1040
-      },
-      {
-        src: 'http://img.guinaben.com/workbookPic/285-cover-781692.jpg?imageView2/2/w/700/h/1050/q|imageslim',
-        w: 750,
-        h: 1040
-      }],
-        options: {
-          bgOpacity:0.7,
-          showAnimationDuration :0,
-          fullscreenEl: false,
+      list: [],
+      options: {
+        preload:[1,3],
+        bgOpacity:1,
+        fullscreenEl: false,
+        getThumbBoundsFn (index) {
+          let thumbnail = document.querySelectorAll('.previewer-answer-img')[index]
+          let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+          let rect = thumbnail.getBoundingClientRect()
+          return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
+        }
       }
     }
   },

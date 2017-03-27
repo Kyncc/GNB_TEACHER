@@ -54,9 +54,13 @@ export default {
   methods: {
     init (index) {
       let options = Object.assign({
-        history: false,
+        history: true,
         shareEl: false,
         tapToClose: true,
+        pinchToClose :true,
+        closeOnScroll :false,
+        closeOnVerticalDrag :false,
+        errorMsg:'加载图片失败...',
         index: index
       }, this.options)
       this.photoswipe = new PhotoSwipe(this.$el, UI, this.list, options)
@@ -66,6 +70,12 @@ export default {
     },
     show (index) {
       this.init(index)
+    },
+    obj(){
+      return this.photoswipe;
+    },
+    destroy(){
+      this.photoswipe.destroy()
     },
     close(){
       this.photoswipe.close()
@@ -86,6 +96,9 @@ export default {
         return {}
       }
     }
+  },
+  ready(){
+  
   }
 }
 </script>
@@ -93,4 +106,7 @@ export default {
 <style>
 @import '~photoswipe/dist/photoswipe.css';
 @import '~photoswipe/dist/default-skin/default-skin.css';
+.pwsp{
+  opacity: .99;
+}
 </style>
