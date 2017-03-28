@@ -1,6 +1,6 @@
 <template>
   <div class="workbookClassAnswer">
-    <section class="header">
+    <section class="header" v-if="classmateName">
       <h3>未提交作业同学</h3>
       <article>
         <span v-for="name in classmateName">{{name}}</span>
@@ -8,7 +8,7 @@
     </section>
 
     <template v-for="list in cameraList">
-      <div class="weui-cell" style="padding:.8rem 0 .8rem .8rem">
+      <div class="weui-cell" style="padding:0 0 0 .8rem">
         <divider style="font-size:14px;">{{list.studentName}}&nbsp&nbsp{{list.time}}</divider>
         <div style="">
           <img class="previewer-answer-img" v-for="img in list.camera" @click="_show(list.camera,$index)" v-lazy="img.url+'-answer'" />

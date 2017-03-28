@@ -12,7 +12,7 @@
          <template v-if="item">
           <group :title="item.textbookName">
             <cell v-for="workbook in item.list" link="javascript:;" >
-              <div slot="icon"><img v-lazy="workbook.img.url+'?imageView2/0/format/png/w/90/h/120'" width="45" height="60" style="margin-right:.3rem"/></div>
+              <div slot="icon"><img v-lazy="workbook.img.url+'-workbook'" width="45" height="60" style="margin-right:.3rem;background:#ddd"/></div>
               <div slot="after-title" @click="_toChapter(workbook.workbookId)" style="padding:.8rem 0">{{workbook.workbookName}}</div>
             </cell>
           </group>
