@@ -1,5 +1,5 @@
 <template>
-  <div class="workbookClassAnswer">
+  <div class="workbookClassAnswer" style="-webkit-overflow-scrolling:auto">
     <section class="header" v-if="classmateName">
       <h3>未提交作业同学</h3>
       <article>
