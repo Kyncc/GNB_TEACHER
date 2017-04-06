@@ -140,7 +140,7 @@ export default {
       return this.User.version;
     },
     isUpdate(){
-      if(this.android_version == '2.2.0'){
+      if(this.android_version == '2.3.0'){
         return false;
       }
       return true;
