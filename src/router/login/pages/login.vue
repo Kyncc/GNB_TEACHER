@@ -65,7 +65,9 @@ export default {
   },
   ready(){
       try{
-        plus.navigator.closeSplashscreen();
+        setTimeout(() => {
+          plus.navigator.closeSplashscreen();
+        },300)
       }catch(e){
         console.log(e);
       }
