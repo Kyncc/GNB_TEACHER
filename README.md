@@ -6,7 +6,6 @@
 
 ![商店下载](http://okkula0y9.bkt.clouddn.com/teacher.png)
 
-
 ### 编译环境
 
 -	[VueLoader](http://vue-loader.vuejs.org/en/index.html)
