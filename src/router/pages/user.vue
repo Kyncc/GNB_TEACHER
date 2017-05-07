@@ -1,7 +1,7 @@
 <template>
   <div class='user'>
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">
-      <!--<i class="icon iconfont icon-share" slot="right"></i>-->
+      <i class="icon iconfont icon-share" slot="right"></i>
       个人中心
     </x-header>
     <div class="info">

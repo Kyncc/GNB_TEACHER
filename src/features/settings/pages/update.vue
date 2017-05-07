@@ -19,10 +19,7 @@
       <selector v-model="grade" title="年级" :options="list"></selector>
       <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
-    <group>
-      <selector v-model="math" title="数学" :options="mathList"></selector>
-      <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
-    </group>
+    
     <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick"></actionsheet>
   </view-box>
 </template>
@@ -37,27 +34,7 @@ export default {
     XHeader, Group, ViewBox, XInput, Checker, CheckerItem, Selector, Cell, Actionsheet
   },
   computed: {
-    ...mapGetters(['User']),
-    mathList () {
-      let newObj = []
-      this.User.textbookAll.math.forEach((item, index) => {
-        newObj.push({
-          key: item.id.toString() || '',
-          value: item.name.toString() || ''
-        })
-      })
-      return newObj
-    },
-    physicsList () {
-      let newObj = []
-      this.User.textbookAll.physics.forEach((item, index) => {
-        newObj.push({
-          key: item.id.toString() || '',
-          value: item.name.toString() || ''
-        })
-      })
-      return newObj
-    }
+    ...mapGetters(['User'])
   },
   data () {
     return {
@@ -65,9 +42,8 @@ export default {
       sex: 0,
       school: '',
       grade: '',
-      physics: '',
-      math: '',
       list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高中'}],
+      sublist: [{key: '2', value: '数学'}, {key: '7', value: '物理'}],
       show: false,
       menus: {
         menu1: '拍照',
@@ -76,30 +52,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setHeadImg', 'setUserInfo', 'getTextbookVersion', 'getUserInfo']),
+    ...mapActions(['setHeadImg', 'setUserInfo', 'getUserInfo']),
     _finish () {
       this.setUserInfo({
         name: this.name,
         sex: this.sex,
         school: this.school,
-        grade: this.grade,
-        subject: {
-          math: this.math,
-          physics: this.physics
-        }
+        grade: this.grade
       }).then(() => {
         // 更改年级需要重启应用,其他操作则重新获取数据
-        if (this.grade !== this.User.grade) {
-          try {
-            plus.runtime.restart()
-          } catch (e) {
-            this.$router.push('/login')
-          }
-        } else {
-          this.getUserInfo().then(() => {
-            history.go(-1)
-          })
-        }
+        this.getUserInfo().then(() => {
+          history.go(-1)
+        })
       })
     },
     _getImage () {
@@ -125,16 +89,6 @@ export default {
     },
     _menusClick (val) {
       val === 'menu1' ? this._getImage() : this._galleryImgs()
-    }
-  },
-  watch: {
-    grade (value) {
-      this.getTextbookVersion({'grade': value}).then(() => {
-        this.math = this.User.textbookAll.math[0].id
-        if (this.User.textbookAll.subjectType.length === 2) {
-          this.physics = this.User.textbookAll.physics[0].id
-        }
-      })
     }
   },
   beforeRouteEnter (to, from, next) {
