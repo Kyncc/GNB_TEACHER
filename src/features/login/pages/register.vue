@@ -33,7 +33,6 @@
         <flexbox-item :span="1/20"></flexbox-item>
       </flexbox>
     </div>
-  <confirm :show.sync="confirmShow" confirm-text="确定" cancel-text="取消" title="已是教师用户,注册会清空数据" @on-confirm="_quit('确认')" @on-cancel="_quit('取消')"></confirm>
   </view-box>
 </template>
 
@@ -109,15 +108,7 @@ export default {
         cover: this.cover,
         mobile: this.mobile
       }
-      // 如果是已教师，则同意清空师账户后在发送接口获取验证码
       this.getRegisterCode(params)
-      // .then((response) => {
-      //   if (response.data.data.isTeacher) {
-      //     this.confirmShow = true
-      //   } else {
-      //     this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1000, position: 'bottom'})
-      //   }
-      // })
     }
   },
   watch: {

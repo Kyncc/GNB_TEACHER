@@ -3,15 +3,15 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的班级'}">
       <div slot="right">
         <router-link :to="{ path: 'class/add'}" style="margin:0">
-          <i class="icon iconfont icon-plus" style="padding:8px;font-size:28px;top:-1px;"></i>
-        </router-link>
-        <router-link :to="{ path: 'class/message'}" style="margin:0">
-          <i class="icon iconfont icon-comment2" style="padding:10px;margin:0 -10px 0 0"></i>
+          <i class="icon iconfont icon-plus" style="padding:8px;font-size:28px;top:-1px;right:-15px;"></i>
         </router-link>
       </div>
     </x-header>
     <div>
-      <group gutter="0" v-if="!loading">
+      <group gutter="0">
+        <cell title="班级消息" link="class/message/"></cell>
+      </group>
+      <group gutter="5px" v-if="!loading">
         <template v-for="item in ClassMy">
           <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
         </template>

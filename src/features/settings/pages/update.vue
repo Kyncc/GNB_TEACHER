@@ -16,7 +16,7 @@
       </cell>
     </group>
     <group>
-      <selector v-model="grade" title="年级" :options="list"></selector>
+      <selector v-model="subject" title="主教科目" :options="sublist"></selector>
       <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
     
@@ -41,8 +41,7 @@ export default {
       name: '',
       sex: 0,
       school: '',
-      grade: '',
-      list: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高中'}],
+      subjectId: '',
       sublist: [{key: '2', value: '数学'}, {key: '7', value: '物理'}],
       show: false,
       menus: {
@@ -58,12 +57,7 @@ export default {
         name: this.name,
         sex: this.sex,
         school: this.school,
-        grade: this.grade
-      }).then(() => {
-        // 更改年级需要重启应用,其他操作则重新获取数据
-        this.getUserInfo().then(() => {
-          history.go(-1)
-        })
+        subjectId: this.subjectId
       })
     },
     _getImage () {
@@ -95,7 +89,7 @@ export default {
     next(vm => {
       vm.name = vm.User.name
       vm.school = vm.User.school
-      vm.grade = vm.User.grade
+      vm.subjectId = vm.User.subjectId
       vm.sex = vm.User.sex
     })
   }

@@ -11,11 +11,9 @@
         <img src="../assets/title.png">
       </div>
       <group title="基本资料">
-        <selector v-model="grade" title="年级" :options="gradeList"></selector>
-      </group>
-      <group title="版本选择">
-        <selector v-model="math" title="数学" :options="mathList"></selector>
-        <selector v-if="User.textbookAll.subjectType.length === 2" v-model="physics" title="物理" :options="physicsList"></selector>
+        <x-input title="姓名" v-model="name" class="input_right"></x-input>
+        <x-input title="学校" v-model="school" class="input_right"></x-input>
+        <selector v-model="subjectId" title="主教科目" :options="subjectList"></selector>
       </group>
       <div style="width:90%;margin:1.5rem auto">
         <x-button type="primary" @click.native="_complete" :disabled="disable">完成</x-button>
@@ -33,7 +31,7 @@ export default {
     XHeader, ViewBox, XButton, XInput, Group, Cell, Selector
   },
   methods: {
-    ...mapActions(['setUserInfo', 'getTextbookVersion']),
+    ...mapActions(['setUserInfo']),
     _onChangeMath (item) {
       this.math = item
     },
@@ -45,11 +43,7 @@ export default {
         name: this.username,
         school: this.school,
         mobile: this.registerMobile,
-        subject: {
-          math: this.math,
-          physics: this.physics
-        },
-        grade: this.grade
+        subjectId: this.subjectId
       })
       .then(() => {
         this.$router.replace('/')
@@ -60,55 +54,21 @@ export default {
     return {
       username: '',
       school: '',
-      math: '',
-      physics: '',
-      grade: '10',
-      gradeList: [{key: '7', value: '七年级'}, {key: '8', value: '八年级'}, {key: '9', value: '九年级'}, {key: '10', value: '高中'}]
+      subjectId: '2',
+      subjectList: [{key: '2', value: '数学'}, {key: '7', value: '物理'}]
     }
   },
   computed: {
-    ...mapGetters(['registerMobile', 'textBookAllVersion', 'User']),
-    mathList () {
-      let newObj = []
-      this.User.textbookAll.math.forEach((item, index) => {
-        newObj.push({
-          key: item.id.toString() || '',
-          value: item.name.toString() || ''
-        })
-      })
-      return newObj
-    },
-    physicsList () {
-      let newObj = []
-      this.User.textbookAll.physics.forEach((item, index) => {
-        newObj.push({
-          key: item.id.toString() || '',
-          value: item.name.toString() || ''
-        })
-      })
-      return newObj
-    },
+    ...mapGetters(['registerMobile', 'User']),
     disable () {
       return false
     }
-  },
-  watch: {
-    grade (value) {
-      this.getTextbookVersion({'grade': value}).then(() => {
-        this.math = this.User.textbookAll.math[0].id
-        if (this.User.textbookAll.subjectType.length === 2) {
-          this.physics = this.User.textbookAll.physics[0].id
-        }
-      })
-    }
-  },
-  mounted () {
-    this.getTextbookVersion({'grade': this.grade}).then(() => {
-      this.math = this.User.textbookAll.math[0].id
-      if (this.User.textbookAll.subjectType.length === 2) {
-        this.physics = this.User.textbookAll.physics[0].id
-      }
-    })
   }
 }
 </script>
+
+<style lang="less" scoped>
+.input_right .weui-input{
+  text-align:right;
+}
+</style>
