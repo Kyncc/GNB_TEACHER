@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -11,9 +13,9 @@ export default {
 </script>
 
 <style lang="less">
+@font-face {font-family: "iconfont";src:url('./libs/font/iconfont.ttf') format('truetype')}
 @import '~vux/src/styles/reset.less';
-
-body {
-  background-color: #fbf9fe;
-}
+@import '~vux/src/styles/1px.less';
+@import './config/common.less';
+@import 'theme.less';
 </style>
