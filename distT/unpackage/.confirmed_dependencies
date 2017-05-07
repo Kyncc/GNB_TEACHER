@@ -1,0 +1,10 @@
+{
+  "index.html": {
+    "resources": [
+      "static/js/app.js",
+      "static/js/manifest.js",
+      "static/js/vendor.js",
+      "static/css/app.css"
+    ]
+  }
+}

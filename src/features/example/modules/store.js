@@ -17,12 +17,6 @@ const mutations = {
   },
   [types.EXAMPLE_CLEAR] (state, data) {
     state.example = []
-  },
-  [types.COLLECT_ADD] (state) {
-    state.example.detail[0].collectTime = 1
-  },
-  [types.COLLECT_REMOVE] (state) {
-    state.example.detail[0].collectTime = 0
   }
 }
 
