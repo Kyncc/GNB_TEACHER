@@ -1,4 +1,4 @@
-# Induction Book for teacher(归纳本教师端)
+# Induction Book For Teacher(归纳本教师端)
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -8,15 +8,7 @@
 
 ![DownloadPicture](http://okkula0y9.bkt.clouddn.com/teacher.png)
 
-## License
-
-MIT
-
 ## Technology Overview
-
-### Compiler Environment
-
--	[vuxLoader](https://github.com/airyland/vux-loader)
 
 ### Cross Platform
 
@@ -34,15 +26,15 @@ MIT
 
 -	[vuex-router-sync - Keep vue-router and vuex store in sync](https://github.com/vuejs/vuex-router-sync)
 
+### UI Compoents
+
+-	[Vux - Vue UI Components](https://vux.li/#/)
+
 ### Plugins
 
 -	[Cropper.js - Image cropping plugin](https://fengyuanchen.github.io/cropperjs/)
 
 -	[PhotoSwipe - JavaScript image gallery for mobile](https://github.com/dimsemenov/PhotoSwipe)
-
-### UI Compoents
-
--	[Vux - Vue UI Components](https://vux.li/#/)
 
 -	[Vue-lazyload - An Image lazyload plugin for Vue](https://github.com/hilongjw/vue-lazyload)
 
@@ -71,6 +63,10 @@ MIT
         ├── settings    # 设置
         ├── about       # 关于归纳本
 ```
+
+## License
+
+MIT
 
 ### How to run it
 
