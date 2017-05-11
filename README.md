@@ -43,7 +43,7 @@
 ```
 ├── build       # webpack Build
 ├── config      # webpack Config
-├── dist        # Dist Folder
+├── distT        # Dist Folder
 ├── app.vue     # Entry File
 ├── main.js     # Entry Js
 ├── store.js    # Vuex Main Stroe
@@ -64,24 +64,17 @@
         ├── about       # 关于归纳本
 ```
 
-## License
-
-MIT
-
-### How to run it
+### Getting Started
 
 ## Install
 ```
-npm install 
+npm/yarn install 
+npm/yarn run dev
+open http://localhost:8080
 ```
 
-## Development
-```
-npm run dev
-
-```
 ### Build
 ```
-npm run build
-npm run build --report
+npm/yarn run build
+open Files in DistT Folder
 ```

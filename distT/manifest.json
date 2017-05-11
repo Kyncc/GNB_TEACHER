@@ -4,7 +4,7 @@
     "name": "归纳本-教师端",/*应用名称，程序桌面图标名称*/
     "version": {
         "name": "3.0.0",/*应用版本名称*/
-        "code": "300"
+        "code": "230"
     },
     "description": "",/*应用描述信息*/
     "icons": {
@@ -81,13 +81,13 @@
     },
     "plus": {
         "splashscreen": {
-            "autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-            "waiting": false,"delay":"1000"/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+            "autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting": false/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
         },
         "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
         "runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
         "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-        "distribute": {"plugins":{"statics":{"umeng":{"appkey_ios":"58412619677baa2509000e1c ","channelid_ios":"3.0","appkey_android":"5833f4a33eae256274001322","channelid_android":"3.0"}}},
+        "distribute": {"plugins":{"statics":{"umeng":{"appkey_ios":"58412619677baa2509000e1c ","channelid_ios":"3.0.0","appkey_android":"5833f4a33eae256274001322","channelid_android":"3.0.0"}}},
             "apple": {
                 "appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
                 "mobileprovision": "",/*iOS应用打包配置文件*/

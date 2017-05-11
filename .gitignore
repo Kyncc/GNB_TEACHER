@@ -2,12 +2,12 @@
 .idea
 .vscode/
 node_modules/
-#dist/static/
-dist/unpackage/release/
-#dist/index.html
-dist/.project
+#distT/static/
+distT/unpackage/release/
+#distT/index.html
+distT/.project
 npm-debug.log
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
-dist/unpackage/.confirmed_dependencies
+distT/unpackage/.confirmed_dependencies
