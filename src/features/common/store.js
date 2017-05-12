@@ -17,6 +17,7 @@ const state = {
     bufferImg: '',
     name: '',
     school: '',
+    subjectId: '',
     sex: '',
     mobile: '',
     swiper: [{}],
@@ -53,9 +54,9 @@ const getters = {
 
 const mutations = {
   [types.USERINFO] (state, data) {
-    state.user.textbook = data.textbook[0]
     state.user.headImg = data.headImg
     state.user.name = data.name
+    state.user.subjectId = data.subjectId
     state.user.mobile = data.mobile
     state.user.school = data.school
     state.user.sex = data.sex

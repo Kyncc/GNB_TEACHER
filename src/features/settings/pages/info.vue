@@ -14,12 +14,8 @@
       <cell title="性别" :value="User.sex === '1' ? '男' : '女'"></cell>
     </group>
     <group>
-      <cell title="年级" :value="grade"></cell>
+      <cell title="主教科目" :value="User.school"></cell>
       <cell title="学校" :value="User.school"></cell>
-    </group>
-    <group>
-      <cell title="数学版本" :value="User.subject.math.name"></cell>
-      <cell v-if="User.subject.physics" title="物理版本" :value="User.subject.physics.name"></cell>
     </group>
   </view-box>
 </template>
