@@ -24,15 +24,14 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
 export const delClass = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
-      method: 'get',
-      url: 'class/classmate',
-      params: {
+      method: 'post',
+      url: 'class/del',
+      data: {
         classCode: rootState.route.params.code,
         token: rootState.common.user.token
       }
     })
     .then((response) => {
-      commit(types.CLASS_DEL)
       Vue.$vux.toast.show({text: '删除成功', type: 'text', time: 600, position: 'bottom'})
       resolve(response)
     })
@@ -71,12 +70,29 @@ export const postMyClassInto = ({ rootState, commit }, params) => {
       method: 'post',
       url: 'class/add',
       data: {
-        classCode: params.classCode,
+        name: params.name,
         token: rootState.common.user.token
       }
     })
     .then((response) => {
-      commit(types.CLASS_ADD, response.data.data)
+      resolve(response)
+    })
+  })
+}
+
+/** 编辑班级名称 */
+export const updateClass = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'class/update',
+      data: {
+        name: params.name,
+        classCode: rootState.route.params.code,
+        token: rootState.common.user.token
+      }
+    })
+    .then((response) => {
       resolve(response)
     })
   })

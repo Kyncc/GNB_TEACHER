@@ -9,7 +9,11 @@
     </x-header>
     <div>
       <group gutter="0">
-        <cell title="班级消息" link="class/message/"></cell>
+        <cell title="班级消息" link="class/message/">
+          <template v-if="News.classes">
+            <badge text="新通知" style="position:relative;top:-2px;"></badge>
+          </template>
+        </cell>
       </group>
       <group>
         <template v-for="myClass in User.classes">
@@ -30,7 +34,7 @@ export default {
     XHeader, Cell, Group, ViewBox
   },
   computed: {
-    ...mapGetters(['User'])
+    ...mapGetters(['User', 'News'])
   }
 }
 </script>

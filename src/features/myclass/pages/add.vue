@@ -1,72 +1,49 @@
 <template>
   <view-box ref="myClassAdd" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '添加班级'}"></x-header>
-    <group gutter="0" v-if="!loading">
-      <template v-if="ClassSearch.name">
-        <cell :title="ClassSearch.name">
-          <x-button type="primary" :mini="true" @click.native="_addClass(ClassSearch.classCode)">申请加入</x-button>
-        </cell>
-      </template>
-    </group>
-    <div style="text-align:center;padding:20px 0;">
-      <spinner v-if="loading" type="ripple"></spinner>
-      <p v-else-if="_isEmpty(ClassSearch) && searchCode.length === 6" style="font-size:16px;color:#4BB7AA">没有查找到班级~</p>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '添加班级'}">
+      <p slot="right" @click="_finish">完成</p>
+    </x-header>
+    <div>
+      <group gutter="0">
+        <x-input v-model="name" placeholder="请输入班级名称"></x-input>
+      </group>
     </div>
   </view-box>
 </template>
 
 <script>
-import {XHeader, XButton, Cell, Group, ViewBox} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {XHeader, XInput, Cell, Group, ViewBox} from 'vux'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'add',
   components: {
-    XHeader, XButton, Cell, Group, ViewBox
+    XHeader, XInput, Cell, Group, ViewBox
   },
   data () {
     return {
-      searchCode: '',
-      loading: false
+      name: ''
     }
   },
   methods: {
-    ...mapActions(['getMyClassSearchClass', 'postMyClassInto', 'myClassSearchClear']),
-    _addClass (code) {
-      this.postMyClassInto({
-        classCode: code
-      }).then(() => {
-        this.$vux.toast.show({text: '申请成功', type: 'text', time: 1000})
-        history.back()
-      })
-    },
-    _getData () {
-      if (this.searchCode.length === 6) {
-        this.loading = true
-        this.getMyClassSearchClass({
-          classCode: this.searchCode
-        }).then(() => {
-          this.loading = false
+    ...mapActions(['postMyClassInto', 'getUserInfo']),
+    _finish () {
+      if (this.name.length) {
+        this.postMyClassInto({name: this.name}).then(() => {
+          this.$vux.toast.show({text: '新增班级成功', type: 'success', time: 1000})
+          this.getUserInfo().then(() => {
+            history.go(-1)
+          })
         })
+      } else {
+        this.$vux.toast.show({text: '名称不能为空', type: 'text', position: 'bottom', time: 1000})
       }
-    },
-    _isEmpty (value) {
-      for (let t in value) {
-        return !1
-      }
-      return !0
-    },
-    _onSearch (str) {
-      this.searchCode = str
-      this._getData()
     }
   },
-  computed: {
-    ...mapGetters(['ClassSearch'])
-  },
-  activated () {
-    this.searchCode = ''
-    this.myClassSearchClear()
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.name = ''
+    })
   }
 }
 </script>

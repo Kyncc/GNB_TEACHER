@@ -30,7 +30,7 @@ export default {
         title: `是否删除${_this.Route.params.name}班级么?`,
         dialogTransition: 'vux-fade',
         onConfirm () {
-          _this.delClass({code: this.Route.params.name}).then(() => {
+          _this.delClass().then(() => {
             _this.getUserInfo().then(() => {
               history.go(-2)
             })

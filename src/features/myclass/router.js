@@ -28,11 +28,6 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/update')), '/class/update')
     },
     {
-      path: 'update/:code/:name',
-      name: 'class_update',
-      component: r => require.ensure([], () => r(require('./pages/update')), '/class/update')
-    },
-    {
       path: 'update/name/:code/:name',
       name: 'class_update_name',
       component: r => require.ensure([], () => r(require('./pages/updateName')), '/class/update/name')

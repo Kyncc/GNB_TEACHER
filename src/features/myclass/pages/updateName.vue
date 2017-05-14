@@ -27,18 +27,19 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getUserInfo']),
+    ...mapActions(['getUserInfo', 'updateClass']),
     _finish () {
-      this.setUserInfo({
-        name: this.name,
-        sex: this.sex,
-        school: this.school,
-        subjectId: this.subjectId
-      }).then(() => {
-        this.getUserInfo().then(() => {
-          history.go(-1)
+      if (this.name.length) {
+        this.updateClass({
+          name: this.name
+        }).then(() => {
+          this.getUserInfo().then(() => {
+            history.go(-2)
+          })
         })
-      })
+      } else {
+        this.$vux.toast.show({text: '名称不能为空', type: 'text', position: 'bottom', time: 1000})
+      }
     }
   },
   beforeRouteEnter (to, from, next) {
