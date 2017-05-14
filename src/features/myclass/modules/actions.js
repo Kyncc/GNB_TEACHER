@@ -1,27 +1,6 @@
 import axios from '@/components/axios/'
+import Vue from 'vue'
 import * as types from './mutationTypes'
-
-/** 获取班级列表 */
-export const getMyClass = ({ rootState, commit }, params) => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method: 'get',
-      url: 'class',
-      params: {
-        token: rootState.common.user.token
-      }
-    })
-    .then((response) => {
-      commit(types.CLASS_MY, response.data.data)
-      resolve(response)
-    })
-  })
-}
-
-/** 清空班级列表 */
-export const myClassClear = ({ commit }) => {
-  commit(types.CLASS_MY_CLEAR)
-}
 
 /** 获取班级同学列表 */
 export const getMyClassmateList = ({ rootState, commit }, params) => {
@@ -41,32 +20,48 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
   })
 }
 
-/** 清空班级同学列表 */
-export const myClassmateClear = ({ commit }) => {
-  commit(types.CLASS_MYCLASSMATE_CLEAR)
-}
-
-/** 获取班级码查找 */
-export const getMyClassSearchClass = ({ rootState, commit }, params) => {
+/** 删除班级 */
+export const delClass = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'class/search',
+      url: 'class/classmate',
       params: {
-        classCode: params.classCode,
+        classCode: rootState.route.params.code,
         token: rootState.common.user.token
       }
     })
     .then((response) => {
-      commit(types.CLASS_SEARCH, response.data.data)
+      commit(types.CLASS_DEL)
+      Vue.$vux.toast.show({text: '删除成功', type: 'text', time: 600, position: 'bottom'})
       resolve(response)
     })
   })
 }
 
-/** 清空搜索班级 */
-export const myClassSearchClear = ({ commit }) => {
-  commit(types.CLASS_SEARCH_CLEAR)
+/** 删除同学 */
+export const delClassmate = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'class/classmate/del',
+      data: {
+        studentId: params.id,
+        classCode: rootState.route.params.code,
+        token: rootState.common.user.token
+      }
+    })
+    .then((response) => {
+      commit(types.CLASS_MYCLASSMATE_DEL, params.index)
+      Vue.$vux.toast.show({text: '删除成功', type: 'text', time: 600, position: 'bottom'})
+      resolve(response)
+    })
+  })
+}
+
+/** 清空班级同学列表 */
+export const myClassmateClear = ({ commit }) => {
+  commit(types.CLASS_MYCLASSMATE_CLEAR)
 }
 
 /** 加入班级 */

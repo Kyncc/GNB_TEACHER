@@ -20,6 +20,7 @@ const state = {
     subjectId: '',
     sex: '',
     mobile: '',
+    classes: [],
     swiper: [{}],
     token: localStorage.getItem('token')
   }
@@ -61,6 +62,7 @@ const mutations = {
     state.user.school = data.school
     state.user.sex = data.sex
     state.user.swiper = data.swiper
+    state.user.classes = data.classes
   },
   [types.USERPHOTO_POST] (state, data) {
     state.user.headImg = data.headImg

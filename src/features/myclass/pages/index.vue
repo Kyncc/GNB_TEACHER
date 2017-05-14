@@ -11,54 +11,26 @@
       <group gutter="0">
         <cell title="班级消息" link="class/message/"></cell>
       </group>
-      <group gutter="5px" v-if="!loading">
-        <template v-for="item in ClassMy">
-          <cell :title="item.name" :link="'class/detail/'+item.classCode"></cell>
+      <group>
+        <template v-for="myClass in User.classes">
+          <cell :title="myClass.name" :link="'class/detail/'+myClass.classCode"></cell>
         </template>
       </group>
-      <div style="text-align:center;padding:20px 0;">
-        <spinner v-if="loading" type="ripple"></spinner>
-        <p v-else-if="ClassMy.length === 0" style="font-size:16px;color:#4BB7AA" @click="$router.push('class/add')">点我加入班级~</p>
-      </div>
     </div>
   </view-box>
 </template>
 
 <script>
-import {XHeader, Cell, Group, Spinner, ViewBox} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {XHeader, Cell, Group, ViewBox} from 'vux'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, Cell, Group, ViewBox, Spinner
-  },
-  methods: {
-    ...mapActions(['getMyClass', 'myClassClear']),
-    _getData () {
-      this.getMyClass().then(() => {
-        this.loading = false
-      })
-    }
+    XHeader, Cell, Group, ViewBox
   },
   computed: {
-    ...mapGetters(['ClassMy'])
-  },
-  data () {
-    return {
-      loading: true
-    }
-  },
-  beforeRouteEnter (to, from, next) {
-    if (from.name === 'bag' || from.name === 'class_add') {
-      next(vm => {
-        vm.myClassClear()
-        vm.loading = true
-        vm._getData()
-      })
-    } else {
-      next()
-    }
+    ...mapGetters(['User'])
   }
 }
 </script>

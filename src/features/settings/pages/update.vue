@@ -16,7 +16,7 @@
       </cell>
     </group>
     <group>
-      <selector v-model="subject" title="主教科目" :options="sublist"></selector>
+      <selector v-model="subjectId" title="主教科目" :options="sublist"></selector>
       <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
     
@@ -58,6 +58,10 @@ export default {
         sex: this.sex,
         school: this.school,
         subjectId: this.subjectId
+      }).then(() => {
+        this.getUserInfo().then(() => {
+          history.go(-1)
+        })
       })
     },
     _getImage () {
