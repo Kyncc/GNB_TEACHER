@@ -6,7 +6,7 @@ node_modules/
 distT/unpackage/release/
 #distT/index.html
 distT/.project
-npm-debug.log
+*.log
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
