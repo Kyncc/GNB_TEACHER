@@ -4648,9 +4648,9 @@ vue-template-es2015-compiler@^1.2.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.5.2.tgz#a0a6c50c941d2a4abda963f2f42c337ac450ee95"
 
-vue@^2.3.0:
+vue@^2.3.3:
   version "2.3.3"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.3.3.tgz#d1eaa8fde5240735a4563e74f2c7fead9cbb064c"
+  resolved "http://registry.npm.taobao.org/vue/download/vue-2.3.3.tgz#d1eaa8fde5240735a4563e74f2c7fead9cbb064c"
 
 vuex-router-sync@^4.1.2:
   version "4.1.2"
@@ -4687,9 +4687,9 @@ vux-xscroll@^3.1.10:
   version "3.1.11"
   resolved "https://registry.yarnpkg.com/vux-xscroll/-/vux-xscroll-3.1.11.tgz#adb5673cc0bcf2d9e98218473ab9c40f9b08c106"
 
-vux@^2.2.2:
-  version "2.2.2"
-  resolved "http://registry.npm.taobao.org/vux/download/vux-2.2.2.tgz#1f8a13cd5229612235c93005c37fdc5c700d5b43"
+vux@^2.3.2:
+  version "2.3.2"
+  resolved "http://registry.npm.taobao.org/vux/download/vux-2.3.2.tgz#b3c4908334629d433c89303d3f361abc24689c88"
   dependencies:
     array-filter "^1.0.0"
     array-find "^1.0.0"

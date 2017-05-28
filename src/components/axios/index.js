@@ -14,9 +14,6 @@ axios.interceptors.request.use((config) => {
     config.data = qs.stringify(config.data, {arrayFormat: 'brackets'})
   }
   return config
-}, (error) => {
-  Vue.$vux.toast.show({text: '非法输入', type: 'text', time: 1000, position: 'bottom'})
-  return Promise.reject(error)
 })
 
 axios.interceptors.response.use((res) => {
