@@ -6,6 +6,7 @@ import index from './router/router'
 import login from './features/login/router'
 import about from './features/about/router'
 import correct from './features/correct/router'
+import error from './features/error/router'
 import example from './features/example/router'
 import message from './features/message/router'
 import myclass from './features/myclass/router'
@@ -16,6 +17,7 @@ let router = new Router({
   mode: 'hash',
   routes: [
     about,
+    error,
     correct,
     example,
     login,

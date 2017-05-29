@@ -1,3 +1,4 @@
-export const errorMath = (state) => state.math
-export const errorPhysics = (state) => state.physics
-export const errorDetail = (state) => state.detail
+/** 获得全部学生 */
+export const errorClassmate = (state) => state.classmate
+/** 获得错题 */
+export const error = (state) => state.error

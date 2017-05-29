@@ -3,14 +3,14 @@ export default {
   component: r => require.ensure([], () => r(require('./pages/layout')), '/error'),
   children: [
     {
-      path: 'index',
-      name: 'error_index',
-      component: r => require.ensure([], () => r(require('./pages/physics')), '/error/physics')
+      path: '/',
+      name: 'error_classmate',
+      component: r => require.ensure([], () => r(require('./pages/classmate')), '/error/classmate')
     },
     {
-      path: 'detail/:chapterId/:eid/:id',
-      name: 'error_detail',
-      component: r => require.ensure([], () => r(require('./pages/detail')), '/error/detail')
+      path: 'list/:name/:id',
+      name: 'error',
+      component: r => require.ensure([], () => r(require('./pages/list')), '/error/list')
     }
   ]
 }
