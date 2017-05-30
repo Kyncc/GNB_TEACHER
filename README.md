@@ -1,7 +1,7 @@
 # Induction Book For Teacher(归纳本教师端)
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build status](https://ci.appveyor.com/api/projects/status/2qu59n38tva8mb40/branch/dev?svg=true)](https://ci.appveyor.com/project/HopeFE/gnb-teacher/branch/dev) [![Dependencies](https://david-dm.org/HopeFE/GNB_STUDENT/status.svg)](https://david-dm.org/HopeFE/GNB_TEACHER) 
- [![devDependencies](https://david-dm.org/HopeFE/GNB_TEACHER/dev-status.svg)](https://david-dm.org/HopeFE/GNB_TEACHER) 
+ [![devDependencies](https://david-dm.org/HopeFE/GNB_TEACHER/dev-status.svg)](https://david-dm.org/HopeFE/GNB_TEACHER?type=dev) 
 > Base on Vue.js(v2.3) and DCloud Hybrid App
 
 ## App Market Download(IOS and Android)
