@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import 'babel-polyfill'
 import store from './store'
 import FastClick from 'fastclick'
 import router from './router'

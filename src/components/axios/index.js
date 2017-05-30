@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import axios from 'axios'
 import qs from 'qs'
-import 'es6-promise/auto'
 
 axios.defaults.timeout = 10000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 axios.defaults.baseURL = 'https://www.guinaben.com/teacher/'
-// axios.defaults.baseURL = 'http://192.168.13.222:90/edu_api/student'
 
 // POST传参序列化
 axios.interceptors.request.use((config) => {
