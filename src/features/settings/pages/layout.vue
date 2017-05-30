@@ -7,7 +7,7 @@
 <script>
 import modules from '../modules/store'
 import store from '@/store'
-store.registerModule('settins', {
+store.registerModule('settings', {
   ...modules
 })
 
