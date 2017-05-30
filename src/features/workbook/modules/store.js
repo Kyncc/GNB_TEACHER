@@ -1,26 +1,7 @@
 import * as types from './mutationTypes'
 import * as actions from './actions'
 import * as getters from './getters'
-
-let state = {
-  workbook: {
-    subjectId: 2,
-    scroll: 0,
-    list: []
-  },
-  chapter: {
-    list: [],
-    classList: [],
-    scroll: 0
-  },
-  exercise: {
-    list: [],
-    classCode: '',
-    isReset: false,
-    errorList: [],
-    cameraList: []
-  }
-}
+import * as state from './state'
 
 const mutations = {
   [types.WORKBOOK] (state, payload) {

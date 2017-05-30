@@ -68,7 +68,6 @@ export default {
     opacity: 0;
   }
   .header_title_select_arrow{
-
     display: inline-block;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);

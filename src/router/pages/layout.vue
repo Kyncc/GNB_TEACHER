@@ -11,7 +11,7 @@
         </tabbar-item>
         <tabbar-item link="bag" :show-dot="News.classes">
           <i slot="icon" class="icon iconfont icon-bag"></i>
-          <span slot="label">书包</span>
+          <span slot="label">备课</span>
         </tabbar-item>
         <tabbar-item link="user" :show-dot="News.correct || News.system">
           <i slot="icon" class="icon iconfont icon-user"></i>

@@ -57,6 +57,8 @@
         ├── common      # 全局功能函数
         ├── workbook    # 查答案
         ├── example     # 例题
+        ├── error       # 查看错题
+        ├── workbook    # 批改作业
         ├── myclass     # 我的班级
         ├── message     # 消息
         ├── login       # 登陆

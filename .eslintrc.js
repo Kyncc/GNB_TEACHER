@@ -1,5 +1,3 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
   parser: 'babel-eslint',
@@ -7,7 +5,7 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: 'module'
   },
-  globals: {'plus': true, 'window': true, 'document': true, 'alert': true},
+  globals: {'plus': true, 'window': true, 'document': true, 'alert': true, 'new': true},
   env: {
     browser: true,
   },

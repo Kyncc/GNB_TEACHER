@@ -31,8 +31,8 @@ document.addEventListener('plusready', () => {
         first = new Date().getTime()
         Vue.$vux.toast.show({text: '再按一次退出', type: 'text', time: 1000, position: 'bottom'})
         setTimeout(() => { first = null }, 1000)
-      } else {
-        new Date().getTime() - first < 1000 ? plus.runtime.quit() : ''
+      } else if (new Date().getTime() - first < 1000) {
+        plus.runtime.quit()
       }
     } else {
       history.back()
