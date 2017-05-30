@@ -37,7 +37,7 @@ export const getWorkbookChapter = ({state, rootState, commit}) => {
       url: 'workbook/chapter',
       params: {
         'token': rootState.common.user.token,
-        'workbookId': rootState.route.params.id
+        'workbookId': rootState.route.params.workbookId
       }
     })
     .then((response) => {
@@ -66,7 +66,7 @@ export const getWorkbookExerciseNum = ({state, rootState, commit}, id) => {
       params: {
         'token': rootState.common.user.token,
         'code': rootState.workbook.exercise.classCode,
-        'chapterId': rootState.route.params.id
+        'chapterId': rootState.route.params.chapterId
       }
     })
     .then((response) => {
@@ -85,7 +85,7 @@ export const getWorkbookExercisePhoto = ({state, rootState, commit}) => {
       params: {
         'token': rootState.common.user.token,
         'code': rootState.workbook.exercise.classCode,
-        'chapterId': rootState.route.params.id
+        'chapterId': rootState.route.params.chapterId
       }
     })
     .then((response) => {
@@ -103,7 +103,7 @@ export const setWorkbookExerciseRead = ({state, rootState, commit}) => {
       url: 'workbook/charpter/isRead',
       data: {
         'token': rootState.common.user.token,
-        'chapterId': rootState.route.params.id
+        'chapterId': rootState.route.params.chapterId
       }
     })
     .then((response) => {
@@ -127,8 +127,8 @@ export const getWorkbookExerciseErrorPhoto = ({state, rootState, commit}, params
       params: {
         'token': rootState.common.user.token,
         'code': rootState.workbook.exercise.classCode,
-        'wbeid': params.wbeid,
-        'chapterId': rootState.route.params.id
+        'wbeid': rootState.route.params.wbeid,
+        'chapterId': rootState.route.params.chapterId
       }
     })
     .then((response) => {

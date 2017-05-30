@@ -5,11 +5,11 @@
 </template>
 
 <script>
-// import modules from '../modules/store'
-// import store from '@/store'
-// store.registerModule('workbook', {
-//   ...modules
-// })
+import modules from '../modules/store'
+import store from '@/store'
+store.registerModule('workbook', {
+  ...modules
+})
 
 export default {
   name: 'layout'

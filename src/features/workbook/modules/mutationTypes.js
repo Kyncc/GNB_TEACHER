@@ -2,6 +2,8 @@
 export const WORKBOOK = 'WORKBOOK'
 /** 习题册高度 */
 export const WORKBOOK_SCROLL = 'WORKBOOK_SCROLL'
+/** 习题册清空 */
+export const WORKBOOK_CLEAR = 'WORKBOOK_CLEAR'
 /** 获取习题册章节 */
 export const WORKBOOK_CHAPTER = 'WORKBOOK_CHAPTER'
 /** 清除章节数据 */
