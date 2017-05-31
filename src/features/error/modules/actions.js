@@ -11,7 +11,7 @@ export const getError = ({rootState, commit, state}, params) => {
         offset: rootState.error.error.offset,
         token: rootState.common.user.token,
         subject_id: rootState.error.error.subjectId,
-        studentId: params.studentId
+        studentId: rootState.route.params.id
       }
     })
     .then((response) => {
@@ -48,8 +48,8 @@ export const setErrorScroll = ({commit}, height) => {
 }
 
 /** 清空错题本 */
-export const clearError = ({rootState, commit}, params) => {
-  commit(types.ERROR_RELOAD, {subjectId: params.subjectId})
+export const clearError = ({rootState, commit}) => {
+  commit(types.ERROR_RELOAD)
 }
 
 /** 获取全部学生 */

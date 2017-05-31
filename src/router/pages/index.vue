@@ -13,7 +13,7 @@
         </router-link>
       </div>
       <div>
-        <router-link :to="{ path: 'workbook'}">
+        <router-link :to="{ path: 'error'}">
           <x-button type='primary' mini class="rememberBtn">查看错题</x-button>
         </router-link>
       </div>

@@ -9,7 +9,7 @@ const state = {
   },
   error: {
     list: [],
-    subject: 2,
+    subjectId: 2,
     offset: '',
     scroll: 0
   }
@@ -41,7 +41,6 @@ const mutations = {
     state.error.list = []
     state.error.offset = ''
     state.error.scroll = 0
-    state.error.subject = payload.subjectId
   },
   [types.ERROR_ERROR_TYPE] (state, payload) {
     state['error']['list'][payload.index]['errorType'] = Number(payload.type)

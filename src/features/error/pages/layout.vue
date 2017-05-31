@@ -7,6 +7,7 @@
 <script>
 import modules from '../modules/store'
 import store from '@/store'
+
 store.registerModule('error', {
   ...modules
 })

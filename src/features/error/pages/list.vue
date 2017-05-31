@@ -1,11 +1,12 @@
 <template>
   <div>
-    <view-box ref="error" body-padding-top="86px">
+    <view-box ref="error" body-padding-top="46px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-        <x-header :left-options="{backText: '我的错题'}"></x-header>
+        <x-header :left-options="{backText: Route.params.name}">
+          <div slot="right" style="margin:0"><gnbChangeSub :change.sync='selectedSub'></gnbChangeSub></div>
+        </x-header>
       </div>
-
-      <card v-for='(error, index) in errorPhysics.list' :key='index'>
+      <card v-for='(error, index) in errorList.list' :key='index'>
         <div class="weui-panel__hd" slot="header">
           <flexbox>
             <flexbox-item :span="8" style="color:#4bb7aa">来源：{{error.from}}</flexbox-item>
@@ -77,14 +78,15 @@
 <script>
 import {XHeader, ViewBox, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, Scroller, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
+import gnbChangeSub from '@/components/gnb_changeSub'
 
 export default {
   name: 'detail',
   components: {
-    XHeader, ViewBox, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup, Scroller
+    XHeader, ViewBox, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup, Scroller, gnbChangeSub
   },
   computed: {
-    ...mapGetters(['errorPhysics'])
+    ...mapGetters(['errorList', 'Route'])
   },
   data () {
     return {
@@ -92,6 +94,7 @@ export default {
       loadingNoData: false,
       showCommentPopup: false,
       showErrorPopup: false,
+      selectedSub: '',
       errorType: {
         chapterId: '',
         wbeid: '',
@@ -174,14 +177,16 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (vm.errorPhysics.isReset) {
+      if (from.name === 'error_classmate') {
+        vm.clearError()
         vm._getData()
+      } else {
+        vm.$refs.error.scrollTo(vm.errorList.scroll)
       }
-      vm.$parent.$refs.viewBoxBody.scrollTop = vm.errorPhysics.scroll
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setErrorScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+    this.setErrorScroll(this.$refs.error.getScrollBody)
     next()
   }
 }
