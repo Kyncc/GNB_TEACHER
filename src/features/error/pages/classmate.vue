@@ -7,7 +7,7 @@
         @click.native="myClass.checked = !myClass.checked"></cell>
         <div class="slide" :class="myClass.checked ? 'animate':''">
           <template v-for="student in myClass.classmates">
-            <cell-box @click.native="$router.push({name: 'error', params: {name: student.name, id: student.id}})">
+            <cell-box @click.native="$router.push({name: 'error', params: {name: student.name, studentId: student.id}})">
               <flexbox slot="default">
                 <flexbox-item :span="12">
                   <img width="30" height="30" style="margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg"/>
@@ -20,7 +20,7 @@
       </template>
     </group>
     <div style="text-align:center">
-      <spinner v-if="loading" type="ripple"></spinner>
+      <spinner v-if="loading" type="dots"></spinner>
     </div>
   </view-box>
 </template>

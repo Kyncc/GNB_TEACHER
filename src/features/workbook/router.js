@@ -8,7 +8,7 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/index')), '/workbook/')
     },
     {
-      path: 'chapter/:workbookId',
+      path: 'chapter/:name/:workbookId',
       name: 'workbook_chapter',
       component: r => require.ensure([], () => r(require('./pages/chapter')), '/workbook/chapter')
     },

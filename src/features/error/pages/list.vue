@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <view-box ref="error" body-padding-top="46px">
-      <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-        <x-header :left-options="{backText: Route.params.name}">
-          <div slot="right" style="margin:0"><gnbChangeSub :change.sync='selectedSub'></gnbChangeSub></div>
-        </x-header>
+  <view-box ref="error" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}">
+      <div slot="right" style="margin:0">
+        <gnbChangeSub :change.sync='selectedSub'></gnbChangeSub>
       </div>
+    </x-header>
+
+    <div>
       <card v-for='(error, index) in errorList.list' :key='index'>
         <div class="weui-panel__hd" slot="header">
           <flexbox>
@@ -15,10 +16,10 @@
         </div>
         <!--上传错题则显示题目，否则显示题干-->
         <div v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
-          <img v-lazy="error.exerciseImg.src+'-errorList'"/>
+          <img v-lazy="error.exerciseImg.src+'-errorList'" />
         </div>
         <div v-else slot="content" @click="show(error.errorImg[0])">
-          <img v-lazy="error.errorImg[0].src+'-errorList'"/>
+          <img v-lazy="error.errorImg[0].src+'-errorList'" />
         </div>
         <div slot="footer">
           <div class="weui-cell">
@@ -30,7 +31,6 @@
           </div>
         </div>
       </card>
-
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="lines"></spinner>
         <div>
@@ -38,7 +38,7 @@
           <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
         </div>
       </div>
-    </view-box>
+    </div>
     <!--照片放大 -->
     <div v-transfer-dom>
       <previewer :list="list" ref="previewer" :options="options"></previewer>
@@ -72,12 +72,12 @@
         </scroller>
       </popup>
     </div>
-  </div>
+  </view-box>
 </template>
 
 <script>
-import {XHeader, ViewBox, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, Scroller, TransferDomDirective as TransferDom} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import { XHeader, ViewBox, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer, Scroller, TransferDomDirective as TransferDom } from 'vux'
+import { mapActions, mapGetters } from 'vuex'
 import gnbChangeSub from '@/components/gnb_changeSub'
 
 export default {
@@ -122,7 +122,7 @@ export default {
     ...mapActions(['setErrorScroll', 'getError', 'clearError', 'setErrorType']),
     _getData () {
       this.loading = true
-      this.getError().then((res) => {
+      this.getError({subjectId: this.selectedSub}).then((res) => {
         if (!res.data.data.offset) {
           this.loadingNoData = true
         }
@@ -155,7 +155,7 @@ export default {
     // 类型错误弹窗
     _showCommentPopup (error) {
       if (error.comment.length === 0) {
-        this.$vux.toast.show({text: '教师未点评!', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({ text: '教师未点评!', type: 'text', time: 1000, position: 'bottom' })
       } else {
         this.comment = error.comment
         this.showCommentPopup = true
@@ -171,8 +171,15 @@ export default {
         type: value,
         wbeid: this.errorType.wbeid
       }).then(() => {
-        this.$vux.toast.show({text: '设置错误类型成功!', type: 'text', time: 500, position: 'bottom'})
+        this.$vux.toast.show({ text: '设置错误类型成功!', type: 'text', time: 500, position: 'bottom' })
       })
+    }
+  },
+  watch: {
+    // 科目的变动
+    selectedSub () {
+      this.clearError()
+      this._getData()
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -192,31 +199,36 @@ export default {
 }
 </script>
 <style scoped>
-.weui-btn + .weui-btn{
-  margin-top:0;
+.weui-btn+.weui-btn {
+  margin-top: 0;
 }
+
 .popover-demo-content {
   padding: 5px 10px;
 }
-.checker-popup{
+
+.checker-popup {
   background: #fff;
 }
+
 .check-item {
   background-color: #ddd;
   color: #222;
   font-size: 14px;
   padding: 8px 0;
-  width:32%;
+  width: 32%;
   margin-right: 0px;
   line-height: 18px;
-  text-align:center;
+  text-align: center;
   margin-bottom: 10px;
   border-radius: 15px;
 }
+
 .check-item-selected {
   background-color: #FF3B3B;
   color: #fff;
 }
+
 .check-item-disabled {
   color: #999;
 }

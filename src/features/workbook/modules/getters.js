@@ -1,5 +1,5 @@
 /** 练习册 */
-export const workboo = (state) => state.workbook
+export const workbook = (state) => state.workbook
 /** 章节 */
 export const workbookChapter = (state) => state.chapter
 /** 练习 */

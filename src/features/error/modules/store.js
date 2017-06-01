@@ -28,6 +28,7 @@ const mutations = {
   },
   [types.ERROR] (state, payload) {
     state.error.offset = payload.data.offset
+    state.error.subjectId = payload.subjectId
     if (state.error.list) {
       state.error.list = state.error.list.concat(payload.data.list)
     } else {
@@ -41,6 +42,7 @@ const mutations = {
     state.error.list = []
     state.error.offset = ''
     state.error.scroll = 0
+    state.error.subjectId = 2
   },
   [types.ERROR_ERROR_TYPE] (state, payload) {
     state['error']['list'][payload.index]['errorType'] = Number(payload.type)

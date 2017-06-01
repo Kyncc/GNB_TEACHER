@@ -8,12 +8,12 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
       method: 'get',
       url: 'workbook',
       params: {
-        'token': rootState.common.user.token,
-        'subject_id': params.subjectId
+        token: rootState.common.user.token,
+        subjectId: params.subjectId
       }
     })
     .then((response) => {
-      commit(types.WORKBOOK, {'subject': params.subjectId, 'data': response.data.data})
+      commit(types.WORKBOOK, {subjectId: params.subjectId, data: response.data.data})
       resolve(response)
     })
   })

@@ -39,6 +39,9 @@ export default {
       }
       this.visible = false
     }
+  },
+  created () {
+    this.$emit('update:change', this.selected)
   }
 }
 </script>

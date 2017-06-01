@@ -10,12 +10,12 @@ export const getError = ({rootState, commit, state}, params) => {
       params: {
         offset: rootState.error.error.offset,
         token: rootState.common.user.token,
-        subject_id: rootState.error.error.subjectId,
-        studentId: rootState.route.params.id
+        subjectId: params.subjectId,
+        studentId: rootState.route.params.studentId
       }
     })
     .then((response) => {
-      commit(types.ERROR, {data: response.data.data})
+      commit(types.ERROR, {subjectId: params.subjectId, data: response.data.data})
       resolve(response)
     })
   })
@@ -29,7 +29,7 @@ export const setErrorType = ({rootState, commit, state}, params) => {
       url: 'error/type',
       data: {
         token: rootState.common.user.token,
-        studentId: params.studentId,
+        studentId: rootState.route.params.studentId,
         wbeid: params.wbeid,
         chapterId: params.chapterId,
         type: params.type

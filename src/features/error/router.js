@@ -8,7 +8,7 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/classmate')), '/error/classmate')
     },
     {
-      path: 'list/:name/:id',
+      path: 'list/:name/:studentId',
       name: 'error',
       component: r => require.ensure([], () => r(require('./pages/list')), '/error/list')
     }

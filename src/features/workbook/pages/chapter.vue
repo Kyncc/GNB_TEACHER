@@ -1,7 +1,8 @@
 <template>
-  <view-box ref="viewBoxBody" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}"></x-header>
-    <div v-if="!loading">
+  <view-box ref="viewBox" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}">
+    </x-header>
+    <div>
       <template v-for="a in chapter">
         <group v-for="(aitem, index) in a" :key="index" style="margin-bottom:.5rem" gutter="0">
           <cell :title="aitem.name" 
@@ -15,9 +16,9 @@
           </template>
         </group>
       </template>
-    </div>
-    <div style="text-align:center">
-      <spinner v-if="loading" type="dots"></spinner>
+      <div style="text-align:center">
+        <spinner v-if="loading" type="dots"></spinner>
+      </div>
     </div>
   </view-box>
 </template>
@@ -29,6 +30,12 @@ export default {
   name: 'chapter',
   components: {
     XHeader, ViewBox, Group, Cell, Spinner
+  },
+  computed: {
+    ...mapGetters(['workbookChapter', 'Route']),
+    chapter () {
+      return this.workbookChapter.list[0]
+    }
   },
   data () {
     return {
@@ -44,7 +51,7 @@ export default {
       })
     },
     _getColor (item) {
-      if (item.isUsed.toString() === 'true') {
+      if (item.isRead.toString() === 'true') {
         return 'color:#FEAA85'  // 是否联系过
       } else if (item.isLink.toString() === 'false') {
         return 'color:#4BB7AA' // 是否是标题
@@ -58,11 +65,11 @@ export default {
         this.loading = false
       }).then(() => {
         this.$nextTick(() => {
-          this.$refs.viewBoxBody.scrollTo(this.workbookChapter.scroll)
+          this.$refs.viewBox.scrollTo(this.workbookChapter.scroll)
         })
       })
     } else {
-      this.$refs.viewBoxBody.scrollTo(this.workbookChapter.scroll)
+      this.$refs.viewBox.scrollTo(this.workbookChapter.scroll)
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -77,14 +84,8 @@ export default {
     }
   },
   beforeRouteLeave (to, from, next) {
-    this.setWorkbookChapterScroll(this.$refs.viewBoxBody.getScrollTop())
+    this.setWorkbookChapterScroll(this.$refs.viewBox.getScrollTop())
     next()
-  },
-  computed: {
-    ...mapGetters(['workbookChapter', 'Route']),
-    chapter () {
-      return this.workbookChapter.list[0]
-    }
   }
 }
 </script>

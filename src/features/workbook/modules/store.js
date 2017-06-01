@@ -1,12 +1,17 @@
 import * as types from './mutationTypes'
 import * as actions from './actions'
 import * as getters from './getters'
-import * as state from './state'
+import state from './state'
 
 const mutations = {
   [types.WORKBOOK] (state, payload) {
     state.workbook.subjectId = payload.subjectId
     state.workbook.list = payload.data
+  },
+  [types.WORKBOOK_CLEAR] (state) {
+    state.workbook.list = []
+    state.workbook.scroll = 0
+    state.workbook.subjectId = 2
   },
   [types.WORKBOOK_SCROLL] (state, payload) {
     state.workbook.scroll = payload.height
