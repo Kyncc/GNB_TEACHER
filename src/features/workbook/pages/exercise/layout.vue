@@ -2,7 +2,9 @@
   <view-box ref="workbook" body-padding-top="90px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: Route.params.name}">
-        <i slot="right" class="icon iconfont icon-home" @click="$router.go(-2)"></i>
+        <div slot="right" style="margin:0">
+          <gnbChangeClass :change.sync='selectedClass' :classList='workbookChapter.classList'></gnbChangeClass>
+        </div>
       </x-header>
       <tab style="position:fixed;top:46px;width:100%;z-index:1">
         <tab-item :selected="Route.name === 'workbook_exercise_result'" 
@@ -25,15 +27,21 @@
 
 <script>
 import {XHeader, ViewBox, Tab, TabItem} from 'vux'
+import gnbChangeClass from '@/components/gnb_changeClass'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'exercise',
   components: {
-    XHeader, ViewBox, Tab, TabItem
+    XHeader, ViewBox, Tab, TabItem, gnbChangeClass
   },
   computed: {
-    ...mapGetters(['Route', 'workbookExercise'])
+    ...mapGetters(['Route', 'workbookExercise', 'workbookChapter'])
+  },
+  data () {
+    return {
+      selectedClass: []
+    }
   },
   methods: {
     ...mapActions(['getWorkbookExercise', 'workbookExerciseClear'])
@@ -42,11 +50,11 @@ export default {
     next(vm => {
       if (from.name === 'workbook_chapter' || vm.workbookExercise.isReset) {
         vm.workbookExerciseClear()
-        vm.getWorkbookExercise().then(() => {
-          next()
-        }).catch(() => {
-          this.$router.go(-1)
-        })
+        // vm.getWorkbookExercise().then(() => {
+        //   next()
+        // }).catch(() => {
+        //   this.$router.go(-1)
+        // })
       }
     })
   }

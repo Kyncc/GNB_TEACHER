@@ -3,19 +3,16 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}">
     </x-header>
     <div>
-      <template v-for="a in chapter">
-        <group v-for="(aitem, index) in a" :key="index" style="margin-bottom:.5rem" gutter="0">
-          <cell :title="aitem.name" 
-            :style=" _getColor(aitem)" @click.native="aitem.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: aitem.id, name: aitem.name}}) : ''">
+      <group v-for="(aitem, index) in chapter" :key="index" style="margin-bottom:.5rem" gutter="0">
+        <cell :title="aitem.name" :style=" _getColor(aitem)" 
+          @click.native="aitem.isLink ? $router.push({name : 'workbook_exercise_number', params: {chapterId: aitem.id, name: aitem.name}}) : ''">
+        </cell>
+        <template v-for="b in aitem.b" > 
+          <cell :title="b.name" :style=" _getColor(b)"
+            @click.native="b.isLink ? $router.push({name : 'workbook_exercise_number', params: {chapterId: b.id, name: b.name}}) : ''">
           </cell>
-          <template v-for="b in aitem.b" > 
-            <cell :title="b.name" 
-              :style=" _getColor(b)"
-              @click.native="b.isLink.toString() === 'true' ? $router.push({name : 'workbook_exercise_result', params: {id: b.id, name: b.name}}) : ''">
-            </cell>
-          </template>
-        </group>
-      </template>
+        </template>
+      </group>
       <div style="text-align:center">
         <spinner v-if="loading" type="dots"></spinner>
       </div>
@@ -34,7 +31,7 @@ export default {
   computed: {
     ...mapGetters(['workbookChapter', 'Route']),
     chapter () {
-      return this.workbookChapter.list[0]
+      return this.workbookChapter.list
     }
   },
   data () {
@@ -51,9 +48,9 @@ export default {
       })
     },
     _getColor (item) {
-      if (item.isRead.toString() === 'true') {
+      if (item.isRead) {
         return 'color:#FEAA85'  // 是否联系过
-      } else if (item.isLink.toString() === 'false') {
+      } else if (!item.isLink) {
         return 'color:#4BB7AA' // 是否是标题
       }
     }

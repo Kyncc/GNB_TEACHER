@@ -17,8 +17,8 @@ const mutations = {
     state.workbook.scroll = payload.height
   },
   [types.WORKBOOK_CHAPTER] (state, data) {
-    state.chapter.list = data.list
-    state.chapter.classList = data.classList
+    state.chapter.list = data[0].a
+    state.chapter.classList = data[0].classList
   },
   [types.WORKBOOK_CHAPTER_CLEAR] (state) {
     state.chapter.list = []

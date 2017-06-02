@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p @click='onDisplay()'>{{selected === 2 ? '数学' : '物理' }}</p>
+    <p @click='onDisplay()'>{{selected.className}}</p>
     <mt-popup v-model="visible" popup-transition="popup-fade" class="gnb-changeSub">
-      <template v-for="item in subjectAllList">
-        <p @click="onClickBack(item)" :class="item.id  === selected ? 'active' : ''">{{item.value}}</p>
+      <template v-for="item in classList">
+        <p @click="onClickBack(item)" :class="item.classCode  === selected.classCode ? 'active' : ''">{{item.className}}</p>
       </template>
     </mt-popup>
   </div>
@@ -17,14 +17,15 @@ export default {
   components: {
     'mt-popup': Popup
   },
+  props: {
+    classList: {
+      type: Array
+    }
+  },
   data () {
     return {
       visible: false,
-      selected: 2,
-      subjectAllList: [
-        { id: 2, value: '数学', key: 'math' },
-        { id: 7, value: '物理', key: 'physics' }
-      ]
+      selected: []
     }
   },
   methods: {
@@ -33,12 +34,16 @@ export default {
     },
     // 点击科目提交的回调
     onClickBack (item) {
-      if (this.selected !== item.id) {
-        this.selected = item.id
-        this.$emit('update:change', item.id)
+      if (this.selected.classCode !== item.classCode) {
+        this.selected = item
+        this.$emit('update:change', item)
       }
       this.visible = false
     }
+  },
+  created () {
+    this.selected = this.classList[0]
+    this.$emit('update:change', this.selected)
   }
 }
 </script>
