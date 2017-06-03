@@ -1,7 +1,7 @@
 <template>
-  <div class="gnb-changeSub">
+  <div class="gnb-changeClass">
     <p @click='onDisplay()'>{{selected.className}}<span class="with_arrow"></span></p>
-    <mt-popup v-model="visible" popup-transition="popup-fade" class="gnb-changeSub-popup">
+    <mt-popup v-model="visible" popup-transition="popup-fade" class="gnb-changeClass-popup">
       <template v-for="item in classList">
         <p @click="onClickBack(item)" :class="item.classCode  === selected.classCode ? 'active' : ''">{{item.className}}</p>
       </template>
