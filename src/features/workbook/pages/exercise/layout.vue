@@ -6,7 +6,7 @@
           <gnbChangeClass :change.sync='selectedClass' :classList='workbookChapter.classList'></gnbChangeClass>
         </div>
       </x-header>
-      <tab style="position:fixed;top:46px;width:100%;z-index:1">
+      <tab>
         <tab-item :selected="Route.name === 'workbook_exercise_result'" 
           @click.native="$router.replace({name:'workbook_exercise_result'})">
           作业统计

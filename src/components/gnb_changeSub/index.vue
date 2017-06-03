@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <p @click='onDisplay()'>{{selected === 2 ? '数学' : '物理' }}</p>
-    <mt-popup v-model="visible" popup-transition="popup-fade" class="gnb-changeSub">
+  <div class="gnb-changeSub">
+    <p @click='onDisplay()'>{{selected === 2 ? '数学' : '物理' }}<span class="with_arrow"></span></p>
+    <mt-popup v-model="visible" popup-transition="popup-fade" class="gnb-changeSub-popup">
       <template v-for="item in subjectAllList">
         <p @click="onClickBack(item)" :class="item.id  === selected ? 'active' : ''">{{item.value}}</p>
       </template>

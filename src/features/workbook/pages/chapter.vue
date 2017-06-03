@@ -15,6 +15,7 @@
       </group>
       <div style="text-align:center">
         <spinner v-if="loading" type="dots"></spinner>
+        
       </div>
     </div>
   </view-box>
