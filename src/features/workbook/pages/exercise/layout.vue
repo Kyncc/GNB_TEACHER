@@ -7,12 +7,12 @@
         </div>
       </x-header>
       <tab>
-        <tab-item :selected="Route.name === 'workbook_exercise_result'" 
-          @click.native="$router.replace({name:'workbook_exercise_result'})">
+        <tab-item :selected="Route.name === 'workbook_exercise_number'" 
+          @click.native="$router.replace({name:'workbook_exercise_number'})">
           作业统计
         </tab-item>
-        <tab-item :selected="Route.name === 'workbook_exercise_answer'" 
-          @click.native="$router.replace({name:'workbook_exercise_answer'})">
+        <tab-item :selected="Route.name === 'workbook_exercise_photo'" 
+          @click.native="$router.replace({name:'workbook_exercise_photo'})">
           批改作业
         </tab-item>
       </tab>
@@ -36,7 +36,7 @@ export default {
     XHeader, ViewBox, Tab, TabItem, gnbChangeClass
   },
   computed: {
-    ...mapGetters(['Route', 'workbookExercise', 'workbookChapter'])
+    ...mapGetters(['Route', 'workbookChapter'])
   },
   data () {
     return {
@@ -44,17 +44,32 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getWorkbookExercise', 'workbookExerciseClear'])
+    ...mapActions(['getWorkbookExerciseNum', 'getWorkbookExercisePhoto', 'workbookExerciseErrorPhotoClear', 'workbookExerciseClear']),
+    _getData () {
+      this.workbookExerciseClear()
+      this.workbookExerciseErrorPhotoClear()
+      this.$vux.loading.show()
+      return (async () => {
+        try {
+          await this.getWorkbookExerciseNum({classCode: this.selectedClass.classCode})
+          await this.getWorkbookExercisePhoto({classCode: this.selectedClass.classCode})
+          this.$vux.loading.hide()
+        } catch (err) {
+          this.$vux.loading.hide()
+        }
+      })()
+    }
+  },
+  watch: {
+    // 切换班级加载数据
+    selectedClass () {
+      this._getData()
+    }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'workbook_chapter' || vm.workbookExercise.isReset) {
-        vm.workbookExerciseClear()
-        // vm.getWorkbookExercise().then(() => {
-        //   next()
-        // }).catch(() => {
-        //   this.$router.go(-1)
-        // })
+      if (from.name === 'workbook_chapter') {
+        vm._getData()
       }
     })
   }

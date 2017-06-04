@@ -5,10 +5,10 @@
       <template v-if="item.b[0].type == '1'">
         <group v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
           <cell v-for="(itemC, index) in itemB.c" :title="itemC.name" :key="itemC.id">
-            <p slot="default">
-              <section style="display:inline-block;" @click="_changeAnswer(pindex,index,1)">
-                <i v-if="itemC.answer" class="icon iconfont icon-correct" style="color:#4BB7AA"></i>
-                <i v-else class="icon iconfont icon-error" style="color:#4BB7AA"></i>
+            <p slot="default" 
+              @click.native="$router.push({name:'workbook_exercise_error',params:{chapterId: Route.params.chapterId, wbeid: itemC.wbeid}})">
+              <section style="display:inline-block;color:#FFC452">
+                错{{itemC.number}}人
               </section>
             </p>
           </cell>
@@ -17,11 +17,11 @@
       <!--3级别练习册-->
       <template v-else-if="item.b[0].type == '2'">
         <group :title="item.name">
-          <cell v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
+          <cell v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id" 
+          @click.native="$router.push({name:'workbook_exercise_error',params:{chapterId: Route.params.chapterId, wbeid: itemB.wbeid}})">
             <div slot="default">
-              <section style="display:inline-block;">
-                <i @click="_changeAnswer(pindex,index,2)" v-if="itemB.answer" class="icon iconfont exampleIcon icon-correct" style="color:#4BB7AA"></i>
-                <i @click="_changeAnswer(pindex,index,2)" v-else class="icon iconfont icon-error exampleIcon" style="color:#FF7043"></i>
+              <section style="display:inline-block;color:#FFC452">
+                 错{{itemB.number}}人
               </section>
             </div>
           </cell>
@@ -30,7 +30,7 @@
     </div>
     
     <div style="margin:1rem" v-if="exercise">
-      <x-button v-if = "!isUsed" type="primary" @click.native="_post">提交结果</x-button>
+      <x-button v-if = "!isRead" type="primary" @click.native="_post">已阅</x-button>
       <x-button v-else type="primary" disabled>已提交</x-button>
     </div>
   </div>
@@ -46,56 +46,26 @@ export default {
     Group, Cell, XButton
   },
   computed: {
-    ...mapGetters(['workbookExercise', 'Route']),
+    ...mapGetters(['Route', 'workbookExercise']),
     exercise () {
       return this.workbookExercise.list.a
     },
-    isUsed () {
-      return this.workbookExercise.list.isUsed
-    }
-  },
-  data () {
-    return {
-      answerListId: [],             // 答案的列表
-      answerListAnswer: [],         // 答案的列表
-      workbookType: ''
+    isRead () {
+      return this.workbookExercise.list.isRead
     }
   },
   methods: {
-    ...mapActions(['getWorkbookExercise', 'workbookExerciseClear', 'WorkbookExercisePost', 'setWorkbookExersciseScroll']),
-    // 获取答案
-    _getAnswerList () {
-      this.answerListId = []
-      this.answerListAnswer = []
-      if (!this.exercise) return
-      if (this.workbookType === '1') {
-        // 三级练习册嵌套
-        let array = this.exercise[0].b
-        for (let i = 0; i < array.length; i++) {
-          for (let j = 0; j < array[i].c.length; j++) {
-            this.answerListId.push(array[i].c[j].id)
-            this.answerListAnswer.push(array[i].c[j].answer)
-          }
-        }
-      } else {
-        // 二级练习册嵌套
-        let array = this.exercise
-        for (let i = 0; i < array.length; i++) {
-          for (let j = 0; j < array[i].b.length; j++) {
-            this.answerListId.push(array[i].b[j].id)
-            this.answerListAnswer.push(array[i].b[j].answer)
-          }
-        }
-      }
-    },
-    _post () {}
-  },
-  activated () {
-    this.$parent.$refs.viewBoxBody.scrollTop = this.workbookExercise.scroll
-  },
-  beforeRouteLeave (to, from, next) {
-    this.setWorkbookExersciseScroll(this.$parent.$refs.viewBoxBody.scrollTop)
-    next()
+    ...mapActions(['WorkbookExercisePost', 'setWorkbookExersciseScroll', 'setWorkbookExerciseRead']),
+    _post () {
+      this.setWorkbookExerciseRead()
+    }
   }
+  // activated () {
+  //   this.$parent.$refs.viewBoxBody.scrollTop = this.workbookExercise.scroll
+  // },
+  // beforeRouteLeave (to, from, next) {
+  //   this.setWorkbookExersciseScroll(this.$parent.$refs.viewBoxBody.scrollTop)
+  //   next()
+  // }
 }
 </script>

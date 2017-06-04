@@ -27,16 +27,18 @@ const mutations = {
   [types.WORKBOOK_CHAPTER_SCROLL] (state, payload) {
     state.chapter.scroll = payload.height
   },
-  [types.WORKBOOK_EXERCISE] (state, data) {
-    state.exercise.list = data
+  [types.WORKBOOK_EXERCISE] (state, payload) {
+    state.exercise.classCode = payload.classCode
+    state.exercise.list = payload.data
   },
   [types.WORKBOOK_EXERCISE_CLEAR] (state, data) {
     state.exercise.isReset = true
     state.exercise.list = []
     state.exercise.cameraList = []
   },
-  [types.WORKBOOK_EXERCISE_PHOTO] (state, data) {
-    state.exercise.cameraList = data
+  [types.WORKBOOK_EXERCISE_PHOTO] (state, payload) {
+    state.exercise.classCode = payload.classCode
+    state.exercise.cameraList = payload.data
   },
   [types.WORKBOOK_EXERCISE_ERROR_PHOTO] (state, data) {
     state.exercise.errorList = data
@@ -46,10 +48,6 @@ const mutations = {
   },
   [types.WORKBOOK_EXERCISE_READ] (state) {
     state.exercise.list.isRead = true
-  },
-  [types.WORKBOOK_EXERCISE_CHANGECLASS] (state, data) {
-    state.exercise.list.isRead = true
-    state.exercise.classCode = data
   }
 }
 

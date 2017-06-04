@@ -1,5 +1,6 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
+import Vue from 'vue'
 
 /** 获取练习册数据 */
 export const getWorkbook = ({state, rootState, commit}, params) => {
@@ -11,8 +12,7 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
         token: rootState.common.user.token,
         subjectId: params.subjectId
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.WORKBOOK, {subjectId: params.subjectId, data: response.data.data})
       resolve(response)
     })
@@ -36,11 +36,10 @@ export const getWorkbookChapter = ({state, rootState, commit}) => {
       method: 'get',
       url: 'workbook/chapter',
       params: {
-        'token': rootState.common.user.token,
-        'workbookId': rootState.route.params.workbookId
+        token: rootState.common.user.token,
+        workbookId: rootState.route.params.workbookId
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.WORKBOOK_CHAPTER, response.data.data)
       resolve(response)
     })
@@ -58,39 +57,41 @@ export const setWorkbookChapterScroll = ({ rootState, commit }, height) => {
 }
 
 /** 获取练习数据--人数统计 */
-export const getWorkbookExerciseNum = ({state, rootState, commit}, id) => {
+export const getWorkbookExerciseNum = ({state, rootState, commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'workbook/charpter/detail/number',
+      url: 'workbook/chapter/detail/number',
       params: {
-        'token': rootState.common.user.token,
-        'code': rootState.workbook.exercise.classCode,
-        'chapterId': rootState.route.params.chapterId
+        token: rootState.common.user.token,
+        classCode: params.classCode,
+        chapterId: rootState.route.params.chapterId
       }
-    })
-    .then((response) => {
-      commit(types.WORKBOOK_EXERCISE, response.data.data)
+    }).then((response) => {
+      commit(types.WORKBOOK_EXERCISE, {data: response.data.data, classCode: params.classCode})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
 
 /** 获取练习数据--作业图片 */
-export const getWorkbookExercisePhoto = ({state, rootState, commit}) => {
+export const getWorkbookExercisePhoto = ({state, rootState, commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'workbook/charpter/detail/photo',
+      url: 'workbook/chapter/detail/photo',
       params: {
-        'token': rootState.common.user.token,
-        'code': rootState.workbook.exercise.classCode,
-        'chapterId': rootState.route.params.chapterId
+        token: rootState.common.user.token,
+        classCode: params.classCode,
+        chapterId: rootState.route.params.chapterId
       }
-    })
-    .then((response) => {
-      commit(types.WORKBOOK_EXERCISE_PHOTO, response.data.data)
+    }).then((response) => {
+      commit(types.WORKBOOK_EXERCISE_PHOTO, {data: response.data.data, classCode: params.classCode})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -100,15 +101,17 @@ export const setWorkbookExerciseRead = ({state, rootState, commit}) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'workbook/charpter/isRead',
+      url: 'workbook/chapter/isRead',
       data: {
-        'token': rootState.common.user.token,
-        'chapterId': rootState.route.params.chapterId
+        token: rootState.common.user.token,
+        chapterId: rootState.route.params.chapterId
       }
-    })
-    .then((response) => {
+    }).then((response) => {
+      Vue.$vux.toast.show({text: '已阅成功', type: 'text', time: 1000, position: 'bottom'})
       commit(types.WORKBOOK_EXERCISE_READ)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -123,15 +126,14 @@ export const getWorkbookExerciseErrorPhoto = ({state, rootState, commit}, params
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'workbook/charpter/detail/error',
+      url: 'workbook/chapter/detail/error',
       params: {
-        'token': rootState.common.user.token,
-        'code': rootState.workbook.exercise.classCode,
-        'wbeid': rootState.route.params.wbeid,
-        'chapterId': rootState.route.params.chapterId
+        token: rootState.common.user.token,
+        classCode: rootState.workbook.exercise.classCode,
+        wbeid: rootState.route.params.wbeid,
+        chapterId: rootState.route.params.chapterId
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.WORKBOOK_EXERCISE_ERROR_PHOTO, response.data.data)
       resolve(response)
     })

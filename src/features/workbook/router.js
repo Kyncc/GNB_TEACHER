@@ -25,13 +25,13 @@ export default {
           path: 'photo/:name/:chapterId/',
           name: 'workbook_exercise_photo',
           component: r => require.ensure([], () => r(require('./pages/exercise/photo')), '/workbook/exercise/photo')
-        },
-        {
-          path: 'error/:name/:chapterId/:wbeid/',
-          name: 'workbook_exercise_error',
-          component: r => require.ensure([], () => r(require('./pages/exercise/error')), '/workbook/exercise/error')
         }
       ]
+    },
+    {
+      path: 'exercise/error/:chapterId/:wbeid/',
+      name: 'workbook_exercise_error',
+      component: r => require.ensure([], () => r(require('./pages/exercise/error')), '/workbook/exercise/error')
     }
   ]
 }
