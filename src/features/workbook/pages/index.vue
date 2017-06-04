@@ -69,7 +69,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setWorkbookScroll(this.$refs.viewBox.getScrollBody())
+    this.setWorkbookScroll(this.$refs.viewBox.getScrollTop())
     next()
   }
 }

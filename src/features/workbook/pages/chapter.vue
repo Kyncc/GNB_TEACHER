@@ -4,13 +4,9 @@
     </x-header>
     <div>
       <group v-for="(aitem, index) in chapter" :key="index" style="margin-bottom:.5rem" gutter="0">
-        <cell :title="aitem.name" :style=" _getColor(aitem)" 
-          @click.native="aitem.isLink ? $router.push({name : 'workbook_exercise_number', params: {chapterId: aitem.id, name: aitem.name}}) : ''">
-        </cell>
+        <cell :title="aitem.name" :style=" _getColor(aitem)" @click.native='_toNumberPage(aitem)'></cell>
         <template v-for="b in aitem.b" > 
-          <cell :title="b.name" :style=" _getColor(b)"
-            @click.native="b.isLink ? $router.push({name : 'workbook_exercise_number', params: {chapterId: b.id, name: b.name}}) : ''">
-          </cell>
+          <cell :title="b.name" :style="_getColor(b)" @click.native='_toNumberPage(b)'></cell>
         </template>
       </group>
       <div style="text-align:center">
@@ -46,6 +42,12 @@ export default {
       this.getWorkbookChapter().then(() => {
         this.loading = false
       })
+    },
+    // 进入错题统计页面
+    _toNumberPage (item) {
+      if (item.isLink) {
+        this.$router.push({name: 'workbook_exercise_number', params: {chapterId: item.id, name: item.name}})
+      }
     },
     _getColor (item) {
       if (item.isRead) {
