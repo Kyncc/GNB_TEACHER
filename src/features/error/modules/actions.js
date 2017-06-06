@@ -10,7 +10,7 @@ export const getError = ({rootState, commit, state}, params) => {
       params: {
         offset: rootState.error.error.offset,
         token: rootState.common.user.token,
-        subjectId: params.subjectId,
+        subject_id: params.subjectId,
         studentId: rootState.route.params.studentId
       }
     })
