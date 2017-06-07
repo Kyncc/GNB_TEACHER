@@ -5,7 +5,6 @@
         <gnbChangeSub :change.sync='selectedSub'></gnbChangeSub>
       </div>
     </x-header>
-
     <div>
       <card v-for='(error, index) in errorList.list' :key='index'>
         <div class="weui-panel__hd" slot="header">

@@ -12,6 +12,12 @@
         </div>
     </div>
     <group gutter="0">
+      <!--<cell title="我的账户" link="javascript:;">
+        <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
+      </cell>-->
+      <cell title="邀请好友" link="invite">
+        <i class="icon iconfont icon-share" style="color:#52DCFF" slot="icon"></i>
+      </cell>
       <cell title="设置" link="settings">
         <i class="icon iconfont icon-settingfull" style="color:#794BB8" slot="icon"></i>
       </cell>

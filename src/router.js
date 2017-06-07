@@ -12,6 +12,7 @@ import message from './features/message/router'
 import myclass from './features/myclass/router'
 import settings from './features/settings/router'
 import workbook from './features/workbook/router'
+import invite from './features/invite/router'
 
 Vue.use(Router)
 let router = new Router({
@@ -22,6 +23,7 @@ let router = new Router({
     correct,
     example,
     login,
+    invite,
     ...index,
     message,
     myclass,
