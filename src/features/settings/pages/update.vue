@@ -14,10 +14,10 @@
           <checker-item value="0">女</checker-item>
         </checker>
       </cell>
+      <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
     <group>
       <selector v-model="subjectId" title="主教科目" :options="sublist"></selector>
-      <x-input title="学校" v-model="school" class="input_right"></x-input>
     </group>
     
     <actionsheet v-model="show" :menus="menus" @on-click-menu="_menusClick"></actionsheet>

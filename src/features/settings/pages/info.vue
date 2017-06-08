@@ -9,13 +9,16 @@
       <cell title="头像">
         <img :src="User.headImg" width="60" height="60"/>
       </cell>
-      <cell title="电话" :value="User.mobile"></cell>
       <cell title="姓名" :value="User.name"></cell>
       <cell title="性别" :value="User.sex === '1' ? '男' : '女'"></cell>
+      <cell title="学校" :value="User.school"></cell>
     </group>
     <group>
       <cell title="主教科目" :value="User.subjectId === '2' ? '数学' : '物理'"></cell>
-      <cell title="学校" :value="User.school"></cell>
+    </group>
+    <group>
+      <cell title="手机号码" :value="User.mobile"></cell>
+      <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>
     </group>
   </view-box>
 </template>
