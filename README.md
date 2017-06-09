@@ -43,7 +43,7 @@
 ```
 ├── build       # webpack Build
 ├── config      # webpack Config
-├── distT        # Dist Folder
+├── distT       # Dist Folder
 ├── app.vue     # Entry File
 ├── main.js     # Entry Js
 ├── store.js    # Vuex Main Stroe
@@ -61,6 +61,7 @@
         ├── workbook    # 批改作业
         ├── myclass     # 我的班级
         ├── message     # 消息
+        ├── invite      # 我的邀请
         ├── login       # 登陆
         ├── settings    # 设置
         ├── about       # 关于归纳本
