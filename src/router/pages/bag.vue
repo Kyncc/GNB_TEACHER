@@ -15,6 +15,9 @@
           <badge text="新通知" style="position:relative;top:-2px;"></badge>
         </template>
       </cell>
+      <cell title="我的下载" link="myDownload">
+        <i class="icon iconfont icon-download" style="color:#794BB8" slot="icon"></i>
+      </cell>
     </group>
   </div>
 </template>

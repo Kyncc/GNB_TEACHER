@@ -13,6 +13,11 @@
         </router-link>
       </div>
       <div>
+        <router-link :to="{ path: 'download'}">
+          <x-button type='primary' mini class="rememberBtn">下载中心</x-button>
+        </router-link>
+      </div>
+      <div>
         <router-link :to="{ path: 'error'}">
           <x-button type='primary' mini class="rememberBtn">查看错题</x-button>
         </router-link>

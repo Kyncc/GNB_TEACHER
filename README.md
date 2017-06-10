@@ -60,6 +60,7 @@
         ├── error       # 查看错题
         ├── workbook    # 批改作业
         ├── myclass     # 我的班级
+        ├── myclass     # 我的下载
         ├── message     # 消息
         ├── invite      # 我的邀请
         ├── login       # 登陆

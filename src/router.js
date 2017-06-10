@@ -10,6 +10,8 @@ import error from './features/error/router'
 import example from './features/example/router'
 import message from './features/message/router'
 import myclass from './features/myclass/router'
+import myDownload from './features/myDownload/router'
+import download from './features/download/router'
 import settings from './features/settings/router'
 import workbook from './features/workbook/router'
 import invite from './features/invite/router'
@@ -27,6 +29,8 @@ let router = new Router({
     ...index,
     message,
     myclass,
+    myDownload,
+    download,
     settings,
     workbook
   ]
