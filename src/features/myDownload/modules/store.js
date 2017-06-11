@@ -12,7 +12,10 @@ const state = {
 
 const mutations = {
   [types.MYDOWNLOAD] (state, data) {
-    state.index = data
+    state.download = data
+  },
+  [types.MYDOWNLOAD_RESET] (state) {
+    state.download = []
   },
   [types.MYDOWNLOAD_PAPER] (state, data) {
     state.paper.list = data

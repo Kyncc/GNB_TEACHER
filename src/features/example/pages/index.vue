@@ -2,21 +2,24 @@
   <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '例题详情'}">
       <div slot="right">
-        <i class="icon iconfont icon-bianji" style="padding:10px;margin:0 -10px 0 0"
-          @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id}})">
+        <i class="icon iconfont icon-bianji" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id}})">
         </i>
       </div>
     </x-header>
-    <template v-for="detail in Example.detail"> 
+    <template v-for="detail in Example.detail">
       <card>
         <div slot="header" class="weui-panel__hd">
-          <flexbox><flexbox-item :span="10" style="color:#4bb7aa">{{detail.charpterName}}</flexbox-item></flexbox>
+          <flexbox>
+            <flexbox-item :span="10" style="color:#4bb7aa">{{detail.charpterName}}</flexbox-item>
+          </flexbox>
         </div>
         <div slot="content">
           <div v-html="detail.stem"></div>
           <div v-if="detail.opt.hasOwnProperty('A')">
             <template v-for="(value, key) in detail.opt">
-              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+              <div style="padding-top:5px;">{{ key }}：
+                <p v-html="value" style="display:inline-block"></p>
+              </div>
             </template>
           </div>
         </div>
@@ -34,8 +37,8 @@
 </template>
 
 <script>
-import {XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import { XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem } from 'vux'
+import { mapActions, mapGetters } from 'vuex'
 import store from '@/store'
 import modules from '../modules/store'
 
@@ -57,7 +60,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getExample', 'exampleClear', 'collectRemove', 'collectAdd']),
+    ...mapActions(['getExample', 'exampleClear']),
     _getDate () {
       this.loading = true
       this.getExample().then(() => {
@@ -80,7 +83,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.icon-bianji{
-  font-size:24px;
+.icon-bianji {
+  font-size: 24px;
 }
 </style>

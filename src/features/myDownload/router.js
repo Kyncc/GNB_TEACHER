@@ -9,7 +9,7 @@ export default {
     }
     // {
     //   path: 'list',
-    //   name: 'invite_list',
+    //   name: 'myDownload_list',
     //   component: r => require.ensure([], () => r(require('./pages/list')), '/invite/list')
     // }
   ]

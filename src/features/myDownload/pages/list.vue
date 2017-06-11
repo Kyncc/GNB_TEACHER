@@ -1,60 +1,74 @@
 <template>
-  <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '意见反馈'}">
-      <router-link :to="{ path: 'adviceHistory'}" slot="right">
-        <p>反馈历史</p>
-      </router-link>
-    </x-header>
-    <group gutter="0">
-      <x-input placeholder="标题" v-model="title"></x-input>
-      <x-input placeholder="QQ号/微信号" v-model="contact"></x-input>
-      <x-textarea :max="200" name="description" placeholder="问题或建议描述" :rows="5" v-model="content"></x-textarea>
-    </group>
-    <div style="width:90%;margin:1rem auto 0">
-      <x-button class="footer_botton" type="primary" @click.native="_submit">提交</x-button>
+  <view-box ref="myDownload_list" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '试卷详情'}"></x-header>
+    <div>
+      <card v-for="(item, index) in list" :key="index">
+        <div class="weui-panel__hd" slot="header">
+          <flexbox>
+            <flexbox-item :span="10" style="color:#4bb7aa">更新时间: {{item.time}}</flexbox-item>
+            <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
+          </flexbox>
+        </div>
+        <div slot="content" @click="$router.push({name:'example', params: {subjectId: Route.params.subject.indexOf('math') !== -1 ? 2 : 7, id: item.exercises_id}})">
+          <div v-html="item.stem"></div>
+          <div v-if="item.opt_jo.hasOwnProperty('A')">
+            <template v-for="(value, key) in item.opt_jo">
+              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
+            </template>
+          </div>
+        </div>
+      </card>
+      <div style="text-align:center;padding:20px 0;">
+        <spinner v-if="loading" type="lines"></spinner>
+      </div>
     </div>
   </view-box>
 </template>
 
 <script>
-import {XHeader, XInput, Group, XTextarea, XButton, ViewBox} from 'vux'
-import {mapActions} from 'vuex'
+import {XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem} from 'vux'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'advice',
+  name: 'list',
   components: {
-    XHeader, XInput, Group, XTextarea, XButton, ViewBox
+    XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem
+  },
+  computed: {
+    ...mapGetters(['Route', 'MyDownloadPaper']),
+    list () {
+      return this.MyDownloadPaper.list
+    }
   },
   data () {
     return {
-      title: '',
-      content: '',
-      contact: ''
+      loading: true
     }
   },
   methods: {
-    ...mapActions(['updateAdvice']),
-    _submit () {
-      if (this.title && this.content && this.contact) {
-        this.updateAdvice({
-          title: this.title,
-          content: this.content,
-          contact: this.contact
-        })
-        .then(() => {
-          setTimeout(() => {
-            this.$router.push('adviceHistory')
-          }, 300)
-        })
-      } else {
-        this.$vux.toast.show({text: '请完善内容', type: 'text', time: 1000, position: 'bottom'})
-      }
+    ...mapActions(['getMyDownloadList', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper']),
+    _getData () {
+      this.loading = true
+      this.getMyDownloadList().then(() => {
+        this.loading = false
+      }).catch(() => {
+        this.loading = false
+      })
     }
   },
-  activated () {
-    this.title = ''
-    this.content = ''
-    this.contact = ''
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      // 不来自题目详情全部清除数据
+      if (from.name === 'myDownload') {
+        vm.clearMyDownloadPaper()
+        vm._getData()
+      }
+      vm.$refs.myDownload_list.scrollTop = vm.MyDownloadPaper.scroll
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setMyDownloadPaperScroll(this.$refs.myDownload_list.scrollTop)
+    next()
   }
 }
 </script>

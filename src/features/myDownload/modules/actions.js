@@ -17,6 +17,11 @@ export const getMyDownload = ({ rootState, commit }) => {
   })
 }
 
+/** 清空下载列表 */
+export const clearMyDownload = ({rootState, commit}) => {
+  commit(types.MYDOWNLOAD_RESET)
+}
+
 /** 获取下载试题列表 */
 export const getMyDownloadList = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
