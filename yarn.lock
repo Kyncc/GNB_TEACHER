@@ -4845,9 +4845,9 @@ vue-template-es2015-compiler@^1.2.2:
   version "1.5.2"
   resolved "http://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.5.2.tgz#a0a6c50c941d2a4abda963f2f42c337ac450ee95"
 
-vue@^2.3.3:
-  version "2.3.3"
-  resolved "http://registry.npm.taobao.org/vue/download/vue-2.3.3.tgz#d1eaa8fde5240735a4563e74f2c7fead9cbb064c"
+vue@^2.3.4:
+  version "2.3.4"
+  resolved "http://registry.npm.taobao.org/vue/download/vue-2.3.4.tgz#5ec3b87a191da8090bbef56b7cfabd4158038171"
 
 vuex-router-sync@^4.1.3:
   version "4.1.3"
@@ -4884,9 +4884,9 @@ vux-xscroll@^3.1.10:
   version "3.1.12"
   resolved "http://registry.npm.taobao.org/vux-xscroll/download/vux-xscroll-3.1.12.tgz#e352e7f9dc5f9fee9253db331c967dd56b3bc950"
 
-vux@^2.3.3:
-  version "2.3.3"
-  resolved "http://registry.npm.taobao.org/vux/download/vux-2.3.3.tgz#47ca83c76ec8b6d0173128754eeea0a7c0d54bfa"
+vux@^2.3.6:
+  version "2.3.6"
+  resolved "http://registry.npm.taobao.org/vux/download/vux-2.3.6.tgz#5f2ae1afb719dc60e87e8eed8a22aab80bf7deb9"
   dependencies:
     array-filter "^1.0.0"
     array-find "^1.0.0"
@@ -4895,6 +4895,7 @@ vux@^2.3.3:
     array-shuffle "^1.0.1"
     autosize "^3.0.20"
     axios "^0.15.3"
+    big.js "^3.1.3"
     blueimp-md5 "^2.6.0"
     countup.js "^1.8.1"
     fastclick "^1.0.6"

@@ -56,11 +56,12 @@
     ├── features    # Modules
         ├── common      # 全局功能函数
         ├── workbook    # 查答案
+        ├── correct     # 纠错
         ├── example     # 例题
         ├── error       # 查看错题
         ├── workbook    # 批改作业
         ├── myclass     # 我的班级
-        ├── myclass     # 我的下载
+        ├── myDownload  # 我的下载
         ├── message     # 消息
         ├── invite      # 我的邀请
         ├── login       # 登陆
