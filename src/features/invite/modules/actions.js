@@ -1,18 +1,24 @@
+import Vue from 'vue'
 import * as types from './mutationTypes'
 import axios from '@/components/axios/'
 
 /** 邀请信息获取 */
 export const getInvite = ({ rootState, commit }) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'invite',
-      data: {
+      params: {
         token: rootState.common.user.token
       }
     }).then(response => {
+      Vue.$vux.loading.hide()
       commit(types.INVITE, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      Vue.$vux.loading.hide()
+      reject(err)
     })
   })
 }
@@ -33,8 +39,13 @@ export const getInviteList = ({ rootState, commit }) => {
   })
 }
 
+/** 清空邀请好友列表 */
+export const setInviteListClear = ({ commit }) => {
+  commit(types.INVITE_LIST_RESET)
+}
+
 /** 填写邀请码 */
-export const setInviteCode = ({ rootState, commit }, params) => {
+export const setInviteCode = ({ rootState, commit, dispatch }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -44,6 +55,7 @@ export const setInviteCode = ({ rootState, commit }, params) => {
         token: rootState.common.user.token
       }
     }).then(response => {
+      dispatch('getInvite')
       resolve(response)
     })
   })

@@ -13,16 +13,11 @@
       <flexbox justify='center'>
         <flexbox-item :span="10"  class='code'> 
           <h4>我的邀请码</h4>
-          <p>458541</p>
+          <p>{{Invite.inviteCode}}</p>
           <x-button type="primary" plain mini>分享邀请码</x-button>
         </flexbox-item>
       </flexbox>
-      <!--<flexbox justify='center' >
-        <flexbox-item :span="10">
-          <x-button type="default">分享给好友</x-button>
-        </flexbox-item>
-      </flexbox>-->
-      <flexbox justify='center' style='margin-top:.5rem;'>
+      <flexbox justify='center' style='margin-top:.5rem;' v-if='!Invite.isInvited'>
         <flexbox-item :span="10">
           <x-button type="default" @click.native='_input'>输入好友邀请码</x-button>
         </flexbox-item>
@@ -35,7 +30,7 @@
 
 import {XHeader, XButton, ViewBox, Flexbox, FlexboxItem} from 'vux'
 import { MessageBox } from 'mint-ui'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'index',
@@ -46,12 +41,22 @@ export default {
     ...mapGetters(['Invite'])
   },
   methods: {
+    ...mapActions(['getInvite', 'setInviteCode']),
     _input () {
       MessageBox.prompt(' ', '输入好友邀请码').then(({ value, action }) => {
-        console.log(action)
+        this.setInviteCode({code: value})
       }).catch(() => {
-        console.log('cancel')
+
       })
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    if (from.name === 'user') {
+      next(vm => {
+        vm.getInvite()
+      })
+    } else {
+      next()
     }
   }
 }
@@ -70,11 +75,5 @@ export default {
   box-sizing: border-box;
   margin-bottom:3rem;
   border: 2px dashed #ccc;
-}
-.mint-msgbox-confirm{
-  color:#4BB7AA !important;
-}
-.mint-msgbox-input input{
-  box-sizing:border-box;
 }
 </style>
