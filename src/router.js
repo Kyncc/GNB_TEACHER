@@ -10,6 +10,7 @@ import error from './features/error/router'
 import example from './features/example/router'
 import message from './features/message/router'
 import myclass from './features/myclass/router'
+import assemble from './features/assemble/router'
 import myDownload from './features/myDownload/router'
 import download from './features/download/router'
 import settings from './features/settings/router'
@@ -20,6 +21,7 @@ Vue.use(Router)
 let router = new Router({
   mode: 'hash',
   routes: [
+    assemble,
     about,
     error,
     correct,

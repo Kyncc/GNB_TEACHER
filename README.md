@@ -55,6 +55,7 @@
     ├── router      # Main Pages
     ├── features    # Modules
         ├── common      # 全局功能函数
+        ├── assemble    # 组卷中心
         ├── workbook    # 查答案
         ├── correct     # 纠错
         ├── example     # 例题
