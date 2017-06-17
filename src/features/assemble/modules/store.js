@@ -3,10 +3,11 @@ import * as getters from './getters'
 import * as actions from './actions'
 
 const state = {
-  search: {
+  options: {
+    textbook: 1,
+    editionId: '',
     subject: 2,
-    grade: 'high',
-    textbook: 1
+    grade: '789'
   },
   gaokao: {
     list: [],
@@ -63,6 +64,9 @@ const mutations = {
   [types.ASSEMBLE_CHOICE] (state, data) {
     state.choice.list = state.choice.list ? state.choice.list.concat(data.list) : data.list
     state.choice.offset = data.offset
+  },
+  [types.ASSEMBLE_INTO] (state, payload) {
+    state.choice.list[payload.index].isPaper = !state.choice.list[payload.index].isPaper
   },
   [types.ASSEMBLE_CHOICE_SCROLL] (state, height) {
     state.choice.scroll = height

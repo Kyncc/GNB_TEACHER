@@ -6,10 +6,14 @@ export const getAssembleGaokao = ({rootState, commit, state}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'collect',
+      url: 'assemble/gaokao',
       params: {
         token: rootState.common.user.token,
-        ...state.search
+        options: {
+          editionId: state.options.editionId,
+          grade: state.options.grade,
+          subjectId: state.options.subjectId
+        }
       }
     })
     .then((response) => {
@@ -22,20 +26,16 @@ export const getAssembleGaokao = ({rootState, commit, state}, params) => {
 export const setAssembleGaokaoScroll = ({rootState, commit}, height) => {
   commit(types.ASSEMBLE_GAOKAO_SCROLL, height)
 }
-/** 清空高考列表 */
-export const clearAssembleGaokao = ({rootState, commit}) => {
-  commit(types.ASSEMBLE_GAOKAO_CLEAR)
-}
 
 /** 获取组卷同步列表 */
 export const getAssembleSync = ({rootState, commit, state}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'collect',
+      url: 'assemble/sync',
       params: {
         token: rootState.common.user.token,
-        ...state.search
+        textbookId: state.options.textbookId
       }
     })
     .then((response) => {
@@ -48,20 +48,20 @@ export const getAssembleSync = ({rootState, commit, state}, params) => {
 export const setAssembleSyncScroll = ({rootState, commit}, height) => {
   commit(types.ASSEMBLE_SYNC_SCROLL, height)
 }
-/** 清空同步表 */
-export const clearAssembleSync = ({rootState, commit}) => {
-  commit(types.ASSEMBLE_SYNC_CLEAR)
-}
 
 /** 获取例题列表 */
 export const getAssembleExample = ({rootState, commit, state}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'collect',
+      url: 'assemble/example',
       params: {
         token: rootState.common.user.token,
-        ...state.search
+        offset: state.example.offset,
+        options: {
+          id: state.sync.options.textbookId,
+          type: state.sync.options.textbookId
+        }
       }
     })
     .then((response) => {
@@ -84,10 +84,15 @@ export const getAssembleChoice = ({rootState, commit, state}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'collect',
+      url: 'assemble/chioce',
       params: {
         token: rootState.common.user.token,
-        ...state.search
+        offset: state.chioce.offset,
+        options: {
+          exerciseId: params.exerciseId,
+          grade: state.options.grade,
+          subjectId: state.options.subjectId
+        }
       }
     })
     .then((response) => {
@@ -96,6 +101,29 @@ export const getAssembleChoice = ({rootState, commit, state}, params) => {
     })
   })
 }
+
+/** 设置组卷 */
+export const setAssemble = ({rootState, commit, state}, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'assemble/add',
+      data: {
+        token: rootState.common.user.token,
+        options: {
+          exerciseId: params.id,
+          grade: state.options.grade,
+          subjectId: state.options.subjectId
+        }
+      }
+    })
+    .then((response) => {
+      commit(types.ASSEMBLE_INTO, {index: params.index, data: response.data.data})
+      resolve(response)
+    })
+  })
+}
+
 /** 组卷精选高度保存 */
 export const setAssembleChoiceScroll = ({rootState, commit}, height) => {
   commit(types.ASSEMBLE_CHOICE_SCROLL, height)

@@ -2,13 +2,14 @@ import * as types from './mutationTypes'
 import axios from '@/components/axios/'
 
 /** 获取下载列表 */
-export const getMyDownload = ({ rootState, commit }) => {
+export const getMyDownload = ({ rootState, state, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'myDownload',
+      url: 'download/myDownload',
       params: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        ...state.options
       }
     }).then(response => {
       commit(types.MYDOWNLOAD, response.data.data)
@@ -27,7 +28,7 @@ export const getMyDownloadList = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'myDownload/list',
+      url: 'download/myDownload/list',
       params: {
         token: rootState.common.user.token,
         downloadId: rootState.route.params.downloadId

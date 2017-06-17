@@ -23,5 +23,5 @@ export const ASSEMBLE_CHOICE = 'ASSEMBLE_CHOICE'
 export const ASSEMBLE_CHOICE_SCROLL = 'ASSEMBLE_CHOICE_SCROLL'
 /** 精选清空 */
 export const ASSEMBLE_CHOICE_CLEAR = 'ASSEMBLE_CHOICE_CLEAR'
-/** 去组卷 */
+/** 我要组卷 */
 export const ASSEMBLE_INTO = 'ASSEMBLE_INTO'
