@@ -20,6 +20,11 @@ export default {
       ]
     },
     {
+      path: 'options',
+      name: 'assemble_options',
+      component: r => require.ensure([], () => r(require('./pages/options')), '/assemble/center/options')
+    },
+    {
       path: 'example',
       name: 'assemble_example',
       component: r => require.ensure([], () => r(require('./pages/example')), '/assemble/example')

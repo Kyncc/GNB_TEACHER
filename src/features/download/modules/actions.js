@@ -34,6 +34,20 @@ export const getDownloadList = ({ rootState, commit }) => {
   })
 }
 
+/** 题目上移 */
+export const setMyDownloadPaperUp = ({commit}, index) => {
+  commit(types.DOWNLOAD_PAPER_UP, index)
+}
+/** 题目下移 */
+export const setMyDownloadPaperDown = ({commit}, index) => {
+  commit(types.DOWNLOAD_PAPER_DWON, index)
+}
+
+/** 题目删除 */
+export const setMyDownloadPaperDel = ({commit}, index) => {
+  commit(types.DOWNLOAD_PAPER_DEL, index)
+}
+
 /** 试卷高度保存 */
 export const setMyDownloadPaperScroll = ({commit}, height) => {
   commit(types.DOWNLOAD_PAPER_SCROLL, height)
