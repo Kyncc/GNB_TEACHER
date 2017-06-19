@@ -9,11 +9,7 @@ export const getAssembleGaokao = ({rootState, commit, state}, params) => {
       url: 'assemble/gaokao',
       params: {
         token: rootState.common.user.token,
-        options: {
-          editionId: state.options.editionId,
-          grade: state.options.grade,
-          subjectId: state.options.subjectId
-        }
+        textbookId: state.options.textbookId
       }
     })
     .then((response) => {
@@ -22,6 +18,29 @@ export const getAssembleGaokao = ({rootState, commit, state}, params) => {
     })
   })
 }
+
+/** 筛选选择 */
+export const setAssembleOptions = ({rootState, commit}, params) => {
+  commit(types.ASSEMBLE_OPTIONS, params)
+}
+
+/** 获取筛选教材 */
+export const getAssembleOptionsTextbook = ({rootState, commit}) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'download/textbook',
+      params: {
+        token: rootState.common.user.token
+      }
+    })
+    .then((response) => {
+      commit(types.ASSEMBLE_OPTIONS_TEXTBOOK, response.data.data)
+      resolve(response)
+    })
+  })
+}
+
 /** 组卷高考列表高度保存 */
 export const setAssembleGaokaoScroll = ({rootState, commit}, height) => {
   commit(types.ASSEMBLE_GAOKAO_SCROLL, height)

@@ -19,19 +19,12 @@
         </checker>
         <span class='searchtitle'>版本：</span>
         <checker style='padding-left:10px;' v-model="editorId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-          <checker-item value="2">数学</checker-item>
-          <checker-item value="7">物理</checker-item>
+          <checker-item value="17">人教A版</checker-item>
         </checker>
         <template v-if='!isGaokao'>
           <span class='searchtitle'>教材：</span>
           <checker style='padding-left:10px;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
             <checker-item value="2">必修一</checker-item>
-            <checker-item value="7">2物理</checker-item>
-            <checker-item value="7">2物理</checker-item>
-            <checker-item value="7">2物理</checker-item>
-            <checker-item value="7">2物理</checker-item>
-            <checker-item value="7">2物理</checker-item>
-            <checker-item value="7">2物理</checker-item>
           </checker>
         </template>
       </div>
@@ -40,7 +33,7 @@
 </template>
 <script>
 import {XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, Spinner} from 'vux'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'options',
@@ -48,7 +41,7 @@ export default {
     XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, Spinner
   },
   computed: {
-    ...mapGetters(['Route'])
+    ...mapGetters(['User', 'AssembleOptions'])
   },
   data () {
     return {
@@ -61,6 +54,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setAssembleOptions', 'getAssembleOptionsTextbook'])
+  },
+  created () {
+    this.getAssembleOptionsTextbook()
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {

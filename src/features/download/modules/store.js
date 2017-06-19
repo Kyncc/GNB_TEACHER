@@ -21,7 +21,7 @@ const mutations = {
     let up = state.paper.list.splice(index, 1)
     state.paper.list.splice(index - 1, 0, up)
   },
-  [types.DOWNLOAD_PAPER_DOWN] (state, index) {
+  [types.DOWNLOAD_PAPER_DWON] (state, index) {
     let down = state.paper.list.splice(index, 1)
     state.paper.list.splice(index + 1, 0, down)
   },

@@ -1,5 +1,7 @@
 /** 筛选条件更改 */
-export const ASSEMBLE_SEARCH = 'ASSEMBLE_SEARCH'
+export const ASSEMBLE_OPTIONS = 'ASSEMBLE_OPTIONS'
+/** 筛选全部教材 */
+export const ASSEMBLE_OPTIONS_TEXTBOOK = 'ASSEMBLE_OPTIONS_TEXTBOOK'
 /** 获取同步题型数据 */
 export const ASSEMBLE_SYNC = 'ASSEMBLE_SYNC'
 /** 同步题型滚动 */

@@ -1,5 +1,5 @@
 /** 组卷筛选 */
-export const AssembleSearch = (state) => state.search
+export const AssembleOptions = (state) => state.options
 /** 组卷同步 */
 export const AssembleSync = (state) => state.sync
 /** 组卷高考题 */

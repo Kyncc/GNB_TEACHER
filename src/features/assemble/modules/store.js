@@ -7,7 +7,8 @@ const state = {
     textbook: 1,
     editionId: '',
     subject: 2,
-    grade: '789'
+    grade: '10',
+    textbookList: []
   },
   gaokao: {
     list: [],
@@ -32,8 +33,11 @@ const state = {
 }
 
 const mutations = {
-  [types.ASSEMBLE_SEARCH] (state, data) {
-    state.search = { subject: data.subject, grade: data.grade, textbook: data.textbook }
+  [types.ASSEMBLE_OPTIONS_TEXTBOOK] (state, data) {
+    state.options.textbookList = data
+  },
+  [types.ASSEMBLE_OPTIONS] (state, data) {
+    state.search = { subject: data.subject, grade: data.grade, textbook: data.textbook, editionId: data.editionId }
     state.gaokao = { list: [], offset: '', scroll: 0 }
     state.sync = { list: [], offset: '', scroll: 0 }
   },

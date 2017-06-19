@@ -27,7 +27,7 @@
 
 <script>
 import {XHeader, XButton, ViewBox, Checker, CheckerItem, Group, XTextarea} from 'vux'
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import store from '@/store'
 import modules from '../modules/store'
 
@@ -40,12 +40,7 @@ export default {
     XHeader, XButton, Checker, CheckerItem, Group, XTextarea, ViewBox
   },
   computed: {
-    id () {
-      return this.$store.state.route.params.id
-    },
-    subejectId () {
-      return this.$store.state.route.params.subjectId
-    }
+    ...mapGetters(['Correct'])
   },
   data () {
     return {
@@ -54,7 +49,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['postCorrect']),
+    ...mapActions(['postCorrect', 'getCorrect']),
     _commit () {
       if (this.type[0].length) {
         this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1000, position: 'bottom'})
@@ -69,15 +64,22 @@ export default {
         type: this.type
       }
       this.postCorrect(params).then(() => {
-        this.content = ''
-        this.type = []
         history.back()
       })
     }
   },
-  activated () {
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.getCorrect().then(() => {
+        vm.type = vm.Correct.type
+        vm.content = vm.Correct.content
+      })
+    })
+  },
+  beforeRouteLeave (to, from, next) {
     this.type = []
     this.content = ''
+    next()
   }
 }
 </script>
