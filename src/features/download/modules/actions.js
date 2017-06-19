@@ -40,7 +40,7 @@ export const setMyDownloadPaperUp = ({commit}, index) => {
 }
 /** 题目下移 */
 export const setMyDownloadPaperDown = ({commit}, index) => {
-  commit(types.DOWNLOAD_PAPER_DWON, index)
+  commit(types.DOWNLOAD_PAPER_DOWN, index)
 }
 
 /** 题目删除 */

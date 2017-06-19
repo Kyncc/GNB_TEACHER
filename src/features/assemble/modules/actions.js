@@ -9,7 +9,11 @@ export const getAssembleGaokao = ({rootState, commit, state}, params) => {
       url: 'assemble/gaokao',
       params: {
         token: rootState.common.user.token,
-        textbookId: state.options.textbookId
+        options: {
+          editionId: state.options.editionId,
+          grade: state.options.grade,
+          subjectId: state.options.subjectId
+        }
       }
     })
     .then((response) => {
@@ -79,7 +83,7 @@ export const getAssembleExample = ({rootState, commit, state}, params) => {
         offset: state.example.offset,
         options: {
           id: state.sync.options.textbookId,
-          type: state.sync.options.textbookId
+          type: rootState.route.params.type
         }
       }
     })
