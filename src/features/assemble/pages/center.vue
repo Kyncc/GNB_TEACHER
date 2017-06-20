@@ -8,7 +8,7 @@
       </x-header>
       <tab>
         <tab-item :selected="Route.name === 'assemble_sync'" @click.native="$router.replace({name:'assemble_sync'})">同步题型</tab-item>
-        <tab-item :selected="Route.name === 'assemble_gaokao'" @click.native="$router.replace({name:'assemble_gaokao'})">高考题型</tab-item>
+        <tab-item :selected="Route.name === 'assemble_gaokao'" @click.native="$router.replace({name:'assemble_gaokao'})">中高考题型</tab-item>
       </tab>
     </div>
     <div style="padding-top:46px;">

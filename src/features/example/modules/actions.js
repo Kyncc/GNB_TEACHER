@@ -6,11 +6,15 @@ export const getExample = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'exerciseList',
+      url: 'example',
       params: {
-        ids: [rootState.route.params.id],
-        subject_id: rootState.route.params.subjectId,
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        options: {
+          subjectId: rootState.route.params.subjectId,
+          exercisesId: rootState.route.params.id,
+          grade: rootState.route.params.grade,
+          type: rootState.route.params.type
+        }
       }
     })
     .then((response) => {

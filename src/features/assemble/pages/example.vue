@@ -1,28 +1,32 @@
 <template>
- <view-box ref="induce" body-padding-top="95px">
+ <view-box ref="viewBox" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: Route.params.chapterName}"></x-header>
+      <x-header :left-options="{backText: Route.params.name}"></x-header>
     </div>
     <div>
       <card v-for="(item, index) in list" :key="index">
-        <div class="weui-panel__hd" slot="header"  style="color:#4bb7aa">
-          {{item.chapter_name}}
+        <div class="weui-panel__hd" slot="header" style="color:#4bb7aa">
+          {{Route.params.type === 'chapter' ? item.chapterName : item.typeName}}
         </div>
-        <div slot="content" @click="$router.push({name:'example', params: {subjectId: Route.params.subject.indexOf('math') !== -1 ? 2 : 7, id: item.exercises_id}})">
+        <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'exercises'}})">
           <div v-html="item.stem"></div>
-          <div v-if="item.opt_jo.hasOwnProperty('A')">
-            <template v-for="(value, key) in item.opt_jo">
+          <div v-if="item.opt.hasOwnProperty('A')">
+            <template v-for="(value, key) in item.opt">
               <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
             </template>
           </div>
         </div>
         <div slot="footer">
-          <div class="weui-cell weui-cell_link" style="padding:0;">
+          <div class="weui-cell weui-cell_link" >
             <div class="weui-cell__bd">
               <flexbox>
-                <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
-                <flexbox-item :span="6" style="color:#4bb7aa">更新时间:{{item.time}}</flexbox-item>
-                <flexbox-item :span="4" style="text-align:right">去组卷</flexbox-item>
+                <flexbox-item :span="2">难度：{{item.degree}}</flexbox-item>
+                <flexbox-item :span="7">更新时间：{{item.time | ymd}}</flexbox-item>
+                <flexbox-item :span="3" style="color:#4BB7AA" 
+                  @click.native="$router.push({name:'assemble_choice', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId}})">
+                  <i class="icon iconfont icon-chakan" style="font-size:18px"></i>
+                  去组卷
+                </flexbox-item>
               </flexbox>
             </div>
           </div>
@@ -40,22 +44,19 @@
 </template>
 
 <script>
-import {Card, Spinner, Flexbox, FlexboxItem, TransferDomDirective as TransferDom} from 'vux'
+import {XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'list',
+  name: 'example',
   components: {
-    Card, Spinner, Flexbox, FlexboxItem
+    XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['Route', 'induceTotal']),
+    ...mapGetters(['Route', 'AssembleExample', 'AssembleOptions']),
     list () {
-      return this.induceTotal.list
+      return this.AssembleExample.list
     }
-  },
-  directives: {
-    TransferDom
   },
   data () {
     return {
@@ -64,19 +65,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getInduceList', 'setInduceListScroll', 'induceListClear', 'induceTotalAction']),
-    _operate (type, item, index) {
-      let msg
-      if (type === 'practice') msg = '已放入练习本'
-      else if (type === 'break') msg = '已放入斩题本'
-      else msg = '已放入弃题本'
-      this.induceTotalAction({index: index, type: type, id: item.exercises_id, chapter_id: item.chapter_id}).then(() => {
-        this.$vux.toast.show({text: msg, type: 'text', time: 1500, position: 'bottom'})
-      })
-    },
+    ...mapActions(['getAssembleExample', 'setAssembleExampleScroll', 'clearAssembleExample']),
     _getData () {
       this.loading = true
-      this.getInduceList({type: 'total'}).then((res) => {
+      this.getAssembleExample().then((res) => {
         if (res.data.data.list.length < 10) {
           this.loadingNoData = true
         }
@@ -88,20 +80,17 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      // 不来自题目详情全部清除数据
-      if (from.name !== 'example') {
+      // 同步和高考题型清空
+      if (from.name === 'assemble_gaokao' || from.name === 'assemble_sync') {
         vm.loadingNoData = false
-        vm.induceListClear({type: 'total'})
-      }
-      // 是否需要加载
-      if (vm.induceTotal.isReset) {
+        vm.clearAssembleExample()
         vm._getData()
       }
-      vm.$parent.$refs.viewBoxBody.scrollTop = vm.induceTotal.scroll
+      vm.$refs.viewBox.scrollTo(vm.AssembleExample.scroll)
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setInduceListScroll({type: 'total', height: this.$parent.$refs.viewBoxBody.scrollTop})
+    this.setAssembleExampleScroll(this.$refs.viewBox.getScrollTop())
     next()
   }
 }

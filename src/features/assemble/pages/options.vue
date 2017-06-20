@@ -8,23 +8,23 @@
     <div>
       <div style='padding:10px;'>
         <span class='searchtitle'>学段：</span>
-        <checker style='padding-left:10px;' v-model="grade" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+        <checker style='padding-left:.5rem;' v-model="grade" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
           <checker-item value="789">初中</checker-item>
           <checker-item value="10">高中</checker-item>
         </checker>
         <span class='searchtitle'>学科：</span>
-        <checker style='padding-left:10px;' v-model="subjectId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+        <checker style='padding-left:.5rem;' v-model="subjectId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
           <checker-item value="2">数学</checker-item>
           <checker-item value="7">物理</checker-item>
         </checker>
         <span class='searchtitle'>版本：</span>
-        <checker style='padding-left:10px;' v-model="editorId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-          <checker-item value="17">人教A版</checker-item>
+        <checker style='padding-left:.5rem;' v-model="editorId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+          <checker-item v-for='(item, index) in AssembleOptions.textbookList[grade][subjectId]' :key='index' :value="item.id">{{item.name}}</checker-item>
         </checker>
         <template v-if='!isGaokao'>
           <span class='searchtitle'>教材：</span>
-          <checker style='padding-left:10px;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-            <checker-item value="2">必修一</checker-item>
+          <checker style='padding-left:.5rem;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+            <checker-item v-for='(item, index) in AssembleOptions.textbookList[grade][subjectId][0].textbook' :key='index' :value="item.id">{{item.name}}</checker-item>
           </checker>
         </template>
       </div>
@@ -75,10 +75,10 @@ export default {
   background-color: #ccc;
   color: #fff;
   font-size: 14px;
-  width:23.6%;
+  width:22%;
   text-align: center;
   padding:7px 0;
-  margin:5px 0;
+  margin:.25rem;
   line-height: 18px;
   border-radius: 5px;
 }

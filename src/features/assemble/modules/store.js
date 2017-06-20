@@ -12,12 +12,10 @@ const state = {
   },
   gaokao: {
     list: [],
-    offset: '',
     scroll: 0
   },
   sync: {
     list: [],
-    offset: '',
     scroll: 0
   },
   example: {
@@ -37,20 +35,18 @@ const mutations = {
     state.options.textbookList = data
   },
   [types.ASSEMBLE_OPTIONS] (state, data) {
-    state.search = { subject: data.subject, grade: data.grade, textbook: data.textbook, editionId: data.editionId }
-    state.gaokao = { list: [], offset: '', scroll: 0 }
-    state.sync = { list: [], offset: '', scroll: 0 }
+    state.options = {subject: data.subject, grade: data.grade, textbook: data.textbook, editionId: data.editionId, textbookList: state.options.textbookList}
+    state.gaokao = { list: [], scroll: 0 }
+    state.sync = { list: [], scroll: 0 }
   },
   [types.ASSEMBLE_SYNC] (state, data) {
-    state.choice.list = state.choice.list ? state.choice.list.concat(data.list) : data.list
-    state.choice.offset = data.offset
+    state.sync.list = state.sync.list ? state.sync.list.concat(data.chaper) : data.chaper
   },
   [types.ASSEMBLE_SYNC_SCROLL] (state, height) {
     state.choice.scroll = height
   },
   [types.ASSEMBLE_GAOKAO] (state, data) {
-    state.gaokao.list = state.gaokao.list ? state.gaokao.list.concat(data.list) : data.list
-    state.gaokao.offset = data.offset
+    state.gaokao.list = state.gaokao.list ? state.gaokao.list.concat(data.chaper) : data.chaper
   },
   [types.ASSEMBLE_GAOKAO_SCROLL] (state, height) {
     state.gaokao.scroll = height

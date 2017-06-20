@@ -12,7 +12,7 @@ export const getAssembleGaokao = ({rootState, commit, state}, params) => {
         options: {
           editionId: state.options.editionId,
           grade: state.options.grade,
-          subjectId: state.options.subjectId
+          subjectId: state.options.subject
         }
       }
     })
@@ -58,7 +58,7 @@ export const getAssembleSync = ({rootState, commit, state}, params) => {
       url: 'assemble/sync',
       params: {
         token: rootState.common.user.token,
-        textbookId: state.options.textbookId
+        textbookId: state.options.textbook
       }
     })
     .then((response) => {
@@ -82,7 +82,7 @@ export const getAssembleExample = ({rootState, commit, state}, params) => {
         token: rootState.common.user.token,
         offset: state.example.offset,
         options: {
-          id: state.sync.options.textbookId,
+          id: rootState.route.params.id,
           type: rootState.route.params.type
         }
       }
@@ -103,18 +103,18 @@ export const clearAssembleExample = ({rootState, commit}) => {
 }
 
 /** 获取精选列表 */
-export const getAssembleChoice = ({rootState, commit, state}, params) => {
+export const getAssembleChoice = ({rootState, state, commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: 'assemble/chioce',
       params: {
         token: rootState.common.user.token,
-        offset: state.chioce.offset,
+        offset: state.choice.offset,
         options: {
-          exerciseId: params.exerciseId,
-          grade: state.options.grade,
-          subjectId: state.options.subjectId
+          exerciseId: rootState.route.params.id,
+          grade: rootState.route.params.grade,
+          subjectId: rootState.route.params.subjectId
         }
       }
     })

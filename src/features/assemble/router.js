@@ -25,12 +25,12 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/options')), '/assemble/center/options')
     },
     {
-      path: 'example/:type',
+      path: 'example/:type/:id/:name',
       name: 'assemble_example',
       component: r => require.ensure([], () => r(require('./pages/example')), '/assemble/example')
     },
     {
-      path: 'choice',
+      path: 'choice/:subjectId/:grade/:id',
       name: 'assemble_choice',
       component: r => require.ensure([], () => r(require('./pages/choice')), '/assemble/choice')
     }
