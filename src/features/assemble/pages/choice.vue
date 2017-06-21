@@ -5,10 +5,7 @@
     </div>
     <div>
       <card v-for="(item, index) in list" :key="index">
-        <!--<div class="weui-panel__hd" slot="header" style="color:#4bb7aa">
-          {{item.chapter_name}}
-        </div>-->
-        <div slot="content" @click="$router.push({name:'example', params: {subjectId: AssembleOptions.subject, id: item.exercises_id, type: 'example'}})">
+        <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'lxexercises'}})">
           <div v-html="item.stem"></div>
           <div v-if="item.opt.hasOwnProperty('A')">
             <template v-for="(value, key) in item.opt">
@@ -17,14 +14,14 @@
           </div>
         </div>
         <div slot="footer">
-          <div class="weui-cell weui-cell_link" style="padding:0;">
+          <div class="weui-cell weui-cell_link">
             <div class="weui-cell__bd">
               <flexbox>
-                <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
-                <flexbox-item :span="7" style="color:#4bb7aa">更新时间:{{item.time | ymd}}</flexbox-item>
-                <flexbox-item :span="3">
-                  <i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>
-                  加入组卷</flexbox-item>
+                <flexbox-item :span="2">难度：{{item.degree}}</flexbox-item>
+                <flexbox-item :span="7">更新时间：{{item.time | ymd}}</flexbox-item>
+                <flexbox-item :span="3" style="color:#4BB7AA" @click.native='setAssemble({index: index})'>
+                  <i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>组卷
+                </flexbox-item>
               </flexbox>
             </div>
           </div>

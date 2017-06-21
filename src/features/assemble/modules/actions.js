@@ -134,9 +134,9 @@ export const setAssemble = ({rootState, commit, state}, params) => {
       data: {
         token: rootState.common.user.token,
         options: {
-          exerciseId: params.id,
-          grade: state.options.grade,
-          subjectId: state.options.subjectId
+          exerciseId: rootState.route.params.id,
+          grade: rootState.route.params.grade,
+          subjectId: rootState.route.params.subjectId
         }
       }
     })

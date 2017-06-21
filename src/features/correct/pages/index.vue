@@ -11,12 +11,12 @@
         default-item-class="select-item"
         selected-item-class="select-item-selected"
         >
-          <checker-item :value="0">答案错误</checker-item>
-          <checker-item :value="1">解析不全</checker-item>
-          <checker-item :value="2">题目超纲</checker-item>
-          <checker-item :value="3">题型太老</checker-item>
-          <checker-item :value="4">例题不对</checker-item>
-          <checker-item :value="5">其他</checker-item>
+          <checker-item value="答案错误">答案错误</checker-item>
+          <checker-item value="解析不全">解析不全</checker-item>
+          <checker-item value="题目超纲">题目超纲</checker-item>
+          <checker-item value="题型太老">题型太老</checker-item>
+          <checker-item value="例题不对">例题不对</checker-item>
+          <checker-item value="其他">其他</checker-item>
       </checker>
     </group>
     <group title="纠错内容">
@@ -51,12 +51,8 @@ export default {
   methods: {
     ...mapActions(['postCorrect', 'getCorrect']),
     _commit () {
-      if (this.type[0].length) {
+      if (!this.type.length) {
         this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1000, position: 'bottom'})
-        return
-      }
-      if (this.type.indexOf(4) >= 0 && this.content.length === 0) {
-        this.$vux.toast.show({text: '请填写纠错内容', type: 'text', time: 1000, position: 'bottom'})
         return
       }
       let params = {

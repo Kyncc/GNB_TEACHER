@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="myClass" body-padding-top="46px">
+  <view-box ref="myClass" body-padding-top="46px" >
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" 
     :left-options="{backText: ClassMyClassmate.classname ? ClassMyClassmate.classname : '',showBack: true}"> 
       <div slot="right" style="margin:0" @click="$router.push({name: 'class_update', params: {'code': ClassMyClassmate.classcode, 'name': ClassMyClassmate.classname}})">
@@ -16,24 +16,29 @@
           </cell>
         </template>
       </group>
-      <div style="width:100%;position:fixed;bottom:0;">
-        <x-button type="primary" @click.native="_post" plain style="border-radius:0">邀请同学</x-button>
-      </div>
     </template>
     <div style="text-align:center">
       <spinner v-if="loading" type="ripple"></spinner>
     </div>
+    <tabbar style='background-color:#fff;'>
+      <flexbox style='padding:.4rem;'>
+        <flexbox-item :span="8" style="font-size:.7rem">我的邀请码: <b></b>{{ClassMyClassmate.classcode}}</flexbox-item>
+        <flexbox-item :span="4" style="color:#4bb7aa;"> 
+          <x-button type="primary" @click.native="_share" plain mini>邀请同学</x-button>
+        </flexbox-item>
+      </flexbox>
+    </tabbar>
   </view-box>
 </template>
 
 <script>
-import {XHeader, Cell, Group, ViewBox, Spinner, Tabbar, TabbarItem, XButton} from 'vux'
+import {XHeader, Cell, Group, ViewBox, Spinner, Tabbar, TabbarItem, XButton, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'classmate',
   components: {
-    XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem
+    XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['ClassMyClassmate'])
@@ -63,14 +68,15 @@ export default {
       this.getMyClassmateList().then(() => {
         this.loading = false
       })
+    },
+    _share () {
+
     }
-  },
-  deactivated () {
-    this.myClassmateClear()
-    this.loading = true
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
+      vm.loading = true
+      vm.myClassmateClear()
       vm._getData()
     })
   }

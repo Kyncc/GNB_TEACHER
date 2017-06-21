@@ -16,15 +16,15 @@ axios.interceptors.request.use((config) => {
 axios.interceptors.response.use((res) => {
   // token失效得判断
   if (res.data.code === 401) {
-    localStorage.removeItem('token')
-    Vue.$vux.toast.show({text: res.data.msg, type: 'warn', time: 500, isShowMask: true})
-    setTimeout(() => {
-      try {
-        plus.runtime.restart() // 重启应用
-      } catch (e) {
-        window.location.href = '/login'
-      }
-    }, 500)
+    // localStorage.removeItem('token')
+    // Vue.$vux.toast.show({text: res.data.msg, type: 'warn', time: 500, isShowMask: true})
+    // setTimeout(() => {
+    //   try {
+    //     plus.runtime.restart() // 重启应用
+    //   } catch (e) {
+    //     window.location.href = '/login'
+    //   }
+    // }, 500)
     return Promise.reject(res)
   } else if (res.data.code !== 200) {
     Vue.$vux.toast.show({text: res.data.msg, type: 'text', time: 1000, position: 'bottom'})

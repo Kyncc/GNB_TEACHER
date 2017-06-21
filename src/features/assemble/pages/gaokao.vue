@@ -5,7 +5,7 @@
         <cell :title="list.name" is-link :border-intent="false" :arrow-direction="list.check ? 'up' : 'down'" @click.native="list.check = !list.check"></cell>
         <div class="slide" :class="list.check ? 'animate':''">
           <template v-for="chapter in list.sub_chapter_list">
-            <cell-box  @click.native="$router.push({name: 'assemble_example', params: {type: 'gaokao', chapterId: chapter.chapter_id, chapterName: chapter.name}})">
+            <cell-box @click.native="$router.push({name: 'assemble_example', params: {type: 'type', id: chapter.id, name: chapter.name}})">
               <div slot="default" style="width:100%;">
                 <flexbox>
                   <flexbox-item :span="10">{{chapter.name}}</flexbox-item>

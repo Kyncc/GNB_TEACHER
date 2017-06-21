@@ -66,7 +66,7 @@ const mutations = {
     state.choice.offset = data.offset
   },
   [types.ASSEMBLE_INTO] (state, payload) {
-    state.choice.list[payload.index].isPaper = !state.choice.list[payload.index].isPaper
+    state.choice.list[payload.index].isAssembly = payload.data.isAssembly
   },
   [types.ASSEMBLE_CHOICE_SCROLL] (state, height) {
     state.choice.scroll = height

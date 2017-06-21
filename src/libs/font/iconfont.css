@@ -35,6 +35,8 @@
 
 .icon-refresh:before { content: "\e662"; }
 
+.icon-pinglun:before { content: "\e628"; }
+
 .icon-error:before { content: "\e610"; }
 
 .icon-htmal5icon31:before { content: "\e643"; }
@@ -68,6 +70,8 @@
 .icon-settingfull:before { content: "\e638"; }
 
 .icon-chufang:before { content: "\e62f"; }
+
+.icon-6:before { content: "\e701"; }
 
 .icon-info:before { content: "\e608"; }
 

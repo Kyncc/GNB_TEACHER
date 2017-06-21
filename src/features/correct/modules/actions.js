@@ -7,13 +7,14 @@ export const getCorrect = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'correct',
+      url: 'correct/detail',
       params: {
         token: rootState.common.user.token,
         options: {
           exerciseId: rootState.route.params.exerciseId,
           grade: rootState.route.params.grade,
           subjectId: rootState.route.params.subjectId
+
         }
       }
     })
