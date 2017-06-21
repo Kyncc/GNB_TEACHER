@@ -11,10 +11,9 @@ export const getCorrect = ({ rootState, commit }, params) => {
       params: {
         token: rootState.common.user.token,
         options: {
-          exerciseId: rootState.route.params.exerciseId,
+          exercisesId: rootState.route.params.id,
           grade: rootState.route.params.grade,
           subjectId: rootState.route.params.subjectId
-
         }
       }
     })
@@ -35,7 +34,7 @@ export const postCorrect = ({ rootState, commit }, params) => {
       data: {
         token: rootState.common.user.token,
         options: {
-          exerciseId: rootState.route.params.exerciseId,
+          exercisesId: rootState.route.params.id,
           grade: rootState.route.params.grade,
           subjectId: rootState.route.params.subjectId,
           ...params
@@ -44,7 +43,7 @@ export const postCorrect = ({ rootState, commit }, params) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
-      Vue.$vux.toast.show({text: '纠错成功', type: 'text', time: 500, position: 'bottom'})
+      Vue.$vux.toast.show({text: '纠错成功', type: 'text', time: 1000, position: 'bottom'})
       resolve(response)
     })
     .catch((error) => {

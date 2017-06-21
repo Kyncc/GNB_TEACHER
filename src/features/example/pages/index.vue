@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     ...mapActions(['getExample', 'exampleClear']),
-    _getDate () {
+    _getData () {
       this.loading = true
       this.getExample().then(() => {
         this.loading = false
@@ -80,7 +80,7 @@ export default {
     if (from.name !== 'correct') {
       next(vm => {
         vm.exampleClear()
-        vm._getDate()
+        vm._getData()
       })
     } else {
       next()

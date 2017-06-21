@@ -57,7 +57,7 @@ export default {
       }
       let params = {
         content: this.content,
-        type: this.type
+        type: this.type.toString()
       }
       this.postCorrect(params).then(() => {
         history.back()
