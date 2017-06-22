@@ -1,6 +1,6 @@
 var path = require('path')
 var utils = require('./utils')
-var webpack = require('webpack')
+
 var projectRoot = path.resolve(__dirname, '../')
 const vuxLoader = require('vux-loader')
 
@@ -22,17 +22,11 @@ let webpackConfig = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
-  plugins: [
-    new webpack.DllReferencePlugin({
-      context: path.resolve(__dirname, '..'),
-      manifest: require('./vendor-manifest.json')
-    })
-  ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      '@': resolve('src')
     }
   },
   module: {
@@ -40,7 +34,7 @@ let webpackConfig = {
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
-        enforce: "pre",
+        enforce: 'pre',
         include: [resolve('src'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter')
@@ -59,7 +53,7 @@ let webpackConfig = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        query: {
+        options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
@@ -67,14 +61,15 @@ let webpackConfig = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        query: {
-          limit: 30000,
+        options: {
+          limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
     ]
   }
 }
+
 
 module.exports = vuxLoader.merge(webpackConfig, {
   plugins: ['vux-ui', 'progress-bar', 'duplicate-style', {

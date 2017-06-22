@@ -1,4 +1,3 @@
-var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
@@ -31,10 +30,6 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
-    new FriendlyErrorsPlugin(),
-    new webpack.DllReferencePlugin({
-        context: path.resolve(__dirname, './'),
-        manifest: require('./vendor-manifest.json')
-    })
+    new FriendlyErrorsPlugin()
   ]
 })

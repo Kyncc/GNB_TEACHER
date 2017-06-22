@@ -10,7 +10,7 @@
             <cell-box @click.native="$router.push({name: 'error', params: {name: student.name, studentId: student.id}})">
               <flexbox slot="default">
                 <flexbox-item :span="12">
-                  <img width="30" height="30" style="margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg"/>
+                  <img width="30" height="30" style="margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg">
                   {{student.name}}
                 </flexbox-item>
               </flexbox>
