@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 
@@ -134,7 +135,7 @@ export const setAssemble = ({rootState, commit, state}, params) => {
       data: {
         token: rootState.common.user.token,
         options: {
-          exerciseId: rootState.route.params.id,
+          exercisesId: params.id,
           grade: rootState.route.params.grade,
           subjectId: rootState.route.params.subjectId
         }
@@ -142,6 +143,7 @@ export const setAssemble = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.ASSEMBLE_INTO, {index: params.index, data: response.data.data})
+      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
       resolve(response)
     })
   })

@@ -11,15 +11,17 @@
           <div slot="value">
             <span style='padding:0 10px;line-height:26px;'>
               <i class="icon iconfont icon-download" style="font-size:17px;"></i>下载
-            </span> 
+            </span>
             <span style='padding:0 10px;line-height:26px;' @click='$router.push({name: 'myDownload_list', params:{id: item.downloadId}})'>
               <i class="icon iconfont icon-chakan" style="font-size:17px;"></i>查看
-            </span> 
+            </span>
           </div>
         </cell>
       </group>
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="lines"></spinner>
+        <p v-else-if="!MyDownload.length" style="font-size:16px;padding:10px 0;color:#4BB7AA">还没有下载记录</p>
+        <p v-else-if="error" @click='_getData()' style="font-size:16px;padding:10px 0;color:#4BB7AA">出错了点我重新加载</p>
       </div>
     </div>
     <div v-transfer-dom>
@@ -62,20 +64,23 @@ export default {
   },
   data () {
     return {
-      grade: '10',
-      subjectId: '2',
+      grade: '',
+      subjectId: '',
       popupShow: false,
-      loading: true
+      loading: true,
+      error: false
     }
   },
   methods: {
     ...mapActions(['getMyDownload', 'clearMyDownload']),
     _getData () {
-      this.loading = false
-      this.getMyDownload().then(() => {
-        this.loading = true
-      }).catch(() => {
-        this.loading = true
+      this.loading = true
+      this.getMyDownload({options: {grade: this.grade, subjectId: this.subjectId}}).then(() => {
+        this.error = false
+      }).catch((e) => {
+        this.error = true
+      }).finally(() => {
+        this.loading = false
       })
     }
   },

@@ -1,16 +1,14 @@
 <template>
  <view-box ref="viewBox" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '精选题型'}"></x-header>
+      <x-header :left-options="{backText: '精选题型'}"><div slot="right" @click='_openMsg()'>说明</div></x-header>
     </div>
     <div>
       <card v-for="(item, index) in list" :key="index">
         <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'lxexercises'}})">
           <div v-html="item.stem"></div>
           <div v-if="item.opt.hasOwnProperty('A')">
-            <template v-for="(value, key) in item.opt">
-              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
-            </template>
+            <div v-for="(value, key) in item.opt" :key='value' style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
           </div>
         </div>
         <div slot="footer">
@@ -19,8 +17,10 @@
               <flexbox>
                 <flexbox-item :span="2">难度：{{item.degree}}</flexbox-item>
                 <flexbox-item :span="7">更新时间：{{item.time | ymd}}</flexbox-item>
-                <flexbox-item :span="3" style="color:#4BB7AA" @click.native='setAssemble({index: index})'>
-                  <i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>组卷
+                <flexbox-item :span="3" @click.native='setAssemble({id: item.exercisesId, index: index})'>
+                  <!--<i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>-->
+                  <span v-if='item.isAssembly' style='color:#4BB7AA'>已组卷</span>
+                  <span v-else>去组卷</span>
                 </flexbox-item>
               </flexbox>
             </div>
@@ -70,6 +70,12 @@ export default {
         this.loading = false
       }).catch(() => {
         this.loading = false
+      })
+    },
+    _openMsg () {
+      this.$vux.alert.show({
+        title: '请到下载中心下载~',
+        content: '(可以跨章节组卷)'
       })
     }
   },

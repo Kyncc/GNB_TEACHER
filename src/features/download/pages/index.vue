@@ -6,7 +6,6 @@
       </div>
     </x-header>
     <div>
-     
     </div>
     <div v-transfer-dom>
       <popup v-model="popupShow" position="bottom" :show-mask="true">
