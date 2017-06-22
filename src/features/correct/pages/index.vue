@@ -31,10 +31,6 @@ import {mapGetters, mapActions} from 'vuex'
 import store from '@/store'
 import modules from '../modules/store'
 
-store.registerModule('correct', {
-  ...modules
-})
-
 export default {
   components: {
     XHeader, XButton, Checker, CheckerItem, Group, XTextarea, ViewBox
@@ -63,6 +59,11 @@ export default {
         history.back()
       })
     }
+  },
+  beforeCreate () {
+    store.registerModule('correct', {
+      ...modules
+    })
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {

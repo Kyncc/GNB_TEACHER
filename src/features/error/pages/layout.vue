@@ -8,7 +8,12 @@
 import modules from '../modules/store'
 import store from '@/store'
 
-store.registerModule('error', {
-  ...modules
-})
+export default {
+  name: 'error',
+  beforeCreate () {
+    store.registerModule('error', {
+      ...modules
+    })
+  }
+}
 </script>

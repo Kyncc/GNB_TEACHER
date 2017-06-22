@@ -7,11 +7,13 @@
 <script>
 import modules from '../modules/store'
 import store from '@/store'
-store.registerModule('settings', {
-  ...modules
-})
 
 export default {
-  name: 'settings'
+  name: 'settings',
+  beforeCreate () {
+    store.registerModule('settings', {
+      ...modules
+    })
+  }
 }
 </script>

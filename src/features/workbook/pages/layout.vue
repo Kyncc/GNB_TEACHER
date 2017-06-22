@@ -7,11 +7,13 @@
 <script>
 import modules from '../modules/store'
 import store from '@/store'
-store.registerModule('workbook', {
-  ...modules
-})
 
 export default {
-  name: 'layout'
+  name: 'layout',
+  beforeCreate () {
+    store.registerModule('workbook', {
+      ...modules
+    })
+  }
 }
 </script>
