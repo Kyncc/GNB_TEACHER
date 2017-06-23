@@ -6,11 +6,11 @@ export default {
       path: '/',
       name: 'myDownload',
       component: r => require.ensure([], () => r(require('./pages/index')), '/invite/index')
+    },
+    {
+      path: 'list/:id',
+      name: 'myDownload_list',
+      component: r => require.ensure([], () => r(require('./pages/list')), '/invite/list')
     }
-    // {
-    //   path: 'search',
-    //   name: 'myDownload_list',
-    //   component: r => require.ensure([], () => r(require('./pages/list')), '/invite/list')
-    // }
   ]
 }

@@ -1,9 +1,8 @@
 <template>
   <view-box ref="about" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的下载'}">
-      <div slot="right" @click="popupShow = true">
-        筛选
-      </div>
+      <div slot="right" @click="_showPopup()">筛选</div>
+      <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"  @on-hide="_hidePopup()" v-model="options" @on-change="_change()"></popup-picker>
     </x-header>
     <div>
       <group :gutter='0'>
@@ -12,7 +11,7 @@
             <span style='padding:0 10px;line-height:26px;'>
               <i class="icon iconfont icon-download" style="font-size:17px;"></i>下载
             </span>
-            <span style='padding:0 10px;line-height:26px;' @click='$router.push({name: 'myDownload_list', params:{id: item.downloadId}})'>
+            <span style='padding:0 10px;line-height:26px;' @click='$router.push({name: ' myDownload_list ', params:{id: item.downloadId}})'>
               <i class="icon iconfont icon-chakan" style="font-size:17px;"></i>查看
             </span>
           </div>
@@ -24,49 +23,39 @@
         <p v-else-if="error" @click='_getData()' style="font-size:16px;padding:10px 0;color:#4BB7AA">出错了点我重新加载</p>
       </div>
     </div>
-    <div v-transfer-dom>
-      <popup v-model="popupShow" position="bottom" :show-mask="true">
-        <div class='popup'>
-          <span style='font-size:14px'>学段：</span>
-          <div style='padding-left:20px;'>
-            <checker v-model="grade" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-              <checker-item value="789">初中</checker-item>
-              <checker-item value="10">高中</checker-item>
-            </checker>
-          </div>
-          <span style='font-size:14px'>学科：</span>
-          <div style='padding-left:20px;'>
-            <checker v-model="subjectId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-              <checker-item value="2">数学</checker-item>
-              <checker-item value="7">物理</checker-item>
-            </checker>
-          </div>
-        </div>
-      </popup>
-    </div>
   </view-box>
 </template>
 
 <script>
-import { XButton, Checker, CheckerItem, TransferDom, XHeader, ViewBox, Group, Cell, Popup, Spinner } from 'vux'
+import { XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, Popup, Spinner
+    XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner
   },
   computed: {
-    ...mapGetters(['MyDownload'])
-  },
-  directives: {
-    TransferDom
+    ...mapGetters(['MyDownload']),
+    grade () {
+      switch (this.options[0]) {
+        case '初中': return '789'
+        case '高中': return '10'
+        default : return ''
+      }
+    },
+    subjectId () {
+      switch (this.options[1]) {
+        case '数学': return '2'
+        case '物理': return '7'
+        default : return ''
+      }
+    }
   },
   data () {
     return {
-      grade: '',
-      subjectId: '',
-      popupShow: false,
+      options: [],
+      showPopupPicker: false,
       loading: true,
       error: false
     }
@@ -82,6 +71,16 @@ export default {
       }).finally(() => {
         this.loading = false
       })
+    },
+    _showPopup () {
+      this.showPopupPicker = true
+    },
+    _change () {
+      this.showPopupPicker = false
+      this._getData()
+    },
+    _hidePopup () {
+      this.showPopupPicker = false
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -91,28 +90,10 @@ export default {
         vm._getData()
       }
     })
+  },
+  beforeRouteLeave (to, from, next) {
+    this.showPopupPicker = false
+    next()
   }
 }
 </script>
-
-<style lang="less" scoped>
-.popup{
-  padding:10px;
-}
-.demo4-item {
-  background-color: #ccc;
-  color: #fff;
-  font-size: 14px;
-  padding:8px 25px;
-  margin: 5px 8px 8px 0;
-  line-height: 18px;
-  border-radius: 5px;
-}
-.demo4-item-selected {
-  background-color: #4BB7AA;
-  color: #fff;
-}
-.demo4-item-disabled {
-  color: #999;
-}
-</style>

@@ -12,14 +12,16 @@
         <div slot="content" @click="$router.push({name:'example', params: {subjectId: Route.params.subject.indexOf('math') !== -1 ? 2 : 7, id: item.exercises_id}})">
           <div v-html="item.stem"></div>
           <div v-if="item.opt_jo.hasOwnProperty('A')">
-            <template v-for="(value, key) in item.opt_jo">
-              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
-            </template>
+            <div v-for="(value, key) in item.opt_jo" :key='key' style="padding-top:5px;">
+              {{ key }}： 
+              <p v-html="value" style="display:inline-block"></p>
+            </div>
           </div>
         </div>
       </card>
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="lines"></spinner>
+        <p v-else-if="error" @click='_getData()' style="font-size:16px;padding:10px 0;color:#4BB7AA">出错了点我重新加载</p>
       </div>
     </div>
   </view-box>
@@ -42,7 +44,8 @@ export default {
   },
   data () {
     return {
-      loading: true
+      loading: true,
+      error: false
     }
   },
   methods: {
@@ -50,8 +53,10 @@ export default {
     _getData () {
       this.loading = true
       this.getMyDownloadList().then(() => {
-        this.loading = false
+        this.error = false
       }).catch(() => {
+        this.error = true
+      }).finally(() => {
         this.loading = false
       })
     }
