@@ -8,12 +8,13 @@
         <div class="weui-panel__hd" slot="header" style="color:#4bb7aa">
           {{Route.params.type === 'chapter' ? item.chapterName : item.typeName}}
         </div>
-        <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'exercises'}})">
+        <div slot="content" @click="
+          $router.push({name:'example',query: {name: Route.params.type === 'chapter' ? item.chapterName : item.typeName},
+          params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'exercises'}})
+        ">
           <div v-html="item.stem"></div>
-          <div v-if="item.opt.hasOwnProperty('A')">
-            <template v-for="(value, key) in item.opt">
-              <div style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
-            </template>
+          <div v-for="(value, key) in item.opt" :key='key' style="padding-top:5px;">
+            {{ key }}：<p v-html="value" style="display:inline-block"></p>
           </div>
         </div>
         <div slot="footer">

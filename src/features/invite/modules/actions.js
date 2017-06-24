@@ -27,9 +27,9 @@ export const getInvite = ({ rootState, commit }) => {
 export const getInviteList = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
-      method: 'post',
+      method: 'get',
       url: 'invite/list',
-      data: {
+      params: {
         token: rootState.common.user.token
       }
     }).then(response => {

@@ -33,7 +33,7 @@ export const getMyDownloadList = ({ rootState, commit }) => {
       url: 'download/myDownload/list',
       params: {
         token: rootState.common.user.token,
-        downloadId: rootState.route.params.downloadId
+        downloadId: rootState.route.params.id
       }
     }).then((response) => {
       commit(types.MYDOWNLOAD_PAPER, response.data.data)

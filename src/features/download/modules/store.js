@@ -7,12 +7,13 @@ const state = {
     list: [],
     scroll: 0
   },
-  download: []
+  download: [],
+  downloadUrl: ''
 }
 
 const mutations = {
   [types.DOWNLOAD] (state, data) {
-    state.index = data
+    state.download = data
   },
   [types.DOWNLOAD_PAPER] (state, data) {
     state.paper.list = data

@@ -2,8 +2,6 @@
 export const MYDOWNLOAD = 'MYDOWNLOAD'
 /** 我的下载清空 */
 export const MYDOWNLOAD_RESET = 'MYDOWNLOAD_RESET'
-/** 我的下载搜索 */
-export const MYDOWNLOAD_CONFIG = 'MYDOWNLOAD_CONFIG'
 /** 试题 */
 export const MYDOWNLOAD_PAPER = 'MYDOWNLOAD_PAPER'
 /** 试题清空 */

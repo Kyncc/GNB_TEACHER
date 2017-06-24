@@ -1,8 +1,8 @@
 /** 我的下载 */
 export const DOWNLOAD = 'DOWNLOAD'
-/** 我的下载筛选 */
-export const DOWNLOAD_CONFIG = 'DOWNLOAD_CONFIG'
-/** 试题 */
+/** 组卷URL */
+export const DOWNLOAD_URL = 'DOWNLOAD_URL'
+/** 获取试题 */
 export const DOWNLOAD_PAPER = 'DOWNLOAD_PAPER'
 /** 试题上移 */
 export const DOWNLOAD_PAPER_UP = 'DOWNLOAD_PAPER_UP'

@@ -15,17 +15,23 @@
     <card v-show='!loading'>
       <div slot="header" class="weui-panel__hd">
         <flexbox>
-          <flexbox-item :span="10" style="color:#4bb7aa">内容</flexbox-item>
+          <flexbox-item :span="10" style="color:#4bb7aa">{{Params.type === 'lxexercises' ? '精选题' : Route.query.name}}</flexbox-item>
         </flexbox>
       </div>
       <div slot="content">
         <div v-html="Example.stem"></div>
-        <div v-if="Example.opt">
-          <template v-for="(value, key) in Example.opt">
-            <div style="padding-top:5px;">{{ key }}：
-              <p v-html="value" style="display:inline-block"></p>
-            </div>
-          </template>
+        <div v-for="(value, key) in Example.opt" :key='key' style="padding-top:5px;">
+          {{ key }}：<p v-html="value" style="display:inline-block"></p>
+        </div>
+      </div>
+      <div slot="footer">
+        <div class="weui-cell weui-cell_link">
+          <div class="weui-cell__bd">
+            <flexbox>
+              <flexbox-item :span="2">难度：{{Example.degree}}</flexbox-item>
+              <flexbox-item :span="7">更新时间：{{Example.time | ymd}}</flexbox-item>
+            </flexbox>
+          </div>
         </div>
       </div>
     </card>
@@ -53,7 +59,7 @@ export default {
     XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem, 'mt-popup': Popup
   },
   computed: {
-    ...mapGetters(['Example', 'Params'])
+    ...mapGetters(['Example', 'Params', 'Route'])
   },
   data () {
     return {

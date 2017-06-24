@@ -1,60 +1,69 @@
 <template>
   <view-box ref="about" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '下载中心'}">
-      <div slot="right" @click="popupShow = true">
-        筛选
-      </div>
+      <div slot="right" @click="_showPopup()">筛选</div>
+      <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"  @on-hide="_hidePopup()" v-model="options" @on-change="_change()"></popup-picker>
     </x-header>
     <div>
-    </div>
-    <div v-transfer-dom>
-      <popup v-model="popupShow" position="bottom" :show-mask="true">
-        <div class='popup'>
-          <span style='font-size:14px'>学段：</span>
-          <div style='padding-left:20px;'>
-            <checker v-model="grade" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-              <checker-item value="789">初中</checker-item>
-              <checker-item value="10">高中</checker-item>
-            </checker>
-          </div>
-          <span style='font-size:14px'>学科：</span>
-          <div style='padding-left:20px;'>
-            <checker v-model="subjectId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-              <checker-item value="2">数学</checker-item>
-              <checker-item value="7">物理</checker-item>
-            </checker>
-          </div>
-        </div>
-      </popup>
     </div>
   </view-box>
 </template>
 
 <script>
 
-import { XButton, Checker, CheckerItem, TransferDom, XHeader, ViewBox, Group, Cell, Popup, Spinner } from 'vux'
-import { mapGetters } from 'vuex'
+import { XButton, Checker, CheckerItem, PopupPicker, XHeader, ViewBox, Group, Cell, Spinner } from 'vux'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, Popup, Spinner
+    XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, Spinner, PopupPicker
   },
   computed: {
-    ...mapGetters(['Download'])
-  },
-  directives: {
-    TransferDom
+    ...mapGetters(['Download', 'DownloadPaper', 'DownloadUrl'])
   },
   data () {
     return {
-      grade: '10',
-      subjectId: '2',
-      popupShow: false,
-      loading: true
+      options: [],
+      showPopupPicker: false,
+      loading: true,
+      error: false
     }
   },
   methods: {
+    ...mapActions(['getDownload', 'getDownloadList', 'getDownloadUpdate', 'getDownloadUrl', 'setMyDownloadPaperUp', 'setMyDownloadPaperDown', 'setMyDownloadPaperDel', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper']),
+    _getData () {
+      this.loading = true
+      this.getDownloadList({downloadId: {}}).then(() => {
+        this.error = false
+      }).catch((e) => {
+        this.error = true
+      }).finally(() => {
+        this.loading = false
+      })
+    },
+    _showPopup () {
+      this.showPopupPicker = true
+    },
+    _change () {
+      this.showPopupPicker = false
+      this._getData()
+    },
+    _hidePopup () {
+      this.showPopupPicker = false
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (from.name === 'bag') {
+        vm.clearMyDownload()
+        vm.getDownload()
+      }
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    this.showPopupPicker = false
+    next()
   }
 }
 </script>

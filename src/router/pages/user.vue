@@ -4,17 +4,13 @@
       <i class="icon iconfont icon-share" slot="right"></i>
       个人中心
     </x-header>
-    <div class="info">
-      <div style="display:inline-block;position:absolute;top:50%;margin-top:-57.5px;left:50%;margin-left:-40px;"
-        @click="$router.push('settings/info')">
-        <cell>
-          <img slot="icon" width="80" height="80" style="border-radius:50%" v-lazy="User.headImg">
-          <div slot="after-title">{{User.name}}</div>
-        </cell>
-        <!--<img :src="User.headImg" width="80" height="80" style="border-radius:50%">
-        <p class="phone">&nbsp;{{User.name}}&nbsp;</p>-->
-      </div>
-    </div>
+    <group gutter="0" class='headInfo'>
+      <cell style='background:#4BB7AA;color:#fff;' is-link='settings/info'>
+        <img slot="icon" width="80" height="80" style="border-radius:50%;padding-right:.5rem" v-lazy="User.headImg">
+        <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
+        <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
+      </cell>
+    </group>
     <group gutter="0">
       <!--<cell title="我的账户" link="javascript:;">
         <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>

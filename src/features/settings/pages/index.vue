@@ -5,13 +5,13 @@
       <!--<group gutter='0'>
         <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>
       </group>-->
-      <group gutter='0'>
+      <!--<group gutter='0'>
         <x-switch title="只看学科" v-model='subjectDisabled'></x-switch>
         <checklist v-show='subjectDisabled' :options="subjectList" v-model="subject"></checklist>
         <x-switch title="只看学段" v-model='gradeDisabled'></x-switch>
         <checklist v-show='gradeDisabled' :options="gradeList" v-model="grade"></checklist>
-      </group>
-      <group> 
+      </group>-->
+      <group gutter='0'> 
         <cell title="退出登录" @click.native="_onConfirm"></cell>
       </group>
     </view-box>
