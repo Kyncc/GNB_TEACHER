@@ -7,27 +7,23 @@ const state = {
     list: [],
     scroll: 0
   },
-  download: [],
   downloadUrl: ''
 }
 
 const mutations = {
-  [types.DOWNLOAD] (state, data) {
-    state.download = data
-  },
   [types.DOWNLOAD_PAPER] (state, data) {
     state.paper.list = data
   },
-  [types.DOWNLOAD_PAPER_UP] (state, index) {
-    let up = state.paper.list.splice(index, 1)
-    state.paper.list.splice(index - 1, 0, up)
+  [types.DOWNLOAD_PAPER_UP] (state, payload) {
+    let arr = state.paper.list.block[payload.pindex].list
+    arr[payload.index] = arr.splice((payload.index - 1), 1, arr[payload.index])[0]
   },
-  [types.DOWNLOAD_PAPER_DOWN] (state, index) {
-    let down = state.paper.list.splice(index, 1)
-    state.paper.list.splice(index + 1, 0, down)
+  [types.DOWNLOAD_PAPER_DOWN] (state, payload) {
+    let arr = state.paper.list.block[payload.pindex].list
+    arr[payload.index] = arr.splice((payload.index + 1), 1, arr[payload.index])[0]
   },
-  [types.DOWNLOAD_PAPER_DEL] (state, index) {
-    state.paper.list.splice(index, 1)
+  [types.DOWNLOAD_PAPER_DEL] (state, payload) {
+    state.paper.list.block[payload.pindex].list.splice(payload.index, 1)
   },
   [types.DOWNLOAD_PAPER_RESET] (state) {
     state.paper.list = []

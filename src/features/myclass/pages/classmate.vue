@@ -8,13 +8,11 @@
     </x-header>
     <template v-if="!loading">
       <group title="同学列表">
-        <template v-for="(student, index) in ClassMyClassmate.classmates">
-          <cell>
-            <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg">
-            <div slot="after-title">{{student.name}}</div>
-            <x-button mini type="warn" slot="value" @click.native="_del(student, index)">删除</x-button>
-          </cell>
-        </template>
+        <cell v-for="(student, index) in ClassMyClassmate.classmates" :key='index'>
+          <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg">
+          <div slot="after-title">{{student.name}}</div>
+          <x-button mini type="warn" slot="value" @click.native="_del(student, index)">删除</x-button>
+        </cell>
       </group>
     </template>
     <div style="text-align:center">

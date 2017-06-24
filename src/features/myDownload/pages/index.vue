@@ -5,7 +5,7 @@
       <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
     </x-header>
     <div>
-      <group :gutter='0' title='只展示最近一个月的试卷'>
+      <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownload.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownload' :key='index'>
           <div slot="value" style='color:#4BB7AA'>
             <span style='padding:0 5px;line-height:24px;'>
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import { XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner } from 'vux'
+import { XButton, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner
+    XButton, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner
   },
   computed: {
     ...mapGetters(['MyDownload']),

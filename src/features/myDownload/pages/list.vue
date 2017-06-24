@@ -2,7 +2,7 @@
   <view-box ref="myDownload_list" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '试卷详情'}"></x-header>
     <div>
-      <div v-for="(list, pindex) in block" :key="pindex">
+      <div v-for="(list, pindex) in block" :key="pindex" v-show='!loading'>
         <div class="weui-cells__title">{{list.name}}</div>
         <card v-for="(item, index) in list.list" :key="index">
           <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'lxexercises'}})">

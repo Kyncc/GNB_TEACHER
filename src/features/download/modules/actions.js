@@ -1,23 +1,6 @@
 import * as types from './mutationTypes'
 import axios from '@/components/axios/'
-
-/** 获取下载列表 */
-export const getDownload = ({ rootState, commit }) => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method: 'post',
-      url: 'assemble/exist',
-      data: {
-        token: rootState.common.user.token
-      }
-    }).then((response) => {
-      commit(types.DOWNLOAD, response.data.data.list)
-      resolve(response)
-    }).catch((e) => {
-      reject(e)
-    })
-  })
-}
+import Vue from 'vue'
 
 /** 获取下载试题列表 */
 export const getDownloadList = ({ rootState, commit }, params) => {
@@ -27,7 +10,7 @@ export const getDownloadList = ({ rootState, commit }, params) => {
       url: 'download/list',
       params: {
         token: rootState.common.user.token,
-        downloadId: params.downloadId
+        ...params
       }
     }).then((response) => {
       commit(types.DOWNLOAD_PAPER, response.data.data)
@@ -39,19 +22,29 @@ export const getDownloadList = ({ rootState, commit }, params) => {
 }
 
 /** 下载题目编辑 */
-export const getDownloadUpdate = ({ rootState, commit }, params) => {
+export const getDownloadUpdate = ({ rootState, state, commit }, params) => {
+  let ids = []
+  let array = state.paper.list.block
+  for (let pindex = 0; pindex < array.length; pindex++) {
+    for (let index = 0; index < array[pindex].list.length; index++) {
+      ids.push(array[pindex]['list'][index].exercisesId)
+    }
+  }
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
       url: 'download/update',
       data: {
         token: rootState.common.user.token,
-        downloadId: params.id,
-        ids: params.ids
+        downloadId: rootState.route.params.id,
+        ids: ids
       }
     }).then((response) => {
+      Vue.$vux.loading.hide()
       resolve(response)
     }).catch((e) => {
+      Vue.$vux.loading.hide()
       reject(e)
     })
   })
@@ -77,17 +70,26 @@ export const getDownloadUrl = ({ rootState, commit }, params) => {
 }
 
 /** 题目上移 */
-export const setMyDownloadPaperUp = ({commit}, index) => {
-  commit(types.DOWNLOAD_PAPER_UP, index)
+export const setMyDownloadPaperUp = ({state, commit}, params) => {
+  if (params.index === 0) {
+    Vue.$vux.toast.show({text: '不能再上移了', type: 'text', time: 1000, position: 'bottom'})
+  } else {
+    commit(types.DOWNLOAD_PAPER_UP, params)
+  }
 }
+
 /** 题目下移 */
-export const setMyDownloadPaperDown = ({commit}, index) => {
-  commit(types.DOWNLOAD_PAPER_DOWN, index)
+export const setMyDownloadPaperDown = ({state, commit}, params) => {
+  if (params.index === (state.paper.list.block[params.pindex].list.length - 1)) {
+    Vue.$vux.toast.show({text: '不能再下移了', type: 'text', time: 1000, position: 'bottom'})
+  } else {
+    commit(types.DOWNLOAD_PAPER_DOWN, params)
+  }
 }
 
 /** 题目删除 */
-export const setMyDownloadPaperDel = ({commit}, index) => {
-  commit(types.DOWNLOAD_PAPER_DEL, index)
+export const setMyDownloadPaperDel = ({commit}, params) => {
+  commit(types.DOWNLOAD_PAPER_DEL, params)
 }
 
 /** 试卷高度保存 */

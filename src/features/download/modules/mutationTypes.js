@@ -1,5 +1,3 @@
-/** 我的下载 */
-export const DOWNLOAD = 'DOWNLOAD'
 /** 组卷URL */
 export const DOWNLOAD_URL = 'DOWNLOAD_URL'
 /** 获取试题 */

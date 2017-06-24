@@ -41,7 +41,7 @@
     </card>
     <div style="text-align:center">
       <spinner v-if="loading" type="dots"></spinner>
-      <p v-else-if="Example.length == 0" style="font-size:16px;padding:10px 0;color:#4BB7AA">出错了~</p>
+      <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
     </div>
   </view-box>
 </template>
@@ -64,16 +64,20 @@ export default {
   data () {
     return {
       visible: false,
-      loading: true
+      loading: true,
+      error: false
     }
   },
   methods: {
     ...mapActions(['getExample', 'exampleClear']),
     _getData () {
+      this.exampleClear()
       this.loading = true
       this.getExample().then(() => {
-        this.loading = false
+        this.error = false
       }).catch(() => {
+        this.error = true
+      }).finally(() => {
         this.loading = false
       })
     }
@@ -86,7 +90,6 @@ export default {
   beforeRouteEnter (to, from, next) {
     if (from.name !== 'correct') {
       next(vm => {
-        vm.exampleClear()
         vm._getData()
       })
     } else {
