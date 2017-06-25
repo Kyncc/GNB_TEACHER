@@ -6,7 +6,7 @@
           筛选
         </div>
       </x-header>
-      <tab>
+      <tab :animate="false">
         <tab-item :selected="Route.name === 'assemble_sync'" @click.native="$router.replace({name:'assemble_sync'})">同步题型</tab-item>
         <tab-item :selected="Route.name === 'assemble_gaokao'" @click.native="$router.replace({name:'assemble_gaokao'})">中高考题型</tab-item>
       </tab>
@@ -30,10 +30,6 @@ export default {
   },
   computed: {
     ...mapGetters(['Route'])
-  },
-  methods: {
-    _add () {
-    }
   }
 }
 </script>

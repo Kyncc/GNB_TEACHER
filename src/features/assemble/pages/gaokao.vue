@@ -50,13 +50,12 @@ export default {
       })
     }
   },
-  created () {
-    this._getData()
-  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
+      if (!vm.AssembleGaokao.list.length) {
+        vm._getData()
+      }
       vm.$parent.$refs.viewBoxBody.scrollTop = vm.AssembleGaokao.scroll
-      if (from.name === 'assemble_options') vm.getAssembleGaokao()
     })
   },
   beforeRouteLeave (to, from, next) {

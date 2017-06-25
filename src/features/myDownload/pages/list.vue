@@ -60,9 +60,9 @@ export default {
       this.loading = true
       this.getMyDownloadList().then(() => {
         this.error = false
+        this.loading = false
       }).catch(() => {
         this.error = true
-      }).finally(() => {
         this.loading = false
       })
     }

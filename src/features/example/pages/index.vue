@@ -9,7 +9,7 @@
            <i class="icon iconfont icon-bianji"></i>纠错
         </p>
         <p><i class="icon iconfont icon-share"></i>分享</p>
-        <p><i class="icon iconfont icon-pinglun"></i>评价</p>
+        <!--<p><i class="icon iconfont icon-pinglun"></i>评价</p>-->
       </mt-popup>
     </x-header>
     <card v-show='!loading'>
@@ -75,9 +75,9 @@ export default {
       this.loading = true
       this.getExample().then(() => {
         this.error = false
+        this.loading = false
       }).catch(() => {
         this.error = true
-      }).finally(() => {
         this.loading = false
       })
     }

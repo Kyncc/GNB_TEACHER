@@ -4,7 +4,6 @@ import FastClick from 'fastclick'
 import store from './store'
 import router from './router'
 import {ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin} from 'vux'
-import promiseFinally from 'promise.prototype.finally'
 import 'babel-polyfill'
 import App from './App'
 
@@ -13,7 +12,6 @@ Vue.use(ToastPlugin)    // 使用提醒
 Vue.use(VueLazyload, {
   attempt: 3
 })
-promiseFinally.shim()
 Vue.use(LoadingPlugin)  // 使用Loading
 Vue.use(ConfirmPlugin)  // 使用Confirm
 Vue.use(AlertPlugin)

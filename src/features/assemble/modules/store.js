@@ -4,9 +4,9 @@ import * as actions from './actions'
 
 const state = {
   options: {
-    textbook: 1,
+    textbook: '',
     editionId: '',
-    subject: 2,
+    subject: '',
     grade: '10',
     textbookList: []
   },

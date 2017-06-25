@@ -38,10 +38,11 @@ export const getAssembleOptionsTextbook = ({rootState, commit}) => {
       params: {
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ASSEMBLE_OPTIONS_TEXTBOOK, response.data.data)
       resolve(response)
+    }).catch((e) => {
+      reject(e)
     })
   })
 }

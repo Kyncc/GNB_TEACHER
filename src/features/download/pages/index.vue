@@ -97,9 +97,9 @@ export default {
       this.loading = true
       this.getDownloadList({options: {grade: this.grade, subjectId: this.subjectId}}).then(() => {
         this.error = false
+        this.loading = false
       }).catch((e) => {
         this.error = true
-      }).finally(() => {
         this.loading = false
       })
     }

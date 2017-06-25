@@ -16,7 +16,7 @@
       </group>
     </template>
     <div style="text-align:center">
-      <spinner v-if="loading" type="ripple"></spinner>
+      <spinner v-if="loading" type="lines"></spinner>
     </div>
     <tabbar style='background-color:#fff;'>
       <flexbox style='padding:.4rem;'>
