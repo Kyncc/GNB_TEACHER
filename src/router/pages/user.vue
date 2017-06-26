@@ -1,7 +1,6 @@
 <template>
   <div class='user'>
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">
-      <i class="icon iconfont icon-share" slot="right"></i>
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
@@ -51,7 +50,10 @@ export default {
   methods: {
     ...mapActions(['getUserNews']),
     _openStore () {
-      window.location.href = 'market://details?id=com.sanbao.guinaben.student'
+      window.location.href = 'market://details?id=com.sanbao.teacher.student'
+    },
+    _share () {
+      alert(1)
     }
   },
   beforeRouteEnter (to, from, next) {

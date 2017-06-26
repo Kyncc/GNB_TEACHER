@@ -21,7 +21,7 @@
       </group>
       <div style="text-align:center;padding:10px 0;">
         <spinner v-if="loading" type="lines"></spinner>
-        <p v-else-if="!MyDownload.length" style="font-size:16px;color:#4BB7AA">还没有下载记录</p>
+        <p v-else-if="!MyDownload.length" style="font-size:16px;color:#4BB7AA">近一月还未有下载记录</p>
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-﻿{
+{
 	"@platforms": [
 		"android",
 		"iPhone",
@@ -101,6 +101,11 @@
 					"qq": {
 						"appid": "1105792782APP",
 						"description": "QQ分享"
+					},
+					"weixin": {
+						"appid": "1105792782APP",
+						"appsecret": "KEYwfraqgwgvgwSHPgO",
+						"description": "可选，微信分享"
 					}
 				},
 				"statics": {
@@ -125,21 +130,7 @@
 				"keystore": "",/*Android应用打包使用的密钥库文件*/
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
-				"permissions": [
-					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
-					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
-					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-					"<uses-feature android:name=\"android.hardware.camera\"/>",
-					"<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
-					"<uses-permission android:name=\"android.permission.CAMERA\"/>"
-				]
+				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
 			},
 			"orientation": [
 				"portrait-primary"
@@ -218,7 +209,14 @@
 					"static/js/app.js",
 					"static/js/manifest.js",
 					"static/js/vendor.js",
-					"static/css/app.css"
+					"static/css/app.css",
+					"static/js/app.630075195c244dd4e2dc.js",
+					"static/js/vendor.e7bd55f124bc2fb304b4.js",
+					"static/js/manifest.43540667c39eefbdfeee.js",
+					"static/js/manifest.a6d4ef7000b4100c0848.js",
+					"static/js/manifest.58aae386fd2067daa728.js",
+					"static/js/manifest.5e3f0432439c7b045cce.js",
+					"static/js/manifest.c07627cfb65b0b220d08.js"
 				],
 				"refer": [],
 				"priority": 0
