@@ -1,10 +1,10 @@
 import Vue from 'vue'
+import 'babel-polyfill'
 import VueLazyload from 'vue-lazyload'
 import FastClick from 'fastclick'
 import store from './store'
 import router from './router'
 import {ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin} from 'vux'
-import 'babel-polyfill'
 import App from './App'
 
 Vue.use(ToastPlugin)    // 使用提醒
