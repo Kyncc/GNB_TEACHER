@@ -4,7 +4,7 @@
       <div slot="right" @click='visible = true'>
         <i class="icon iconfont icon-6" style="padding:10px;margin:0 -10px 0 0"></i>
       </div>
-      <mt-popup v-model="visible" popup-transition="popup-fade" class="popup" >
+      <mt-popup v-model="visible" class="popup">
         <p @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id, grade: Params.grade}})">
            <i class="icon iconfont icon-bianji"></i>纠错
         </p>
@@ -120,7 +120,7 @@ export default {
     overflow: hidden;
   }
   .active{
-      background: #ccc;
+    background: #ccc;
   }
 }
 </style>

@@ -14,11 +14,11 @@
           </flexbox>
         </div>
         <!--上传错题则显示题目，否则显示题干-->
-        <div v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
-          <img v-lazy="error.exerciseImg.src+'-errorList'" />
+        <div class='previewer-demo-img' v-if='!error.isUpload' slot="content" @click="show(error.exerciseImg)">
+          <img v-lazy="error.exerciseImg.src+'-errorList'">
         </div>
-        <div v-else slot="content" @click="show(error.errorImg[0])">
-          <img v-lazy="error.errorImg[0].src+'-errorList'" />
+        <div class='previewer-demo-img' v-else slot="content" @click="show(error.errorImg[0])">
+          <img v-lazy="error.errorImg[0].src+'-errorList'">
         </div>
         <div slot="footer">
           <div class="weui-cell">
@@ -66,7 +66,7 @@
       <popup v-model="showCommentPopup" height="200px" @on-first-show="resetScroller">
         <scroller height="200px" lock-x ref="scroller">
           <div>
-            <p v-for="i of comment">{{i}}</p>
+            <p v-for="i of comment" :key='i'>{{i}}</p>
           </div>
         </scroller>
       </popup>
@@ -134,9 +134,7 @@ export default {
       this.list[0].w = img.width
       this.list[0].h = img.height
       this.list[0].src = img.src
-      this.$nextTick(() => {
-        this.$refs.previewer.show()
-      })
+      this.$refs.previewer.show(0)
     },
     resetScroller () {
       this.$nextTick(() => {

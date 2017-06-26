@@ -14,7 +14,7 @@
       </div>
       <div slot="content">
         <img v-for="(img, index) in item.camera" :key="index" class="previewer-answer-img" @click="show(item.camera, index)" 
-           v-lazy="img.url+'-answer'"/>
+           v-lazy="img.url+'-answer'">
       </div>
     </card>
     <div v-transfer-dom>
@@ -58,7 +58,7 @@ export default {
         h: camera[index].height
       })
       this.$nextTick(() => {
-        this.$refs.previewer.show()
+        this.$refs.previewer.show(0)
       })
     }
   }

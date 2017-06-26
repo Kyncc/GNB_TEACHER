@@ -2,7 +2,9 @@
   <view-box ref="about" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的下载'}">
       <div slot="right" @click="_showPopup()">筛选</div>
-      <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
+      <div class='popup'>
+        <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
+      </div>
     </x-header>
     <div>
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownload.length'>
@@ -99,3 +101,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.popup .vux-cell-box:before{
+  border-top:0px !important;
+}
+</style>

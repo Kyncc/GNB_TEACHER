@@ -9,8 +9,7 @@
         :max="4"
         type="checkbox"
         default-item-class="select-item"
-        selected-item-class="select-item-selected"
-        >
+        selected-item-class="select-item-selected">
           <checker-item value="答案错误">答案错误</checker-item>
           <checker-item value="解析不全">解析不全</checker-item>
           <checker-item value="题目超纲">题目超纲</checker-item>
@@ -56,7 +55,7 @@ export default {
         type: this.type.toString()
       }
       this.postCorrect(params).then(() => {
-        history.back()
+        setTimeout(() => { history.back() }, 600)
       })
     }
   },
@@ -68,7 +67,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.getCorrect().then(() => {
-        vm.type = vm.Correct.type
+        vm.type = vm.Correct.type.split(',')
         vm.content = vm.Correct.content
       })
     })

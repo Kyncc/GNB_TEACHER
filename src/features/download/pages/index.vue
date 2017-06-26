@@ -2,9 +2,11 @@
   <view-box ref="download" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '下载中心'}">
       <div slot="right" @click="showPopupPicker = true">筛选</div>
-      <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"  
-        @on-hide='showPopupPicker = false' v-model="options">
-      </popup-picker>
+      <div class='popup'>
+        <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"  
+          @on-hide='showPopupPicker = false' v-model="options">
+        </popup-picker>
+      </div>
     </x-header>
     <div>
       <div v-for="(list, pindex) in block" :key="pindex" v-show='!loading'>
@@ -50,7 +52,6 @@
 </template>
 
 <script>
-
 import {XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group, PopupPicker, Tabbar, TabbarItem} from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -128,3 +129,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.popup .vux-cell-box:before{
+  border-top:0px !important;
+}
+</style>

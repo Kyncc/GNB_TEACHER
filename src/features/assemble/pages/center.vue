@@ -1,5 +1,5 @@
 <template>
-  <view-box body-padding-top="46px">
+  <view-box body-padding-top="55px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '组卷中心'}">
         <div slot="right" @click="$router.push({name: 'assemble_options'})">
