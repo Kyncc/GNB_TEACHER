@@ -16,10 +16,11 @@ export const getAssembleGaokao = ({rootState, commit, state}, params) => {
           subjectId: state.options.subject
         }
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ASSEMBLE_GAOKAO, response.data.data)
       resolve(response)
+    }).catch((e) => {
+      reject(e)
     })
   })
 }
@@ -62,10 +63,11 @@ export const getAssembleSync = ({rootState, commit, state}, params) => {
         token: rootState.common.user.token,
         textbookId: state.options.textbook
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ASSEMBLE_SYNC, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -88,10 +90,11 @@ export const getAssembleExample = ({rootState, commit, state}, params) => {
           type: rootState.route.params.type
         }
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ASSEMBLE_EXAMPLE, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -123,6 +126,8 @@ export const getAssembleChoice = ({rootState, state, commit}, params) => {
     .then((response) => {
       commit(types.ASSEMBLE_CHOICE, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -146,6 +151,8 @@ export const setAssemble = ({rootState, commit, state}, params) => {
       commit(types.ASSEMBLE_INTO, {index: params.index, data: response.data.data})
       Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }

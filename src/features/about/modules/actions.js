@@ -12,10 +12,11 @@ export const updateAdvice = ({rootState, commit}, params) => {
         token: rootState.common.user.token,
         ...params
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       Vue.$vux.toast.show({text: '感谢您的反馈！', type: 'text', time: 1000, position: 'bottom'})
       resolve(response)
+    }).catch((e) => {
+      reject(e)
     })
   })
 }
@@ -29,10 +30,11 @@ export const adviceHistory = ({rootState, commit}) => {
       params: {
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ADVICE_LIST, response.data.data)
       resolve(response)
+    }).catch((e) => {
+      reject(e)
     })
   })
 }

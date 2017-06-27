@@ -15,6 +15,8 @@ export const getMessageClass = ({ rootState, commit }, params) => {
     .then((response) => {
       commit(types.MESSAGE_CLASS, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -33,6 +35,8 @@ export const getMessageSystem = ({ rootState, commit }, params) => {
     .then((response) => {
       commit(types.MESSAGE_SYSTEM, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -51,6 +55,8 @@ export const getMessageCorrect = ({ rootState, commit }, params) => {
     .then((response) => {
       commit(types.MESSAGE_CORRECT, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }

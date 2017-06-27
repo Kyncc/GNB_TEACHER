@@ -17,6 +17,8 @@ export const getError = ({rootState, commit, state}, params) => {
     .then((response) => {
       commit(types.ERROR, {subjectId: params.subjectId, data: response.data.data})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -38,6 +40,8 @@ export const setErrorType = ({rootState, commit, state}, params) => {
     .then((response) => {
       commit(types.ERROR_ERROR_TYPE, {index: params.index, type: params.type})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -65,6 +69,8 @@ export const getErrorClassmate = ({rootState, commit, state}, params) => {
     .then((response) => {
       commit(types.ERROR_CLASSMATE, {data: response.data.data})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }

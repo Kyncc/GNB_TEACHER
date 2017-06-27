@@ -15,6 +15,8 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
     }).then((response) => {
       commit(types.WORKBOOK, {subjectId: params.subjectId, data: response.data.data})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -42,6 +44,8 @@ export const getWorkbookChapter = ({state, rootState, commit}) => {
     }).then((response) => {
       commit(types.WORKBOOK_CHAPTER, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -104,7 +108,8 @@ export const setWorkbookExerciseRead = ({state, rootState, commit}) => {
       url: 'workbook/chapter/isRead',
       data: {
         token: rootState.common.user.token,
-        chapterId: rootState.route.params.chapterId
+        chapterId: rootState.route.params.chapterId,
+        classCode: state.exercise.classCode
       }
     }).then((response) => {
       Vue.$vux.toast.show({text: '已阅成功', type: 'text', time: 1000, position: 'bottom'})
@@ -136,6 +141,8 @@ export const getWorkbookExerciseErrorPhoto = ({state, rootState, commit}, params
     }).then((response) => {
       commit(types.WORKBOOK_EXERCISE_ERROR_PHOTO, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }

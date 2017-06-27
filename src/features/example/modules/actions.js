@@ -20,6 +20,8 @@ export const getExample = ({ rootState, commit }) => {
     .then((response) => {
       commit(types.EXAMPLE, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }

@@ -1,4 +1,4 @@
-<template >
+<template>
   <div>
     <div v-for="(item, pindex) in exercise">
       <!--2级别练习册-->

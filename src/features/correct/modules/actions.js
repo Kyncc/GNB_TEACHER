@@ -20,6 +20,8 @@ export const getCorrect = ({ rootState, commit }, params) => {
     .then((response) => {
       commit(types.CORRECT, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }

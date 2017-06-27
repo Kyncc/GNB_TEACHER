@@ -16,6 +16,8 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
     .then((response) => {
       commit(types.CLASS_MYCLASSMATE, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -54,6 +56,8 @@ export const delClassmate = ({ rootState, commit }, params) => {
       commit(types.CLASS_MYCLASSMATE_DEL, params.index)
       Vue.$vux.toast.show({text: '删除成功', type: 'text', time: 600, position: 'bottom'})
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -76,6 +80,8 @@ export const postMyClassInto = ({ rootState, commit }, params) => {
     })
     .then((response) => {
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -94,6 +100,8 @@ export const updateClass = ({ rootState, commit }, params) => {
     })
     .then((response) => {
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }

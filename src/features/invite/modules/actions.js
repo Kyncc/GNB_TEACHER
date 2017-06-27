@@ -35,6 +35,8 @@ export const getInviteList = ({ rootState, commit }) => {
     }).then(response => {
       commit(types.INVITE_LIST, response.data.data)
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
@@ -57,6 +59,8 @@ export const setInviteCode = ({ rootState, commit, dispatch }, params) => {
     }).then(response => {
       dispatch('getInvite')
       resolve(response)
+    }).catch((err) => {
+      reject(err)
     })
   })
 }
