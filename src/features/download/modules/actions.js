@@ -51,19 +51,20 @@ export const getDownloadUpdate = ({ rootState, state, commit }, params) => {
 }
 
 /** 下载题目编辑 */
-export const getDownloadUrl = ({ rootState, commit }, params) => {
+export const getDownloadUrl = ({ rootState, state, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'download/update',
+      url: 'download/download',
       data: {
         token: rootState.common.user.token,
-        downloadId: params.id
+        downloadId: state.paper.list.downloadId
       }
     }).then((response) => {
       commit(types.DOWNLOAD_URL, response.data.data)
       resolve(response)
     }).catch((e) => {
+      Vue.$vux.toast.show({text: '获取下载地址失败', type: 'text', time: 1000, position: 'bottom'})
       reject(e)
     })
   })

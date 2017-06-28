@@ -43,22 +43,24 @@
           @click.native="$router.push({name: 'download_update', params: {id: downloadId}})">
           <i class="icon iconfont icon-bianji"></i>编辑
         </flexbox-item>
-        <flexbox-item :span="6" style="font-size:.8rem;text-align:center;">
+        <flexbox-item :span="6" style="font-size:.8rem;text-align:center;" @click.native="_download()">
           <i class="icon iconfont icon-download"></i>
           下载</flexbox-item>
       </flexbox>
     </tabbar>
+    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
   </view-box>
 </template>
 
 <script>
 import {XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group, PopupPicker, Tabbar, TabbarItem} from 'vux'
 import { mapGetters, mapActions } from 'vuex'
+import Share from '@/components/share'
 
 export default {
   name: 'index',
   components: {
-    XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group, PopupPicker, Tabbar, TabbarItem
+    XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group, PopupPicker, Tabbar, TabbarItem, Share
   },
   computed: {
     ...mapGetters(['DownloadPaper', 'DownloadUrl', 'User']),
@@ -88,7 +90,13 @@ export default {
       options: [],
       showPopupPicker: false,
       loading: true,
-      error: false
+      error: false,
+      showAction: false,
+      share: {
+        content: '2333',
+        title: '2222222',
+        href: ''
+      }
     }
   },
   methods: {
@@ -102,6 +110,12 @@ export default {
       }).catch((e) => {
         this.error = true
         this.loading = false
+      })
+    },
+    _download () {
+      this.getDownloadUrl().then(() => {
+        this.href = this.DownloadUrl
+        this.showAction = true
       })
     }
   },

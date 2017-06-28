@@ -1,17 +1,17 @@
 <template>
   <view-box ref="about" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的下载'}">
-      <div slot="right" @click="_showPopup()">筛选</div>
+      <div slot="right" @click="showPopupPicker = true">筛选</div>
       <div class='popup'>
-        <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
+        <popup-picker :show="showPopupPicker" @on-hide='showPopupPicker = false' :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
       </div>
     </x-header>
     <div>
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownload.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownload' :key='index'>
           <div slot="value" style='color:#4BB7AA'>
-            <span style='padding:0 5px;line-height:24px;'>
-              <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
+            <span style='padding:0 5px;line-height:24px;' @click="_download(item.url)">
+              <i class="icon iconfont icon-download" style="font-size:16px;" ></i>下载
             </span>
             <span style='padding:0 5px;line-height:24px;' @click="$router.push({name:'myDownload_list', params:{id: item.downloadId}})">
               <i class="icon iconfont icon-chakan" style="font-size:16px;"></i>查看
@@ -25,17 +25,19 @@
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
     </div>
+    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
   </view-box>
 </template>
 
 <script>
 import { XButton, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
+import Share from '@/components/share'
 
 export default {
   name: 'index',
   components: {
-    XButton, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner
+    XButton, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner, Share
   },
   computed: {
     ...mapGetters(['MyDownload']),
@@ -59,11 +61,21 @@ export default {
       options: [],
       showPopupPicker: false,
       loading: true,
-      error: false
+      error: false,
+      showAction: false,
+      share: {
+        content: '2333',
+        title: '2222222',
+        href: ''
+      }
     }
   },
   methods: {
     ...mapActions(['getMyDownload', 'clearMyDownload']),
+    _download (url) {
+      this.href = url
+      this.showAction = true
+    },
     _getData () {
       this.clearMyDownload()
       this.loading = true
@@ -74,12 +86,6 @@ export default {
         this.error = true
         this.loading = false
       })
-    },
-    _showPopup () {
-      this.showPopupPicker = true
-    },
-    _hidePopup () {
-      this.showPopupPicker = false
     }
   },
   watch: {

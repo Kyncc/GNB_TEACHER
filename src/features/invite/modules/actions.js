@@ -1,10 +1,8 @@
-import Vue from 'vue'
 import * as types from './mutationTypes'
 import axios from '@/components/axios/'
 
 /** 邀请信息获取 */
 export const getInvite = ({ rootState, commit }) => {
-  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -13,11 +11,9 @@ export const getInvite = ({ rootState, commit }) => {
         token: rootState.common.user.token
       }
     }).then(response => {
-      Vue.$vux.loading.hide()
       commit(types.INVITE, response.data.data)
       resolve(response)
     }).catch((err) => {
-      Vue.$vux.loading.hide()
       reject(err)
     })
   })
@@ -52,8 +48,8 @@ export const setInviteCode = ({ rootState, commit, dispatch }, params) => {
     axios({
       method: 'post',
       url: 'invite/code',
-      params: {
-        code: params.code,
+      data: {
+        inviteCode: params.code,
         token: rootState.common.user.token
       }
     }).then(response => {

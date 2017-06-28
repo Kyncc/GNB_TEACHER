@@ -25,8 +25,8 @@ export default {
       }],
       menus: {
         qq: '分享给QQ好友',
-        wechat: '分享给微信好友',
-        wechatTimeLine: '分享到朋友圈'
+        wechat: '分享给微信好友'
+        // wechatTimeLine: '分享到朋友圈'
       }
     }
   },

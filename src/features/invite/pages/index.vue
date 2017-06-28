@@ -32,12 +32,12 @@
 import { XHeader, XButton, ViewBox, Flexbox, FlexboxItem } from 'vux'
 import { MessageBox } from 'mint-ui'
 import { mapGetters, mapActions } from 'vuex'
-import share from '@/components/share'
+import Share from '@/components/share'
 
 export default {
   name: 'index',
   components: {
-    XHeader, XButton, ViewBox, Flexbox, FlexboxItem, MessageBox, share
+    XHeader, XButton, ViewBox, Flexbox, FlexboxItem, MessageBox, Share
   },
   computed: {
     ...mapGetters(['Invite'])
@@ -89,7 +89,7 @@ export default {
   line-height: 2rem;
   background: #fff;
   box-sizing: border-box;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   border: 2px dashed #ccc;
 }
 </style>

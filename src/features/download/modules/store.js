@@ -14,6 +14,9 @@ const mutations = {
   [types.DOWNLOAD_PAPER] (state, data) {
     state.paper.list = data
   },
+  [types.DOWNLOAD_URL] (state, data) {
+    state.downloadUrl = data
+  },
   [types.DOWNLOAD_PAPER_UP] (state, payload) {
     let arr = state.paper.list.block[payload.pindex].list
     arr[payload.index] = arr.splice((payload.index - 1), 1, arr[payload.index])[0]
