@@ -168,7 +168,7 @@ export default {
         type: value,
         wbeid: this.errorType.wbeid
       }).then(() => {
-        this.$vux.toast.show({ text: '设置错误类型成功!', type: 'text', time: 500, position: 'bottom' })
+        this.$vux.toast.show({ text: '设置错误类型成功!', type: 'text', time: 1000, position: 'bottom' })
       })
     }
   },
@@ -191,6 +191,7 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.setErrorScroll(this.$refs.error.getScrollBody)
+    this.showErrorPopup = false
     next()
   }
 }

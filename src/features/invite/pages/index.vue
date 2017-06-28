@@ -14,7 +14,7 @@
         <flexbox-item :span="10" class='code' @click.native='showAction = true'>
           <h4>我的邀请码</h4>
           <p>{{Invite.inviteCode}}</p>
-          <x-button type="primary" plain mini >分享邀请码</x-button>
+          <x-button type="primary" plain mini @click='showAction = true'>分享邀请码</x-button>
         </flexbox-item>
       </flexbox>
       <flexbox justify='center' style='margin-top:.5rem;' v-if='!Invite.isInvited'>
@@ -23,20 +23,21 @@
         </flexbox-item>
       </flexbox>
     </div>
-    <actionsheet v-model="showAction" :menus="menus" @on-click-menu="_menuClick"></actionsheet>
+    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
   </view-box>
 </template>
 
 <script>
 
-import { Actionsheet, XHeader, XButton, ViewBox, Flexbox, FlexboxItem } from 'vux'
+import { XHeader, XButton, ViewBox, Flexbox, FlexboxItem } from 'vux'
 import { MessageBox } from 'mint-ui'
 import { mapGetters, mapActions } from 'vuex'
+import share from '@/components/share'
 
 export default {
   name: 'index',
   components: {
-    Actionsheet, XHeader, XButton, ViewBox, Flexbox, FlexboxItem, MessageBox
+    XHeader, XButton, ViewBox, Flexbox, FlexboxItem, MessageBox, share
   },
   computed: {
     ...mapGetters(['Invite'])
@@ -44,94 +45,19 @@ export default {
   data () {
     return {
       showAction: false,
-      shares: {},
-      sharesList: [{
-        id: 'weixin',
-        ex: 'WXSceneSession'
-      }, {
-        id: 'weixin',
-        ex: 'WXSceneTimeline'
-      }, {
-        id: 'qq'
-      }],
-      menus: {
-        qq: '分享给QQ好友',
-        wechat: '分享给微信好友',
-        wechatTimeLine: '分享到朋友圈'
+      share: {
+        content: '2333',
+        title: '2222222',
+        href: 'https://baidu.com'
       }
     }
   },
   methods: {
     ...mapActions(['getInvite', 'setInviteCode']),
-    shareAction (id, ex) {
-      var s = null
-      if (!id || !(s = this.shares[id])) {
-        this.$vux.toast.show({text: '无效的分享服务！', type: 'text', time: 1000, position: 'bottom'})
-        return
-      }
-      if (s.authenticated) {
-        this.$vux.toast.show({text: '已授权', type: 'text', time: 1000, position: 'bottom'})
-        this.shareMessage(s, ex)
-      } else {
-        this.$vux.toast.show({text: '未授权', type: 'text', time: 1000, position: 'bottom'})
-        s.authorize(() => {
-          this.shareMessage(s, ex)
-        }, (e) => {
-          this.$vux.toast.show({text: '认证授权失败', type: 'text', time: 1000, position: 'bottom'})
-        })
-      }
-    },
-    /**
-     * 发送分享消息
-     */
-    shareMessage (s, ex) {
-      var msg = {
-        href: 'http://blog.csdn.net/zhuming3834',
-        title: 'HGDQ-分享测试-title',
-        content: 'HGDQ-分享测试-content',
-        thumbs: ['http://img3.3lian.com/2013/v10/4/87.jpg'],
-        pictures: ['http://img3.3lian.com/2013/v10/4/87.jpg'],
-        extra: {
-          scene: ex
-        }
-      }
-      s.send(msg, () => {
-        this.$vux.toast.show({text: '分享成功', type: 'text', time: 1000, position: 'bottom'})
-      }, (e) => {
-        this.$vux.toast.show({text: '取消分享', type: 'text', time: 1000, position: 'bottom'})
-      })
-    },
-    _menuClick (val) {
-      let index
-      if (val === 'qq') {
-        index = 2
-      } else if (val === 'wechat') {
-        index = 0
-      } else {
-        index = 1
-      }
-      this.shareAction(this.sharesList[index].id, this.sharesList[index].ex)
-    },
     _input () {
       MessageBox.prompt(' ', '输入好友邀请码').then(({ value, action }) => {
         this.setInviteCode({ code: value })
       }).catch(() => {})
-    }
-  },
-  created () {
-    try {
-      plus.share.getServices((s) => {
-        this.shares = {}
-        for (var i in s) {
-          let t = s[i]
-          this.shares[t.id] = t
-        }
-        this.$vux.toast.show({text: '获取分享服务列表成功', type: 'text', time: 1000, position: 'bottom'})
-      }, (e) => {
-        this.$vux.toast.show({text: '获取分享服务列表失败：' + e.message, type: 'text', time: 1000, position: 'bottom'})
-      })
-    } catch (e) {
-      console.log(e)
     }
   },
   beforeRouteEnter (to, from, next) {

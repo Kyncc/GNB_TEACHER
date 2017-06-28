@@ -33,7 +33,7 @@ export default {
       this.list.forEach((arr) => {
         if (arr.id.toString() === val.toString()) {
           this.name = arr.name
-          return
+          return ''
         }
       })
       this.$emit('on-change', val)

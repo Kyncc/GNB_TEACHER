@@ -1,16 +1,20 @@
 <template>
   <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '题目详情'}">
-      <div slot="right" @click='visible = true'>
-        <i class="icon iconfont icon-6" style="padding:10px;margin:0 -10px 0 0"></i>
+      <div slot="right">
+         <!--<div slot="right" @click='visible = true'>-->
+        <p @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id, grade: Params.grade}})">
+           <i class="icon iconfont icon-bianji"></i>
+        </p>
+        <!--<i class="icon iconfont icon-6" style="padding:10px;margin:0 -10px 0 0"></i>-->
       </div>
-      <mt-popup v-model="visible" class="popup">
+      <!--<mt-popup v-model="visible" class="popup">
         <p @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id, grade: Params.grade}})">
            <i class="icon iconfont icon-bianji"></i>纠错
         </p>
         <p><i class="icon iconfont icon-share"></i>分享</p>
-        <!--<p><i class="icon iconfont icon-pinglun"></i>评价</p>-->
-      </mt-popup>
+        <p><i class="icon iconfont icon-pinglun"></i>评价</p>
+      </mt-popup>-->
     </x-header>
     <card v-show='!loading'>
       <div slot="header" class="weui-panel__hd">

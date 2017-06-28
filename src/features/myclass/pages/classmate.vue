@@ -22,28 +22,36 @@
       <flexbox style='padding:.4rem;'>
         <flexbox-item :span="8" style="font-size:.7rem">我的邀请码: <b></b>{{ClassMyClassmate.classcode}}</flexbox-item>
         <flexbox-item :span="4" style="color:#4bb7aa;"> 
-          <x-button type="primary" @click.native="_share" plain mini>邀请同学</x-button>
+          <x-button type="primary" @click.native='showAction = true' plain mini>邀请同学</x-button>
         </flexbox-item>
       </flexbox>
     </tabbar>
+    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
   </view-box>
 </template>
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Spinner, Tabbar, TabbarItem, XButton, Flexbox, FlexboxItem} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
+import share from '@/components/share'
 
 export default {
   name: 'classmate',
   components: {
-    XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem, Flexbox, FlexboxItem
+    XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem, Flexbox, FlexboxItem, share
   },
   computed: {
     ...mapGetters(['ClassMyClassmate'])
   },
   data () {
     return {
-      loading: true
+      showAction: false,
+      loading: true,
+      share: {
+        content: '2333',
+        title: '2222222',
+        href: 'https://baidu.com'
+      }
     }
   },
   methods: {
@@ -66,9 +74,6 @@ export default {
       this.getMyClassmateList().then(() => {
         this.loading = false
       })
-    },
-    _share () {
-
     }
   },
   beforeRouteEnter (to, from, next) {
