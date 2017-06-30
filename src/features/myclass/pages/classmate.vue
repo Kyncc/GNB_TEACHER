@@ -82,6 +82,14 @@ export default {
       vm.myClassmateClear()
       vm._getData()
     })
+  },
+  beforeRouteLeave (to, from, next) {
+    if (this.showAction) {
+      this.showAction = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>

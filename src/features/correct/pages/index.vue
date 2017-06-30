@@ -10,11 +10,10 @@
         type="checkbox"
         default-item-class="select-item"
         selected-item-class="select-item-selected">
-          <checker-item value="答案错误">答案错误</checker-item>
-          <checker-item value="解析不全">解析不全</checker-item>
-          <checker-item value="题目超纲">题目超纲</checker-item>
-          <checker-item value="题型太老">题型太老</checker-item>
-          <checker-item value="例题不对">例题不对</checker-item>
+          <checker-item value="题干有误">题干有误</checker-item>
+          <checker-item value="答案有误">答案有误</checker-item>
+          <checker-item value="解析有误">解析有误</checker-item>
+          <checker-item value="例题有误">例题有误</checker-item>
           <checker-item value="其他">其他</checker-item>
       </checker>
     </group>

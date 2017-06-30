@@ -68,6 +68,14 @@ export default {
     } else {
       next()
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    if (this.showAction) {
+      this.showAction = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>

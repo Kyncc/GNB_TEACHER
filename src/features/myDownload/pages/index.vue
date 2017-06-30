@@ -102,8 +102,16 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.showPopupPicker = false
-    next()
+    // 弹窗的返回键处理
+    if (this.showAction) {
+      this.showAction = false
+      next(false)
+    } else if (this.showPopupPicker) {
+      this.showPopupPicker = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>

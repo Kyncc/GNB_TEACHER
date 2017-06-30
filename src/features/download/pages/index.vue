@@ -8,7 +8,7 @@
         </popup-picker>
       </div>
     </x-header>
-    <div>
+    <div slot="default">
       <div v-for="(list, pindex) in block" :key="pindex" v-show='!loading'>
         <div class="weui-cells__title">{{list.name}}</div>
         <card v-for="(item, index) in list.list" :key="index">
@@ -36,8 +36,9 @@
         <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
+      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
     </div>
-    <tabbar style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
+    <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
         <flexbox-item :span="6" style="font-size:.8rem;text-align:center;" 
           @click.native="$router.push({name: 'download_update', params: {id: downloadId}})">
@@ -48,7 +49,6 @@
           下载</flexbox-item>
       </flexbox>
     </tabbar>
-    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
   </view-box>
 </template>
 
@@ -116,6 +116,8 @@ export default {
       this.getDownloadUrl().then(() => {
         this.href = this.DownloadUrl
         this.showAction = true
+      }).catch((e) => {
+        this.showAction = false
       })
     }
   },
@@ -137,9 +139,17 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.showPopupPicker = false
-    this.setMyDownloadPaperScroll(this.$refs.download.getScrollTop())
-    next()
+    // 弹窗的返回键处理
+    if (this.showAction) {
+      this.showPopupPicker = false
+      next(false)
+    } else if (this.showPopupPicker) {
+      this.showPopupPicker = false
+      next(false)
+    } else {
+      this.setMyDownloadPaperScroll(this.$refs.download.getScrollTop())
+      next()
+    }
   }
 }
 </script>
