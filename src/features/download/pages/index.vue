@@ -36,7 +36,6 @@
         <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
-      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
     </div>
     <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
@@ -48,6 +47,7 @@
           <i class="icon iconfont icon-download"></i>
           下载</flexbox-item>
       </flexbox>
+      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
     </tabbar>
   </view-box>
 </template>

@@ -191,8 +191,12 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.setErrorScroll(this.$refs.error.getScrollBody)
-    this.showErrorPopup = false
-    next()
+    if (this.showErrorPopup) {
+      this.showErrorPopup = false
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>
