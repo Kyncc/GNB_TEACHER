@@ -51,9 +51,9 @@ export const getToken = ({ commit }, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
-      method: 'get',
+      method: 'post',
       url: 'user/token',
-      params: {
+      data: {
         ...params
       }
     })
