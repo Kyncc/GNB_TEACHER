@@ -19,7 +19,7 @@
     <card v-show='!loading'>
       <div slot="header" class="weui-panel__hd">
         <flexbox>
-          <flexbox-item :span="10" style="color:#4bb7aa">{{Params.type === 'lxexercises' ? '精选题' : Route.query.name}}</flexbox-item>
+          <flexbox-item :span="10" style="color:#4bb7aa">{{Params.type === 'lxexercises' ? '练习题' : Route.query.name}}</flexbox-item>
         </flexbox>
       </div>
       <div slot="content">
@@ -31,9 +31,9 @@
       <div slot="footer">
         <div class="weui-cell weui-cell_link">
           <div class="weui-cell__bd">
-            <flexbox>
-              <flexbox-item :span="2">难度：{{Example.degree}}</flexbox-item>
-              <flexbox-item :span="7">更新时间：{{Example.time | ymd}}</flexbox-item>
+            <flexbox :gutter='0'>
+              <flexbox-item :span="3">难度: {{Example.degree}}</flexbox-item>
+              <flexbox-item :span="7">更新时间: {{Example.time | ymd}}</flexbox-item>
             </flexbox>
           </div>
         </div>

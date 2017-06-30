@@ -59,7 +59,7 @@ export default {
     _del (student, index) {
       let _this = this
       this.$vux.confirm.show({
-        title: `确定删除${student.name}同学么?`,
+        title: `确定删除${student.name}同学?`,
         dialogTransition: 'vux-fade',
         onConfirm () {
           let params = {

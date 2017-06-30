@@ -3,7 +3,7 @@ import * as getters from './getters'
 import * as actions from './actions'
 
 const state = {
-  isInvited: false,
+  isInvited: true,
   inviteCode: '',
   list: []
 }
@@ -16,7 +16,7 @@ const mutations = {
     state.list = data
   },
   [types.INVITE] (state, data) {
-    state.isInvite = data.isInvited
+    state.isInvited = data.isInvited
     state.inviteCode = data.inviteCode
   }
 }

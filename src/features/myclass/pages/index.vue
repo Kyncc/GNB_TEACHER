@@ -16,9 +16,7 @@
         </cell>
       </group>
       <group>
-        <template v-for="myClass in User.classes">
-          <cell :title="myClass.name" :link="'class/detail/'+myClass.classCode"></cell>
-        </template>
+        <cell v-for="(myClass, index) in User.classes" :key='index' :title="myClass.name" :link="'class/detail/'+myClass.classCode"></cell>
       </group>
     </div>
   </view-box>

@@ -227,7 +227,7 @@ export default {
 }
 
 .check-item-selected {
-  background-color: #FF3B3B;
+  background-color: #4BB7AA;
   color: #fff;
 }
 

@@ -17,8 +17,11 @@
           </flexbox>
         </div>
         <div slot="content">
-          <img v-for="(img, index) in item.camera" :key="index" class="previewer-answer-img" @click="show(item.camera, index)" 
-            v-lazy="img.url+'-answer'">
+          <flexbox wrap="wrap" align="baseline" :gutter="0">
+            <flexbox-item :span="3" v-for="(img, index) in item.camera" :key="index" @click.native="show(index, item.camera)" style="text-align:center;margin-bottom:10px;">
+              <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/136x180!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="68" height="90" class="previewer-answer-img">
+            </flexbox-item>
+          </flexbox>
         </div>
       </card>
     </div>
@@ -56,15 +59,17 @@ export default {
   },
   methods: {
     ...mapActions(['getWorkbookExerciseErrorPhoto', 'workbookExerciseErrorPhotoClear']),
-    show (camera, index) {
+    show (index, camera) {
       this.list = []
-      this.list.push({
-        src: camera[index].url,
-        w: camera[index].width,
-        h: camera[index].height
-      })
+      for (let arr of camera) {
+        this.list.push({
+          w: Number(arr.width) / 2,
+          h: Number(arr.height) / 2,
+          src: `${arr.url}-answerBig`
+        })
+      }
       this.$nextTick(() => {
-        this.$refs.previewer.show(0)
+        this.$refs.previewer.show(index)
       })
     }
   },

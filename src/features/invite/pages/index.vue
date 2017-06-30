@@ -3,13 +3,13 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '邀请好友'}">
       <p slot="right" @click="$router.push({name: 'invite_list'})">受邀好友</p>
     </x-header>
-    <div>
-      <flexbox justify='center' class='tip'>
+    <div style='padding-top:2rem;'>
+      <!--<flexbox justify='center' class='tip'>
         <flexbox-item :span="11">
           <h4>提示:</h4>
           <p>邀请好友安装归纳本APP，并在本界面填写您的邀请码，您和您的好友均可获得50积分。</p>
         </flexbox-item>
-      </flexbox>
+      </flexbox>-->
       <flexbox justify='center'>
         <flexbox-item :span="10" class='code' @click.native='showAction = true'>
           <h4>我的邀请码</h4>
@@ -17,7 +17,7 @@
           <x-button type="primary" plain mini @click='showAction = true'>分享邀请码</x-button>
         </flexbox-item>
       </flexbox>
-      <flexbox justify='center' style='margin-top:.5rem;' v-if='!Invite.isInvited'>
+      <flexbox justify='center' style='margin-top:.5rem;' v-show='!Invite.isInvited'>
         <flexbox-item :span="10">
           <x-button type="default" @click.native='_input'>输入好友邀请码</x-button>
         </flexbox-item>
@@ -97,7 +97,7 @@ export default {
   line-height: 2rem;
   background: #fff;
   box-sizing: border-box;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
   border: 2px dashed #ccc;
 }
 </style>

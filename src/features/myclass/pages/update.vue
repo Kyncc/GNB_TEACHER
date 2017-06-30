@@ -27,7 +27,7 @@ export default {
     _del () {
       let _this = this
       this.$vux.confirm.show({
-        title: `是否删除${_this.Route.params.name}班级么?`,
+        title: `是否删除${_this.Route.params.name}班级?`,
         dialogTransition: 'vux-fade',
         onConfirm () {
           _this.delClass().then(() => {
