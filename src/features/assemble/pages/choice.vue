@@ -1,7 +1,7 @@
 <template>
  <view-box ref="viewBox" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '精选练习'}"><div slot="right" @click='_openMsg()'>说明</div></x-header>
+      <x-header :left-options="{backText: '精选练习'}"></x-header>
     </div>
     <div>
       <card v-for="(item, index) in list" :key="index">
@@ -70,12 +70,6 @@ export default {
         this.loading = false
       }).catch(() => {
         this.loading = false
-      })
-    },
-    _openMsg () {
-      this.$vux.alert.show({
-        title: '请到下载中心下载~',
-        content: '(可以跨章节组卷)'
       })
     }
   },

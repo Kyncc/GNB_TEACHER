@@ -13,7 +13,8 @@
           <checker-item value="题干有误">题干有误</checker-item>
           <checker-item value="答案有误">答案有误</checker-item>
           <checker-item value="解析有误">解析有误</checker-item>
-          <checker-item value="例题有误">例题有误</checker-item>
+          <!--练习题才显示例题有误 lxexercises 练习题 exercises 例题-->
+          <checker-item v-show="Route.query.type === 'lxexercises'" value="例题有误">例题有误</checker-item>
           <checker-item value="其他">其他</checker-item>
       </checker>
     </group>
@@ -34,7 +35,7 @@ export default {
     XHeader, XButton, Checker, CheckerItem, Group, XTextarea, ViewBox
   },
   computed: {
-    ...mapGetters(['Correct'])
+    ...mapGetters(['Correct', 'Route'])
   },
   data () {
     return {

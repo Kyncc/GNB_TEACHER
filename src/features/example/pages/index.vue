@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '题目详情'}">
       <div slot="right">
          <!--<div slot="right" @click='visible = true'>-->
-        <p @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id, grade: Params.grade}})">
+        <p @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id, grade: Params.grade}, query: {type: Params.type}})">
            <i class="icon iconfont icon-bianji"></i>
         </p>
         <!--<i class="icon iconfont icon-6" style="padding:10px;margin:0 -10px 0 0"></i>-->

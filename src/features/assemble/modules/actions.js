@@ -149,7 +149,16 @@ export const setAssemble = ({rootState, commit, state}, params) => {
     })
     .then((response) => {
       commit(types.ASSEMBLE_INTO, {index: params.index, data: response.data.data})
-      Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      if (localStorage.getItem('isAssemble')) {
+        Vue.$vux.toast.show({text: response.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      } else {
+        localStorage.setItem('isAssemble', true)
+        Vue.$vux.alert.show({
+          title: '请到下载中心下载~',
+          content: '(可以跨章节组卷)',
+          dialogTransition: 'vux-fade'
+        })
+      }
       resolve(response)
     }).catch((err) => {
       reject(err)

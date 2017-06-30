@@ -143,11 +143,11 @@ export default {
     },
     // 类型错误弹窗
     _showErrorPopup (error, index) {
-      this.showErrorPopup = true
       this.errorType.index = index
       this.errorType.type = error.errorType
       this.errorType.wbeid = error.wbeid
       this.errorType.chapterId = error.chapterId
+      this.showErrorPopup = true
     },
     // 类型错误弹窗
     _showCommentPopup (error) {
@@ -169,6 +169,7 @@ export default {
         wbeid: this.errorType.wbeid
       }).then(() => {
         this.$vux.toast.show({ text: '设置错误类型成功!', type: 'text', time: 1000, position: 'bottom' })
+        this.errorType.type = ''
       })
     }
   },
