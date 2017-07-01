@@ -10,7 +10,7 @@
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownload.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownload' :key='index'>
           <div slot="value" style='color:#4BB7AA'>
-            <span style='padding:0 5px;line-height:24px;' @click="_download(item.url)">
+            <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
               <i class="icon iconfont icon-download" style="font-size:16px;" ></i>下载
             </span>
             <span style='padding:0 5px;line-height:24px;' @click="$router.push({name:'myDownload_list', params:{id: item.downloadId}})">
@@ -64,16 +64,17 @@ export default {
       error: false,
       showAction: false,
       share: {
-        content: '2333',
-        title: '2222222',
+        content: '',
+        title: '试卷分享',
         href: ''
       }
     }
   },
   methods: {
     ...mapActions(['getMyDownload', 'clearMyDownload']),
-    _download (url) {
-      this.href = url
+    _download (item) {
+      this.share.href = item.url
+      this.share.content = item.name
       this.showAction = true
     },
     _getData () {

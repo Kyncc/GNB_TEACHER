@@ -93,8 +93,8 @@ export default {
       error: false,
       showAction: false,
       share: {
-        content: '2333',
-        title: '2222222',
+        content: '',
+        title: '试卷分享',
         href: ''
       }
     }
@@ -114,7 +114,7 @@ export default {
     },
     _download () {
       this.getDownloadUrl().then(() => {
-        this.href = this.DownloadUrl
+        this.share.href = this.DownloadUrl
         this.showAction = true
       }).catch((e) => {
         this.showAction = false

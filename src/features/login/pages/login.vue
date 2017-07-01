@@ -1,10 +1,10 @@
 <template>
   <div class="login">
     <div class="icon">
-      <img src="../assets/icon.png"/>
+      <img src="../assets/icon.png">
     </div>
     <div class="title">
-      <img src="../assets/title.png"/>
+      <img src="../assets/title.png">
     </div>
     <group class="weui_cells_form">
       <x-input name="mobile" placeholder="手机号" keyboard="number" v-model="mobile" is-type="china-mobile" required ref="mobile" @on-change="_change"></x-input>

@@ -19,16 +19,15 @@
       </flexbox>
       <flexbox justify='center' style='margin-top:.5rem;'>
         <flexbox-item :span="10">
-          <x-button type="default" @click.native='_input' disabled='Invite.isInvited'>输入好友邀请码</x-button>
+          <x-button type="default" @click.native='_input' :disabled='Invite.isInvited'>输入好友邀请码</x-button>
         </flexbox-item>
       </flexbox>
     </div>
-    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
+    <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="share.href+Invite.inviteCode"></share>
   </view-box>
 </template>
 
 <script>
-
 import { XHeader, XButton, ViewBox, Flexbox, FlexboxItem } from 'vux'
 import { MessageBox } from 'mint-ui'
 import { mapGetters, mapActions } from 'vuex'
@@ -46,9 +45,9 @@ export default {
     return {
       showAction: false,
       share: {
-        content: '2333',
-        title: '2222222',
-        href: 'https://baidu.com'
+        content: '好东西，自然与朋友共分享',
+        title: '帮老师批改作业，帮学生归纳错题',
+        href: `https://share.guinaben.com/#/invite?query=`
       }
     }
   },

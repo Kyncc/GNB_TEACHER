@@ -22,7 +22,7 @@
       <flexbox style='padding:.4rem;'>
         <flexbox-item :span="8" style="font-size:.7rem">我的邀请码: <b></b>{{ClassMyClassmate.classcode}}</flexbox-item>
         <flexbox-item :span="4" style="color:#4bb7aa;"> 
-          <x-button type="primary" @click.native='showAction = true' plain mini>邀请同学</x-button>
+          <x-button type="primary" @click.native='_invite(ClassMyClassmate.classcode)' plain mini>邀请同学</x-button>
         </flexbox-item>
       </flexbox>
     </tabbar>
@@ -48,9 +48,9 @@ export default {
       showAction: false,
       loading: true,
       share: {
-        content: '2333',
-        title: '2222222',
-        href: 'https://baidu.com'
+        content: '归纳本辅导更轻松，提分更明显',
+        title: '加入我的班级',
+        href: ``
       }
     }
   },
@@ -71,9 +71,16 @@ export default {
       })
     },
     _getData () {
+      this.loading = true
       this.getMyClassmateList().then(() => {
         this.loading = false
+      }).catch((e) => {
+        this.loading = false
       })
+    },
+    _invite (code) {
+      this.share.href = `https://share.guinaben.com/#/class?query=${code}`
+      this.showAction = true
     }
   },
   beforeRouteEnter (to, from, next) {
