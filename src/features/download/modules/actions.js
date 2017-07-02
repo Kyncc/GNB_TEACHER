@@ -64,7 +64,6 @@ export const getDownloadUrl = ({ rootState, state, commit }, params) => {
       commit(types.DOWNLOAD_URL, response.data.data)
       resolve(response)
     }).catch((e) => {
-      Vue.$vux.toast.show({text: '获取下载地址失败', type: 'text', time: 1000, position: 'bottom'})
       reject(e)
     })
   })

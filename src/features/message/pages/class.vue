@@ -35,7 +35,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      this.loading = true
+      vm.loading = true
       vm.getMessageClass().then(() => {
         vm.loading = false
       }).catch((e) => {

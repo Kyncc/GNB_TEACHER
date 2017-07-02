@@ -65,7 +65,7 @@ export default {
   computed: {
     ...mapGetters(['DownloadPaper', 'DownloadUrl', 'User']),
     block () {
-      return this.DownloadPaper.list.block
+      return this.DownloadPaper.list.block || []
     },
     downloadId () {
       return this.DownloadPaper.list.downloadId
@@ -114,10 +114,10 @@ export default {
     },
     _download () {
       this.getDownloadUrl().then(() => {
-        this.share.href = this.DownloadUrl
+        this.share.href = this.DownloadUrl.url
         this.showAction = true
       }).catch((e) => {
-        this.showAction = false
+        console.log(e)
       })
     }
   },

@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import {XHeader, Cell, Group, ViewBox} from 'vux'
+import {XHeader, Badge, Cell, Group, ViewBox} from 'vux'
 import {mapGetters} from 'vuex'
 
 export default {
   name: 'index',
   components: {
-    XHeader, Cell, Group, ViewBox
+    XHeader, Cell, Group, ViewBox, Badge
   },
   computed: {
     ...mapGetters(['User', 'News'])
