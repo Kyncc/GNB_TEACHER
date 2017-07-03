@@ -50,7 +50,7 @@ export const getDownloadUpdate = ({ rootState, state, commit }, params) => {
   })
 }
 
-/** 下载题目编辑 */
+/** 下载题目成功 */
 export const getDownloadUrl = ({ rootState, state, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
@@ -61,7 +61,24 @@ export const getDownloadUrl = ({ rootState, state, commit }, params) => {
         downloadId: state.paper.list.downloadId
       }
     }).then((response) => {
-      commit(types.DOWNLOAD_URL, response.data.data)
+      commit(types.DOWNLOAD_URL)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 题目次数 */
+export const getDownloadVaild = ({ rootState, commit }) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'download/validDownload',
+      data: {
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
       resolve(response)
     }).catch((e) => {
       reject(e)

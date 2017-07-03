@@ -36,6 +36,7 @@
         <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
+      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'http://www.guinaben.com/upload/assembly/'+downloadId+'.pdf'" @on-success='_shareSuccess()'></share>
     </div>
     <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
@@ -47,7 +48,6 @@
           <i class="icon iconfont icon-download"></i>
           下载</flexbox-item>
       </flexbox>
-      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
     </tabbar>
   </view-box>
 </template>
@@ -94,13 +94,12 @@ export default {
       showAction: false,
       share: {
         content: '我的组卷',
-        title: '试卷分享',
-        href: ''
+        title: '试卷分享'
       }
     }
   },
   methods: {
-    ...mapActions(['getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper']),
+    ...mapActions(['getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper', 'getDownloadVaild']),
     _getData () {
       this.clearMyDownloadPaper()
       this.loading = true
@@ -112,13 +111,22 @@ export default {
         this.loading = false
       })
     },
+    // 下载之前的次数判断
     _download () {
-      this.getDownloadUrl().then(() => {
-        this.share.href = this.DownloadUrl.url
+      this.getDownloadVaild().then((res) => {
         this.showAction = true
-      }).catch((e) => {
-        console.log(e)
       })
+    },
+    // 分享成功后的回调
+    _shareSuccess () {
+      return (async () => {
+        try {
+          await this.getDownloadUrl()
+          await this._getData()
+        } catch (err) {
+          console.log(err)
+        }
+      })()
     }
   },
   watch: {
