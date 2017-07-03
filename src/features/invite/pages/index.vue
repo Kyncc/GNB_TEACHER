@@ -46,8 +46,8 @@ export default {
       showAction: false,
       share: {
         content: '好东西，自然与朋友共分享',
-        title: '帮老师批改作业，帮学生归纳错题',
-        href: `https://share.guinaben.com/#/invite?query=`
+        title: '帮老师批改作业，替学生归纳错题',
+        href: `http://share.guinaben.com/#/invite?code=`
       }
     }
   },

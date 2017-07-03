@@ -79,7 +79,7 @@ export default {
       })
     },
     _invite (code) {
-      this.share.href = `https://share.guinaben.com/#/class?query=${code}`
+      this.share.href = `http://share.guinaben.com/#/class?code=${code}`
       this.showAction = true
     }
   },

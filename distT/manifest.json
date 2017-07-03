@@ -16,9 +16,9 @@
 	},
 	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
-		"name": "",/*开发者名称*/
-		"email": "",/*开发者邮箱地址*/
-		"url": ""
+		"name": "HopeFE",/*开发者名称*/
+		"email": "hopefullstack@gmail.com",/*开发者邮箱地址*/
+		"url": "https://ygxdxx.com"
 	},
 	"permissions": {
 
@@ -99,12 +99,12 @@
 			"plugins": {
 				"share": {
 					"qq": {
-						"appid": "1105792782APP",
+						"appid": "1105792782",
 						"description": "QQ分享"
 					},
 					"weixin": {
-						"appid": "1105792782APP",
-						"appsecret": "KEYwfraqgwgvgwSHPgO",
+						"appid": "1105792782",
+						"appsecret": "wfraqgwgvgwSHPgO",
 						"description": "可选，微信分享"
 					}
 				},

@@ -93,7 +93,7 @@ export default {
       error: false,
       showAction: false,
       share: {
-        content: '',
+        content: '我的组卷',
         title: '试卷分享',
         href: ''
       }
