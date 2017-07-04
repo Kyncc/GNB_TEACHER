@@ -1,5 +1,5 @@
 <template>
-  <actionsheet v-model="show" :menus="menus" @on-click-menu="_menuClick()" @on-success='onShareSuccess()'></actionsheet>
+  <actionsheet v-model="show" :menus="menus" @on-click-menu="_menuClick" @on-share-success='onShareSuccess()'></actionsheet>
 </template>
 
 <script>
@@ -93,7 +93,7 @@ export default {
       })
     },
     onShareSuccess () {
-      this.$emit('on-success')
+      this.$emit('on-share-success')
     },
     _menuClick (val) {
       let index

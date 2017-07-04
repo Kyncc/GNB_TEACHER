@@ -36,7 +36,7 @@
         <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
-      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'http://www.guinaben.com/upload/assembly/'+downloadId+'.pdf'" @on-success='_shareSuccess()'></share>
+      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'http://www.guinaben.com/upload/assembly/'+downloadId+'.pdf'" @on-share-success='_shareSuccess()'></share>
     </div>
     <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
