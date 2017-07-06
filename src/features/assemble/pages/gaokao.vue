@@ -1,7 +1,7 @@
 <template>
   <div>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
-      <div v-for="(list, index) in AssembleGaokao.list" :key='index'>
+      <template v-for="(list, index) in AssembleGaokao.list">
         <cell :title="list.name" is-link :border-intent="false" :arrow-direction="list.check ? 'up' : 'down'" @click.native="list.check = !list.check"></cell>
         <div class="slide" :class="list.check ? 'animate':''">
           <cell-box v-for="(chapter, index) in list.sub_chapter_list" :key='index' @click.native="$router.push({name: 'assemble_example', params: {type: 'type', id: chapter.id, name: chapter.name}})">
@@ -13,7 +13,7 @@
             </div>
           </cell-box>
         </div>
-      </div>
+      </template>
     </group>
     <div style="text-align:center">
       <spinner v-if="loading" type="dots"></spinner>

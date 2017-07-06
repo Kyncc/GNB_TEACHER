@@ -1,5 +1,6 @@
 import axios from '@/components/axios/'
 import * as types from './mutationTypes'
+import Vue from 'vue'
 
 /** 获取错题列表 */
 export const getError = ({rootState, commit, state}, params) => {
@@ -70,6 +71,58 @@ export const getErrorClassmate = ({rootState, commit, state}, params) => {
       commit(types.ERROR_CLASSMATE, {data: response.data.data})
       resolve(response)
     }).catch((err) => {
+      reject(err)
+    })
+  })
+}
+
+/** 获取评价 */
+export const getErrorComment = ({rootState, commit, state}, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'error/comment',
+      params: {
+        token: rootState.common.user.token,
+        studentId: rootState.route.params.studentId,
+        wbeid: params.wbeid,
+        chapterId: params.chapterId
+      }
+    })
+    .then((response) => {
+      commit(types.ERROR_COMMENT, {data: response.data.data})
+      Vue.$vux.loading.hide()
+      resolve(response)
+    }).catch((err) => {
+      Vue.$vux.loading.hide()
+      reject(err)
+    })
+  })
+}
+
+/** 评价错题 */
+export const setErrorComment = ({rootState, commit, state}, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'put',
+      url: 'error/comment',
+      headers: {'Content-Type': 'multipart/form-data'},
+      data: {
+        token: rootState.common.user.token,
+        content: params.content,
+        audio: params.audio,
+        studentId: rootState.route.params.studentId,
+        wbeid: params.wbeid,
+        chapterId: params.chapterId
+      }
+    })
+    .then((response) => {
+      Vue.$vux.loading.hide()
+      resolve(response)
+    }).catch((err) => {
+      Vue.$vux.loading.hide()
       reject(err)
     })
   })

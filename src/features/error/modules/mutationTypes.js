@@ -12,3 +12,5 @@ export const ERROR_SCROLL = 'ERROR_SCROLL'
 export const ERROR_RELOAD = 'ERROR_RELOAD'
 /** 错误类型选择 */
 export const ERROR_ERROR_TYPE = 'ERROR_ERROR_TYPE'
+/** 获取错误评价 */
+export const ERROR_COMMENT = 'ERROR_COMMENT'

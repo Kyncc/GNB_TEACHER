@@ -1,22 +1,23 @@
 <template>
   <view-box ref="viewBox" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '点评',showBack: true}">
-      <div slot="right">发布</div>
+      <div slot="right" @click='_comment()'>发布</div>
     </x-header>
     <div>
       <group :gutter='0' title='我要点评'>
-        <x-textarea :rows="5" v-model="content" placeholder="请输入点评内容"></x-textarea>
+        <x-textarea v-if='errorComment.content.length' :rows="5" :value="errorComment.content" readonly></x-textarea>
+        <x-textarea v-else :rows="5" v-model="content" placeholder="请输入点评内容"></x-textarea>
       </group>
       <flexbox :gutter="0" wrap="wrap" justify='center' style='margin-top:1rem;'>
         <flexbox-item :span="11">
           <x-button type="primary" @click.native="_record()" v-if='!audio.path.length'>开始录音</x-button>
+          <x-button type="primary" @click.native="_playUrl()" v-else-if='errorComment.audio.length'>{{!comment.state ? '播放' : '暂停'}}录音</x-button>
           <template v-else>
             <x-button type="primary" @click.native="_play()">{{!audio.state ? '播放' : '暂停'}}录音</x-button>
             <x-button type="primary" @click.native="_reset()">清空录音</x-button>
           </template>
         </flexbox-item>
       </flexbox>
-      <x-button type="primary" @click.native="_playUrl()">{{!comment.state ? '播放' : '暂停'}}录音</x-button>
     </div>
     <div class="mask record" v-show='isRecord.state'>
       <div class="time">录音中 {{isRecord.time}} 秒</div>
@@ -27,7 +28,7 @@
 
 <script>
 import { XHeader, ViewBox, XButton, Group, XTextarea, Flexbox, FlexboxItem } from 'vux'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { Howl } from 'howler'
 
 export default {
@@ -35,15 +36,18 @@ export default {
   components: {
     XHeader, ViewBox, XButton, Group, XTextarea, Flexbox, FlexboxItem
   },
+  computed: {
+    ...mapGetters(['errorComment', 'Route'])
+  },
   data () {
     return {
       content: '',
       // 上一次得评论
       comment: {
+        // 播放对象
         audio: '',
-        state: false,
-        text: '',
-        url: ''
+        // 播放状态
+        state: false
       },
       // 录音后播放
       audio: {
@@ -61,12 +65,24 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getErrorClassmate']),
+    ...mapActions(['getErrorClassmate', 'setErrorComment', 'getErrorComment']),
+    _comment () {
+      this.setErrorComment({
+        audio: new FormData(this.audio.path),
+        content: this.content
+      }).then(() => {
+        this.$vux.toast.show({text: '提交评价成功!', type: 'text', time: 1000, position: 'bottom'})
+        setTimeout(() => {
+          this.$router.go(-1)
+        }, 500)
+      })
+    },
+    // 播放上次声音
     _playUrl () {
       if (!this.comment.state) {
         this.comment.state = true
         this.comment.audio = new Howl({
-          src: ['https://fourthof5assets.s3-eu-west-1.amazonaws.com/heng-feeling-good.mp3']
+          src: [this.errorComment.audio]
         })
         this.comment.audio.stop().play()
       } else {
@@ -74,6 +90,7 @@ export default {
         this.comment.audio.stop()
       }
     },
+    // 播放录音
     _play () {
       if (!this.audio.state) {
         this.audio.file = plus.audio.createPlayer(this.audio.path)
@@ -128,7 +145,11 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => { })
+    next(vm => {
+      if (vm.Route.isComment) {
+        vm.getErrorComment()
+      }
+    })
   },
   beforeRouteLeave (to, from, next) {
     next()

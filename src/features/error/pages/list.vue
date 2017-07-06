@@ -151,7 +151,7 @@ export default {
     },
     // 类型错误弹窗
     _comment (error) {
-      this.$router.push({name: 'comment', params: {studentId: this.Route.params.studentId, wbeid: error.wbeid, chapterId: error.chapterId}})
+      this.$router.push({name: 'comment', params: {studentId: this.Route.params.studentId, wbeid: error.wbeid, chapterId: error.chapterId}, query: {isComment: true}})
     },
     // 选择错误类型
     onItemClick (value) {

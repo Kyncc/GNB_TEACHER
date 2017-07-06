@@ -12,6 +12,10 @@ const state = {
     subjectId: 2,
     offset: '',
     scroll: 0
+  },
+  comment: {
+    content: '',
+    audio: ''
   }
 }
 
@@ -46,10 +50,11 @@ const mutations = {
   },
   [types.ERROR_ERROR_TYPE] (state, payload) {
     state['error']['list'][payload.index]['errorType'] = Number(payload.type)
+  },
+  [types.ERROR_COMMENT] (state, payload) {
+    state.comment.audio = payload.data.audioUrl
+    state.comment.content = payload.data.content
   }
-  // [types.ERROR_COMMENT] (state, payload) {
-  //   state['error']['list'][payload.index]['errorType'] = Number(payload.type)
-  // }
 }
 
 export default {
