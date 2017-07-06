@@ -70,13 +70,14 @@ export const getDownloadUrl = ({ rootState, state, commit }, params) => {
 }
 
 /** 题目次数 */
-export const getDownloadVaild = ({ rootState, commit }) => {
+export const getDownloadVaild = ({ rootState, state, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
       url: 'download/validDownload',
       data: {
-        token: rootState.common.user.token
+        token: rootState.common.user.token,
+        downloadId: state.paper.list.downloadId
       }
     }).then((response) => {
       resolve(response)

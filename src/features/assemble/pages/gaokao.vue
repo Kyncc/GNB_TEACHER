@@ -1,21 +1,19 @@
 <template>
   <div>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
-      <template v-for="list in AssembleGaokao.list">
+      <div v-for="(list, index) in AssembleGaokao.list" :key='index'>
         <cell :title="list.name" is-link :border-intent="false" :arrow-direction="list.check ? 'up' : 'down'" @click.native="list.check = !list.check"></cell>
         <div class="slide" :class="list.check ? 'animate':''">
-          <template v-for="chapter in list.sub_chapter_list">
-            <cell-box @click.native="$router.push({name: 'assemble_example', params: {type: 'type', id: chapter.id, name: chapter.name}})">
-              <div slot="default" style="width:100%;">
-                <flexbox>
-                  <flexbox-item :span="10">{{chapter.name}}</flexbox-item>
-                  <flexbox-item :span="2" style="text-align:right">{{chapter.num}}</flexbox-item>
-                </flexbox>
-              </div>
-            </cell-box>
-          </template>
+          <cell-box v-for="(chapter, index) in list.sub_chapter_list" :key='index' @click.native="$router.push({name: 'assemble_example', params: {type: 'type', id: chapter.id, name: chapter.name}})">
+            <div slot="default" style="width:100%;">
+              <flexbox>
+                <flexbox-item :span="10">{{chapter.name}}</flexbox-item>
+                <flexbox-item :span="2" style="text-align:right">{{chapter.num}}</flexbox-item>
+              </flexbox>
+            </div>
+          </cell-box>
         </div>
-      </template>
+      </div>
     </group>
     <div style="text-align:center">
       <spinner v-if="loading" type="dots"></spinner>

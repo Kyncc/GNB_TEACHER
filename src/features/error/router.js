@@ -11,6 +11,16 @@ export default {
       path: 'list/:name/:studentId',
       name: 'error',
       component: r => require.ensure([], () => r(require('./pages/list')), '/error/list')
+    },
+    {
+      path: 'list/:name/:studentId',
+      name: 'error',
+      component: r => require.ensure([], () => r(require('./pages/list')), '/error/list')
+    },
+    {
+      path: 'comment/:studentId/:wbeid/:chapterId',
+      name: 'comment',
+      component: r => require.ensure([], () => r(require('./pages/comment')), '/error/comment')
     }
   ]
 }

@@ -14,6 +14,7 @@
     "babel-polyfill": "^6.23.0",
     "cropperjs": "^1.0.0-rc.2",
     "fastclick": "^1.0.6",
+    "howler": "^2.0.4",
     "mint-ui": "^2.2.7",
     "vue": "^2.3.4",
     "vue-lazyload": "^1.0.4",
