@@ -86,8 +86,8 @@ export const getErrorComment = ({rootState, commit, state}, params) => {
       params: {
         token: rootState.common.user.token,
         studentId: rootState.route.params.studentId,
-        wbeid: params.wbeid,
-        chapterId: params.chapterId
+        wbeid: rootState.route.params.wbeid,
+        chapterId: rootState.route.params.chapterId
       }
     })
     .then((response) => {
@@ -105,27 +105,36 @@ export const getErrorComment = ({rootState, commit, state}, params) => {
 export const setErrorComment = ({rootState, commit, state}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
-    axios({
-      method: 'put',
-      url: 'error/comment',
-      headers: {'Content-Type': 'multipart/form-data'},
-      data: {
-        token: rootState.common.user.token,
-        content: params.content,
-        audio: params.audio,
-        studentId: rootState.route.params.studentId,
-        wbeid: params.wbeid,
-        chapterId: params.chapterId
+    var task = plus.uploader.createUpload('https://www.guinaben.com/teacher/error/comment',
+    // {method: 'POST', blocksize: 204800, priority: 100},
+    (response, status) => {
+      // 上传完成
+      if (status === 200) {
+        Vue.$vux.loading.hide()
+        commit(types.ERROR_COMMENT_POST, {index: rootState.route.query.index})
+        alert('Upload success: ' + response.url)
+        resolve(response)
+      } else {
+        Vue.$vux.loading.hide()
+        alert('Upload failed: ' + status)
+        reject(status)
       }
     })
-    .then((response) => {
-      Vue.$vux.loading.hide()
-      resolve(response)
-    }).catch((err) => {
-      Vue.$vux.loading.hide()
-      reject(err)
-    })
+    var path = plus.io.convertLocalFileSystemURL(params.audio)
+    task.addFile(path, {key: 'audio'})
+    task.addData('studentId', rootState.route.params.studentId)
+    task.addData('wbeid', params.wbeid)
+    task.addData('token', rootState.common.user.token)
+    task.addData('content', params.content)
+    task.addData('wbeid', params.wbeid)
+    task.addData('chapterId', params.chapterId)
+    task.start()
   })
+}
+
+/** 清空错题评价 */
+export const clearErrorComment = ({commit}) => {
+  commit(types.ERROR_COMMENT_RESET)
 }
 
 /** 全部学生高度保存 */

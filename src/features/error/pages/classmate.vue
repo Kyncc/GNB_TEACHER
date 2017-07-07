@@ -63,7 +63,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setErrorClassmateScroll(this.$refs.viewBox.getScrollBody)
+    this.setErrorClassmateScroll(this.$refs.viewBox.getScrollTop())
     next()
   }
 }

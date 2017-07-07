@@ -65,10 +65,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getErrorClassmate', 'setErrorComment', 'getErrorComment']),
+    ...mapActions(['getErrorClassmate', 'setErrorComment', 'getErrorComment', 'clearErrorComment']),
     _comment () {
       this.setErrorComment({
-        audio: new FormData(this.audio.path),
+        audio: this.audio.path,
         content: this.content
       }).then(() => {
         this.$vux.toast.show({text: '提交评价成功!', type: 'text', time: 1000, position: 'bottom'})
@@ -146,12 +146,15 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (vm.Route.isComment) {
+      // 如果有评价则获取一次
+      if (vm.Route.query.isComment) {
         vm.getErrorComment()
       }
     })
   },
   beforeRouteLeave (to, from, next) {
+    // 离开清空数据
+    this.clearErrorComment()
     next()
   }
 }

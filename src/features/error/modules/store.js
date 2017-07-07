@@ -54,6 +54,14 @@ const mutations = {
   [types.ERROR_COMMENT] (state, payload) {
     state.comment.audio = payload.data.audioUrl
     state.comment.content = payload.data.content
+  },
+  [types.ERROR_COMMENT_RESET] (state) {
+    state.comment.audio = ''
+    state.comment.content = ''
+  },
+  [types.ERROR_COMMENT_POST] (state, payload) {
+    // TODO 提交后将列表页评价状态改变
+    state.error.list[payload.index]['comment'] = true
   }
 }
 

@@ -14,3 +14,7 @@ export const ERROR_RELOAD = 'ERROR_RELOAD'
 export const ERROR_ERROR_TYPE = 'ERROR_ERROR_TYPE'
 /** 获取错误评价 */
 export const ERROR_COMMENT = 'ERROR_COMMENT'
+/** 提交错误评价 */
+export const ERROR_COMMENT_POST = 'ERROR_COMMENT_POST'
+/** 清空错误评价 */
+export const ERROR_COMMENT_RESET = 'ERROR_COMMENT_RESET'

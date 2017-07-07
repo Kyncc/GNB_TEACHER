@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="error" body-padding-top="46px">
+  <view-box ref="viewBox" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}">
       <div slot="right" style="margin:0">
         <gnbChangeSub :change.sync='selectedSub'></gnbChangeSub>
@@ -25,7 +25,7 @@
             <div class="weui-cell__bd" style="text-align:right">
               <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
               <!--<x-button mini plain type="primary">参考例题</x-button>-->
-              <x-button mini type="primary" @click.native="_comment(error)">我要点评</x-button>
+              <x-button mini type="primary" @click.native="_comment(error, index)">我要点评</x-button>
             </div>
           </div>
         </div>
@@ -150,8 +150,12 @@ export default {
       this.showErrorPopup = true
     },
     // 类型错误弹窗
-    _comment (error) {
-      this.$router.push({name: 'comment', params: {studentId: this.Route.params.studentId, wbeid: error.wbeid, chapterId: error.chapterId}, query: {isComment: true}})
+    _comment (error, index) {
+      this.$router.push({
+        name: 'comment',
+        params: {studentId: this.Route.params.studentId, wbeid: error.wbeid, chapterId: error.chapterId},
+        query: {isComment: true, index: index}
+      })
     },
     // 选择错误类型
     onItemClick (value) {
@@ -180,12 +184,12 @@ export default {
         vm.clearError()
         vm._getData()
       } else {
-        vm.$refs.error.scrollTo(vm.errorList.scroll)
+        vm.$refs.viewBox.scrollTo(vm.errorList.scroll)
       }
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setErrorScroll(this.$refs.error.getScrollBody)
+    this.setErrorScroll(this.$refs.viewBox.getScrollTop())
     if (this.showErrorPopup) {
       this.showErrorPopup = false
       next(false)
