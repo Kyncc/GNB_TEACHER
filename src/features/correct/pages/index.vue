@@ -46,7 +46,7 @@ export default {
   methods: {
     ...mapActions(['postCorrect', 'getCorrect']),
     _commit () {
-      if (!this.type.length) {
+      if (this.type.length === 0) {
         this.$vux.toast.show({text: '请选择纠错类型', type: 'text', time: 1000, position: 'bottom'})
         return
       }
@@ -55,7 +55,7 @@ export default {
         type: this.type.toString()
       }
       this.postCorrect(params).then(() => {
-        setTimeout(() => { history.back() }, 600)
+        setTimeout(() => { history.back() }, 500)
       })
     }
   },
