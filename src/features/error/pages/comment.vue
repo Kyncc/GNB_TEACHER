@@ -10,7 +10,7 @@
       </group>
       <flexbox :gutter="0" wrap="wrap" justify='center' style='margin-top:1rem;'>
         <flexbox-item :span="11">
-          <x-button type="primary" @click.native="_record()" v-if='!audio.path.length'>开始录音</x-button>
+          <x-button type="primary" @click.native="_record()" v-if='!audio.path.length && !errorComment.audio.length'>开始录音</x-button>
           <x-button type="primary" @click.native="_playUrl()" v-else-if='errorComment.audio.length'>{{!comment.state ? '播放' : '暂停'}}录音</x-button>
           <template v-else>
             <x-button type="primary" @click.native="_play()">{{!audio.state ? '播放' : '暂停'}}录音</x-button>
@@ -159,8 +159,13 @@ export default {
     if (this.isRecord.state) {
       next(false)
     } else if (this.audio.state) {
-      // 播放中停止
+      // 录音播放中停止
       this._reset()
+      next()
+    } else if (this.comment.state) {
+      // 语音播放中停止
+      this.comment.state = false
+      this.comment.audio.stop()
       next()
     } else {
       // 离开清空数据
