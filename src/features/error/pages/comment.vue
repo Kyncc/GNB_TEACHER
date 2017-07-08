@@ -1,7 +1,7 @@
 <template>
   <view-box ref="viewBox" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '点评',showBack: true}">
-      <div slot="right" @click='_comment()'>发布</div>
+      <div slot="right" @click='_comment()' v-show='errorComment.content.length && errorComment.audio.length'>发布</div>
     </x-header>
     <div>
       <group :gutter='0' title='我要点评'>
@@ -19,7 +19,7 @@
         </flexbox-item>
       </flexbox>
     </div>
-    <div class="mask record" v-show='isRecord.state'>
+    <div v-transfer-dom class="mask record" v-show='isRecord.state'>
       <div class="time">录音中 {{isRecord.time}} 秒</div>
       <div class="stop" @click='_stop()'></div>
     </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { XHeader, ViewBox, XButton, Group, XTextarea, Flexbox, FlexboxItem } from 'vux'
+import { XHeader, ViewBox, XButton, Group, XTextarea, Flexbox, FlexboxItem, TransferDomDirective as TransferDom } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 import { Howl } from 'howler'
 
@@ -63,6 +63,9 @@ export default {
       },
       vedio: {}
     }
+  },
+  directives: {
+    TransferDom
   },
   methods: {
     ...mapActions(['getErrorClassmate', 'setErrorComment', 'getErrorComment', 'clearErrorComment']),
