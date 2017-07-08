@@ -65,7 +65,7 @@ export default {
       showAction: false,
       share: {
         content: '',
-        title: '试卷分享',
+        title: '                  试卷分享',
         href: ''
       }
     }

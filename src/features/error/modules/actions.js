@@ -82,7 +82,7 @@ export const getErrorComment = ({rootState, commit, state}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'error/comment',
+      url: 'error/getComment',
       params: {
         token: rootState.common.user.token,
         studentId: rootState.route.params.studentId,
@@ -105,14 +105,11 @@ export const getErrorComment = ({rootState, commit, state}, params) => {
 export const setErrorComment = ({rootState, commit, state}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
-    var task = plus.uploader.createUpload('https://www.guinaben.com/teacher/error/comment',
-    // {method: 'POST', blocksize: 204800, priority: 100},
-    (response, status) => {
+    var task = plus.uploader.createUpload('https://www.guinaben.com/teacher/error/comment', {method: 'POST'}, (response, status) => {
       // 上传完成
       if (status === 200) {
         Vue.$vux.loading.hide()
         commit(types.ERROR_COMMENT_POST, {index: rootState.route.query.index})
-        alert('Upload success: ' + response.url)
         resolve(response)
       } else {
         Vue.$vux.loading.hide()
@@ -123,11 +120,10 @@ export const setErrorComment = ({rootState, commit, state}, params) => {
     var path = plus.io.convertLocalFileSystemURL(params.audio)
     task.addFile(path, {key: 'audio'})
     task.addData('studentId', rootState.route.params.studentId)
-    task.addData('wbeid', params.wbeid)
+    task.addData('wbeid', rootState.route.params.wbeid + '')
     task.addData('token', rootState.common.user.token)
     task.addData('content', params.content)
-    task.addData('wbeid', params.wbeid)
-    task.addData('chapterId', params.chapterId)
+    task.addData('chapterId', rootState.route.params.chapterId)
     task.start()
   })
 }

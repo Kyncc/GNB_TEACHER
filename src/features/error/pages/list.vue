@@ -25,7 +25,8 @@
             <div class="weui-cell__bd" style="text-align:right">
               <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
               <!--<x-button mini plain type="primary">参考例题</x-button>-->
-              <x-button mini type="primary" @click.native="_comment(error, index)">我要点评</x-button>
+              <x-button mini type="primary" @click.native="_comment(error, index)" v-if='!error.comment'>我要点评</x-button>
+              <x-button mini type="primary" plain v-else>已点评</x-button>
             </div>
           </div>
         </div>
@@ -154,7 +155,7 @@ export default {
       this.$router.push({
         name: 'comment',
         params: {studentId: this.Route.params.studentId, wbeid: error.wbeid, chapterId: error.chapterId},
-        query: {isComment: true, index: index}
+        query: {isComment: error.comment, index: index}
       })
     },
     // 选择错误类型

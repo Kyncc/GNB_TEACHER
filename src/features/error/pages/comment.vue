@@ -14,7 +14,7 @@
           <x-button type="primary" @click.native="_playUrl()" v-else-if='errorComment.audio.length'>{{!comment.state ? '播放' : '暂停'}}录音</x-button>
           <template v-else>
             <x-button type="primary" @click.native="_play()">{{!audio.state ? '播放' : '暂停'}}录音</x-button>
-            <x-button type="primary" @click.native="_reset()">清空录音</x-button>
+            <x-button type="warn" @click.native="_reset()">清空录音</x-button>
           </template>
         </flexbox-item>
       </flexbox>
@@ -67,10 +67,16 @@ export default {
   methods: {
     ...mapActions(['getErrorClassmate', 'setErrorComment', 'getErrorComment', 'clearErrorComment']),
     _comment () {
+      // 提交时若在播放则先暂停
+      if (this.audio.state) {
+        this.audio.file.stop()
+        this.audio.state = false
+      }
       this.setErrorComment({
         audio: this.audio.path,
         content: this.content
-      }).then(() => {
+      })
+      .then(() => {
         this.$vux.toast.show({text: '提交评价成功!', type: 'text', time: 1000, position: 'bottom'})
         setTimeout(() => {
           this.$router.go(-1)
@@ -98,14 +104,12 @@ export default {
         this.audio.file.play(() => {
           this.audio.state = false
           this.audio.file.stop()
-          alert('播放完成！')
         }, (e) => {
           alert('播放音频文件"' + this.audio.path + '"失败：' + e.message)
         })
       } else {
         this.audio.file.stop()
         this.audio.state = false
-        alert('停止播放')
       }
     },
     _reset () {
@@ -125,7 +129,6 @@ export default {
         filename: '_doc/audio/'
       }, (path) => {
         this.audio.path = path
-        alert(path)
       }, (e) => {
         alert('Audio record failed: ' + e.message)
       })
@@ -153,9 +156,21 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    // 离开清空数据
-    this.clearErrorComment()
-    next()
+    if (this.isRecord.state) {
+      next(false)
+    } else if (this.audio.state) {
+      // 播放中停止
+      this._reset()
+      next()
+    } else {
+      // 离开清空数据
+      this.clearErrorComment()
+      // 清空录音未发布
+      this.audio.state = false
+      this.audio.path = ''
+      this.content = ''
+      next()
+    }
   }
 }
 </script>
