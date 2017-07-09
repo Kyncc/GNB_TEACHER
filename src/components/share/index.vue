@@ -1,9 +1,11 @@
 <template>
-  <actionsheet v-model="show" :menus="menus" @on-click-menu="_menuClick" @on-share-success='onShareSuccess()'></actionsheet>
+  <div  v-transfer-dom>
+    <actionsheet v-model="show" :menus="menus" @on-click-menu="_menuClick" @on-share-success='onShareSuccess()'></actionsheet>
+  </div>
 </template>
 
 <script>
-import { Actionsheet } from 'vux'
+import { Actionsheet, TransferDomDirective as TransferDom } from 'vux'
 
 export default {
   name: 'share',
@@ -29,6 +31,9 @@ export default {
         // wechatTimeLine: '分享到朋友圈'
       }
     }
+  },
+  directives: {
+    TransferDom
   },
   props: {
     showAction: {

@@ -63,9 +63,9 @@ export default {
       this.list = []
       for (let arr of camera) {
         this.list.push({
-          w: Number(arr.width) / 2,
-          h: Number(arr.height) / 2,
-          src: `${arr.url}-answerBig`
+          w: Number(arr.width),
+          h: Number(arr.height),
+          src: `${arr.url}`
         })
       }
       this.$nextTick(() => {

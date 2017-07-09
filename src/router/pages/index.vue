@@ -2,7 +2,7 @@
   <div class="mainIndex">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;" :left-options="{showBack: false}">归纳本-教师端</x-header>
     <div>
-      <router-link :to="{ path: 'induce'}">
+      <router-link :to="{ path: 'assemble'}">
         <p class="induce"></p>
       </router-link>
     </div>
