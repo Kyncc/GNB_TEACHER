@@ -12,13 +12,11 @@ export const getUserInfo = ({ rootState, commit }) => {
       params: {
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.USERINFO, response.data.data)
       resolve(response)
       Vue.$vux.loading.hide()
-    })
-    .catch(() => {
+    }).catch(() => {
       Vue.$vux.loading.hide()
     })
   })
@@ -35,12 +33,10 @@ export const setUserInfo = ({rootState, commit, dispatch}, params) => {
         ...params,
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       Vue.$vux.loading.hide()
       resolve(response)
-    })
-    .catch(() => {
+    }).catch(() => {
       Vue.$vux.loading.hide()
     })
   })
@@ -56,13 +52,11 @@ export const getToken = ({ commit }, params) => {
       data: {
         ...params
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit('USER_TOKEN', response.data.token)
       Vue.$vux.loading.hide()
       resolve(response)
-    })
-    .catch((error) => {
+    }).catch((error) => {
       Vue.$vux.loading.hide()
       reject(error)
     })
@@ -78,8 +72,7 @@ export const getUserNews = ({ rootState, commit }) => {
       params: {
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.USER_NEW_MESSAGE, response.data.data)
       resolve(response)
     })
@@ -102,14 +95,12 @@ export const uploadHeadImg = ({rootState, commit, dispatch}, params) => {
         img: params.img,
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.USERPHOTO_POST, response.data.data)
       dispatch('getUserInfo')
       Vue.$vux.loading.hide()
       resolve(response)
-    })
-    .catch((error) => {
+    }).catch((error) => {
       Vue.$vux.loading.hide()
       reject(error)
     })
@@ -125,8 +116,7 @@ export const getSwiperInfo = ({ rootState, commit }) => {
       params: {
         id: rootState.route.params.id
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.SWIPER_INFO, response.data.data)
       resolve(response)
     })

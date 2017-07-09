@@ -78,8 +78,7 @@ export default {
       this.setErrorComment({
         audio: this.audio.path,
         content: this.content
-      })
-      .then(() => {
+      }).then(() => {
         this.$vux.toast.show({text: '提交评价成功!', type: 'text', time: 1000, position: 'bottom'})
         setTimeout(() => {
           this.$router.go(-1)

@@ -51,9 +51,6 @@ export default {
     ...mapActions(['getUserNews']),
     _openStore () {
       window.location.href = 'market://details?id=com.sanbao.teacher.student'
-    },
-    _share () {
-      alert(1)
     }
   },
   beforeRouteEnter (to, from, next) {

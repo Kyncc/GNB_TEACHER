@@ -5,7 +5,7 @@ const PWD_UPDATE = 'PWD_UPDATE'
 
 const actions = {
   updatePwd: ({ rootState, commit }, params) => {
-    Vue.$vux.loading.show({text: '请稍候'})
+    Vue.$vux.loading.show({ text: '请稍候' })
     return new Promise((resolve, reject) => {
       axios({
         method: 'post',
@@ -15,13 +15,11 @@ const actions = {
           pwd: params.pwd,
           token: rootState.common.user.token
         }
-      })
-      .then((response) => {
+      }).then((response) => {
         Vue.$vux.loading.hide()
         commit(PWD_UPDATE)
         resolve(response)
-      })
-      .catch((error) => {
+      }).catch((error) => {
         Vue.$vux.loading.hide()
         reject(error)
       })

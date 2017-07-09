@@ -14,8 +14,7 @@ export const getError = ({rootState, commit, state}, params) => {
         subject_id: params.subjectId,
         studentId: rootState.route.params.studentId
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ERROR, {subjectId: params.subjectId, data: response.data.data})
       resolve(response)
     }).catch((err) => {
@@ -37,8 +36,7 @@ export const setErrorType = ({rootState, commit, state}, params) => {
         chapterId: params.chapterId,
         type: params.type
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ERROR_ERROR_TYPE, {index: params.index, type: params.type})
       resolve(response)
     }).catch((err) => {
@@ -66,8 +64,7 @@ export const getErrorClassmate = ({rootState, commit, state}, params) => {
       params: {
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ERROR_CLASSMATE, {data: response.data.data})
       resolve(response)
     }).catch((err) => {
@@ -89,8 +86,7 @@ export const getErrorComment = ({rootState, commit, state}, params) => {
         wbeid: rootState.route.params.wbeid,
         chapterId: rootState.route.params.chapterId
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.ERROR_COMMENT, {data: response.data.data})
       Vue.$vux.loading.hide()
       resolve(response)

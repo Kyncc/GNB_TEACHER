@@ -16,8 +16,7 @@ export const getExample = ({ rootState, commit }) => {
           type: rootState.route.params.type
         }
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.EXAMPLE, response.data.data)
       resolve(response)
     }).catch((err) => {

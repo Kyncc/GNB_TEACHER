@@ -16,8 +16,7 @@ export const getCorrect = ({ rootState, commit }, params) => {
           subjectId: rootState.route.params.subjectId
         }
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.CORRECT, response.data.data)
       resolve(response)
     }).catch((err) => {
@@ -28,7 +27,7 @@ export const getCorrect = ({ rootState, commit }, params) => {
 
 /** 纠错 */
 export const postCorrect = ({ rootState, commit }, params) => {
-  Vue.$vux.loading.show({text: '请稍候'})
+  Vue.$vux.loading.show({ text: '请稍候' })
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -42,15 +41,14 @@ export const postCorrect = ({ rootState, commit }, params) => {
           ...params
         }
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       Vue.$vux.loading.hide()
-      Vue.$vux.toast.show({text: '纠错成功', type: 'text', time: 1000, position: 'bottom'})
+      Vue.$vux.toast.show({ text: '纠错成功', type: 'text', time: 1000, position: 'bottom' })
       resolve(response)
     })
-    .catch((error) => {
-      Vue.$vux.loading.hide()
-      reject(error)
-    })
+      .catch((error) => {
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
   })
 }

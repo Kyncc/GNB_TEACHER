@@ -12,8 +12,7 @@ export const getMyClassmateList = ({ rootState, commit }, params) => {
         classCode: rootState.route.params.code,
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.CLASS_MYCLASSMATE, response.data.data)
       resolve(response)
     }).catch((err) => {
@@ -32,9 +31,8 @@ export const delClass = ({ rootState, commit }, params) => {
         classCode: rootState.route.params.code,
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
-      Vue.$vux.toast.show({text: '删除成功', type: 'text', time: 600, position: 'bottom'})
+    }).then((response) => {
+      Vue.$vux.toast.show({ text: '删除成功', type: 'text', time: 600, position: 'bottom' })
       resolve(response)
     })
   })
@@ -51,10 +49,9 @@ export const delClassmate = ({ rootState, commit }, params) => {
         classCode: rootState.route.params.code,
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       commit(types.CLASS_MYCLASSMATE_DEL, params.index)
-      Vue.$vux.toast.show({text: '删除成功', type: 'text', time: 600, position: 'bottom'})
+      Vue.$vux.toast.show({ text: '删除成功', type: 'text', time: 600, position: 'bottom' })
       resolve(response)
     }).catch((err) => {
       reject(err)
@@ -77,8 +74,7 @@ export const postMyClassInto = ({ rootState, commit }, params) => {
         name: params.name,
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       resolve(response)
     }).catch((err) => {
       reject(err)
@@ -97,8 +93,7 @@ export const updateClass = ({ rootState, commit }, params) => {
         classCode: rootState.route.params.code,
         token: rootState.common.user.token
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       resolve(response)
     }).catch((err) => {
       reject(err)

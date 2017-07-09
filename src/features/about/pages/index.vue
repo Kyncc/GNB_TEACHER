@@ -22,7 +22,6 @@
 </template>
 
 <script>
-
 import {XHeader, Cell, Group, ViewBox, Flexbox, FlexboxItem} from 'vux'
 import {mapGetters} from 'vuex'
 

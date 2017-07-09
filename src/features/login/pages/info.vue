@@ -44,8 +44,7 @@ export default {
         school: this.school,
         mobile: this.registerMobile,
         subjectId: this.subjectId
-      })
-      .then(() => {
+      }).then(() => {
         this.$router.replace('/')
       })
     }
