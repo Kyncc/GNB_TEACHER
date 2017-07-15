@@ -1,24 +1,17 @@
 export default {
   path: '/assemble',
   component: r => require.ensure([], () => r(require('./layout')), '/assemble'),
-  redirect: '/assemble/center',
+  redirect: '/assemble/sync',
   children: [
     {
-      path: 'center',
-      component: r => require.ensure([], () => r(require('./pages/center')), '/assemble/center'),
-      redirect: '/assemble/center/sync',
-      children: [
-        {
-          path: 'gaokao',
-          name: 'assemble_gaokao',
-          component: r => require.ensure([], () => r(require('./pages/gaokao')), '/assemble/center/gaokao')
-        },
-        {
-          path: 'sync',
-          name: 'assemble_sync',
-          component: r => require.ensure([], () => r(require('./pages/sync')), '/assemble/center/sync')
-        }
-      ]
+      path: 'gaokao',
+      name: 'assemble_gaokao',
+      component: r => require.ensure([], () => r(require('./pages/gaokao')), '/assemble/gaokao')
+    },
+    {
+      path: 'sync',
+      name: 'assemble_sync',
+      component: r => require.ensure([], () => r(require('./pages/sync')), '/assemble/sync')
     },
     {
       path: 'options',
