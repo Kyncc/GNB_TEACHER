@@ -113,8 +113,8 @@ export const setErrorComment = ({rootState, commit, state}, params) => {
         reject(status)
       }
     })
-    var path = plus.io.convertLocalFileSystemURL(params.audio)
-    task.addFile(path, {key: 'audio'})
+    // var path = plus.io.convertLocalFileSystemURL(params.audio)
+    task.addFile(params.audio, {key: 'audio'})
     task.addData('studentId', rootState.route.params.studentId)
     task.addData('wbeid', rootState.route.params.wbeid + '')
     task.addData('token', rootState.common.user.token)
