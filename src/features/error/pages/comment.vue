@@ -155,8 +155,14 @@ export default {
   created () {
     try {
       this.vedio = plus.audio.getRecorder()
-      // let audio = plus.audio.createPlayer()
-      // audio.setRoute(plus.audio.ROUTE_SPEAKER)
+      // this.vedio.record({
+      //   format: 'amr',
+      //   filename: '_doc/audio/'
+      // }, (path) => {
+      //   this.audio.path = path
+      // }, (e) => {
+      //   alert('Audio record failed: ' + e.message)
+      // })
     } catch (e) {
       console.log(e)
     }
