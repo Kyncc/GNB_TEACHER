@@ -42,7 +42,7 @@ Vue.filter('errorType', (value) => {
 document.addEventListener('plusready', () => {
   let first = null
   plus.navigator.setStatusBarBackground('#4BB7AA') // 设置状态栏颜色
-  let audio = plus.audio.createPlayer()
+  let audio = plus.audio.createPlayer('./static/1.mp3')
   audio.setRoute(plus.audio.ROUTE_SPEAKER)
   audio.play(() => {}, (e) => {
     alert(e.message)
