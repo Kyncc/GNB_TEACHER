@@ -36,7 +36,7 @@
         <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
-      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'https://www.guinaben.com/teacher/assembly/download?downloadId='+downloadId" @on-share-success='_shareSuccess()'></share>
+      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'http://www.guinaben.com/uploader/assembly/'+downloadId+'.pdf'"></share>
     </div>
     <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
@@ -113,17 +113,13 @@ export default {
     },
     // 下载之前的次数判断
     _download () {
-      this.getDownloadVaild().then((res) => {
-        this.showAction = true
-      })
-    },
-    // 分享成功后的回调
-    _shareSuccess () {
       return (async () => {
         try {
-          await this.getDownloadUrl()
+          await this.getDownloadVaild()
+          this.showAction = true
           await this._getData()
         } catch (err) {
+          this.showAction = true
           console.log(err)
         }
       })()
