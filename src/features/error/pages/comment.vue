@@ -90,10 +90,20 @@ export default {
       if (!this.comment.state) {
         this.comment.state = true
         this.comment.audio = new Howl({
-          src: [this.errorComment.audio]
+          src: [this.errorComment.audio],
+          onloaderror: () => {
+            // 获取失败
+            alert('播放音频文件失败请重试')
+          },
+          onend: () => {
+            // 播放完后的暂停
+            this.comment.state = false
+            this.comment.audio.stop()
+          }
         })
         this.comment.audio.stop().play()
       } else {
+        // 手动暂停
         this.comment.state = false
         this.comment.audio.stop()
       }
@@ -101,8 +111,8 @@ export default {
     // 播放录音
     _play () {
       if (!this.audio.state) {
-        this.audio.file = plus.audio.createPlayer(this.audio.path)
         this.audio.file.setRoute(plus.audio.ROUTE_SPEAKER)
+        this.audio.file = plus.audio.createPlayer(this.audio.path)
         this.audio.state = true
         this.audio.file.play(() => {
           this.audio.state = false
