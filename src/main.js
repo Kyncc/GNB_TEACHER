@@ -42,8 +42,11 @@ Vue.filter('errorType', (value) => {
 document.addEventListener('plusready', () => {
   let first = null
   plus.navigator.setStatusBarBackground('#4BB7AA') // 设置状态栏颜色
-  // let audio = plus.audio.createPlayer()
-  // audio.setRoute(plus.audio.ROUTE_SPEAKER)
+  let audio = plus.audio.createPlayer()
+  audio.setRoute(plus.audio.ROUTE_SPEAKER)
+  audio.play(() => {}, (e) => {
+    alert(e.message)
+  })
   plus.key.addEventListener('backbutton', () => {
     if (store.state.route.path === '/index' || store.state.route.path === '/bag' || store.state.route.path === '/login' || store.state.route.path === '/user') {
       if (!first) {

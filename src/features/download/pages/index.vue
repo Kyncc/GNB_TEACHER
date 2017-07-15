@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '下载中心'}">
       <div slot="right" @click="showPopupPicker = true">筛选</div>
       <div class='popup'>
-        <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"  
+        <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"
           @on-hide='showPopupPicker = false' v-model="options">
         </popup-picker>
       </div>
@@ -15,7 +15,7 @@
           <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'lxexercises'}})">
             <div v-html="item.stem"></div>
             <div v-for="(value, key) in item.opt" :key='key' style="padding-top:5px;">
-              {{ key }}： 
+              {{ key }}：
               <p v-html="value" style="display:inline-block"></p>
             </div>
           </div>
@@ -36,11 +36,11 @@
         <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
         <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
       </div>
-      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'http://www.guinaben.com/upload/assembly/'+downloadId+'.pdf'" @on-share-success='_shareSuccess()'></share>
+      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'https://www.guinaben.com/teacher/assembly/download?downloadId='+downloadId" @on-share-success='_shareSuccess()'></share>
     </div>
     <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
-        <flexbox-item :span="6" style="font-size:.8rem;text-align:center;" 
+        <flexbox-item :span="6" style="font-size:.8rem;text-align:center;"
           @click.native="$router.push({name: 'download_update', params: {id: downloadId}})">
           <i class="icon iconfont icon-bianji"></i>编辑
         </flexbox-item>

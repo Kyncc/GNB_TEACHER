@@ -25,7 +25,7 @@ import { Cell, CellBox, Group, Spinner, Flexbox, FlexboxItem } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'sync',
+  name: 'gaokao',
   components: {
     Cell, CellBox, Group, Spinner, Flexbox, FlexboxItem
   },

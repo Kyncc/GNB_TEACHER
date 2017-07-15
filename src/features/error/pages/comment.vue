@@ -112,7 +112,6 @@ export default {
     _play () {
       if (!this.audio.state) {
         this.audio.file = plus.audio.createPlayer(this.audio.path)
-        this.audio.file.setRoute(plus.audio.ROUTE_SPEAKER)
         this.audio.state = true
         this.audio.file.play(() => {
           this.audio.state = false

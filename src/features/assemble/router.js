@@ -1,11 +1,12 @@
 export default {
   path: '/assemble',
   component: r => require.ensure([], () => r(require('./layout')), '/assemble'),
-  redirect: '/assemble/center/sync',
+  redirect: '/assemble/center',
   children: [
     {
       path: 'center',
       component: r => require.ensure([], () => r(require('./pages/center')), '/assemble/center'),
+      redirect: '/assemble/center/sync',
       children: [
         {
           path: 'gaokao',
