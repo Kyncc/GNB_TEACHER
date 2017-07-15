@@ -146,8 +146,8 @@ export default {
   created () {
     try {
       this.vedio = plus.audio.getRecorder()
-      let audio = plus.audio.createPlayer()
-      audio.setRoute(plus.audio.ROUTE_SPEAKER)
+      // let audio = plus.audio.createPlayer()
+      // audio.setRoute(plus.audio.ROUTE_SPEAKER)
     } catch (e) {
       console.log(e)
     }
