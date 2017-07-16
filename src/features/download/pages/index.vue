@@ -117,6 +117,11 @@ export default {
         try {
           await this.getDownloadVaild()
           this.showAction = true
+          this.$vux.alert.show({
+            title: '组卷成功',
+            content: '请到下载中心下载',
+            dialogTransition: 'vux-fade'
+          })
           await this._getData()
         } catch (err) {
           this.showAction = true
