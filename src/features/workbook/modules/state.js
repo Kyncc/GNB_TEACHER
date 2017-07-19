@@ -14,6 +14,7 @@ let state = {
     classCode: '',
     isReset: false,
     errorList: [],
+    notPost: [],
     cameraList: []
   }
 }

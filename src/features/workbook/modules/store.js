@@ -35,10 +35,12 @@ const mutations = {
     state.exercise.isReset = true
     state.exercise.list = []
     state.exercise.cameraList = []
+    state.exercise.notPost = []
   },
   [types.WORKBOOK_EXERCISE_PHOTO] (state, payload) {
     state.exercise.classCode = payload.classCode
-    state.exercise.cameraList = payload.data
+    state.exercise.notPost = payload.data.notPost
+    state.exercise.cameraList = payload.data.list
   },
   [types.WORKBOOK_EXERCISE_ERROR_PHOTO] (state, data) {
     state.exercise.errorList = data
