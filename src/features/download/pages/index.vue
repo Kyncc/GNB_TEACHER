@@ -118,8 +118,8 @@ export default {
           await this.getDownloadVaild()
           this.showAction = true
           this.$vux.alert.show({
-            title: '组卷成功',
-            content: '请到下载中心下载',
+            title: '下载成功',
+            content: '请到我的下载中查看',
             dialogTransition: 'vux-fade'
           })
           await this._getData()

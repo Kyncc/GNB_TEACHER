@@ -50,7 +50,7 @@ export default {
   methods: {
     ...mapActions(['getUserNews']),
     _openStore () {
-      window.location.href = 'market://details?id=com.sanbao.teacher.student'
+      window.location.href = 'market://details?id=com.sanbao.guinaben.teacher'
     }
   },
   beforeRouteEnter (to, from, next) {
