@@ -1,110 +1,130 @@
 <template>
-  <view-box  class="breakExample">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100" >
-      <x-header :left-options="{showBack:true}">例题详情</x-header>
-    </div>
-
-    <div style="padding-top:46px;" >
-      <!--内容-->
-      <div v-for="detail in Example">
-        <div class="weui_panel weui_panel_access exerciseDetail" >
-          <div class="weui_panel_hd">
-            <p style="width:25%;color:#4bb7aa">题干</p>
-            <p style="width:75%;text-align:right" @click="_correct"> 
-              <span style="color:#666"><i class="icon iconfont icon-error-login"></i>纠错</span>
-            </p>
-          </div>
-          <!--题目整体-->
-          <div class="weui_panel_bd">
-            <!--题目-->
-            <div class="weui_media_bd weui_media_box">
-              <p class="weui_media_desc">
-                {{{ detail.content }}}
-              </p>
-            </div>
-            <!--选项-->
-            <template v-if=" detail.type == 1 ? true:false">
-              <div class="weui_media_bd weui_media_box options">
-                <p class="weui_media_desc" v-for="value in detail.tabs">
-                  {{ $key }} : {{{ value }}}
-                </p>
-              </div>
-            </template> 
-          </div>
+  <view-box body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '题目详情'}">
+      <div slot="right">
+         <!--<div slot="right" @click='visible = true'>-->
+        <p @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id, grade: Params.grade}, query: {type: Params.type}})">
+           <i class="icon iconfont icon-bianji"></i>
+        </p>
+        <!--<i class="icon iconfont icon-6" style="padding:10px;margin:0 -10px 0 0"></i>-->
+      </div>
+      <!--<mt-popup v-model="visible" class="popup">
+        <p @click="$router.push({name:'correct', params:{subjectId: Params.subjectId, id: Params.id, grade: Params.grade}})">
+           <i class="icon iconfont icon-bianji"></i>纠错
+        </p>
+        <p><i class="icon iconfont icon-share"></i>分享</p>
+        <p><i class="icon iconfont icon-pinglun"></i>评价</p>
+      </mt-popup>-->
+    </x-header>
+    <card v-show='!loading'>
+      <div slot="header" class="weui-panel__hd">
+        <flexbox>
+          <flexbox-item :span="10" style="color:#4bb7aa">{{Params.type === 'lxexercises' ? '练习题' : Route.query.name}}</flexbox-item>
+        </flexbox>
+      </div>
+      <div slot="content">
+        <div v-html="Example.stem"></div>
+        <div v-for="(value, key) in Example.opt" :key='key' style="padding-top:5px;">
+          {{ key }}：<p v-html="value" style="display:inline-block"></p>
         </div>
-        <!--解析-->
-        <div class="weui_panel weui_panel_access exerciseDetail">
-          <div class="weui_panel_hd">
-            <div style="color:#4bb7aa;width:25%">解析</div>
-          </div>
-          <!--解析主体-->
-          <div class="weui_panel_bd">
-            <div class="weui_media_bd weui_media_box">
-              <p class="weui_media_desc">
-                {{{ detail.answer }}}
-              </p>
-            </div>
+      </div>
+      <div slot="footer">
+        <div class="weui-cell weui-cell_link">
+          <div class="weui-cell__bd">
+            <flexbox :gutter='0'>
+              <flexbox-item :span="3">难度: {{Example.degree}}</flexbox-item>
+              <flexbox-item :span="7">更新时间: {{Example.time | ymd}}</flexbox-item>
+            </flexbox>
           </div>
         </div>
       </div>
-      
-      <infinite-loading :on-infinite="_onInfinite" spinner="default">
-        <span slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">服务器发生一点小问题~</p>
-        </span>
-        <span slot="no-more" style="color:#4bb7aa;font-size:.8rem;"></span>
-      </infinite-loading>
-
+    </card>
+    <card v-show='!loading'>
+      <div slot="header" class="weui-panel__hd" style="color:#4bb7aa">解析</div>
+      <div slot="content" v-html="Example.answer"></div>
+    </card>
+    <div style="text-align:center">
+      <spinner v-if="loading" type="dots"></spinner>
+      <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
     </div>
   </view-box>
-
 </template>
 
 <script>
-import {XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
-import { mapActions,mapGetters  } from 'vuex'
+import { XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem } from 'vux'
+import { Popup } from 'mint-ui'
+import { mapActions, mapGetters } from 'vuex'
+import store from '@/store'
 import modules from '../modules/store'
-import store from 'src/store'
-
-
-store.registerModule('example', {
-  ...modules
-})
-
 
 export default {
+  name: 'example',
   components: {
-    XHeader,Flexbox,FlexboxItem,XButton,Confirm,ViewBox,InfiniteLoading
+    XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem, 'mt-popup': Popup
   },
-  route: {
-    data:function(transition){
-      this.exampleClear();
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
+  computed: {
+    ...mapGetters(['Example', 'Params', 'Route'])
+  },
+  data () {
+    return {
+      visible: false,
+      loading: true,
+      error: false
     }
   },
   methods: {
-    ...mapActions(['getExample','exampleClear']),
-    _onInfinite(){
-      this.getExample()
-      .then(()=>{
-          this.$broadcast('$InfiniteLoading:loaded');
-          this.$broadcast('$InfiniteLoading:complete');
-        }
-      )
-      .catch((error)=>{
-         this.$broadcast('$InfiniteLoading:complete');
+    ...mapActions(['getExample', 'exampleClear']),
+    _getData () {
+      this.exampleClear()
+      this.loading = true
+      this.getExample().then(() => {
+        this.error = false
+        this.loading = false
+      }).catch(() => {
+        this.error = true
+        this.loading = false
       })
-    },
-    _correct(){
-      this.$router.go(`/correct/${this.Params.studentId}/${this.Params.subjectId}/${this.Params.id}`);
     }
   },
-	computed:{
-    ...mapGetters(['Example','Params'])
-	}
+  beforeCreate () {
+    store.registerModule('example', {
+      ...modules
+    })
+  },
+  beforeRouteEnter (to, from, next) {
+    if (from.name !== 'correct') {
+      next(vm => {
+        vm._getData()
+      })
+    } else {
+      next()
+    }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.visible = false
+    next()
+  }
 }
 </script>
+<style lang="less" scoped>
+.icon-bianji {
+  font-size: 22x;
+}
+.popup{
+  background: #fff;
+  width: 4rem;
+  padding:.5rem ;
+  top:2.3rem;
+  left:86%;
+  -webkit-transform: translate(-50%, 0);
+  p{
+    i{color:#4BB7AA;}
+    font-size:.8rem;text-align: center;line-height:1.8rem; color:#555;width: 100%;
+    display: box;
+    overflow: hidden;
+  }
+  .active{
+    background: #ccc;
+  }
+}
+</style>

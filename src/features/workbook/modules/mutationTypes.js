@@ -1,0 +1,26 @@
+/** 获取习题册 */
+export const WORKBOOK = 'WORKBOOK'
+/** 习题册高度 */
+export const WORKBOOK_SCROLL = 'WORKBOOK_SCROLL'
+/** 习题册清空 */
+export const WORKBOOK_CLEAR = 'WORKBOOK_CLEAR'
+/** 获取习题册章节 */
+export const WORKBOOK_CHAPTER = 'WORKBOOK_CHAPTER'
+/** 清除章节数据 */
+export const WORKBOOK_CHAPTER_CLEAR = 'WORKBOOK_CHAPTER_CLEAR'
+/** 设置章节高度 */
+export const WORKBOOK_CHAPTER_SCROLL = 'WORKBOOK_CHAPTER_SCROLL'
+/** 获取练习题 */
+export const WORKBOOK_EXERCISE = 'WORKBOOK_EXERCISE'
+/** 清空练习题 */
+export const WORKBOOK_EXERCISE_CLEAR = 'WORKBOOK_EXERCISE_CLEAR'
+/** 练习题更改班级 */
+export const WORKBOOK_EXERCISE_CHANGECLASS = 'WORKBOOK_EXERCISE_CHANGECLASS'
+/** 获取练习照片 */
+export const WORKBOOK_EXERCISE_PHOTO = 'WORKBOOK_EXERCISE_PHOTO'
+/** 练习题已阅 */
+export const WORKBOOK_EXERCISE_READ = 'WORKBOOK_EXERCISE_READ'
+/** 获取练习题错题照片 */
+export const WORKBOOK_EXERCISE_ERROR_PHOTO = 'WORKBOOK_EXERCISE_ERROR_PHOTO'
+/** 清空练习题错题照片 */
+export const WORKBOOK_EXERCISE_ERROR_PHOTO_CLEAR = 'WORKBOOK_EXERCISE_ERROR_PHOTO_CLEAR'

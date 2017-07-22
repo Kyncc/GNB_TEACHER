@@ -1,13 +1,19 @@
 <template>
-  <router-view></router-view>
+  <keep-alive>
+    <router-view></router-view>
+  </keep-alive>
 </template>
 
 <script>
-import './index.less'
 import modules from '../modules/store'
-import store from 'src/store'
+import store from '@/store'
 
-store.registerModule('settings', {
-  ...modules
-})
+export default {
+  name: 'settings',
+  beforeCreate () {
+    store.registerModule('settings', {
+      ...modules
+    })
+  }
+}
 </script>

@@ -1,97 +1,47 @@
 <template>
-  <div class='userinfo'>
-    <x-header :left-options="{showBack: true,preventGoBack: true}"  @on-click-back="_back()">
-      个人资料
-      <a slot="right" @click="_complete">{{edit}}</a>
+  <view-box ref="userinfo" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '个人资料'}">
+      <router-link :to="{ path: 'update'}" slot="right">
+        <p>编辑</p>
+      </router-link>
     </x-header>
-
-    <div v-show="edit=='编辑'">
-      <group title="基本资料">
-        <x-input title="姓名" name="username" :value.sync="name" readonly></x-input>
-        <x-input title="性别" name="sex" value="女" v-show="sex=='0'"readonly></x-input>
-        <x-input title="性别" name="sex" value="男" v-show="sex=='1'" readonly></x-input>
-        <x-input title="学校" name="school" :value.sync="school" readonly></x-input>
-      </group>
-    </div>
-
-    <div v-show="edit=='完成'">
-      <group title="基本资料">
-        <x-input title="姓名" name="username" placeholder="请输入姓名" is-type="china-name" :value.sync="name"></x-input>
-        <cell title="性别">
-          <checker :value.sync="sex" default-item-class="demo2-item" selected-item-class="demo2-item-selected">
-            <checker-item value="1">男</checker-item>
-            <checker-item value="0">女</checker-item>
-          </checker>
-        </cell>
-        <x-input title="学校" name="school" placeholder="请输入学校名称" :value.sync="school"></x-input>
-      </group>
-    </div>
-
-    <confirm :show.sync="show" confirm-text="确定" cancel-text="取消" title="还未保存,确定返回吗" @on-confirm="onAction('确认')" @on-cancel="onAction('取消')"></confirm>
-  </div>
+    <group gutter="0">
+      <cell title="头像">
+        <img :src="User.headImg" width="60" height="60">
+      </cell>
+      <cell title="姓名" :value="User.name"></cell>
+      <cell title="手机号码" :value="User.mobile"></cell>
+      <cell title="性别" :value="User.sex === '1' ? '男' : '女'"></cell>
+    </group>
+    <group>
+      <cell title="学校" :value="User.school"></cell>
+      <cell title="主教科目" :value="User.subjectId === '2' ? '数学' : '物理'"></cell>
+    </group>
+    <group>
+      <cell title="修改密码" :link="{name: 'settings_pwd'}" is-link></cell>
+    </group>
+  </view-box>
 </template>
 
 <script>
-import {Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker,Selector} from 'vux'
-import { mapActions,mapGetters } from 'vuex'
-import * as _ from 'config/whole.js'
+import {XHeader, Cell, Group, ViewBox} from 'vux'
+import {mapGetters} from 'vuex'
 
 export default {
+  name: 'info',
   components: {
-    Checker,CheckerItem,XHeader,XInput,Group,Cell,Confirm,PopupPicker,Selector
+    XHeader, Cell, Group, ViewBox
   },
-  data() {
-    return {
-      edit: '编辑',
-      show: false,
-      name:"",
-      school:'',
-      sex:'',
-      subjectId:""
-    }
-  },
-  created(){
-     this.name = this.User.name,
-     this.school = this.User.school,
-     this.sex = this.User.sex,
-     this.subjectId = this.User.subjectId
-  },
-  methods: {
-    ...mapActions(['getUserInfo','setUserInfo']),
-    _back(){
-      if (this.edit == '完成'){
-        this.show = true
-      }else if(this.edit = '编辑'){
-        this.$router.go('/main/user')
-      }
-    },
-    onAction(type) {
-      if(type=='确认'){
-        setTimeout(() => {
-          this.$router.go('/main/user')
-        }, 300)
-      }
-    },
-    _complete() {
-      if (this.edit == '编辑') {
-        this.edit = '完成'
-      } else if (this.edit == '完成') {
-          this.setUserInfo({
-              name: this.name,
-              sex: this.sex,
-              school: this.school,
-              token: this.token
-          }).then(()=>{
-               this.getUserInfo()
-               .then(()=>{
-                  this.edit = '编辑'
-               })
-          })
+  computed: {
+    ...mapGetters(['User']),
+    grade () {
+      switch (this.User.grade) {
+        case '7' : return '七年级'
+        case '8' : return '八年级'
+        case '9' : return '九年级'
+        case '10' : return '高中'
       }
     }
-  },
-  computed:{
-    ...mapGetters(['User'])
   }
 }
 </script>

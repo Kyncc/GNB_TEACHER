@@ -1,89 +1,87 @@
-﻿# 归纳本教师端
+# Induction Book For Teacher(归纳本教师端)
 
-> 基于Vue.js(1.x)和Dcloud(H5+)混合技术Hybrid App
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build status](https://ci.appveyor.com/api/projects/status/2qu59n38tva8mb40/branch/dev?svg=true)](https://ci.appveyor.com/project/HopeFE/gnb-teacher/branch/dev) [![Dependencies](https://david-dm.org/HopeFE/GNB_STUDENT/status.svg)](https://david-dm.org/HopeFE/GNB_TEACHER)
+ [![devDependencies](https://david-dm.org/HopeFE/GNB_TEACHER/dev-status.svg)](https://david-dm.org/HopeFE/GNB_TEACHER?type=dev)
+> Base on Vue.js(v2.3) and DCloud Hybrid App
 
-## 苹果安卓市场下载
+## App Market Download(IOS and Android)
 
-![商店下载](http://okkula0y9.bkt.clouddn.com/teacher.png)
+![DownloadPicture](http://okkula0y9.bkt.clouddn.com/teacher.png)
 
 ### 编译环境
 
--	[VueLoader](http://vue-loader.vuejs.org/en/index.html)
+-	[DCloud](http://www.dcloud.io/runtime.html)
 
-### Hybird框架
+### Main Javascript Framework
 
--	[跨平台技术-H5+](http://www.dcloud.io/runtime.html)
+-	[vue](http://cn.vuejs.org/guide/)
 
-### 数据视图控制
+-	[vue-router](http://router.vuejs.org/zh-cn/index.html)
 
--	[Vue1.x](http://cn.vuejs.org/guide/)
+-	[vuex](http://vuex.vuejs.org/zh-cn/index.html)
 
--	[路由-VueRouter1.x](http://router.vuejs.org/zh-cn/index.html)
+-	[Axios - Http Client](https://github.com/mzabriskie/axios)
 
--	[http请求-Axios](https://github.com/mzabriskie/axios)
+-	[vuex-router-sync - Keep vue-router and vuex store in sync](https://github.com/vuejs/vuex-router-sync)
 
--	[单项数据流-Vuex(2.x)](http://vuex.vuejs.org/zh-cn/index.html)
+### UI Compoents
 
--	[VueRouter和Vuex流同步-Vuex-router-sync(2.x)](https://github.com/vuejs/vuex-router-sync)
+-	[Vux - Vue UI Components](https://vux.li/#/)
 
-### 功能组件
+### Plugins
 
--	[时间格式化-Moment.js](http://momentjs.cn/)
+-	[Cropper.js - Image cropping plugin](https://fengyuanchen.github.io/cropperjs/)
 
--	[图片控制剪裁-Cropper.js](https://fengyuanchen.github.io/cropperjs/)
+-	[PhotoSwipe - JavaScript image gallery for mobile](https://github.com/dimsemenov/PhotoSwipe)
 
-### UI组件
+-	[Vue-lazyload - An Image lazyload plugin for Vue](https://github.com/hilongjw/vue-lazyload)
 
--	[手机UI库-Vux(0.x)](https://vux.li/#/zh-CN/README?id=-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8webpack)
-
--	[加载数据组件-Vue-infinite-loading](https://peachscript.github.io/vue-infinite-loading/#!/slots)
-
--	[图片懒加载-Vue-lazyload](https://github.com/hilongjw/vue-lazyload)
-
--	[灯箱-PhotoSwipe](https://github.com/dimsemenov/PhotoSwipe)
-
-### 文件夹结构
+## File Structure Introduction
 
 ```
-├── build       # webpack编译配置
-├── config      # webpack配置
-├── distT       # 打包后文件（此目录放在HBuilder中）
-├── app.vue     # 入口页面
-├── main.js     # 入口JS
-├── store.js    # store
-├── index.html  # html模版
-├── components  # 公用的组件
-├── src         # 开发目录
-    ├── router      # 主体模块
-        ├── classes     # 班级
-        ├── index       # 首页
-        ├── login       # 注册、登陆
-        ├── interact    # 互动
-        ├── user        # 个人中心
-    ├── features    # 功能模块
-        ├── common      # 全局功能函数（HTTP配置,弹窗等）
-        ├── camera      # 拍错题模块
-        ├── remember    # 记错题模块
-        ├── message     # 消息模块
-        ├── report      # 成绩报告单模块
-        ├── brushed     # 管理学生题型
-        ├── brush       # 刷题列表
-        ├── break       # 斩题列表
-        ├── pass        # 弃题列表
+├── build       # webpack Build
+├── config      # webpack Config
+├── distT       # Dist Folder
+├── app.vue     # Entry File
+├── main.js     # Entry Js
+├── store.js    # Vuex Main Stroe
+├── router.js   # Main Router
+├── theme.less  # Vux UI Color Config
+├── index.html  # Html Template
+├── components  # UI or Function Components
+├── src         # Code Folder
+    ├── router      # Main Pages
+    ├── features    # Modules
+        ├── common      # 全局功能函数
+        ├── assemble    # 组卷中心
+        ├── workbook    # 查答案
+        ├── correct     # 纠错
+        ├── example     # 例题
+        ├── error       # 查看错题
+        ├── workbook    # 批改作业
+        ├── myclass     # 我的班级
+        ├── myDownload  # 我的下载
+        ├── message     # 消息
+        ├── invite      # 我的邀请
+        ├── login       # 登陆
         ├── settings    # 设置
-        ├── workbookByClass    # 作业统计
-        ├── workbookByStudent  # 个人作业
+        ├── about       # 关于归纳本
 ```
 
-### 安装
+### Getting Started
 
+
+## Install
 ```
-npm install //安装依赖包
+npm/yarn install
+npm/yarn run dev
+open http://localhost:8080
 ```
 
-### 使用
-
+### Build
 ```
-npm run dev     //进入开发模式
-npm run build   //打包生成的目录在dist下
+npm/yarn run build
+open Files in DistT Folder
 ```
+## License
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Induction Book For Teacher(归纳本-教师端)</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">HopeFE</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.

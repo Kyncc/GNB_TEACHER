@@ -1,57 +1,51 @@
 <template>
-  <view-box  class="messageSystem">
-    <div slot="header" style="position:absolute;left:0;top:0;width:100%;z-index:100">
-        <x-header :left-options="{showBack: true}">班级消息</x-header>
-    </div>
-    <div style="padding-top:46px;" class="messageSection">
-      <section v-for="item in messageClassList">
+  <view-box ref="messageClass" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '班级通知'}"></x-header>
+    <div v-if="!loading" class="messageSection">
+      <section v-for="(item, index) in messageClassList" :key='index'>
         <h3>{{item.time | ymd}}</h3>
-        <article>
-          {{item.content}}
-        </article>
+        <article>{{item.content}}</article>
       </section>
-      
-      <infinite-loading :on-infinite="onInfinite" spinner="spiral">
-        <span slot="no-results" style="color:#4bb7aa;">
-          <i class="icon iconfont icon-comiiszanwushuju" style="font-size:1.5rem;margin-right:.2rem"></i>
-          <p style="font-size:1rem;display:inline-block;">暂无消息~</p>
-        </span>
-        <span slot="no-more"></span>
-      </infinite-loading>
+    </div>
+    <div style="text-align:center">
+      <spinner v-if="loading" type="dots"></spinner>
+      <p v-else-if="messageClassList.length == 0" style="font-size:16px;padding:10px 0;color:#4BB7AA">暂无班级消息~</p>
     </div>
   </view-box>
 </template>
 <script>
-import {XHeader,ViewBox} from 'vux'
-import InfiniteLoading from 'vue-infinite-loading'
-import { mapActions,mapGetters } from 'vuex'
+import {XHeader, ViewBox, Spinner} from 'vux'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
+  name: 'class',
   components: {
-    XHeader,ViewBox,InfiniteLoading
+    XHeader, ViewBox, Spinner
   },
-  route: {
-    data:function(transition){
-      this.$nextTick(() => {
-        this.$broadcast('$InfiniteLoading:reset');
-      });
+  computed: {
+    ...mapGetters(['messageClassList'])
+  },
+  data () {
+    return {
+      loading: true
     }
   },
   methods: {
-    ...mapActions(['getMessageClass']),
-    onInfinite(){
-      this.getMessageClass()
-      .then(()=>{
-        if(this.messageClassList.length != 0) {this.$broadcast('$InfiniteLoading:loaded');}
-        this.$broadcast('$InfiniteLoading:complete');
-      })
-    }
+    ...mapActions(['getMessageClass', 'clearMessage'])
   },
-  computed:{
-    ...mapGetters(['messageClassList'])
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.loading = true
+      vm.getMessageClass().then(() => {
+        vm.loading = false
+      }).catch((e) => {
+        vm.loading = false
+      })
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    this.clearMessage()
+    next()
   }
 }
 </script>
-
-
-

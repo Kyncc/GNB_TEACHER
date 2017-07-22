@@ -1,12 +1,20 @@
 <template>
-  <router-view keep-alive></router-view>
+  <keep-alive>
+    <router-view></router-view>
+  </keep-alive>
 </template>
 
 <script>
 import modules from '../modules/store'
-import store from 'src/store'
+import store from '@/store'
+import '@/components/gnb_messageList/index.less'
 
-store.registerModule('message', {
-  ...modules
-})
+export default {
+  name: 'message',
+  beforeCreate () {
+    store.registerModule('message', {
+      ...modules
+    })
+  }
+}
 </script>

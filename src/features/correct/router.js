@@ -1,7 +1,5 @@
 export default {
-  '/correct/:studentId/:subjectId/:id': {
-    component: r => require.ensure([], () => r(require('./pages/correct')), '/correct/')
-  }
+  path: '/correct/:grade/:subjectId/:id',
+  name: 'correct',
+  component: r => require.ensure([], () => r(require('./pages/index')), '/correct')
 }
-
-

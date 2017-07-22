@@ -1,106 +1,72 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import 'es6-promise/auto'
-import { sync } from 'vuex-router-sync'
-import App from './app'
-import store from './store'
-import * as _ from 'config/whole.js'
-import Login from './router/login/router'
-import Correct from './features/correct/router'
-import Example from './features/example/router'
-import Layout from './router/layout'
-import User from './router/user/router'
-import Index from './router/index/router'
-import Classes from './router/Classes/router'
-import Interact from './router/interact/router'
-//插件
-import moment from 'moment'
-import FastClick from 'fastclick'
+import 'babel-polyfill'
 import VueLazyload from 'vue-lazyload'
+import FastClick from 'fastclick'
+import store from './store'
+import router from './router'
+import { ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin } from 'vux'
+import App from './App'
 
-Vue.use(Router)
-Vue.config.devtools = true
-FastClick.attach(document.body)
+Vue.use(ToastPlugin) // 使用提醒
+// 图片异步加载
+Vue.use(VueLazyload, {
+  attempt: 3
+})
+Vue.use(LoadingPlugin) // 使用Loading
+Vue.use(ConfirmPlugin) // 使用Confirm
+Vue.use(AlertPlugin)
+FastClick.attach(document.body) // 使用fastclick
+Vue.config.productionTip = false
 
-Vue.use(VueLazyload)
-
-//格式化时间
-Vue.filter('ymd', function(value) {
-  return moment.unix(value).format('YYYY-MM-DD');
+// 时间戳转换
+Vue.filter('ymd', (value) => {
+  return dateFormat(new Date(Number(`${value}000`)), 'YYYY-MM-DD')
 })
 
-//课程ID的转换
-Vue.filter('subName', (id) => {
-  switch(id){
-    case '2':return '数学';
-    case '7':return '物理';
-    case '8':return '化学';
+// 错误类型转换
+Vue.filter('errorType', (value) => {
+  switch (value) {
+    case -1: return '错误类型'
+    case 1: return '审题不清'
+    case 2: return '概念模糊'
+    case 3: return '思路不清'
+    case 4: return '运算错误'
+    case 5: return '粗心大意'
+    case 6: return '方法不对'
+    case 7: return '时间不够'
+    case 0: return '我不知道'
   }
 })
 
-const router = new Router()
-
-router.map({
-  ...Login,
-  ...Correct,
-  ...Example,
-  'main': {
-    component: Layout,
-    subRoutes: {
-      ...Index,
-      ...User,
-      ...Classes,
-      ...Interact
-    }
-  }
-})
-
-//讲路由和store同步
-sync(store, router)
-
-router.beforeEach(function(transition) {
-  if (transition.to.path == '/') {
-    if(localStorage.token){
-        router.replace('/main/index');
-    }else{
-        router.replace('/login');
-    }
-  }
-  transition.next();
-})
-
-
-/*在首页 或者loading启动的时候,返回键失效,2次点击退出此APP
-* 其他页面则直接返回上一页
-*/
-document.addEventListener('plusready', function(){
-    let first = null;
-    plus.key.addEventListener('backbutton',function(){
-      if(
-        store.state.route.path == '/login' || 
-        store.state.route.path == '/main/index' || 
-        store.state.route.path == '/main/classes' || 
-        store.state.route.path =='/main/interact' || 
-        store.state.route.path =='/main/user'
-      ){
-        if(!first){
-            first = new Date().getTime();
-            _.toast('再按一次退出')
-            setTimeout(function() {
-                first = null;
-            }, 1000);
-        }else{
-            if(new Date().getTime() - first < 1000) {
-               plus.runtime.quit();
-            }
-        }
-        return;
-      }else if(store.state.tools.isLoading){
-        return;
-      }else{
-        history.back();
+// 在首页返回键失效其他页面则直接返回上一页
+document.addEventListener('plusready', () => {
+  let first = null
+  plus.navigator.setStatusBarBackground('#4BB7AA') // 设置状态栏颜色
+  // HACK 解决HTML5+ IOS内扬声器的问题
+  setTimeout(() => {
+    let audio = plus.audio.createPlayer('233.mp3')
+    audio.setRoute(plus.audio.ROUTE_SPEAKER)
+    audio.play(() => {}, (e) => {})
+  }, 500)
+  plus.key.addEventListener('backbutton', () => {
+    if (store.state.route.path === '/index' || store.state.route.path === '/bag' || store.state.route.path === '/login' || store.state.route.path === '/user') {
+      if (!first) {
+        first = new Date().getTime()
+        Vue.$vux.toast.show({ text: '再按一次退出', type: 'text', time: 1000, position: 'bottom' })
+        setTimeout(() => { first = null }, 1000)
+      } else if (new Date().getTime() - first < 1000) {
+        plus.runtime.quit()
       }
-    },false);
-});
-    
-router.start(App, '#App')
+    } else {
+      history.back()
+    }
+  }, false)
+})
+
+let app = new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app-box')
+
+export default app
