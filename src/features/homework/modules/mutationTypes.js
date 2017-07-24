@@ -6,3 +6,5 @@ export const HOMEWORK_POST = 'HOMEWORK_POST'
 export const HOMEWORK_RESET = 'HOMEWORK_RESET'
 /** 试题高度 */
 export const HOMEWORK_SCROLL = 'HOMEWORK_SCROLL'
+/** 试题班级 */
+export const HOMEWORK_CLASS = 'HOMEWORK_CLASS'

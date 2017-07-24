@@ -41,6 +41,11 @@ export const setHomework = ({ rootState, state, dispatch }, params) => {
   })
 }
 
+/** 作业选择班级 */
+export const setHomeworkClass = ({commit}, params) => {
+  commit(types.HOMEWORK_CLASS, params)
+}
+
 /** 作业高度保存 */
 export const setHomeworkScroll = ({commit}, height) => {
   commit(types.HOMEWORK_SCROLL, height)

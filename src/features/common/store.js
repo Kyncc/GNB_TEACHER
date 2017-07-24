@@ -13,6 +13,7 @@ const state = {
     system: false
   },
   user: {
+    version: '',
     headImg: '',
     bufferImg: '',
     name: '',
@@ -63,6 +64,7 @@ const mutations = {
     state.user.sex = data.sex
     state.user.swiper = data.swiper
     state.user.classes = data.classes
+    state.user.version = data.version
   },
   [types.USERPHOTO_POST] (state, data) {
     state.user.headImg = data.headImg
