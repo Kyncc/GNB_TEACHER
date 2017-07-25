@@ -39,15 +39,14 @@ export default {
     ...mapActions(['setHomeworkClass']),
     _commit () {
       this.setHomeworkClass({'classes': this.classes})
+      this.classes = []
       setTimeout(() => {
         history.go(-1)
       }, 500)
     }
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.classes = []
-    })
+    next(vm => {})
   },
   beforeRouteLeave (to, from, next) {
     if (this.classes.length) {

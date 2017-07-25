@@ -11,21 +11,21 @@ export default {
       path: 'class',
       name: 'homework_class',
       component: r => require.ensure([], () => r(require('./pages/class')), '/homework/class')
+    },
+    {
+      path: 'publish/content',
+      name: 'homework_publish_content',
+      component: r => require.ensure([], () => r(require('./pages/publish/content')), '/homework/content')
+    },
+    {
+      path: 'publish/audio',
+      name: 'homework_publish_audio',
+      component: r => require.ensure([], () => r(require('./pages/publish/audio')), '/homework/audio')
+    },
+    {
+      path: 'publish/image',
+      name: 'homework_publish_image',
+      component: r => require.ensure([], () => r(require('./pages/publish/image')), '/homework/image')
     }
-    // {
-    //   path: '/image',
-    //   name: 'homework_image',
-    //   component: r => require.ensure([], () => r(require('./pages/image')), '/homework/image')
-    // },
-    // {
-    //   path: '/content',
-    //   name: 'homework_content',
-    //   component: r => require.ensure([], () => r(require('./pages/content')), '/homework/content')
-    // },
-    // {
-    //   path: '/audio',
-    //   name: 'homework_audio',
-    //   component: r => require.ensure([], () => r(require('./pages/audio')), '/homework/audio')
-    // }
   ]
 }
