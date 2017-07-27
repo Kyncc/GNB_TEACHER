@@ -10,7 +10,7 @@
       <cell title="给小纳好评" is-link @click.native="_openStore" ></cell>
     </group>
     <group>
-      <cell title="关于我们" link="about/my"></cell>
+      <cell title="关注我们" link="about/my"></cell>
       <cell title="加入群聊" is-link @click.native="_add"></cell>
     </group>
     <section class="about_footer">
