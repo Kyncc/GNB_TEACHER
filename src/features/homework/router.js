@@ -8,7 +8,7 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/index')), '/homework/index')
     },
     {
-      path: 'class',
+      path: 'class/:index/:id',
       name: 'homework_class',
       component: r => require.ensure([], () => r(require('./pages/class')), '/homework/class')
     },
@@ -26,6 +26,11 @@ export default {
       path: 'publish/image',
       name: 'homework_publish_image',
       component: r => require.ensure([], () => r(require('./pages/publish/image')), '/homework/image')
+    },
+    {
+      path: 'publish/photo',
+      name: 'homework_publish_photo',
+      component: r => require.ensure([], () => r(require('./pages/publish/photo')), '/homework/photo')
     }
   ]
 }

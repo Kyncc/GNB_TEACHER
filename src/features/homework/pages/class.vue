@@ -21,7 +21,7 @@ export default {
     XHeader, Cell, Group, ViewBox, Checklist
   },
   computed: {
-    ...mapGetters(['User']),
+    ...mapGetters(['User', 'Homework']),
     classList () {
       let list = []
       for (let i in this.User.classes) {

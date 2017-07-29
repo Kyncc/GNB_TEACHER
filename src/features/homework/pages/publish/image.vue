@@ -1,12 +1,27 @@
 <template>
   <view-box ref="homework" body-padding-top="220px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
-      <x-header :left-options="{backText: '图片',showBack: true}">
+      <x-header :left-options="{backText: '发送图片',showBack: true}">
         <div slot="right" style="margin:0" @click='_publish'>发布</div>
       </x-header>
-      <group title="图片消息">
-        <x-textarea v-model="content" show-counter :rows="5"></x-textarea>
-      </group>
+      <group-title style="margin:10px 0 0;">添加照片</group-title>
+      <div style="padding:10px 15px">
+        <flexbox wrap="wrap" align="baseline" :gutter="0">
+           <flexbox-item :span="3" v-for="(img, index) in Homework.uploader.list" :key="index">
+            <div class="photo">
+              <div style="text-align:center;height:90px;width:65px;background-size:100% 100%" :style="'background-image:url('+img+')'"></div>
+              <i class="icon iconfont icon-error" style="font-size:30px;position:absolute;left:58px;top:-25px" @click="_del(index)"></i>
+            </div>
+          </flexbox-item>
+          <flexbox-item :span="3" v-if="!(Homework.uploader.list.length === 2)" @click.native="_add">
+            <div class="photo">
+              <div class="plus">
+                <b>+</b>
+              </div>
+            </div>
+          </flexbox-item>
+        </flexbox>
+      </div>
     </div>
     <div>
       <checklist title="选择消息发送班级" label-position="right" required :options="classList" v-model="classes"></checklist>
@@ -15,16 +30,16 @@
 </template>
 
 <script>
-import {XHeader, Cell, Group, ViewBox, Checklist, XTextarea} from 'vux'
+import {XHeader, Cell, Group, ViewBox, Checklist, Flexbox, FlexboxItem, GroupTitle} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'content',
+  name: 'image',
   components: {
-    XHeader, Cell, Group, ViewBox, Checklist, XTextarea
+    XHeader, Cell, Group, ViewBox, Checklist, Flexbox, FlexboxItem, GroupTitle
   },
   computed: {
-    ...mapGetters(['User']),
+    ...mapGetters(['User', 'Homework']),
     classList () {
       let list = []
       for (let i in this.User.classes) {
@@ -35,21 +50,34 @@ export default {
   },
   data () {
     return {
-      content: '',
       classes: []
     }
   },
   methods: {
-    ...mapActions(['setHomework']),
+    ...mapActions(['setHomeworkImage', 'delHomeworkImage', 'resetHomeworkImage']),
+    // 增加照片
+    _add () {
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.setHomeworkImage(entry.toLocalURL())
+          this.$router.push({'name': 'homework_publish_photo'})
+        })
+      })
+    },
+    // 删除照片
+    _del () {
+      this.delHomeworkImage()
+    },
     _publish () {
-      if (this.content.length === 0) {
-        this.$vux.toast.show({text: '消息文字不能为空', type: 'text', time: 1000, position: 'bottom'})
+      if (this.Homework.list.length === 0) {
+        this.$vux.toast.show({text: '图片不能为空', type: 'text', time: 1000, position: 'bottom'})
       } else if (this.classes.length === 0) {
         this.$vux.toast.show({text: '班级不能为空', type: 'text', time: 1000, position: 'bottom'})
       } else {
-        this.setHomework({content: this.content, classes: this.classes}).then(() => {
+        this.setHomework({img: this.Homework.uploader.list, classes: this.classes}).then(() => {
           this.classes = []
-          this.content = []
+          this.resetHomeworkImage()
         }).catch(() => {
 
         })
@@ -78,23 +106,15 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.homework_add{
-  padding:25px 0 ;
-  text-align: center;
-  span{
-    display: block;
-    color:#4BB7AA;
-  }
-  p{
-    line-height: 82px;
-    display: inline-block;
-    font-size: 100px;
-    color:#4BB7AA;
-    width:100px;
-    height:100px;
-    border-radius: 20%;
-    border:2px solid #4BB7AA;
-    margin-bottom:10px;
+.photo{
+  position:relative;
+  margin-top:10px;
+  padding-left:10px;
+  .plus{
+    text-align:center;
+    height:90px;width:65px;border:1px solid #4BB7AA;font-size:48px;color:#ccc;
+    border-radius:3px;
+    float:left;
   }
 }
 </style>

@@ -1,10 +1,14 @@
 /** 作业列表 */
 export const HOMEWORK = 'HOMEWORK'
-/** 发送作业 */
-export const HOMEWORK_POST = 'HOMEWORK_POST'
-/** 试题清空 */
+/** 作业列表清空 */
 export const HOMEWORK_RESET = 'HOMEWORK_RESET'
-/** 试题高度 */
+/** 作业高度 */
 export const HOMEWORK_SCROLL = 'HOMEWORK_SCROLL'
-/** 试题班级 */
-export const HOMEWORK_CLASS = 'HOMEWORK_CLASS'
+/** 作业照片 */
+export const WORKBOOK_IMAGE_UPLOAD = 'WORKBOOK_IMAGE_UPLOAD'
+/** 作业照片清空 */
+export const WORKBOOK_IMAGE_RESET = 'WORKBOOK_IMAGE_RESET'
+/** 作业照片删除 */
+export const HOMEWORK_IMAGE_DEL = 'HOMEWORK_IMAGE_DEL'
+/** 作业照片增加 */
+export const HOMEWORK_IMAGE_ADD = 'HOMEWORK_IMAGE_ADD'
