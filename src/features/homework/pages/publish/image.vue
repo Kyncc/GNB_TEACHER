@@ -1,7 +1,7 @@
 <template>
   <view-box ref="homework" body-padding-top="220px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
-      <x-header :left-options="{backText: '发送图片',showBack: true}">
+      <x-header :left-options="{backText: '图片作业',showBack: true}">
         <div slot="right" style="margin:0" @click='_publish'>发布</div>
       </x-header>
       <group-title style="margin:10px 0 0;">添加照片</group-title>
@@ -54,32 +54,34 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setHomeworkImage', 'delHomeworkImage', 'resetHomeworkImage']),
+    ...mapActions(['setHomeworkImage', 'delHomeworkImage', 'resetHomeworkImage', 'setHomework']),
     // 增加照片
     _add () {
-      let cmr = plus.camera.getCamera()
-      cmr.captureImage((p) => {
-        plus.io.resolveLocalFileSystemURL(p, (entry) => {
-          this.setHomeworkImage(entry.toLocalURL())
-          this.$router.push({'name': 'homework_publish_photo'})
-        })
-      })
+      this.$router.push({'name': 'homework_publish_photo'})
+      // let cmr = plus.camera.getCamera()
+      // cmr.captureImage((p) => {
+      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
+      //     this.setHomeworkImage(entry.toLocalURL())
+      //     this.$router.push({'name': 'homework_publish_photo'})
+      //   })
+      // })
     },
     // 删除照片
     _del () {
       this.delHomeworkImage()
     },
+    // 发布
     _publish () {
-      if (this.Homework.list.length === 0) {
+      if (this.Homework.uploader.list.length === 0) {
         this.$vux.toast.show({text: '图片不能为空', type: 'text', time: 1000, position: 'bottom'})
       } else if (this.classes.length === 0) {
         this.$vux.toast.show({text: '班级不能为空', type: 'text', time: 1000, position: 'bottom'})
       } else {
-        this.setHomework({img: this.Homework.uploader.list, classes: this.classes}).then(() => {
+        this.setHomework({img: this.Homework.uploader.list, classCodes: this.classes}).then(() => {
           this.classes = []
           this.resetHomeworkImage()
-        }).catch(() => {
-
+        }).then(() => {
+          this.$vux.toast.show({text: '发送成功', type: 'text', time: 700, position: 'bottom', onHide () { history.go(-1) }})
         })
       }
     }
@@ -88,14 +90,16 @@ export default {
     next(vm => {})
   },
   beforeRouteLeave (to, from, next) {
-    if (this.content.length || this.classes.length) {
+    // 若返回作业列表并且编辑区有内容
+    if ((this.Homework.uploader.list.length || this.classes.length) && to.name === 'homework') {
+      let that = this
       this.$vux.confirm.show({
         title: '确定放弃编辑的消息么？',
         dialogTransition: '',
         onCancel () { next(false) },
         onConfirm () {
-          this.classes = []
-          this.content = []
+          that.classes = []
+          that.resetHomeworkImage()
           next()
         }
       })

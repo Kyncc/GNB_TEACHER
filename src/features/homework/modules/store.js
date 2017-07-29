@@ -39,8 +39,9 @@ const mutations = {
     state.uploader.list.push(data)
     state.uploader.camera = ''
   },
-  [types.WORKBOOK_IMAGE_RESET] (state, data) {
-    state.uploader.camera = data
+  [types.WORKBOOK_IMAGE_RESET] (state) {
+    state.uploader.camera = ''
+    state.uploader.list = []
   },
   [types.WORKBOOK_IMAGE_UPLOAD] (state, data) {
     state.uploader.camera = data

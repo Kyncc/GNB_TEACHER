@@ -1,7 +1,7 @@
 <template>
   <view-box ref="homework" body-padding-top="220px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
-      <x-header :left-options="{backText: '文字',showBack: true}">
+      <x-header :left-options="{backText: '文字作业',showBack: true}">
         <div slot="right" style="margin:0" @click='_publish'>发布</div>
       </x-header>
       <group title="文字消息">
@@ -47,11 +47,11 @@ export default {
       } else if (this.classes.length === 0) {
         this.$vux.toast.show({text: '班级不能为空', type: 'text', time: 1000, position: 'bottom'})
       } else {
-        this.setHomework({content: this.content, classes: this.classes}).then(() => {
+        this.setHomework({content: this.content, classCodes: this.classes}).then(() => {
           this.classes = []
-          this.content = []
-        }).catch(() => {
-
+          this.content = ''
+        }).then(() => {
+          this.$vux.toast.show({text: '发送成功', type: 'text', time: 700, position: 'bottom', onHide () { history.go(-1) }})
         })
       }
     }
@@ -61,13 +61,14 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     if (this.content.length || this.classes.length) {
+      let that = this
       this.$vux.confirm.show({
         title: '确定放弃编辑的消息么？',
         dialogTransition: '',
         onCancel () { next(false) },
         onConfirm () {
-          this.classes = []
-          this.content = []
+          that.classes = []
+          that.content = ''
           next()
         }
       })

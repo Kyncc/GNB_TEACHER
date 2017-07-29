@@ -6,7 +6,7 @@ export const getHomework = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'download/list',
+      url: 'homework/list',
       params: {
         token: rootState.common.user.token,
         subjectId: params.subjectId
@@ -25,13 +25,13 @@ export const setHomework = ({ rootState, state, dispatch }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'download/download',
+      url: 'homework/put',
       data: {
         token: rootState.common.user.token,
-        subjectId: params.subjectId,
+        subjectId: state.homework.subjectId,
+        classCodes: params.classCodes,
         data: {
-          audio: params.audio || '',
-          img: params.img || '',
+          img: params.img || [],
           content: params.content || ''
         }
       }
@@ -91,5 +91,5 @@ export const delHomeworkImage = ({ commit }, index) => {
 
 /** 清空图片 */
 export const resetHomeworkImage = ({ commit }) => {
-  commit(types.HOMEWORK_RESET)
+  commit(types.WORKBOOK_IMAGE_RESET)
 }

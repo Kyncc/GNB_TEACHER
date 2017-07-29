@@ -1,7 +1,7 @@
 <template>
   <view-box ref="homework" body-padding-top="126px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
-      <x-header :left-options="{backText: '语音',showBack: true}">
+      <x-header :left-options="{backText: '语音作业',showBack: true}">
         <div slot="right" style="margin:0" @click='_publish'>发布</div>
       </x-header>
       <flexbox :gutter="0" wrap="wrap" justify='center' style='margin-top:1rem;'>
