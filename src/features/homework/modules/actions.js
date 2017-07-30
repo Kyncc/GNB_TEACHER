@@ -1,5 +1,6 @@
 import * as types from './mutationTypes'
 import axios from '@/components/axios/'
+import Vue from 'vue'
 
 /** 获取下载试题列表 */
 export const getHomework = ({ rootState, commit }, params) => {
@@ -41,6 +42,28 @@ export const setHomework = ({ rootState, state, dispatch }, params) => {
     }).catch((e) => {
       reject(e)
     })
+  })
+}
+
+/** 作业语音布置 */
+export const setHomeworkAudio = ({rootState, commit, state}, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    var task = plus.uploader.createUpload('https://www.guinaben.com/teacher/homework/putAudio', {method: 'POST'}, (response, status) => {
+      if (status === 200) {
+        Vue.$vux.loading.hide()
+        resolve(response)
+      } else {
+        Vue.$vux.loading.hide()
+        alert('Upload failed: ' + status)
+        reject(status)
+      }
+    })
+    task.addFile(params.audio, {key: 'audio'})
+    task.addData('subjectId', state.homework.subjectId)
+    task.addData('token', rootState.common.user.token)
+    task.addData('classCodes', params.classCodes)
+    task.start()
   })
 }
 

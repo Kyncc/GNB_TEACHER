@@ -64,7 +64,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setHomework']),
+    ...mapActions(['setHomeworkAudio']),
     // 播放录音
     _play () {
       if (!this.audio.state) {
@@ -123,13 +123,12 @@ export default {
       } else if (this.classes.length === 0) {
         this.$vux.toast.show({text: '班级不能为空', type: 'text', time: 1000, position: 'bottom'})
       } else {
-        this.setHomework({audio: this.audio.path, classes: this.classes}).then(() => {
+        this.setHomeworkAudio({audio: this.audio.path, classes: this.classes}).then(() => {
           this.classes = []
           this.audio.state = false
           this.audio.path = ''
-          setTimeout(() => {
-            history.go(-1)
-          }, 500)
+        }).then(() => {
+          this.$vux.toast.show({text: '发送成功', type: 'text', time: 700, position: 'bottom', onHide () { history.go(-1) }})
         })
       }
     }

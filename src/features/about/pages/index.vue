@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '关于归纳本'}"></x-header>
     <flexbox justify="center" orient="vertical" style="text-align:center;padding:3rem 0 1rem">
       <flexbox-item><img  src="../assets/icon.png" width="80px" height="80px"></flexbox-item>
-      <flexbox-item><p style="font-size:16px;">归纳本教师端 3.0.0</p></flexbox-item>
+      <flexbox-item><p style="font-size:16px;">归纳本教师端 3.1.0</p></flexbox-item>
     </flexbox>
     <group gutter="0">
       <cell title="意见反馈" link="about/advice"></cell>
@@ -42,8 +42,8 @@ export default {
       }
     },
     _add () {
-      window.location.href = 'mqqwpa://im/chat?chat_type=wpa&uin=458410557&version=1&src_type=web&web_src=oicqzone.com'
-      // window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode'
+      // window.location.href = 'mqqwpa://im/chat?chat_type=wpa&uin=458410557&version=1&src_type=web&web_src=oicqzone.com'
+      window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=458410557&card_type=group&source=qrcode'
     }
   }
 }
