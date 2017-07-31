@@ -2,7 +2,7 @@ import * as types from './mutationTypes'
 import axios from '@/components/axios/'
 import Vue from 'vue'
 
-/** 获取下载试题列表 */
+/** 获取消息列表 */
 export const getHomework = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
@@ -29,7 +29,7 @@ export const setHomework = ({ rootState, state, dispatch }, params) => {
       url: 'homework/put',
       data: {
         token: rootState.common.user.token,
-        subjectId: state.homework.subjectId,
+        subjectId: state.subjectId,
         classCodes: params.classCodes,
         data: {
           img: params.img || [],
@@ -37,7 +37,6 @@ export const setHomework = ({ rootState, state, dispatch }, params) => {
         }
       }
     }).then((response) => {
-      dispatch('clearHomework')
       resolve(response)
     }).catch((e) => {
       reject(e)
@@ -60,7 +59,7 @@ export const setHomeworkAudio = ({rootState, commit, state}, params) => {
       }
     })
     task.addFile(params.audio, {key: 'audio'})
-    task.addData('subjectId', state.homework.subjectId)
+    task.addData('subjectId', state.subjectId)
     task.addData('token', rootState.common.user.token)
     task.addData('classCodes', params.classCodes)
     task.start()
@@ -76,10 +75,9 @@ export const addHomeworkClass = ({ rootState, state, dispatch }, params) => {
       data: {
         token: rootState.common.user.token,
         homeworkId: rootState.route.params.id,
-        classes: params.classes
+        classCodes: params.classCodes
       }
     }).then((response) => {
-      dispatch('clearHomework')
       resolve(response)
     }).catch((e) => {
       reject(e)

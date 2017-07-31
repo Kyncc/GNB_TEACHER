@@ -3,14 +3,11 @@ import * as getters from './getters'
 import * as actions from './actions'
 
 const state = {
-  homework: {
-    subjectId: 2,
-    classes: []
-  },
   uploader: {
     list: [],
     camera: ''
   },
+  subjectId: 2,
   scroll: 0,
   list: []
 }
@@ -20,14 +17,11 @@ const mutations = {
     state.subjectId = payload.subjectId
     state.list = payload.data
   },
-  [types.HOMEWORK_CLASS] (state) {
-    state.homework.classes = state
-  },
   [types.HOMEWORK_SCROLL] (state, data) {
     state.scroll = data
   },
   [types.HOMEWORK_RESET] (state, data) {
-    state.homework = { subjectId: 2, classes: [] }
+    state.subjectId = 2
     state.scroll = 0
     state.list = []
   },

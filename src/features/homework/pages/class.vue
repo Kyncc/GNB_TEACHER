@@ -6,7 +6,7 @@
       </div>
     </x-header>
     <div>
-      <checklist title="请选择下列班级" label-position="right" required :options="classList" v-model="classes"></checklist>
+      <checklist title="请选择下列班级" label-position="right" required :options="classList" v-model="chioceClass" ></checklist>
     </div>
   </view-box>
 </template>
@@ -32,21 +32,24 @@ export default {
   },
   data () {
     return {
-      classes: []
+      classes: [],
+      chioceClass: []
     }
   },
   methods: {
-    ...mapActions(['setHomeworkClass']),
+    ...mapActions(['addHomeworkClass']),
     _commit () {
-      this.setHomeworkClass({'classes': this.classes})
-      this.classes = []
-      setTimeout(() => {
-        history.go(-1)
-      }, 500)
+      this.addHomeworkClass({'classCodes': this.chioceClass}).then(() => {
+        this.$vux.toast.show({text: '布置成功', type: 'text', time: 700, position: 'bottom', onHide () { history.go(-1) }})
+      }).catch(() => {
+        this.$vux.toast.show({text: '布置错误', type: 'text', time: 700, position: 'bottom'})
+      })
     }
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => {})
+    next(vm => {
+      vm.chioceClass = vm.Homework.list[vm.$route.params.index].classCodes
+    })
   },
   beforeRouteLeave (to, from, next) {
     if (this.classes.length) {

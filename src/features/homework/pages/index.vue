@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="homework" body-padding-top="236px">
+  <view-box ref="homework" body-padding-top="220px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: '布置作业',showBack: true}">
         <div slot="right" style="margin:0">
@@ -7,35 +7,41 @@
         </div>
       </x-header>
       <div @click='_add' class='homework_add'>
-        <p>
-          +
-        </p>
+        <p>+</p>
         <span>发布作业</span>
       </div>
     </div>
     <div>
-      <card>
+      <card v-for="(item, index) in Homework.list" :key="index">
         <div slot="header" class="weui-panel__hd" style='padding:5px 15px;'>
           <flexbox>
-            <flexbox-item :span="7" style="color:#4BB7AA">布置时间：09-03 21:21</flexbox-item>
-            <flexbox-item :span="5" style="color:#4BB7AA;text-align:right;padding-right:5px;"><x-button type="primary" mini plain>布置给</x-button></flexbox-item>
+            <flexbox-item :span="7" style="color:#4BB7AA">布置时间：{{item.time | ymd}}</flexbox-item>
+            <flexbox-item :span="5" style="color:#4BB7AA;text-align:right;padding-right:5px;">
+              <x-button type="primary" mini plain @click.native="$router.push({name: 'homework_class',params:{index: index, id: item.homeworkId}})">布置给</x-button>
+            </flexbox-item>
           </flexbox>
         </div>
-        <p slot="content" class="card-padding">custom content</p>
-      </card>
-      <card>
-        <div slot="header" class="weui-panel__hd" style='padding:5px 15px;'>
-          <flexbox>
-            <flexbox-item :span="7" style="color:#4BB7AA">布置时间：09-03 21:21</flexbox-item>
-            <flexbox-item :span="5" style="color:#4BB7AA;text-align:right;padding-right:5px;"><x-button type="primary" mini plain>布置给</x-button></flexbox-item>
-          </flexbox>
-        </div>
-        <flexbox wrap="wrap" align="baseline" :gutter="0">
-          <!-- <flexbox-item :span="3" v-for="(img, index) in items.camera" :key="index" @click.native="show(index, items.camera)" style="text-align:center;margin-bottom:10px;">
-            <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/136x180!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
-          </flexbox-item> -->
+        <!--文字作业 -->
+        <p slot="content" class="card-padding" v-if='item.content'>{{item.content}}</p>
+        <!--图片作业 -->
+        <flexbox slot="content" wrap="wrap" align="baseline" :gutter="0" v-else-if='item.img'>
+          <flexbox-item :span="3" v-for="(img, index) in item.img" :key="index" @click.native="_show(index, item.img)" style="text-align:center;margin-bottom:10px;">
+            <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/130x180!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
+          </flexbox-item>
+        </flexbox>
+        <!--语音作业 -->
+        <flexbox slot="content"  v-else>
+          <flexbox-item v-if='item.audio' :span="2" @click.native='_audio(item.audio, index)'>
+            <i v-if='audio.state && audio.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
+            <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4BB7AA;margin-top:-.1rem;'></i>
+          </flexbox-item>
         </flexbox>
       </card>
+      <div style="text-align:center">
+        <spinner v-show="loading" type="dots"></spinner>
+        <p v-show="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
+        <!-- <p v-if="Homework.list.length === 0" style="font-size:16px;color:#4BB7AA">您还未布置作业呢</p> -->
+      </div>
     </div>
     <div v-transfer-dom>
       <actionsheet v-model="show" :menus="menu" theme="android" @on-click-menu="_publish"></actionsheet>
@@ -50,6 +56,7 @@
 import {XHeader, Cell, Card, Group, ViewBox, Spinner, XButton, Actionsheet, Flexbox, FlexboxItem, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import gnbChangeSub from '@/components/gnb_changeSub'
 import {mapActions, mapGetters} from 'vuex'
+import { Howl } from 'howler'
 
 export default {
   name: 'index',
@@ -66,7 +73,16 @@ export default {
     return {
       selectedSub: '',
       show: false,
+      error: false,
       loading: true,
+      audio: {
+        // 播放的索引
+        index: '',
+        // 播放对象
+        obj: '',
+        // 播放状态
+        state: false
+      },
       menu: [
         {
           label: '发送文字',
@@ -92,19 +108,25 @@ export default {
   },
   methods: {
     ...mapActions(['getHomework', 'clearHomework', 'setHomeworkScroll']),
+    // 添加作业
     _add () {
       this.show = true
     },
     _getData () {
       this.loading = true
       this.getHomework({subjectId: this.selectedSub}).then(() => {
+        this.error = false
+        this.loading = false
+      }).catch(() => {
+        this.error = true
         this.loading = false
       })
     },
     _publish (key) {
       this.$router.push({name: `homework_publish_${key}`})
     },
-    show (index, camera) {
+    // 照片大图
+    _show (index, camera) {
       this.list = []
       for (let arr of camera) {
         this.list.push({
@@ -116,6 +138,32 @@ export default {
       this.$nextTick(() => {
         this.$refs.previewer.show(index)
       })
+    },
+    // 播放声音
+    _audio (url, index) {
+      this.audio.index = index
+      if (!this.audio.state) {
+        this.audio.state = true
+        this.audio.obj = new Howl({
+          src: [url],
+          onloaderror: () => {
+            // 获取失败
+            alert('播放音频文件失败请重试')
+          },
+          onend: () => {
+            // 播放完后的暂停
+            this.audio.index = null
+            this.audio.state = false
+            this.audio.obj.stop()
+          }
+        })
+        this.audio.audio.stop().play()
+      } else {
+        // 手动暂停
+        this.audio.index = null
+        this.audio.state = false
+        this.audio.obj.stop()
+      }
     }
   },
   watch: {
@@ -124,26 +172,34 @@ export default {
       this._getData()
     }
   },
+  mounted () {
+    this._getData()
+  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'bag') {
+      // 非首页进来刷新数据
+      if (from.name !== 'bag') {
         vm.clearHomework()
         vm._getData()
-      } else {
-        vm.$refs.homework.scrollTo(vm.Homework.scroll)
       }
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setHomeworkScroll(this.$refs.homework.getScrollTop())
+    // 若在播放语音 则暂停
+    if (this.audio.state) {
+      this.audio.index = null
+      this.audio.state = false
+      this.audio.obj.stop()
+    }
     next()
   }
 }
 </script>
 <style lang="less" scoped>
 .homework_add{
-  padding:25px 0 ;
+  padding:15px 0 10px;
   text-align: center;
+  background: #F3F9F8;
   span{
     display: block;
     color:#4BB7AA;
