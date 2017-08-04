@@ -45,7 +45,7 @@
     </card>
     <div style="text-align:center">
       <spinner v-if="loading" type="dots"></spinner>
-      <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
+      <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
     </div>
   </view-box>
 </template>
@@ -118,7 +118,7 @@ export default {
   left:86%;
   -webkit-transform: translate(-50%, 0);
   p{
-    i{color:#4BB7AA;}
+    i{color:#4cc0be;}
     font-size:.8rem;text-align: center;line-height:1.8rem; color:#555;width: 100%;
     display: box;
     overflow: hidden;

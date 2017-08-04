@@ -84,7 +84,7 @@ export default {
   font-size: normal;
   h4 {
     font-size: .75rem;
-    color: #4BB7AA
+    color: #4cc0be
   }
   p {
     font-size: .8rem;

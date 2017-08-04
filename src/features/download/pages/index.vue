@@ -33,12 +33,12 @@
       </div>
       <div style="text-align:center;padding:10px 0;">
         <spinner v-if="loading" type="lines"></spinner>
-        <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
-        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
+        <p v-else-if="!block.length" style="font-size:16px;color:#4cc0be">该科目还未组卷</p>
+        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
       </div>
       <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'http://www.guinaben.com/uploader/assembly/'+downloadId+'.pdf'"></share>
     </div>
-    <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
+    <tabbar slot="bottom" style='background-color:#4cc0be;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
         <flexbox-item :span="6" style="font-size:.8rem;text-align:center;"
           @click.native="$router.push({name: 'download_update', params: {id: downloadId}})">

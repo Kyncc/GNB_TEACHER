@@ -57,14 +57,14 @@ export default {
     ...mapActions(['setHomeworkImage', 'delHomeworkImage', 'resetHomeworkImage', 'setHomework']),
     // 增加照片
     _add () {
-      this.$router.push({'name': 'homework_publish_photo'})
-      // let cmr = plus.camera.getCamera()
-      // cmr.captureImage((p) => {
-      //   plus.io.resolveLocalFileSystemURL(p, (entry) => {
-      //     this.setHomeworkImage(entry.toLocalURL())
-      //     this.$router.push({'name': 'homework_publish_photo'})
-      //   })
-      // })
+      // this.$router.push({'name': 'homework_publish_photo'})
+      let cmr = plus.camera.getCamera()
+      cmr.captureImage((p) => {
+        plus.io.resolveLocalFileSystemURL(p, (entry) => {
+          this.setHomeworkImage(entry.toLocalURL())
+          this.$router.push({'name': 'homework_publish_photo'})
+        })
+      })
     },
     // 删除照片
     _del () {
@@ -116,7 +116,7 @@ export default {
   padding-left:10px;
   .plus{
     text-align:center;
-    height:90px;width:65px;border:1px solid #4BB7AA;font-size:48px;color:#ccc;
+    height:90px;width:65px;border:1px solid #4cc0be;font-size:48px;color:#ccc;
     border-radius:3px;
     float:left;
   }

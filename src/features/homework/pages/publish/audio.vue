@@ -168,17 +168,17 @@ export default {
   text-align: center;
   span{
     display: block;
-    color:#4BB7AA;
+    color:#4cc0be;
   }
   p{
     line-height: 82px;
     display: inline-block;
     font-size: 100px;
-    color:#4BB7AA;
+    color:#4cc0be;
     width:100px;
     height:100px;
     border-radius: 20%;
-    border:2px solid #4BB7AA;
+    border:2px solid #4cc0be;
     margin-bottom:10px;
   }
 }

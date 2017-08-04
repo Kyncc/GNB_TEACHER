@@ -1,6 +1,8 @@
 export default {
   path: '/error',
+  name: 'error',
   component: r => require.ensure([], () => r(require('./pages/layout')), '/error'),
+  redirect: '/error',
   children: [
     {
       path: '/',

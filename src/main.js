@@ -41,7 +41,7 @@ Vue.filter('errorType', (value) => {
 // 在首页返回键失效其他页面则直接返回上一页
 document.addEventListener('plusready', () => {
   let first = null
-  plus.navigator.setStatusBarBackground('#4BB7AA') // 设置状态栏颜色
+  plus.navigator.setStatusBarBackground('#4cc0be') // 设置状态栏颜色
   // HACK 解决HTML5+ IOS内扬声器的问题
   setTimeout(() => {
     let audio = plus.audio.createPlayer('233.mp3')

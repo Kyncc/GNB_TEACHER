@@ -53,7 +53,7 @@ export default {
       if (item.isRead) {
         return 'color:#FEAA85' // 是否联系过
       } else if (!item.isLink) {
-        return 'color:#4BB7AA' // 是否是标题
+        return 'color:#4cc0be' // 是否是标题
       }
     }
   },

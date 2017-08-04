@@ -15,8 +15,8 @@
       <card v-for="(item, index) in Homework.list" :key="index">
         <div slot="header" class="weui-panel__hd" style='padding:5px 15px;'>
           <flexbox>
-            <flexbox-item :span="7" style="color:#4BB7AA">布置时间：{{item.time | ymd}}</flexbox-item>
-            <flexbox-item :span="5" style="color:#4BB7AA;text-align:right;padding-right:5px;">
+            <flexbox-item :span="7" style="color:#4cc0be">布置时间：{{item.time | ymd}}</flexbox-item>
+            <flexbox-item :span="5" style="color:#4cc0be;text-align:right;padding-right:5px;">
               <x-button type="primary" mini plain @click.native="$router.push({name: 'homework_class',params:{index: index, id: item.homeworkId}})">布置给</x-button>
             </flexbox-item>
           </flexbox>
@@ -33,14 +33,14 @@
         <flexbox slot="content"  v-else>
           <flexbox-item v-if='item.audio' :span="2" @click.native='_audio(item.audio, index)'>
             <i v-if='audio.state && audio.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
-            <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4BB7AA;margin-top:-.1rem;'></i>
+            <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4cc0be;margin-top:-.1rem;'></i>
           </flexbox-item>
         </flexbox>
       </card>
       <div style="text-align:center">
         <spinner v-show="loading" type="dots"></spinner>
-        <p v-show="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
-        <!-- <p v-if="Homework.list.length === 0" style="font-size:16px;color:#4BB7AA">您还未布置作业呢</p> -->
+        <p v-show="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
+        <!-- <p v-if="Homework.list.length === 0" style="font-size:16px;color:#4cc0be">您还未布置作业呢</p> -->
       </div>
     </div>
     <div v-transfer-dom>
@@ -178,7 +178,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 非首页进来刷新数据
-      if (from.name !== 'bag') {
+      if (from.name !== 'index') {
         vm.clearHomework()
         vm._getData()
       }
@@ -202,17 +202,17 @@ export default {
   background: #F3F9F8;
   span{
     display: block;
-    color:#4BB7AA;
+    color:#4cc0be;
   }
   p{
     line-height: 82px;
     display: inline-block;
     font-size: 100px;
-    color:#4BB7AA;
+    color:#4cc0be;
     width:100px;
     height:100px;
     border-radius: 20%;
-    border:2px solid #4BB7AA;
+    border:2px solid #4cc0be;
     margin-bottom:10px;
   }
 }

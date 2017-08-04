@@ -14,7 +14,7 @@
       </template>
       <div style="text-align:center">
         <spinner v-if="loading" type="dots"></spinner>
-        <p v-if="Invite.list.length == 0 && !loading" style="font-size:16px;padding:10px 0;color:#4BB7AA">暂无邀请好友~</p>
+        <p v-if="Invite.list.length == 0 && !loading" style="font-size:16px;padding:10px 0;color:#4cc0be">暂无邀请好友~</p>
       </div>
     </div>
   </view-box>

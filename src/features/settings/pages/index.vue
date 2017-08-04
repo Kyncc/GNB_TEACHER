@@ -11,7 +11,8 @@
         <x-switch title="只看学段" v-model='gradeDisabled'></x-switch>
         <checklist v-show='gradeDisabled' :options="gradeList" v-model="grade"></checklist>
       </group>-->
-      <group gutter='0'> 
+      <group gutter='0'>
+        <cell title="关于归纳本" link="about"></cell>
         <cell title="退出登录" @click.native="_onConfirm"></cell>
       </group>
     </view-box>

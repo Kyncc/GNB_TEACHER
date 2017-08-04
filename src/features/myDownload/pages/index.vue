@@ -9,7 +9,7 @@
     <div>
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownload.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownload' :key='index'>
-          <div slot="value" style='color:#4BB7AA'>
+          <div slot="value" style='color:#4cc0be'>
             <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
               <i class="icon iconfont icon-download" style="font-size:16px;" ></i>下载
             </span>
@@ -21,8 +21,8 @@
       </group>
       <div style="text-align:center;padding:10px 0;">
         <spinner v-if="loading" type="lines"></spinner>
-        <p v-else-if="!MyDownload.length" style="font-size:16px;color:#4BB7AA">近一月还未有下载记录</p>
-        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
+        <p v-else-if="!MyDownload.length" style="font-size:16px;color:#4cc0be">近一月还未有下载记录</p>
+        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
       </div>
     </div>
     <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
@@ -97,7 +97,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'bag') {
+      if (from.name === 'index') {
         vm._getData()
       }
     })

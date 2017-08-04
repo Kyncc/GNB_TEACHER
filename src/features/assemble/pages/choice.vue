@@ -20,7 +20,7 @@
                 <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index})' style='text-align:center'>
                   <!--<i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>-->
                   <span v-if='item.isAssembly' style='color:#ff5722'>已组卷</span>
-                  <span v-else style="color:#4BB7AA">组卷</span>
+                  <span v-else style="color:#4cc0be">组卷</span>
                 </flexbox-item>
               </flexbox>
             </div>
@@ -30,8 +30,8 @@
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="lines"></spinner>
         <div>
-          <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部练习题~</p>
-          <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
+          <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部练习题~</p>
+          <p style="font-size:16px;color:#4cc0be" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
         </div>
       </div>
     </div>

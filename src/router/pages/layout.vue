@@ -9,7 +9,7 @@
           <i slot="icon" class="icon iconfont icon-home"></i>
           <span slot="label">主页</span>
         </tabbar-item>
-        <tabbar-item link="bag" :show-dot="News.classes">
+        <tabbar-item :show-dot="News.classes">
           <i slot="icon" class="icon iconfont icon-bag"></i>
           <span slot="label">备课</span>
         </tabbar-item>
