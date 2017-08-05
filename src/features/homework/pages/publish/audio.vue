@@ -1,10 +1,12 @@
 <template>
-  <view-box ref="homework" body-padding-top="126px">
+  <view-box ref="homework" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: '语音作业',showBack: true}">
         <div slot="right" style="margin:0" @click='_publish'>发布</div>
       </x-header>
-      <flexbox :gutter="0" wrap="wrap" justify='center' style='margin-top:1rem;'>
+    </div>
+    <div>
+      <flexbox :gutter="0" wrap="wrap" justify='center' style='margin:1rem 0;'>
         <flexbox-item :span="11">
           <x-button type="primary" @click.native="_record()" v-if='!audio.path.length'>点我录音</x-button>
           <template v-else>
@@ -13,8 +15,6 @@
           </template>
         </flexbox-item>
       </flexbox>
-    </div>
-    <div>
       <checklist title="选择消息发送班级" label-position="right" required :options="classList" v-model="classes"></checklist>
     </div>
     <div v-transfer-dom class="mask record" v-show='isRecord.state'>
@@ -144,6 +144,12 @@ export default {
     next(vm => {})
   },
   beforeRouteLeave (to, from, next) {
+    if (this.isRecord.state) {
+      this._stop()
+      next(false)
+      return
+    }
+
     if (this.audio.path || this.classes.length) {
       this.$vux.confirm.show({
         title: '确定放弃编辑的消息么？',

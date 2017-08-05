@@ -20,6 +20,9 @@
       <cell title="邀请好友" link="invite">
         <i class="icon iconfont icon-share" style="color:#52DCFF" slot="icon"></i>
       </cell>
+      <cell title="我的下载" link="myDownload">
+        <i class="icon iconfont icon-yduixiazai" style="color:#794bb8" slot="icon"></i>
+      </cell>
       <cell title="消息通知" link="message">
         <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
         <badge text="新消息" v-if="News.correct || News.system"></badge>

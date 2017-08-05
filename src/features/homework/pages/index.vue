@@ -13,6 +13,7 @@
     </div>
     <div>
       <card v-for="(item, index) in Homework.list" :key="index">
+        {{item.audio}}
         <div slot="header" class="weui-panel__hd" style='padding:5px 15px;'>
           <flexbox>
             <flexbox-item :span="7" style="color:#4cc0be">布置时间：{{item.time | ymd}}</flexbox-item>
@@ -24,14 +25,14 @@
         <!--文字作业 -->
         <p slot="content" class="card-padding" v-if='item.content'>{{item.content}}</p>
         <!--图片作业 -->
-        <flexbox slot="content" wrap="wrap" align="baseline" :gutter="0" v-else-if='item.img'>
+        <flexbox slot="content" wrap="wrap" align="baseline" :gutter="0" v-if='item.img'>
           <flexbox-item :span="3" v-for="(img, index) in item.img" :key="index" @click.native="_show(index, item.img)" style="text-align:center;margin-bottom:10px;">
-            <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/130x180!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
+            <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/260x360!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
           </flexbox-item>
         </flexbox>
         <!--语音作业 -->
-        <flexbox slot="content"  v-else>
-          <flexbox-item v-if='item.audio' :span="2" @click.native='_audio(item.audio, index)'>
+        <flexbox slot="content" v-if='item.audio'>
+          <flexbox-item :span="2" @click.native='_audio(item.audio, index)'>
             <i v-if='audio.state && audio.index === index' class='icon iconfont icon-zanting' style='font-size:2rem'></i>
             <i v-else class='icon iconfont icon-playcirclefill' style='font-size:2rem;color:#4cc0be;margin-top:-.1rem;'></i>
           </flexbox-item>
@@ -40,7 +41,7 @@
       <div style="text-align:center">
         <spinner v-show="loading" type="dots"></spinner>
         <p v-show="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
-        <!-- <p v-if="Homework.list.length === 0" style="font-size:16px;color:#4cc0be">您还未布置作业呢</p> -->
+        <p v-show="Homework.list.length === 0 && !error" style="font-size:16px;color:#4cc0be">您还未布置作业呢</p>
       </div>
     </div>
     <div v-transfer-dom>
@@ -157,7 +158,7 @@ export default {
             this.audio.obj.stop()
           }
         })
-        this.audio.audio.stop().play()
+        this.audio.obj.stop().play()
       } else {
         // 手动暂停
         this.audio.index = null
@@ -197,7 +198,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .homework_add{
-  padding:15px 0 10px;
+  padding:15px 0 5px;
   text-align: center;
   background: #F3F9F8;
   span{
@@ -205,7 +206,7 @@ export default {
     color:#4cc0be;
   }
   p{
-    line-height: 82px;
+    line-height: 100px;
     display: inline-block;
     font-size: 100px;
     color:#4cc0be;

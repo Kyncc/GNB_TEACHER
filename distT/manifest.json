@@ -7,8 +7,8 @@
 	"id": "H5B579B59",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-教师端",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "3.1.0",/*应用版本名称*/
-		"code": "310"
+		"name": "3.1.0.0",/*应用版本名称*/
+		"code": "3110"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -95,7 +95,7 @@
 		},
 		"Statistic": {},
 		"Camera": {},
-		"Share": {},"Speech":{},"Uploader":{}
+		"Share": {},"Speech":{},"Uploader":{},"Contacts":{}
 	},
 	"plus": {
 		"plistcmds": [
@@ -104,7 +104,7 @@
 			"Add :NSPhotoLibraryUsageDescription string 相册访问",
 			"Add :NSContactsUsageDescription string 通讯录访问"
 		],
-		"schemeWhitelist":["market","mqqapi"],
+		"schemeWhitelist":["market","mqqapi","mqqwpa","itms-apps"],
 		"splashscreen": {
 			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
 			"waiting": false,
@@ -122,7 +122,7 @@
 					},
 					"weixin": {
 						"appid": "wxc440c73efa33005e",
-						"appsecret": "629fa5f56d873b63eb48efdc4124adfb629fa5f56d873b63eb48efdc4124adfb629fa5f56d873b63eb48efdc4124adfb629fa5f56d873b63eb48efdc4124adfb",
+						"appsecret": "d9cfc4f4f3180253a889811d05b7a494",
 						"description": "可选，微信分享"
 					}
 				},
@@ -148,7 +148,7 @@
 				"keystore": "",/*Android应用打包使用的密钥库文件*/
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
-				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+				"permissions": ["<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
 			},
 			"orientation": [
 				"portrait-primary"
@@ -223,38 +223,11 @@
 		"pages": {
 			"index.html": {
 				"resources": [
-					"static/img/icon.jpg",
-					"static/js/app.js",
-					"static/js/manifest.js",
-					"static/js/vendor.js",
-					"static/css/app.css",
-					"static/js/app.630075195c244dd4e2dc.js",
-					"static/js/vendor.e7bd55f124bc2fb304b4.js",
-					"static/js/manifest.43540667c39eefbdfeee.js",
-					"static/js/manifest.a6d4ef7000b4100c0848.js",
-					"static/js/manifest.58aae386fd2067daa728.js",
-					"static/js/manifest.5e3f0432439c7b045cce.js",
-					"static/js/manifest.c07627cfb65b0b220d08.js",
-					"static/js/vendor.8a6b337fda25ca2b3198.js",
-					"static/js/manifest.b1004c80af02760ea32d.js",
-					"static/js/app.a6a648bf5217274e4593.js",
-					"static/js/manifest.61a3e11a33e48b1fac98.js",
-					"static/js/app.9195961d7e19937fe37d.js",
-					"static/js/manifest.96eeda1599ba3cb18450.js",
-					"static/js/vendor.c0d147b1a26370c4e63d.js",
-					"static/js/manifest.eb862867fe0cc3d97b65.js",
-					"static/js/manifest.bd592af5189adb7a8a1b.js",
-					"static/js/manifest.4d9f8457a30e0c06a863.js",
-					"static/js/manifest.25b3de1ca762049dd343.js",
-					"static/js/manifest.9a455573ec616d14e48d.js",
-					"static/js/manifest.842f7ae739d991191369.js",
-					"static/js/manifest.da4686e2fc5bfbb56f11.js",
-					"static/js/manifest.1149c8c561e378b02e0a.js",
-					"static/js/manifest.2b23455963acb4fd2bc8.js",
-					"static/js/manifest.96b19f46c1999aac4661.js",
-					"static/js/manifest.eff283794724d15106be.js",
-					"static/js/app.b854b085d00eab2a1b9a.js",
-					"static/js/vendor.2481b5dbf1f414f4e407.js"
+					"static/js/manifest.1be79d515bd8a00d3e19.js",
+					"static/js/app.5d1b6b46912ef68419fb.js",
+					"static/js/vendor.f6eb2fdbb9286127eb15.js",
+					"static/js/manifest.9a401f7f8cb36e5be50d.js",
+					"static/js/manifest.e423a6a1a90402ba2ee4.js"
 				],
 				"refer": [],
 				"priority": 0

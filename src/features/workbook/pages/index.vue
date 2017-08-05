@@ -8,7 +8,7 @@
     <div>
       <group v-for="(textbook, pindex) in workbook.list.textbook" :key='pindex' :title="textbook.textbookName">
         <cell v-for="(workbook, index) in textbook.list" :key="index" is-link @click.native="$router.push({ name: 'workbook_chapter', params: {'workbookId': workbook.workbookId ,'name': workbook.workbookName}})">
-          <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/90x120!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80">
+          <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/180x240!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80">
           <div slot="after-title" style="width:90%;">
             <p style="color:#aaa;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
             <p class="ellipsis">&nbsp;&nbsp;&nbsp;{{workbook.workbookName}}</p>

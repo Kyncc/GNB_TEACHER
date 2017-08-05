@@ -59,9 +59,9 @@ export const setHomeworkAudio = ({rootState, commit, state}, params) => {
       }
     })
     task.addFile(params.audio, {key: 'audio'})
-    task.addData('subjectId', state.subjectId)
+    task.addData('subjectId', state.subjectId.toString())
+    task.addData('classCodes', params.classes.toString())
     task.addData('token', rootState.common.user.token)
-    task.addData('classCodes', params.classCodes)
     task.start()
   })
 }

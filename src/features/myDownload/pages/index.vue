@@ -97,7 +97,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'index') {
+      if (from.name === 'user') {
         vm._getData()
       }
     })
