@@ -1,5 +1,5 @@
 <template>
-  <div  v-transfer-dom>
+  <div v-transfer-dom>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="_menuClick" @on-share-success='onShareSuccess()'></actionsheet>
   </div>
 </template>
