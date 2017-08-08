@@ -6,15 +6,15 @@
       </keep-alive>
       <tabbar slot="bottom" class="homepage" v-model="select" style="z-index:2;">
         <tabbar-item link="index" >
-          <i slot="icon" class="icon iconfont icon-home"></i>
+          <i slot="icon" :class="'icon iconfont '+(select === 0 ? 'icon-home1' : 'icon-home2')"></i>
           <span slot="label">主页</span>
         </tabbar-item>
-        <tabbar-item :show-dot="News.classes">
-          <i slot="icon" class="icon iconfont icon-bag"></i>
+         <tabbar-item>
+          <i slot="icon" class="icon iconfont icon-bag1"></i>
           <span slot="label">备课</span>
         </tabbar-item>
         <tabbar-item link="user" :show-dot="News.correct || News.system">
-          <i slot="icon" class="icon iconfont icon-user"></i>
+          <i slot="icon" :class="'icon iconfont '+(select === 2 ? 'icon-user1' : 'icon-user2')"></i>
           <span slot="label">我的</span>
         </tabbar-item>
       </tabbar>
@@ -57,6 +57,12 @@ export default {
     position: relative;
     left: 1px;
     top: -2px;
+   }
+   .icon-user1 {
+     color:#4cc0be;
+   }
+  .icon-home1 {
+     color:#4cc0be;
    }
 }
 </style>

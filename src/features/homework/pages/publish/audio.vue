@@ -144,21 +144,24 @@ export default {
     next(vm => {})
   },
   beforeRouteLeave (to, from, next) {
-    if (this.isRecord.state) {
-      this._stop()
+    // 返回时若在播放则暂停
+    if (this.audio.state) {
+      this.audio.file.stop()
+      this.audio.state = false
       next(false)
-      return
     }
 
+    // 返回时若有录音或者选了班级
     if (this.audio.path || this.classes.length) {
+      let that = this
       this.$vux.confirm.show({
         title: '确定放弃编辑的消息么？',
         dialogTransition: '',
         onCancel () { next(false) },
         onConfirm () {
-          this.classes = []
-          this.audio.state = false
-          this.audio.path = ''
+          that.classes = []
+          that.audio.state = false
+          that.audio.path = ''
           next()
         }
       })

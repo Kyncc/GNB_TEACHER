@@ -71,6 +71,8 @@
 
 .icon-workbook:before { content: "\e639"; }
 
+.icon-download_link:before { content: "\e663"; }
+
 .icon-chufang:before { content: "\e62f"; }
 
 .icon-icon073102:before { content: "\e608"; }
@@ -87,11 +89,11 @@
 
 .icon-brush:before { content: "\e67f"; }
 
-.icon-yingyongshengji:before { content: "\e618"; }
-
 .icon-pie-chart:before { content: "\e7a7"; }
 
 .icon-jinrulianxi:before { content: "\e6c2"; }
+
+.icon-gengxin:before { content: "\e61e"; }
 
 .icon-upload:before { content: "\e60c"; }
 
