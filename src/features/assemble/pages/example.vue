@@ -22,8 +22,8 @@
             <div class="weui-cell__bd">
               <flexbox :gutter='0'>
                 <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
-                <flexbox-item :span="7" style='text-align:center'>更新时间: {{item.time | ymd}}</flexbox-item>
-                <flexbox-item :span="3" style="color:#4cc0be" 
+                <flexbox-item :span="7" style='text-align:center'>时间: {{item.time | ymd}}</flexbox-item>
+                <flexbox-item :span="3" style="color:#4cc0be"
                   @click.native="$router.push({name:'assemble_choice', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId}})">
                   <i class="icon iconfont icon-chakan" style="font-size:18px"></i>
                   去组卷

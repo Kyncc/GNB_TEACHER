@@ -18,7 +18,7 @@
             <div class="weui-cell__bd">
               <flexbox :gutter='0'>
                 <flexbox-item :span="3">难度: {{item.degree}}</flexbox-item>
-                <flexbox-item :span="7" >更新时间: {{item.time | ymd}}</flexbox-item>
+                <flexbox-item :span="7" >时间: {{item.time | ymd}}</flexbox-item>
                 <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index})' style='text-align:center'>
                   <!--<i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>-->
                   <span v-if='item.isAssembly' style='color:#ff5722'>已组卷</span>
