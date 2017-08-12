@@ -194,9 +194,9 @@
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"retina55": "unpackage/res/start/1242×2208.png",
-						"retina47": "unpackage/res/start/750×1334.png",
-						"retina40": "unpackage/res/start/640×1136.png"
+						"retina55": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/1242×2208.png",
+						"retina47": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/750×1334.png",
+						"retina40": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/640×1136.png","retina35":"C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/640×960.png"
 					},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -212,9 +212,9 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "",
-					"hdpi": "unpackage/res/start/480×762.png",
-					"xhdpi": "unpackage/res/start/640×1136.png",
-					"xxhdpi": "unpackage/res/start/1080×1882.png"
+					"hdpi": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/480×762.png",
+					"xhdpi": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/720×1242.png",
+					"xxhdpi": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/1080×1882.png"
 				}
 			}
 		}

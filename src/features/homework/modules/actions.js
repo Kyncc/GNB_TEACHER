@@ -23,6 +23,7 @@ export const getHomework = ({ rootState, commit }, params) => {
 
 /** 布置作业 */
 export const setHomework = ({ rootState, state, dispatch }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -37,8 +38,10 @@ export const setHomework = ({ rootState, state, dispatch }, params) => {
         }
       }
     }).then((response) => {
+      Vue.$vux.loading.hide()
       resolve(response)
     }).catch((e) => {
+      Vue.$vux.loading.hide()
       reject(e)
     })
   })
@@ -68,6 +71,7 @@ export const setHomeworkAudio = ({rootState, commit, state}, params) => {
 
 /** 布置作业 */
 export const addHomeworkClass = ({ rootState, state, dispatch }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -78,8 +82,10 @@ export const addHomeworkClass = ({ rootState, state, dispatch }, params) => {
         classCodes: params.classCodes
       }
     }).then((response) => {
+      Vue.$vux.loading.hide()
       resolve(response)
     }).catch((e) => {
+      Vue.$vux.loading.hide()
       reject(e)
     })
   })

@@ -116,9 +116,12 @@ export default {
   padding-left:10px;
   .plus{
     text-align:center;
-    height:90px;width:65px;border:1px solid #4cc0be;font-size:48px;color:#ccc;
+    height:90px;width:65px;border:1px solid #ccc;font-size:28px;color:#ccc;
     border-radius:3px;
     float:left;
+    b{
+      line-height:80px;
+    }
   }
 }
 </style>

@@ -78,7 +78,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 不来自题目详情全部清除数据
-      if (from.name === 'assemble_example') {
+      if (from.name === 'assemble_example' || from.name === 'download') {
         vm.loadingNoData = false
         vm.clearAssembleChoice()
         vm._getData()

@@ -35,7 +35,7 @@ export default {
     list () {
       return this.User.swiper.map((item, index) => ({
         url: `/article/${item.id}`,
-        img: item.img + '?imageMogr2/auto-orient/thumbnail/x335/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'
+        img: item.img
       }))
     }
   },
