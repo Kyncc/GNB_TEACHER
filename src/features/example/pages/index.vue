@@ -33,7 +33,7 @@
           <div class="weui-cell__bd">
             <flexbox :gutter='0'>
               <flexbox-item :span="3">难度: {{Example.degree}}</flexbox-item>
-              <flexbox-item :span="7">时间: {{Example.time | ymd}}</flexbox-item>
+              <flexbox-item :span="7">更新: {{Example.time | ymd}}</flexbox-item>
             </flexbox>
           </div>
         </div>
