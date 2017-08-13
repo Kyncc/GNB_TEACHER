@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(item, pindex) in exercise">
+    <div v-for="(item, pindex) in exercise" :key='pindex'>
       <!--2级别练习册-->
       <template v-if="item.b[0].type == '1'">
         <group v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
@@ -26,7 +26,7 @@
         </group>
       </template>
     </div>
-    
+
     <div style="margin:1rem" v-if='exercise'>
       <x-button :disabled="isRead" type="primary" @click.native="_post">已阅</x-button>
     </div>

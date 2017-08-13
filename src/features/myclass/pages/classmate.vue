@@ -1,11 +1,18 @@
 <template>
-  <view-box ref="myClass" body-padding-top="46px" >
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" 
-    :left-options="{backText: ClassMyClassmate.classname ? ClassMyClassmate.classname : '',showBack: true}"> 
-      <div slot="right" style="margin:0" @click="$router.push({name: 'class_update', params: {'code': ClassMyClassmate.classcode, 'name': ClassMyClassmate.classname}})">
-        编辑
-      </div>
-    </x-header>
+  <view-box ref="myClass" body-padding-top="100px" >
+    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
+      <x-header :left-options="{backText: ClassMyClassmate.classname ? ClassMyClassmate.classname : '',showBack: true}">
+        <div slot="right" style="margin:0" @click="$router.push({name: 'class_update', params: {'code': ClassMyClassmate.classcode, 'name': ClassMyClassmate.classname}})">
+          编辑
+        </div>
+      </x-header>
+      <flexbox style='padding:.4rem;background:#fff;'>
+        <flexbox-item :span="8" style="font-size:.7rem">我的邀请码: <b></b>{{ClassMyClassmate.classcode}}</flexbox-item>
+        <flexbox-item :span="4" style="color:#4bb7aa;">
+          <x-button type="primary" @click.native='_invite(ClassMyClassmate.classcode)' plain mini>邀请同学</x-button>
+        </flexbox-item>
+      </flexbox>
+    </div>
     <template v-if="!loading">
       <group title="同学列表">
         <cell v-for="(student, index) in ClassMyClassmate.classmates" :key='index'>
@@ -18,14 +25,6 @@
     <div style="text-align:center">
       <spinner v-if="loading" type="lines"></spinner>
     </div>
-    <tabbar style='background-color:#fff;'>
-      <flexbox style='padding:.4rem;'>
-        <flexbox-item :span="8" style="font-size:.7rem">我的邀请码: <b></b>{{ClassMyClassmate.classcode}}</flexbox-item>
-        <flexbox-item :span="4" style="color:#4bb7aa;"> 
-          <x-button type="primary" @click.native='_invite(ClassMyClassmate.classcode)' plain mini>邀请同学</x-button>
-        </flexbox-item>
-      </flexbox>
-    </tabbar>
     <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href='share.href'></share>
   </view-box>
 </template>

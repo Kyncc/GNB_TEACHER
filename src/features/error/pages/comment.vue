@@ -135,6 +135,9 @@ export default {
       this.isRecord.state = true
       this.isRecord.count = setInterval(() => {
         this.isRecord.time++
+        if (this.isRecord.time === 120) {
+          this._stop()
+        }
       }, 1000)
       this.vedio.record({
         format: 'amr',

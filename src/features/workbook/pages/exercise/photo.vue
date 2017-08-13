@@ -16,7 +16,7 @@
         <div slot="content">
           <flexbox wrap="wrap" align="baseline" :gutter="0">
             <flexbox-item :span="3" v-for="(img, index) in items.camera" :key="index" @click.native="show(index, items.camera)" style="text-align:center;margin-bottom:10px;">
-              <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/136x180!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
+              <img v-lazy="img.url+'?imageMogr2/auto-orient/thumbnail/260x360!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim'" width="65" height="90" class="previewer-answer-img">
             </flexbox-item>
           </flexbox>
         </div>

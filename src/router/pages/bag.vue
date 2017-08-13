@@ -18,6 +18,9 @@
       <cell title="我的下载" link="myDownload">
         <i class="icon iconfont icon-download" style="color:#794BB8" slot="icon"></i>
       </cell>
+      <cell title="我的作业" link="homework">
+        <i class="icon iconfont icon-download" style="color:#794BB8" slot="icon"></i>
+      </cell>
     </group>
   </div>
 </template>

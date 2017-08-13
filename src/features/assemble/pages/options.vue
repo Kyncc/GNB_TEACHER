@@ -93,7 +93,7 @@ export default {
 <style lang="less" scoped>
 .searchtitle{
   font-size:14px;
-  color:#4BB7AA;
+  color:#4cc0be;
 }
 .demo4-item {
   background-color: #ccc;
@@ -107,7 +107,7 @@ export default {
   border-radius: 5px;
 }
 .demo4-item-selected {
-  background-color: #4BB7AA;
+  background-color: #4cc0be;
   color: #fff;
 }
 .demo4-item-disabled {

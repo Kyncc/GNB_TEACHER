@@ -24,7 +24,7 @@
 
 <script>
 import {XHeader, Badge, Cell, Group, ViewBox} from 'vux'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'index',
@@ -33,6 +33,14 @@ export default {
   },
   computed: {
     ...mapGetters(['User', 'News'])
+  },
+  methods: {
+    ...mapActions(['getUserNews'])
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.getUserNews()
+    })
   }
 }
 </script>

@@ -8,7 +8,7 @@
           <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'lxexercises'}})">
             <div v-html="item.stem"></div>
             <div v-for="(value, key) in item.opt" :key='key' style="padding-top:5px;">
-              {{ key }}： 
+              {{ key }}：
               <p v-html="value" style="display:inline-block"></p>
             </div>
           </div>
@@ -17,7 +17,7 @@
               <div class="weui-cell__bd">
                 <flexbox :gutter='0'>
                   <flexbox-item :span="3">难度：{{item.degree}}</flexbox-item>
-                  <flexbox-item :span="7">更新时间：{{item.time | ymd}}</flexbox-item>
+                  <flexbox-item :span="7">时间：{{item.time | ymd}}</flexbox-item>
                 </flexbox>
               </div>
             </div>
@@ -26,7 +26,7 @@
       </div>
       <div style="text-align:center;padding:10px 0;">
         <spinner v-if="loading" type="lines"></spinner>
-        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
+        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
       </div>
     </div>
   </view-box>

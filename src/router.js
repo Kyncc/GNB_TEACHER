@@ -8,6 +8,7 @@ import about from './features/about/router'
 import correct from './features/correct/router'
 import error from './features/error/router'
 import example from './features/example/router'
+import homework from './features/homework/router'
 import message from './features/message/router'
 import myclass from './features/myclass/router'
 import assemble from './features/assemble/router'
@@ -28,6 +29,7 @@ let router = new Router({
     example,
     login,
     invite,
+    homework,
     ...index,
     message,
     myclass,

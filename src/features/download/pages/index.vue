@@ -15,8 +15,7 @@
           <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'lxexercises'}})">
             <div v-html="item.stem"></div>
             <div v-for="(value, key) in item.opt" :key='key' style="padding-top:5px;">
-              {{ key }}：
-              <p v-html="value" style="display:inline-block"></p>
+              {{ key }}：<p v-html="value" style="display:inline-block"></p>
             </div>
           </div>
           <div slot="footer">
@@ -24,7 +23,7 @@
               <div class="weui-cell__bd">
                 <flexbox :gutter='0'>
                   <flexbox-item :span="3">难度：{{item.degree}}</flexbox-item>
-                  <flexbox-item :span="7">更新时间：{{item.time | ymd}}</flexbox-item>
+                  <flexbox-item :span="7">时间：{{item.time | ymd}}</flexbox-item>
                 </flexbox>
               </div>
             </div>
@@ -33,20 +32,22 @@
       </div>
       <div style="text-align:center;padding:10px 0;">
         <spinner v-if="loading" type="lines"></spinner>
-        <p v-else-if="!block.length" style="font-size:16px;color:#4BB7AA">该科目还未组卷</p>
-        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4BB7AA">出错了点我重新加载</p>
+        <p v-else-if="!block.length" style="font-size:16px;color:#4cc0be">该科目还未组卷</p>
+        <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
       </div>
-      <share :change.sync='showAction' :showAction='showAction' :content='share.content' :title='share.title' :href="'http://www.guinaben.com/uploader/assembly/'+downloadId+'.pdf'"></share>
+      <share :change.sync='showAction' :showAction='showAction' :content='share.content'
+        :title='share.title'
+        :href="'http://www.guinaben.com/upload/assembly/'+downloadId+'.pdf'"
+        @on-share-success='_shareSuccess()'>
+      </share>
     </div>
-    <tabbar slot="bottom" style='background-color:#4BB7AA;color:#fff' v-show='block && block.length'>
+    <tabbar slot="bottom" style='background-color:#4cc0be;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
         <flexbox-item :span="6" style="font-size:.8rem;text-align:center;"
           @click.native="$router.push({name: 'download_update', params: {id: downloadId}})">
-          <i class="icon iconfont icon-bianji"></i>编辑
-        </flexbox-item>
+          <i class="icon iconfont icon-bianji"></i>编辑</flexbox-item>
         <flexbox-item :span="6" style="font-size:.8rem;text-align:center;" @click.native="_download()">
-          <i class="icon iconfont icon-download"></i>
-          下载</flexbox-item>
+          <i class="icon iconfont icon-download"></i>下载</flexbox-item>
       </flexbox>
     </tabbar>
   </view-box>
@@ -117,17 +118,21 @@ export default {
         try {
           await this.getDownloadVaild()
           this.showAction = true
-          this.$vux.alert.show({
-            title: '下载成功',
-            content: '请到我的下载中查看',
-            dialogTransition: 'vux-fade'
-          })
-          await this._getData()
         } catch (err) {
           this.showAction = true
-          console.log(err)
         }
       })()
+    },
+    _shareSuccess () {
+      let that = this
+      this.$vux.alert.show({
+        title: '下载成功',
+        content: '请到我的下载查看',
+        dialogTransition: '',
+        onHide () {
+          that._getData()
+        }
+      })
     }
   },
   watch: {

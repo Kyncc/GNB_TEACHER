@@ -1,7 +1,9 @@
 <template>
  <view-box ref="viewBox" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
-      <x-header :left-options="{backText: '精选练习'}"></x-header>
+      <x-header :left-options="{backText: '精选练习'}">
+        <div slot="right" @click="$router.push({name: 'download'})"><i class="icon iconfont icon-download_link"></i></div>
+      </x-header>
     </div>
     <div>
       <card v-for="(item, index) in list" :key="index">
@@ -16,11 +18,11 @@
             <div class="weui-cell__bd">
               <flexbox :gutter='0'>
                 <flexbox-item :span="3">难度: {{item.degree}}</flexbox-item>
-                <flexbox-item :span="7" >更新时间: {{item.time | ymd}}</flexbox-item>
+                <flexbox-item :span="7">更新: {{item.time | ymd}}</flexbox-item>
                 <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index})' style='text-align:center'>
                   <!--<i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>-->
                   <span v-if='item.isAssembly' style='color:#ff5722'>已组卷</span>
-                  <span v-else style="color:#4BB7AA">组卷</span>
+                  <span v-else style="color:#4cc0be">组卷</span>
                 </flexbox-item>
               </flexbox>
             </div>
@@ -30,8 +32,8 @@
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="lines"></spinner>
         <div>
-          <p style="font-size:16px;color:#4BB7AA" v-if="loadingNoData">已经加载全部练习题~</p>
-          <p style="font-size:16px;color:#4BB7AA" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
+          <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部练习题~</p>
+          <p style="font-size:16px;color:#4cc0be" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
         </div>
       </div>
     </div>
@@ -76,7 +78,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 不来自题目详情全部清除数据
-      if (from.name === 'assemble_example') {
+      if (from.name === 'assemble_example' || from.name === 'download') {
         vm.loadingNoData = false
         vm.clearAssembleChoice()
         vm._getData()

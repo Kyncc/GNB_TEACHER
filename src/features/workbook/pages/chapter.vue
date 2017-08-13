@@ -5,8 +5,8 @@
     <div>
       <group v-for="(aitem, index) in chapter" :key="index" style="margin-bottom:.5rem" gutter="0">
         <cell :title="aitem.name" :style=" _getColor(aitem)" @click.native='_toNumberPage(aitem)'></cell>
-        <template v-for="b in aitem.b" > 
-          <cell :title="b.name" :style="_getColor(b)" @click.native='_toNumberPage(b)'></cell>
+        <template v-for="b in aitem.b" >
+          <cell :title="b.name" :style="_getColor(b)" @click.native='_toNumberPage(b)' :key='b'></cell>
         </template>
       </group>
       <div style="text-align:center">
@@ -53,7 +53,7 @@ export default {
       if (item.isRead) {
         return 'color:#FEAA85' // 是否联系过
       } else if (!item.isLink) {
-        return 'color:#4BB7AA' // 是否是标题
+        return 'color:#4cc0be' // 是否是标题
       }
     }
   },

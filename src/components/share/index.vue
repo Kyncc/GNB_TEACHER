@@ -1,5 +1,5 @@
 <template>
-  <div  v-transfer-dom>
+  <div v-transfer-dom>
     <actionsheet v-model="show" :menus="menus" @on-click-menu="_menuClick" @on-share-success='onShareSuccess()'></actionsheet>
   </div>
 </template>
@@ -84,8 +84,8 @@ export default {
         href: this.href,
         title: this.title,
         content: this.content,
-        thumbs: ['http://img.guinaben.com/iconT.png?imageView2/0/w/100/h/100/format/png/interlace/1/q/100|imageslim'],
-        pictures: ['http://img.guinaben.com/iconT.png?imageView2/0/w/100/h/100/format/png/interlace/1/q/100|imageslim'],
+        thumbs: ['http://img.guinaben.com/iconTeacher.png?imageView2/0/w/256/h/256/format/png/interlace/1/q/100|imageslim'],
+        pictures: ['http://img.guinaben.com/iconTeacher.png?imageView2/0/w/256/h/256/format/png/interlace/1/q/100|imageslim'],
         extra: {
           scene: ex
         }
