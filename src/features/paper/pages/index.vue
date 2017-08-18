@@ -6,10 +6,6 @@
           筛选
         </div>
       </x-header>
-      <tab :animate="false" >
-        <tab-item :selected="Route.name === 'assemble_sync'">同步题型</tab-item>
-        <tab-item :selected="Route.name === 'assemble_gaokao'" @click.native="$router.replace({name:'assemble_gaokao'})">中高考题型</tab-item>
-      </tab>
     </div>
     <div style="padding-top:46px;">
       <group gutter="0" class="gnb_collapse" v-if="!loading">

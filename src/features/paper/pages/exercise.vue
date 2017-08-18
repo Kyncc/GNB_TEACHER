@@ -17,7 +17,7 @@
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="lines"></spinner>
         <div>
-          <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部练习题~</p>
+          <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部试题~</p>
           <p style="font-size:16px;color:#4cc0be" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
         </div>
       </div>
