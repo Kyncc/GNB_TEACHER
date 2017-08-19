@@ -8,7 +8,9 @@
         <cell v-for="(student, index) in ClassMyClassmate.classmates" :key='index'>
           <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg">
           <div slot="after-title">{{student.name}}</div>
-          <x-button mini type="warn" slot="value" @click.native="_del(student, index)">删除</x-button>
+          <div slot="value" @click="_del(student, index)" style='padding:0 0 0 1rem;'>
+            <i class="icon iconfont icon-closezhuanhuan" style="color:red;"></i>
+          </div>
         </cell>
       </group>
     </template>

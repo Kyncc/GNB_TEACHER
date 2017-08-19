@@ -1,20 +1,17 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '受邀好友'}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '积分明细'}"></x-header>
     <div>
-      <template v-if="!loading && Invite.list.length">
-        <group title="邀请列表">
-          <template v-for="(item, index) in Invite.list">
-            <cell>
-              <img slot="icon" width="30" height="30" style="display:block;margin-right:5px;border-radius:50%;background:#ddd" v-lazy="item.headImg">
-              <div slot="after-title">{{item.name}}</div>
-            </cell>
+      <template v-if="!loading && Points.list.list.length">
+        <group :gutter='0'>
+          <template v-for="(item, index) in Points.list.list ">
+            <cell :key='index' :inline-desc='item.time | ymd' :value='item.points'></cell>
           </template>
         </group>
       </template>
       <div style="text-align:center">
         <spinner v-if="loading" type="dots"></spinner>
-        <p v-if="Invite.list.length == 0 && !loading" style="font-size:16px;padding:10px 0;color:#4cc0be">暂无邀请好友~</p>
+        <p v-if="Points.list.list.length == 0 && !loading" style="font-size:16px;padding:10px 0;color:#4cc0be">暂无更多数据了~</p>
       </div>
     </div>
   </view-box>
@@ -30,7 +27,7 @@ export default {
     XHeader, Spinner, Group, Cell, ViewBox
   },
   computed: {
-    ...mapGetters(['Invite'])
+    ...mapGetters(['Points'])
   },
   data () {
     return {
@@ -38,10 +35,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getInviteList', 'setInviteListClear']),
+    ...mapActions(['getPointsList', 'clearPointsList']),
     _getData () {
       this.loading = true
-      this.getInviteList().then((res) => {
+      this.getPointsList().then((res) => {
         this.loading = false
       }).catch(() => {
         this.loading = false
@@ -50,7 +47,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.setInviteListClear()
+      vm.clearPointsList()
       vm._getData()
     })
   }

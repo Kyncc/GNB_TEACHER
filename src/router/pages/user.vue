@@ -4,7 +4,7 @@
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
-      <cell class='userBg' link='settings/info'>
+      <cell class='userBg' :link="{name: 'settings_update'}">
         <img slot="icon" width="70" height="70" style="border-radius:50%;margin-right:1rem" v-lazy="User.headImg">
         <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
