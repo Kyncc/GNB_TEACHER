@@ -17,6 +17,7 @@ import download from './features/download/router'
 import settings from './features/settings/router'
 import workbook from './features/workbook/router'
 import invite from './features/invite/router'
+import points from './features/points/router'
 // import paper from './features/paper/router'
 
 Vue.use(Router)
@@ -34,6 +35,7 @@ let router = new Router({
     ...index,
     message,
     myclass,
+    points,
     // paper,
     myDownload,
     download,

@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '查看错题',showBack: true}"></x-header>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
       <template v-for="(myClass, index) in errorClassmate.list">
-        <cell :title="myClass.className" is-link :border-intent="false" 
+        <cell :title="myClass.className" is-link :border-intent="false"
         :arrow-direction="myClass.checked ? 'up' : 'down'"
         @click.native="myClass.checked = !myClass.checked"></cell>
         <div class="slide" :class="myClass.checked ? 'animate':''">
@@ -54,7 +54,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'index') {
+      if (from.name === 'index' || from.name === 'points_earn') {
         vm.clearErrorClassmate()
         vm._getData()
       } else {

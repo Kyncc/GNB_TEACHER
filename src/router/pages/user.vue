@@ -11,9 +11,9 @@
       </cell>
     </group>
     <group gutter="0">
-      <!--<cell title="我的账户" link="javascript:;">
-        <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
-      </cell>-->
+      <cell title="我的积分" link="points">
+        <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
+      </cell>
       <cell title="邀请好友" link="invite">
         <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
       </cell>
@@ -27,7 +27,7 @@
       <cell title="我的下载" link="myDownload">
         <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
       </cell>
-      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.1.0'" is-link @click.native="_openStore">
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
       </cell>

@@ -60,7 +60,7 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (from.name === 'user') {
+    if (from.name === 'user' || from.name === 'points_earn') {
       next(vm => {
         vm.getInvite()
       })

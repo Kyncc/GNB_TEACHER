@@ -4,6 +4,7 @@ export default {
   children: [
     {
       path: '/',
+      name: 'about',
       component: r => require.ensure([], () => r(require('./pages/index')), '/about/index')
     },
     {
@@ -12,6 +13,7 @@ export default {
     },
     {
       path: 'advice',
+      name: 'about_advice',
       component: r => require.ensure([], () => r(require('./pages/advice')), '/about/advice')
     },
     {
