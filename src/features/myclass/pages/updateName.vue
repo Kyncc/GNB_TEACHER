@@ -34,7 +34,7 @@ export default {
           name: this.name
         }).then(() => {
           this.getUserInfo().then(() => {
-            history.go(-2)
+            history.go(-1)
           })
         })
       } else {

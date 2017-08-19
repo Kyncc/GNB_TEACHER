@@ -5,7 +5,7 @@
     </div>
     <div>
       <template v-show='workbookExercise.errorList.notPost.length'>
-        <group title="未提交照片同学">
+        <group title="未提交照片学生">
           <cell-box>
             <span style='margin-right:10px' v-for="(name, index) in workbookExercise.errorList.notPost" :key='index'>{{name}}</span>
           </cell-box>

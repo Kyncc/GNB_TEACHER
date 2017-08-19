@@ -1,6 +1,6 @@
 <template>
   <div>
-    <group title="未提交作业同学" v-if='workbookExercise.notPost.length'>
+    <group title="未提交作业学生" v-if='workbookExercise.notPost.length'>
       <cell-box>
         <span style='margin-right:10px' v-for="(name, index) in workbookExercise.notPost" :key='index'>{{name}}</span>
       </cell-box>

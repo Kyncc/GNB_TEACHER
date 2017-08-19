@@ -60,7 +60,7 @@ export default {
       if (item.number) {
         this.$router.push({name: 'workbook_exercise_error', params: {chapterId: this.Route.params.chapterId, wbeid: item.wbeid}})
       } else {
-        this.$vux.toast.show({text: '暂无同学错误', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '暂无学生错误', type: 'text', time: 1000, position: 'bottom'})
       }
     }
   }
