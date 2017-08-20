@@ -14,15 +14,15 @@
           </div>
         </div>
         <div slot="footer">
-          <div class="weui-cell weui-cell_link">
+          <div class="weui-cell weui-cell_link" style='padding:5px 15px'>
             <div class="weui-cell__bd">
               <flexbox :gutter='0'>
                 <flexbox-item :span="3">难度: {{item.degree}}</flexbox-item>
                 <flexbox-item :span="7">更新: {{item.time | ymd}}</flexbox-item>
-                <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index})' style='text-align:center'>
+                <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index})' style='text-align:right'>
                   <!--<i class="icon iconfont icon-jinrulianxi" style="font-size:18px"></i>-->
-                  <span v-if='item.isAssembly' style='color:#ff5722'>已组卷</span>
-                  <span v-else style="color:#4cc0be">组卷</span>
+                  <i v-if='item.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be"></i>
+                  <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be" ></i>
                 </flexbox-item>
               </flexbox>
             </div>
@@ -78,7 +78,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 不来自题目详情全部清除数据
-      if (from.name === 'assemble_example' || from.name === 'download') {
+      if (from.name === 'example' || from.name === 'download') {
         vm.loadingNoData = false
         vm.clearAssembleChoice()
         vm._getData()

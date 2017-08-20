@@ -9,25 +9,31 @@
           {{Route.params.type === 'chapter' ? item.chapterName : item.typeName}}
         </div>
         <div slot="content" @click="
-          $router.push({name:'example',query: {name: Route.params.type === 'chapter' ? item.chapterName : item.typeName},
-          params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'exercises'}})
-        ">
+          $router.push({ name:'example',
+            query: {name: Route.params.type === 'chapter' ? item.chapterName : item.typeName},
+            params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: 'exercises'},
+            query: {from: 'assemble'}
+          })">
           <div v-html="item.stem"></div>
           <div v-for="(value, key) in item.opt" :key='key' style="padding-top:5px;">
             {{ key }}：<p v-html="value" style="display:inline-block"></p>
           </div>
         </div>
         <div slot="footer">
-          <div class="weui-cell weui-cell_link" >
+          <div class="weui-cell weui-cell_link" style='padding:5px 15px'>
             <div class="weui-cell__bd">
               <flexbox :gutter='0'>
-                <flexbox-item :span="2">难度: {{item.degree}}</flexbox-item>
+                <flexbox-item :span="3">难度: {{item.degree}}</flexbox-item>
                 <flexbox-item :span="7" style='text-align:center'>更新: {{item.time | ymd}}</flexbox-item>
-                <flexbox-item :span="3" style="color:#4cc0be"
+                <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index})' style='text-align:right'>
+                  <i v-if='item.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be"></i>
+                  <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be" ></i>
+                </flexbox-item>
+                <!-- <flexbox-item :span="3" style="color:#4cc0be"
                   @click.native="$router.push({name:'assemble_choice', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId}})">
                   <i class="icon iconfont icon-chakan" style="font-size:18px"></i>
                   去组卷
-                </flexbox-item>
+                </flexbox-item> -->
               </flexbox>
             </div>
           </div>
@@ -54,7 +60,7 @@ export default {
     XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['Route', 'AssembleExample', 'AssembleOptions']),
+    ...mapGetters(['Route', 'AssembleExample', 'AssembleOptions', 'setAssemble']),
     list () {
       return this.AssembleExample.list
     }
