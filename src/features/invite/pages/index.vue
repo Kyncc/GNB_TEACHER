@@ -28,15 +28,14 @@
 </template>
 
 <script>
-import { XHeader, XButton, ViewBox, Flexbox, FlexboxItem } from 'vux'
-import { MessageBox } from 'mint-ui'
+import { XHeader, XButton, ViewBox, Flexbox, FlexboxItem, Confirm } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 import Share from '@/components/share'
 
 export default {
   name: 'index',
   components: {
-    XHeader, XButton, ViewBox, Flexbox, FlexboxItem, MessageBox, Share
+    XHeader, XButton, ViewBox, Flexbox, FlexboxItem, Confirm, Share
   },
   computed: {
     ...mapGetters(['Invite'])
@@ -54,9 +53,14 @@ export default {
   methods: {
     ...mapActions(['getInvite', 'setInviteCode']),
     _input () {
-      MessageBox.prompt(' ', '输入好友邀请码').then(({ value, action }) => {
-        this.setInviteCode({ code: value })
-      }).catch(() => {})
+      // prompt形式调用
+      let that = this
+      this.$vux.confirm.prompt('请输入邀请码', {
+        title: '输入好友邀请码',
+        onConfirm (value) {
+          that.setInviteCode({ code: value })
+        }
+      })
     }
   },
   beforeRouteEnter (to, from, next) {

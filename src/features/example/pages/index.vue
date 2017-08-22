@@ -34,6 +34,7 @@
             <flexbox :gutter='0'>
               <flexbox-item :span="3">难度: {{Example.degree}}</flexbox-item>
               <flexbox-item :span="6">更新: {{Example.time | ymd}}</flexbox-item>
+              <!--来自组卷的显示精选练习 -->
               <flexbox-item :span="3"
               @click.native="$router.push({name:'assemble_choice', params: {subjectId: Params.subjectId, grade: Params.grade, id: Params.id}})"
               v-if="Route.query.from === 'assemble'">
