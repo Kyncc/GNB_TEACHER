@@ -53,10 +53,10 @@ export default {
   methods: {
     ...mapActions(['getInvite', 'setInviteCode']),
     _input () {
-      // prompt形式调用
       let that = this
       this.$vux.confirm.prompt('请输入邀请码', {
         title: '输入好友邀请码',
+        dialogTransition: 'vux-fade',
         onConfirm (value) {
           that.setInviteCode({ code: value })
         }
