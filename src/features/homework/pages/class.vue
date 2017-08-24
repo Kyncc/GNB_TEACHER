@@ -41,8 +41,6 @@ export default {
     _commit () {
       this.addHomeworkClass({'classCodes': this.chioceClass}).then(() => {
         this.$vux.toast.show({text: '布置成功', type: 'text', time: 700, position: 'bottom', onHide () { history.go(-1) }})
-      }).catch(() => {
-        this.$vux.toast.show({text: '布置错误', type: 'text', time: 700, position: 'bottom'})
       })
     }
   },
