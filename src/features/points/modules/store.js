@@ -14,20 +14,22 @@ const state = {
 }
 
 const mutations = {
-  [types.INVITE_RASK_RESET] (state) {
+  [types.POINTS_RASK_RESET] (state) {
     state.rask = []
   },
-  [types.INVITE_RASK] (state, data) {
+  [types.POINTS_RASK] (state, data) {
     state.rask = data
   },
-  [types.INVITE_LIST_RESET] (state) {
-    state.list = []
+  [types.POINTS_LIST_RESET] (state) {
+    state.list.list = []
+    state.list.offset = ''
   },
-  [types.INVITE_LIST] (state, data) {
-    state.list = data
+  [types.POINTS_LIST] (state, data) {
+    state.list.list = state.list.list ? state.list.list.concat(data.list) : data.list
+    state.list.offset = data.offset
   },
-  [types.INVITE] (state, data) {
-    state.my.points = data
+  [types.POINTS] (state, data) {
+    state.my.points = data.points
   }
 }
 

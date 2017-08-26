@@ -6,7 +6,7 @@ export const getPoints = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'points',
+      url: 'points/my',
       params: {
         token: rootState.common.user.token
       }
@@ -20,12 +20,13 @@ export const getPoints = ({ rootState, commit }) => {
 }
 
 /** 积分列表 */
-export const getPointsList = ({ rootState, commit }) => {
+export const getPointsList = ({ state, rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'points/list',
+      url: 'points/detail',
       params: {
+        offset: state.list.offset,
         token: rootState.common.user.token
       }
     }).then(response => {
@@ -42,7 +43,7 @@ export const getPointsRask = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'points/rask',
+      url: 'points/rank',
       params: {
         token: rootState.common.user.token
       }

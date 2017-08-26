@@ -22,7 +22,7 @@
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Flexbox, FlexboxItem} from 'vux'
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'index',
@@ -33,12 +33,14 @@ export default {
     ...mapGetters(['System'])
   },
   methods: {
+    ...mapActions(['pointsStoreAdd']),
     _openStore () {
       if (this.System === 'IOS') {
         plus.runtime.openURL('itms-apps://itunes.apple.com/cn/app/gui-na-ben-jiao-shi-duan-zai/id1190013249?l=en&mt=8')
       } else {
         window.location.href = 'market://details?id=com.sanbao.guinaben.teacher'
       }
+      this.pointsStoreAdd()
     },
     _openQQ () {
       plus.runtime.openURL('mqqwpa://im/chat?chat_type=wpa&uin=1879831346&version=1&src_type=web&web_src=oicqzone.com')

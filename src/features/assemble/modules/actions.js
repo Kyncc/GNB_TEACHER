@@ -140,6 +140,7 @@ export const setAssemble = ({ rootState, commit, state }, params) => {
       data: {
         token: rootState.common.user.token,
         options: {
+          form: params.form,
           exercisesId: params.id,
           grade: rootState.route.params.grade,
           subjectId: rootState.route.params.subjectId

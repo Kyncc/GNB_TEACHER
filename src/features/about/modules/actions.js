@@ -39,6 +39,25 @@ export const adviceHistory = ({rootState, commit}) => {
   })
 }
 
+/** 商城增加积分 */
+export const pointsStoreAdd = ({rootState, commit}) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'points/add',
+      data: {
+        type: 'store',
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      // commit(types.ADVICE_LIST, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
 /** 清空反馈列表 */
 export const clearAdviceHistory = ({commit}) => {
   commit(types.ADVICE_LIST_CLEAR)

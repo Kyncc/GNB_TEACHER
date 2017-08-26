@@ -25,7 +25,7 @@
               <flexbox :gutter='0'>
                 <flexbox-item :span="3">难度: {{item.degree}}</flexbox-item>
                 <flexbox-item :span="7" style='text-align:center'>更新: {{item.time | ymd}}</flexbox-item>
-                <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index, type: 1})' style='text-align:right'>
+                <flexbox-item :span="2" @click.native='setAssemble({id: item.exercisesId, index: index, form: 1})' style='text-align:right'>
                   <i v-if='item.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be"></i>
                   <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be" ></i>
                 </flexbox-item>
@@ -60,7 +60,7 @@ export default {
     XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['Route', 'AssembleExample', 'AssembleOptions', 'setAssemble']),
+    ...mapGetters(['Route', 'AssembleExample', 'AssembleOptions']),
     list () {
       return this.AssembleExample.list
     }
@@ -72,7 +72,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getAssembleExample', 'setAssembleExampleScroll', 'clearAssembleExample']),
+    ...mapActions(['getAssembleExample', 'setAssembleExampleScroll', 'clearAssembleExample', 'setAssemble']),
     _getData () {
       this.loading = true
       this.getAssembleExample().then((res) => {

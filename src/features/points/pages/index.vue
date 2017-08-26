@@ -4,7 +4,7 @@
     <div>
       <div class="code">
         <h4>当月积分</h4>
-        <p>{{Points.my.points}}</p>
+        <p style='color:#ff5722;font-size:30px;'>{{Points.my.points}}</p>
         <x-button type="primary"  @click.native="$router.push({name: 'points_earn'})" style='width:90%;margin:0 auto;'>赚积分</x-button>
       </div>
       <group>
