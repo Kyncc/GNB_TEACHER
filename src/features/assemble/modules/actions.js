@@ -133,6 +133,7 @@ export const getAssembleChoice = ({ rootState, state, commit }, params) => {
 
 /** 设置组卷 */
 export const setAssemble = ({ rootState, commit, state }, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -148,7 +149,8 @@ export const setAssemble = ({ rootState, commit, state }, params) => {
       }
     })
       .then((response) => {
-        commit(types.ASSEMBLE_INTO, { index: params.index, data: response.data.data })
+        Vue.$vux.loading.hide()
+        commit(types.ASSEMBLE_INTO, { form: params.form, index: params.index, data: response.data.data })
         if (localStorage.getItem('isAssemble')) {
           Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1000, position: 'bottom' })
         } else {
@@ -162,6 +164,7 @@ export const setAssemble = ({ rootState, commit, state }, params) => {
         resolve(response)
       })
       .catch((err) => {
+        Vue.$vux.loading.hide()
         reject(err)
       })
   })
