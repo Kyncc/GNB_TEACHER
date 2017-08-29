@@ -13,7 +13,7 @@
         <div class="weui-cells__title">{{list.name}}</div>
         <card v-for="(item, index) in list.list" :key="index">
           <div slot="content"
-           @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: (item.type === '1' ? '' : 'lxexercises')}})">
+           @click="$router.push({name:'example', params: {subjectId: item.subject_id, grade: item.grade, id: item.exercisesId, type: (item.type === '1' ? 'exercises' : 'lxexercises')}})">
             <div v-html="item.stem"></div>
             <div v-for="(value, key) in item.opt" :key='key' style="padding-top:5px;">
               {{ key }}：<p v-html="value" style="display:inline-block"></p>

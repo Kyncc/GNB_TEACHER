@@ -143,8 +143,8 @@ export const setAssemble = ({ rootState, commit, state }, params) => {
         options: {
           form: params.form,
           exercisesId: params.id,
-          grade: rootState.route.params.grade,
-          subjectId: rootState.route.params.subjectId
+          grade: params.grade || rootState.route.params.grade,
+          subjectId: params.subjectId || rootState.route.params.subjectId
         }
       }
     })

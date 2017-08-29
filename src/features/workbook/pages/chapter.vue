@@ -46,7 +46,7 @@ export default {
     // 进入错题统计页面
     _toNumberPage (item) {
       if (item.isLink) {
-        this.$router.push({name: 'workbook_exercise_number', params: {chapterId: item.id, name: item.name}})
+        this.$router.push({name: 'workbook_exercise_photo', params: {chapterId: item.id, name: item.name}})
       }
     },
     _getColor (item) {
