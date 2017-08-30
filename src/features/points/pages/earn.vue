@@ -13,8 +13,8 @@
         <cell title="有效纠错" inline-desc="100分/条" :link="{name: 'assemble_sync'}"></cell>
       </group>
       <group :gutter='8'>
-        <cell title="批阅作业" inline-desc="50分/人次" :link="{name: 'workbook'}"></cell>
-        <cell title="点评错题" inline-desc="10分/题次" :link="{name: 'error_classmate'}"></cell>
+        <cell title="批阅作业" inline-desc="10分/人次" :link="{name: 'workbook'}"></cell>
+        <cell title="点评错题" inline-desc="5分/题次" :link="{name: 'error_classmate'}"></cell>
         <cell title="布置作业" inline-desc="10分/人次" :link="{name: 'homework'}"></cell>
       </group>
     </div>

@@ -27,14 +27,14 @@ export const getDownloadUpdate = ({ rootState, state, commit }, params) => {
   let array = state.paper.list.block
   for (let pindex = 0; pindex < array.length; pindex++) {
     for (let index = 0; index < array[pindex].list.length; index++) {
-      ids.push({id: array[pindex]['list'][index].exercisesId, from: array[pindex]['list'][index].from})
+      ids.push({id: array[pindex]['list'][index].exercisesId, form: array[pindex]['list'][index].form})
     }
   }
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'download/update',
+      url: 'download/update/v2',
       data: {
         token: rootState.common.user.token,
         downloadId: rootState.route.params.id,
