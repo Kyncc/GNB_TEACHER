@@ -11,6 +11,9 @@
       </cell>
     </group>
     <group gutter="0">
+      <cell title="我的下载" link="myDownload">
+        <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
+      </cell>
       <cell title="我的积分" link="points">
         <i class="icon iconfont icon-wodejifen" style="color:#4cc0be;margin-left:-1px;" slot="icon"></i>
       </cell>
@@ -23,9 +26,6 @@
       <cell title="消息通知" link="message">
         <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
         <badge v-if="News.correct || News.system"></badge>
-      </cell>
-      <cell title="我的下载" link="myDownload">
-        <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
       </cell>
       <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>

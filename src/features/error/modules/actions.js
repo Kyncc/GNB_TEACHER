@@ -102,7 +102,7 @@ export const setErrorComment = ({rootState, commit, state}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     var task = plus.uploader.createUpload('https://www.guinaben.com/teacher/error/comment', {method: 'POST'}, (response, status) => {
-      // 上传完成
+      // 上传确定
       if (status === 200) {
         Vue.$vux.loading.hide()
         commit(types.ERROR_COMMENT_POST, {index: rootState.route.query.index})

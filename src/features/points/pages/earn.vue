@@ -4,6 +4,7 @@
     <div>
       <group :gutter='0'>
         <cell title="注册" inline-desc="100分"></cell>
+        <cell title="完善头像" inline-desc="100分" :link="{name: 'settings_update'}"></cell>
         <cell title="完善个人资料" inline-desc="100分/项" :link="{name: 'settings_update'}"></cell>
         <cell title="邀请好友注册app" inline-desc="100分/人" :link="{name: 'invite'}"></cell>
         <cell title="应用商店好评" inline-desc="500分" :link="{name: 'about'}"></cell>

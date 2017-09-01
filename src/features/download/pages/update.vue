@@ -1,7 +1,7 @@
 <template>
   <view-box ref="downloadUpdate" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '编辑'}">
-      <div slot="right" @click='update()'>完成</div>
+      <div slot="right" @click='update()'>确定</div>
     </x-header>
     <div>
       <div v-for="(list, pindex) in block" :key="pindex">

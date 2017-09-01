@@ -2,7 +2,7 @@
   <view-box ref="viewBox" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '布置给',showBack: true}">
       <div slot="right" style="margin:0" @click="_commit">
-       发布
+        确定
       </div>
     </x-header>
     <div>

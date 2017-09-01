@@ -147,7 +147,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'index' || from.name === 'download_update') {
+      if (from.name !== 'example') {
         vm._getData()
       }
       vm.$refs.download.scrollTo(vm.DownloadPaper.scroll)
