@@ -4,7 +4,7 @@
       <div slot="right" @click="showPopupPicker = true">筛选</div>
       <div class='popup'>
         <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"
-          @on-hide='showPopupPicker = false' v-model="options">
+          @on-hide='showPopupPicker = false' v-model="options" confirm-text='确定'>
         </popup-picker>
       </div>
     </x-header>

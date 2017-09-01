@@ -9,6 +9,7 @@ export default {
     },
     {
       path: 'my',
+      name: 'about_my',
       component: r => require.ensure([], () => r(require('./pages/my')), '/about/my')
     },
     {

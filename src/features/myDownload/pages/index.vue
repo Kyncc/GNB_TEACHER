@@ -3,7 +3,7 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的下载'}">
       <div slot="right" @click="showPopupPicker = true">筛选</div>
       <div class='popup'>
-        <popup-picker :show="showPopupPicker" @on-hide='showPopupPicker = false' :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
+        <popup-picker :show="showPopupPicker" @on-hide='showPopupPicker = false' confirm-text='确定' :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
       </div>
     </x-header>
     <div>
