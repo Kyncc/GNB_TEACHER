@@ -34,6 +34,7 @@
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="lines"></spinner>
         <div>
+          <p v-if="User.classes.length === 0" style="font-size:16px;color:#4cc0be;" @click="$router.push({name: 'class_add'})">点我创建班级~</p>
           <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部错题~</p>
           <p style="font-size:16px;color:#4cc0be" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
         </div>
@@ -86,7 +87,7 @@ export default {
     XHeader, ViewBox, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Previewer, Popup, Scroller, gnbChangeSub
   },
   computed: {
-    ...mapGetters(['errorList', 'Route'])
+    ...mapGetters(['errorList', 'Route', 'User'])
   },
   data () {
     return {

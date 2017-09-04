@@ -2,11 +2,11 @@
   <view-box ref="viewBox" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '点拨错题',showBack: true}"></x-header>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
-      <template v-for="(myClass, index) in errorClassmate.list">
+      <template v-for="(myClass, pindex) in errorClassmate.list">
         <cell :title="myClass.className" is-link :border-intent="false"
         :arrow-direction="myClass.checked ? 'up' : 'down'"
-        @click.native="myClass.checked = !myClass.checked"></cell>
-        <div class="slide" :class="myClass.checked ? 'animate':''">
+        @click.native="myClass.checked = !myClass.checked" :key='pindex'></cell>
+        <div class="slide" :class="myClass.checked ? 'animate':''" :key='pindex'>
           <cell-box v-for="(student, index) in myClass.classmates" :key='index' @click.native="$router.push({name: 'error_list', params: {name: student.name, studentId: student.id}})">
             <flexbox slot="default">
               <flexbox-item :span="12">
@@ -18,8 +18,9 @@
         </div>
       </template>
     </group>
-    <div style="text-align:center">
+    <div style="text-align:center;">
       <spinner v-if="loading" type="dots"></spinner>
+      <p v-else-if="User.classes.length === 0" style="padding:20px 0;font-size:16px;color:#4cc0be;" @click="$router.push({name: 'class_add'})">点我创建班级~</p>
     </div>
   </view-box>
 </template>
@@ -34,7 +35,7 @@ export default {
     XHeader, Cell, Group, ViewBox, Spinner, XButton, CellBox, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['errorClassmate'])
+    ...mapGetters(['errorClassmate', 'User'])
   },
   data () {
     return {

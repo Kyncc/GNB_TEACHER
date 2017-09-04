@@ -22,6 +22,7 @@
       </group>
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="dots"></spinner>
+        <p v-else-if="User.classes.length === 0" style="font-size:16px;color:#4cc0be;" @click="$router.push({name: 'class_add'})">点我创建班级~</p>
         <p v-else-if="workbook.list.textbook.length === 0" style="font-size:16px;color:#4cc0be;">没有更多习题册了~</p>
       </div>
     </div>
@@ -38,7 +39,7 @@ export default {
     XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem, gnbChangeSub
   },
   computed: {
-    ...mapGetters(['workbook'])
+    ...mapGetters(['workbook', 'User'])
   },
   data () {
     return {
