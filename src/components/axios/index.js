@@ -9,7 +9,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 axios.interceptors.request.use((config) => {
   config.params = {
     ...config.params,
-    VERSION: '3.2.0'
+    VERSION: '3.0.0'
   }
   if (config.method === 'post') {
     config.data = JSON.stringify(config.data)
@@ -31,7 +31,18 @@ axios.interceptors.response.use((res) => {
     }, 500)
     return Promise.reject(res)
   } else if (res.data.code === 403) {
-
+    // 升级的代码
+    Vue.$vux.alert.show({
+      title: '更新',
+      content: '据说新增功能666',
+      onHide () {
+        if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())) {
+          plus.runtime.openURL('itms-apps://itunes.apple.com/cn/app/gui-na-ben-jiao-shi-duan-zai/id1190013249?l=en&mt=8')
+        } else {
+          window.location.href = 'market://details?id=com.sanbao.guinaben.teacher'
+        }
+      }
+    })
   } else if (res.data.code !== 200) {
     Vue.$vux.toast.show({text: res.data.msg, type: 'text', time: 1000, position: 'bottom'})
     return Promise.reject(res)
