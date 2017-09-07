@@ -9,7 +9,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 axios.interceptors.request.use((config) => {
   config.params = {
     ...config.params,
-    VERSION: '3.0.0'
+    VERSION: '3.2.0'
   }
   if (config.method === 'post') {
     config.data = JSON.stringify(config.data)
@@ -36,6 +36,7 @@ axios.interceptors.response.use((res) => {
       title: '更新',
       content: '据说新增功能666',
       onHide () {
+        // window.location.href = '/login'
         if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())) {
           plus.runtime.openURL('itms-apps://itunes.apple.com/cn/app/gui-na-ben-jiao-shi-duan-zai/id1190013249?l=en&mt=8')
         } else {
