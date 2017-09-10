@@ -18,9 +18,11 @@
         </div>
       </template>
     </group>
-    <div style="text-align:center;">
+    <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="dots"></spinner>
-      <p v-else-if="User.classes.length === 0" style="padding:20px 0;font-size:16px;color:#4cc0be;" @click="$router.push({name: 'class_add'})">点我创建班级~</p>
+       <p v-else-if="User.classes.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;" @click="$router.push({name: 'class_add'})">
+        没有学生？请点击<span style='color:#4cc0be'>创建班级</span>，并邀请学生加入班级
+      </p>
     </div>
   </view-box>
 </template>

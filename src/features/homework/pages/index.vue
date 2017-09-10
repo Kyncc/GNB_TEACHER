@@ -41,7 +41,7 @@
       <div style="text-align:center">
         <spinner v-show="loading" type="dots"></spinner>
         <p v-show="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
-        <p v-show="Homework.list.length === 0 && !error && !loading" style="font-size:16px;color:#4cc0be;padding:0 10%">没有作业？请点击“+”号去布置作业</p>
+        <p v-show="Homework.list.length === 0 && !error && !loading" style="font-size:16px;color:#666;padding:0 10%">没有作业？请点击“+”号去布置作业</p>
       </div>
     </div>
     <div v-transfer-dom>

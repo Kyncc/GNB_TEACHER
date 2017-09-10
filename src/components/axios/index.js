@@ -33,8 +33,8 @@ axios.interceptors.response.use((res) => {
   } else if (res.data.code === 403) {
     // 升级的代码
     Vue.$vux.alert.show({
-      title: '更新',
-      content: '据说新增功能666',
+      title: '发现新版本',
+      content: '赚积分有惊喜',
       onHide () {
         // window.location.href = '/login'
         if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())) {
