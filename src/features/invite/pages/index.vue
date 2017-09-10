@@ -7,7 +7,7 @@
       <flexbox justify='center' class='tip'>
         <flexbox-item :span="11">
           <h4>提示:</h4>
-          <p>邀请好友安装归纳本APP，并在本界面填写您的邀请码。</p>
+          <p>邀请好友安装归纳本APP，并在本界面填写您的邀请码。<span style='color:red'>您和您的好友都可获得100积分</span></p>
         </flexbox-item>
       </flexbox>
       <flexbox justify='center'>

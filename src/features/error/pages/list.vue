@@ -37,6 +37,7 @@
           <p v-if="User.classes.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;" @click="$router.push({name: 'class_add'})">
             没有学生？请点击<span style='color:#4cc0be'>创建班级</span>，并邀请学生加入班级
           </p>
+          <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData && errorList.list.length === 0">没有错题？请督促学生及时记错题、拍错题</p>
           <p style="font-size:16px;color:#4cc0be" v-if="loadingNoData">已经加载全部错题~</p>
           <p style="font-size:16px;color:#4cc0be" v-if="!loadingNoData && !loading" @click="_getData">点我加载更多</p>
         </div>
