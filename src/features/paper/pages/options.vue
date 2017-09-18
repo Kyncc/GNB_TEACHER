@@ -20,14 +20,8 @@
         </checker>
         <span class='searchtitle'>版本：</span>
         <checker style='padding-left:.5rem;' v-model="editionId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-          <checker-item v-for='(item, index) in AssembleOptions.textbookList[grade][subjectId]' :key='index' :value="item.id">{{item.name}}</checker-item>
+          <checker-item v-for='(item, index) in PaperOptions.textbookList[grade][subjectId]' :key='index' :value="item.id">{{item.name}}</checker-item>
         </checker>
-        <template v-if='!isGaokao'>
-          <span class='searchtitle'>教材：</span>
-          <checker style='padding-left:.5rem;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-            <checker-item v-for='(item, index) in AssembleOptions.textbookList[grade][subjectId][0].textbook' :key='index' :value="item.id">{{item.name}}</checker-item>
-          </checker>
-        </template>
       </div>
     </div>
   </view-box>
@@ -42,7 +36,7 @@ export default {
     XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, Spinner
   },
   computed: {
-    ...mapGetters(['User', 'AssembleOptions'])
+    ...mapGetters(['User', 'PaperOptions'])
   },
   data () {
     return {
@@ -55,10 +49,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['Route', 'setAssembleOptions', 'getAssembleOptionsTextbook']),
+    ...mapActions(['Route', 'setPaperOptions', 'getPaperOptionsTextbook']),
     _finish () {
-      this.setAssembleOptions({
-        textbook: this.textbookId,
+      this.setPaperOptions({
         editionId: this.editionId,
         subject: this.subjectId,
         grade: this.grade
@@ -68,24 +61,22 @@ export default {
   },
   watch: {
     grade () {
-      this.editionId = this.AssembleOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
-      this.textbookId = this.AssembleOptions.textbookList[this.grade][this.subjectId.toString()][0]['textbook'][0].id
+      this.editionId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
+      this.textbookId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['textbook'][0].id
     },
     subjectId () {
-      this.editionId = this.AssembleOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
-      this.textbookId = this.AssembleOptions.textbookList[this.grade][this.subjectId.toString()][0]['textbook'][0].id
+      this.editionId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
+      this.textbookId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['textbook'][0].id
     }
   },
   created () {
     this.subjectId = this.User.subjectId
-    this.getAssembleOptionsTextbook().then(() => {
-      this.editionId = this.AssembleOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
-      this.textbookId = this.AssembleOptions.textbookList[this.grade][this.subjectId.toString()][0]['textbook'][0].id
+    this.getPaperOptionsTextbook().then(() => {
+      this.editionId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
     })
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.isGaokao = (from.name === 'assemble_gaokao')
     })
   }
 }

@@ -1,7 +1,7 @@
 export default {
   path: '/paper',
   component: r => require.ensure([], () => r(require('./layout')), '/paper'),
-  redirect: '/paper/sync',
+  redirect: '/paper/index',
   children: [
     {
       path: 'index',
@@ -14,9 +14,9 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/options')), '/paper/options')
     },
     {
-      path: 'exercise',
-      name: 'paper_exercise',
-      component: r => require.ensure([], () => r(require('./pages/exercise')), '/paper/exercise')
+      path: 'history',
+      name: 'paper_history',
+      component: r => require.ensure([], () => r(require('./pages/history')), '/paper/history')
     }
   ]
 }

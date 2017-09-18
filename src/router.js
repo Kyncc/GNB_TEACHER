@@ -18,7 +18,7 @@ import settings from './features/settings/router'
 import workbook from './features/workbook/router'
 import invite from './features/invite/router'
 import points from './features/points/router'
-// import paper from './features/paper/router'
+import paper from './features/paper/router'
 
 Vue.use(Router)
 let router = new Router({
@@ -26,19 +26,19 @@ let router = new Router({
   routes: [
     assemble,
     about,
-    error,
     correct,
+    download,
+    error,
     example,
-    login,
-    invite,
     homework,
+    invite,
     ...index,
+    login,
     message,
+    myDownload,
     myclass,
     points,
-    // paper,
-    myDownload,
-    download,
+    paper,
     settings,
     workbook
   ]

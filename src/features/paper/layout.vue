@@ -9,9 +9,9 @@ import store from '@/store'
 import modules from './modules/store'
 
 export default {
-  name: 'assemble',
+  name: 'paper',
   beforeCreate () {
-    store.registerModule('assemble', {
+    store.registerModule('paper', {
       ...modules
     })
   }

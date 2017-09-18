@@ -1,10 +1,6 @@
-/** 组卷筛选 */
-export const AssembleOptions = (state) => state.options
-/** 组卷同步 */
-export const AssembleSync = (state) => state.sync
-/** 组卷高考题 */
-export const AssembleGaokao = (state) => state.gaokao
-/** 例题列表 */
-export const AssembleExample = (state) => state.example
-/** 精选题列表 */
-export const AssembleChoice = (state) => state.choice
+/** 试卷列表 */
+export const Paper = (state) => state.paper
+/** 试卷筛选 */
+export const PaperOptions = (state) => state.options
+/** 试卷下载历史 */
+export const PaperDownload = (state) => state.download
