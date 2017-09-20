@@ -6,5 +6,7 @@ export const PAPER_OPTIONS = 'PAPER_OPTIONS'
 export const PAPER_CLEAR = 'PAPER_CLEAR'
 /** 试卷下载历史 */
 export const PAPER_DOWNLOAD = 'PAPER_DOWNLOAD'
+/** 试卷筛选 */
+export const PAPER_OPTIONS_TEXTBOOK = 'PAPER_OPTIONS_TEXTBOOK'
 /** 试卷下载历史清空 */
 export const PAPER_DOWNLOAD_CLEAR = 'PAPER_DOWNLOAD_CLEAR'

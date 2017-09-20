@@ -18,6 +18,9 @@
       <flexbox-item :span="4" @click.native="$router.push({ name: 'download'})" class='download'></flexbox-item>
       <flexbox-item :span="4" @click.native="$router.push({ path: 'class'})" class='myclass'></flexbox-item>
     </flexbox>
+    <flexbox style='height:6.3rem' :gutter='0'>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'paper'})" class='assemble'></flexbox-item>
+    </flexbox>
   </div>
 </template>
 

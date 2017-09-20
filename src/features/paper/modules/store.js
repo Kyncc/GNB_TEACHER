@@ -6,7 +6,8 @@ const state = {
   options: {
     editionId: '',
     subject: '',
-    grade: '10'
+    grade: '10',
+    textbookList: []
   },
   download: [],
   paper: {
@@ -31,8 +32,13 @@ const mutations = {
   [types.PAPER_DOWNLOAD_CLEAR] (state) {
     state.download = []
   },
+  [types.PAPER_OPTIONS_TEXTBOOK] (state, data) {
+    state.options.textbookList = data
+  },
   [types.PAPER_OPTIONS] (state, data) {
-    state.options = {subject: data.subject, grade: data.grade, editionId: data.editionId}
+    state.options.subject = data.subject
+    state.options.grade = data.grade
+    state.options.editionId = data.editionId
     state.paper = { list: [], offset: '', scroll: 0 }
   }
 }

@@ -65,3 +65,17 @@ export const getPaperDownload = ({ rootState, commit }) => {
     })
   })
 }
+
+/** 试卷下载次数 */
+export const getPaperVaild = ({ rootState, state }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'paper/validDownload',
+      data: {
+        token: rootState.common.user.token,
+        downloadId: params.downloadId
+      }
+    })
+  })
+}

@@ -12,7 +12,6 @@
           <checker-item value="789">初中</checker-item>
           <checker-item value="10">高中</checker-item>
         </checker>
-
         <span class='searchtitle'>学科：</span>
         <checker style='padding-left:.5rem;' v-model="subjectId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
           <checker-item value="2">数学</checker-item>
@@ -42,14 +41,11 @@ export default {
     return {
       grade: '10',
       subjectId: '',
-      editionId: '',
-      textbookId: '',
-      loading: true,
-      isGaokao: false
+      editionId: ''
     }
   },
   methods: {
-    ...mapActions(['Route', 'setPaperOptions', 'getPaperOptionsTextbook']),
+    ...mapActions(['setPaperOptions', 'getPaperOptionsTextbook']),
     _finish () {
       this.setPaperOptions({
         editionId: this.editionId,
@@ -60,24 +56,15 @@ export default {
     }
   },
   watch: {
-    grade () {
+    grade (val) {
       this.editionId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
-      this.textbookId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['textbook'][0].id
     },
-    subjectId () {
+    subjectId (val) {
       this.editionId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
-      this.textbookId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['textbook'][0].id
     }
   },
   created () {
     this.subjectId = this.User.subjectId
-    this.getPaperOptionsTextbook().then(() => {
-      this.editionId = this.PaperOptions.textbookList[this.grade][this.subjectId.toString()][0]['id']
-    })
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-    })
   }
 }
 </script>
