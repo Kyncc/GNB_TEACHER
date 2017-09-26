@@ -17,6 +17,7 @@
         <checker style='padding-left:.5rem;' v-model="subjectId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
           <checker-item value="2">数学</checker-item>
           <checker-item value="7">物理</checker-item>
+          <checker-item value="8">化学</checker-item>
         </checker>
         <span class='searchtitle'>版本：</span>
         <checker style='padding-left:.5rem;' v-model="editionId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
