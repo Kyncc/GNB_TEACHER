@@ -1,9 +1,11 @@
 <template>
   <div>
     <group title="未提交作业学生" v-if='workbookExercise.notPost.length'>
-      <cell-box>
-        <span style='margin-right:10px' v-for="(name, index) in workbookExercise.notPost" :key='index'>{{name}}</span>
-      </cell-box>
+      <flexbox :gutter="0" wrap="wrap">
+        <flexbox-item v-for="(name, index) in workbookExercise.notPost" :key='index' :span="1/4">
+          <div style='padding:.5rem;'>{{name}}</div>
+        </flexbox-item>
+      </flexbox>
     </group>
     <template v-if='workbookExercise.cameraList.length'>
       <card v-for="(items, pindex) of workbookExercise.cameraList" :key='items'>

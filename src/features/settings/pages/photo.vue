@@ -42,18 +42,20 @@ export default {
   activated () {
     if (this.cropper) {
       this.cropper.destroy()
-      let minHeight = document.documentElement.clientHeight - 46
       this.cropper = new Cropper(this.$refs.photo, {
-        aspectRatio: 1 / 1,
-        minContainerHeight: minHeight
+        aspectRatio: 4 / 3,
+        minContainerHeight: document.documentElement.clientHeight - 46,
+        minCropBoxWidth: document.documentElement.clientWidth / 2,
+        minCropBoxHeight: 80
       })
     }
   },
   mounted () {
-    let minHeight = document.documentElement.clientHeight - 46
     this.cropper = new Cropper(this.$refs.photo, {
-      aspectRatio: 1 / 1,
-      minContainerHeight: minHeight
+      aspectRatio: 4 / 3,
+      minContainerHeight: document.documentElement.clientHeight - 46,
+      minCropBoxWidth: document.documentElement.clientWidth / 2,
+      minCropBoxHeight: 80
     })
   }
 }

@@ -3,10 +3,10 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: Route.params.name}">
     </x-header>
     <div>
-      <group v-for="(aitem, index) in chapter" :key="index" style="margin-bottom:.5rem" gutter="0">
+      <group v-for="(aitem, index) in chapter" :key="index" style="margin-bottom:.5rem" :gutter="0">
         <cell :title="aitem.name" :style=" _getColor(aitem)" @click.native='_toNumberPage(aitem)'></cell>
-        <template v-for="b in aitem.b" >
-          <cell :title="b.name" :style="_getColor(b)" @click.native='_toNumberPage(b)' :key='b'></cell>
+        <template v-for="(b, pindex) in aitem.b" >
+          <cell :title="b.name" :style="_getColor(b)" @click.native='_toNumberPage(b)' :key='pindex'></cell>
         </template>
       </group>
       <div style="text-align:center">

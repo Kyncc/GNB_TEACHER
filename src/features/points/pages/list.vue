@@ -13,7 +13,7 @@
           </template>
         </group>
       </template>
-      <infinite-loading :on-infinite="_onInfinite" ref="infiniteLoading" style='padding:0 0 2rem;'>
+      <infinite-loading @infinite="_onInfinite" ref="infiniteLoading" style='padding:0 0 2rem;'>
         <spinner slot="spinner" type="dots"></spinner>
         <div slot="no-results">
           <p style="font-size:14px;padding:.5rem 0;text-align:center;color:#4cc0be" @click="_reset">出错了点我重试~</p>
@@ -39,14 +39,14 @@ export default {
   },
   methods: {
     ...mapActions(['getPointsList', 'clearPointsList']),
-    _onInfinite () {
+    _onInfinite ($state) {
       this.getPointsList().then((res) => {
         if (res.data.data.list.length < 10) {
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+          $state.complete()
         }
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+        $state.loaded()
       }).catch(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        $state.complete()
       })
     },
     _reset () {
