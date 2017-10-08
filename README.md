@@ -63,6 +63,7 @@
         ├── error       # 查看错题
         ├── workbook    # 批改作业
         ├── myclass     # 我的班级
+        ├── statistics  # 错题统计
         ├── myDownload  # 我的下载
         ├── message     # 消息
         ├── invite      # 我的邀请
