@@ -6,7 +6,7 @@ import index from './router/router'
 import login from './features/login/router'
 import about from './features/about/router'
 import correct from './features/correct/router'
-import error from './features/error/router'
+// import error from './features/error/router'
 import example from './features/example/router'
 import homework from './features/homework/router'
 import message from './features/message/router'
@@ -28,7 +28,7 @@ let router = new Router({
     about,
     correct,
     download,
-    error,
+    // error,
     example,
     homework,
     invite,

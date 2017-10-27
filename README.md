@@ -64,6 +64,8 @@
         ├── workbook    # 批改作业
         ├── myclass     # 我的班级
         ├── statistics  # 错题统计
+          ├── error          # 同学错题
+          ├── errorClass     # 班级错题
         ├── myDownload  # 我的下载
         ├── message     # 消息
         ├── invite      # 我的邀请
