@@ -1,6 +1,12 @@
 export default [
+  // 班级选择
   {
-    path: '/errorClass/',
+    path: 'errorClass/class',
+    name: 'errorClass',
+    component: r => require.ensure([], () => r(require('./index')), '/errorClass/class')
+  },
+  {
+    path: 'errorClass/',
     component: r => require.ensure([], () => r(require('./layout')), '/errorClass'),
     children: [
       {
@@ -22,31 +28,31 @@ export default [
   },
   // 记错题筛选
   {
-    path: '/errorClass/remember/assemble/options',
+    path: 'errorClass/remember/assemble/options',
     name: 'errorClassRemember_options',
     component: r => require.ensure([], () => r(require('./pages/rememberOptions')), '/errorClass/remember/options')
   },
   // 精选题筛选
   {
-    path: '/errorClass/good/assemble/options',
+    path: 'errorClass/good/assemble/options',
     name: 'errorClassGood_options',
     component: r => require.ensure([], () => r(require('./pages/goodOptions')), '/errorClass/good/options')
   },
   // 记错题组卷
   {
-    path: '/errorClass/remember/assemble/:classCode/:subject',
+    path: 'errorClass/remember/assemble/:classCode/:subject',
     name: 'errorClassRemember_assemble',
     component: r => require.ensure([], () => r(require('./pages/rememberAssemble')), '/errorClass/remember/assemble')
   },
   // 精选题组卷
   {
-    path: '/errorClass/good/assemble/:classCode/:subject',
+    path: 'errorClass/good/assemble/:classCode/:subject',
     name: 'errorClassGood_assemble',
     component: r => require.ensure([], () => r(require('./pages/goodAssemble')), '/errorClass/good/assemble')
   },
   // 拍错题组卷
   {
-    path: '/errorClass/camera/assemble/:classCode/:subject',
+    path: 'errorClass/camera/assemble/:classCode/:subject',
     name: 'errorClassCamera_assemble',
     component: r => require.ensure([], () => r(require('./pages/cameraAssemble')), '/errorClass/camera/assemble')
   }

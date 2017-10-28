@@ -9,7 +9,7 @@ import modules from '../modules/store'
 import store from '@/store'
 
 export default {
-  name: 'error',
+  name: 'errorClassmate',
   beforeCreate () {
     store.registerModule('error', {
       ...modules

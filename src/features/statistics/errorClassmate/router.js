@@ -1,8 +1,8 @@
 export default {
-  path: '/errorClassmate',
+  path: 'errorClassmate',
   name: 'errorClassmate',
   component: r => require.ensure([], () => r(require('./pages/layout')), '/errorClassmate'),
-  redirect: '/errorClassmate',
+  redirect: 'errorClassmate/',
   children: [
     {
       path: '/',

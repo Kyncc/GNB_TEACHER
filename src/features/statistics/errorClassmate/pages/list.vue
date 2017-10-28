@@ -157,7 +157,7 @@ export default {
     // 类型错误弹窗
     _comment (error, index) {
       this.$router.push({
-        name: 'error_comment',
+        name: 'errorClassmate_comment',
         params: {studentId: this.Route.params.studentId, wbeid: error.wbeid, chapterId: error.chapterId},
         query: {isComment: error.comment, index: index}
       })
@@ -185,7 +185,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'error_classmate') {
+      if (from.name === 'errorClassmate_index') {
         vm.clearError()
         vm._getData()
       } else {
