@@ -5,15 +5,7 @@
 </template>
 
 <script>
-import errorClass from './errorClass/modules/store'
-import store from '@/store'
-
 export default {
-  name: 'statistics',
-  beforeCreate () {
-    store.registerModule('errorClass', {
-      ...errorClass
-    })
-  }
+  name: 'statistics'
 }
 </script>

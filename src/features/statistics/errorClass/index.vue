@@ -12,6 +12,8 @@
 <script>
 import {XHeader, Cell, Group, ViewBox} from 'vux'
 import {mapGetters} from 'vuex'
+import errorClass from './modules/store'
+import store from '@/store'
 
 export default {
   name: 'class',
@@ -20,6 +22,11 @@ export default {
   },
   computed: {
     ...mapGetters(['User'])
+  },
+  beforeCreate () {
+    store.registerModule('errorClass', {
+      ...errorClass
+    })
   }
 }
 </script>

@@ -15,8 +15,8 @@
       <group gutter="0" class="gnb_collapse" v-if="!loading">
         <template v-for="(list, index) in AssembleSync.list">
           <cell :title="list.name" :key='index' is-link :border-intent="false" :arrow-direction="list.check ? 'up' : 'down'" @click.native="list.check = !list.check"></cell>
-          <div class="slide" :class="list.check ? 'animate':''">
-              <cell-box  v-for="chapter in list.sub_chapter_list" :key='chapter'
+          <div class="slide" :class="list.check ? 'animate':''" :key='index'>
+              <cell-box v-for="chapter in list.sub_chapter_list" :key='chapter.id'
                 @click.native="$router.push({name: 'assemble_example', params: {type: 'chapter', id: chapter.id, name: chapter.name}})">
                 <div slot="default" style="width:100%;">
                   <flexbox>
