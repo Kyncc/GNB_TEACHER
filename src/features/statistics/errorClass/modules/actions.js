@@ -2,6 +2,91 @@ import axios from '@/components/axios/'
 import * as types from './mutationTypes'
 import Vue from 'vue'
 
+/** 获得章节 */
+export const getStatisticsChapter = ({ state, rootState, commit }) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'errorClass/chapter',
+      params: {
+        token: rootState.common.user.token,
+        textbookId: state.chapter.options.textbook
+      }
+    }).then((response) => {
+      commit(types.STATISTICS_CHAPTER, {data: response.data.data})
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 清除章节 */
+export const clearStatisticsChapter = ({ state, rootState, commit }) => {
+  commit(types.STATISTICS_CHAPTER_RESET)
+}
+
+/** 获取筛选教材 */
+export const getStatisticsOptionsTextbook = ({ rootState, commit }) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'download/textbook',
+      params: {
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.STATISTICS_TEXTBOOKLIST, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 筛选选择 */
+export const getStatisticsChapterOptions = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'errorClass/options',
+      params: {
+        token: rootState.common.user.token,
+        classCode: params.classCode
+      }
+    }).then((response) => {
+      commit(types.STATISTICS_CHAPTER_OPTIONS, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 筛选获取 */
+export const setStatisticsChapterOptions = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: ' errorClass/options',
+      data: {
+        options: {
+          classCode: rootState.route.params.classCode,
+          grade: params.grade,
+          subject: params.subject,
+          textbookId: params.textbookId
+        },
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.STATISTICS_SET_CHAPTER_OPTIONS, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
 /** 获取记错题列表 */
 export const getStatisticsRemember = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {

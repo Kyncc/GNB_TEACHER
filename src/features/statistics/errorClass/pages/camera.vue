@@ -1,6 +1,6 @@
 <template>
   <div>
-    <card v-for='(error, index) in AssembleCamera.index.list' :key='index'>
+    <card v-for='(error, index) in ErrorclassCamera.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
           <flexbox-item :span="8" style='color:#4cc0be'>{{error.chapterName}}</flexbox-item>
@@ -41,7 +41,7 @@
     <!--组卷个数
     <div class='assembleCount'
       @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject}})">
-      已选<br/>{{AssembleCamera.count}}
+      已选<br/>{{ErrorclassCamera.count}}
     </div>-->
     <!--错误选择 -->
     <div v-transfer-dom>
@@ -75,7 +75,7 @@ export default {
     XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer
   },
   computed: {
-    ...mapGetters(['AssembleCamera'])
+    ...mapGetters(['ErrorclassCamera'])
   },
   data () {
     return {
@@ -152,10 +152,10 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (vm.AssembleCamera.index.reset) {
+      if (vm.ErrorclassCamera.index.reset) {
         vm._getData()
       }
-      vm.$parent.$refs.viewBoxBody.scrollTop = vm.AssembleCamera.index.scroll
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.ErrorclassCamera.index.scroll
     })
   },
   beforeRouteLeave (to, from, next) {

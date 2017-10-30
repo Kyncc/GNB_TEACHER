@@ -1,4 +1,13 @@
 let state = {
+  chapter: {
+    options: {
+      textbook: '',
+      subject: '',
+      grade: '',
+      textbookList: []
+    },
+    list: []
+  },
   remember: {
     index: {
       options: {

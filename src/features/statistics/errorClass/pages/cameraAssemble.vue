@@ -3,7 +3,7 @@
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '拍错题'}"></x-header>
     </div>
-    <card v-for='(error, index) in AssembleCamera.download' :key='index'>
+    <card v-for='(error, index) in ErrorclassCamera.download' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
           <!-- <flexbox-item :span="8" style='color:#4cc0be'>{{error.workbookName}}</flexbox-item> -->
@@ -18,7 +18,7 @@
     </card>
     <div style="text-align:center;padding:10px 0;">
       <spinner v-if="loading" type="lines"></spinner>
-      <p v-else-if="AssembleCamera.download.length === 0" style="font-size:16px;color:#4cc0be">您还未有组卷</p>
+      <p v-else-if="ErrorclassCamera.download.length === 0" style="font-size:16px;color:#4cc0be">您还未有组卷</p>
       <p v-else-if="error" @click='_getData()' style="font-size:16px;color:#4cc0be">出错了点我重新加载</p>
     </div>
     <!--照片放大 -->
@@ -30,7 +30,7 @@
       :title='share.title'
       :href='share.href' @on-share-success='_shareSuccess()'>
     </share>
-    <tabbar slot="bottom" style='background-color:#4cc0be;color:#fff' v-show='AssembleCamera.download && AssembleCamera.download.length'>
+    <tabbar slot="bottom" style='background-color:#4cc0be;color:#fff' v-show='ErrorclassCamera.download && ErrorclassCamera.download.length'>
       <flexbox-item :span="12" style="font-size:.8rem;text-align:center;padding:.25rem 0" @click.native="_download()">
         <i class="icon iconfont icon-download"></i>下载</flexbox-item>
       </flexbox>
@@ -49,7 +49,7 @@ export default {
     ViewBox, XHeader, Group, Card, Cell, Spinner, Flexbox, FlexboxItem, Tabbar, TabbarItem, Previewer, Share
   },
   computed: {
-    ...mapGetters(['AssembleCamera'])
+    ...mapGetters(['ErrorclassCamera'])
   },
   data () {
     return {

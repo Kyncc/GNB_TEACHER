@@ -3,10 +3,10 @@
     <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="50px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
         <x-header :left-options="{backText: this.$route.params.name}">
-          <div slot="right" v-if="$route.name  === 'statisticsGood'">
+          <!-- <div slot="right" v-if="$route.name  === 'statisticsGood'">
             <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsGood_options'})">
             </i>
-          </div>
+          </div> -->
         </x-header>
       </div>
       <keep-alive>
@@ -31,19 +31,19 @@
     <template v-if="$route.name  === 'statisticsRemember'">
       <div class='assembleCount'
         @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
-        已选<br/>{{AssembleRemember.count}}
+        已选<br/>{{ErrorclassRemember.count}}
       </div>
     </template>
      <template v-else-if="$route.name  === 'statisticsCamera'">
       <div class='assembleCount'
         @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject}})">
-        已选<br/>{{AssembleCamera.count}}
+        已选<br/>{{ErrorclassCamera.count}}
       </div>
     </template>
     <template v-else-if="$route.name  === 'statisticsGood'">
       <div class='assembleCount'
         @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
-        已选<br/>{{AssembleGood.count}}
+        已选<br/>{{ErrorclassGood.count}}
       </div>
     </template>
 
@@ -55,12 +55,12 @@ import {XHeader, Tabbar, TabbarItem, ViewBox} from 'vux'
 import {mapGetters} from 'vuex'
 
 export default {
-  name: 'assemble',
+  name: 'error',
   components: {
     XHeader, Tabbar, TabbarItem, ViewBox
   },
   computed: {
-    ...mapGetters(['Route', 'AssembleCamera', 'AssembleGood', 'AssembleRemember'])
+    ...mapGetters(['Route', 'ErrorclassCamera', 'ErrorclassGood', 'ErrorclassRemember'])
   },
   methods: {
     _toPage (name) {

@@ -66,9 +66,9 @@ export default {
     ViewBox, Tabbar, XHeader, Group, Card, Cell, Spinner, Flexbox, FlexboxItem, XButton, Share
   },
   computed: {
-    ...mapGetters(['AssembleGood']),
+    ...mapGetters(['ErrorclassGood']),
     block () {
-      return this.AssembleGood.download || []
+      return this.ErrorclassGood.download || []
     }
   },
   data () {

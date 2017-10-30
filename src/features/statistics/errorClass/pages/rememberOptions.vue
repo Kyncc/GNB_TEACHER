@@ -26,7 +26,7 @@ export default {
     Checker, CheckerItem, XHeader, ViewBox
   },
   computed: {
-    ...mapGetters(['AssembleRemember'])
+    ...mapGetters(['ErrorclassRemember'])
   },
   data () {
     return {
@@ -42,7 +42,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.degree = vm.AssembleRemember.index.options.degree.toString()
+      vm.degree = vm.ErrorclassRemember.index.options.degree.toString()
     })
   },
   beforeRouteLeave (to, from, next) {

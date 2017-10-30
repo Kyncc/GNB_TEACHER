@@ -1,6 +1,6 @@
 <template>
   <div>
-    <card v-for='(error, index) in AssembleRemember.index.list' :key='index'>
+    <card v-for='(error, index) in ErrorclassRemember.index.list' :key='index'>
       <div class="weui-panel__hd" slot="header">
         <flexbox>
           <flexbox-item :span="8" style='color:#4cc0be'>{{error.workbookName}}</flexbox-item>
@@ -44,7 +44,7 @@
     <!--组卷个数
     <div class='assembleCount'
       @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
-      已选<br/>{{AssembleRemember.count}}
+      已选<br/>{{ErrorclassRemember.count}}
     </div>-->
     <!--错误选择 -->
     <div v-transfer-dom>
@@ -78,7 +78,7 @@ export default {
     XHeader, Group, Card, Cell, Checker, CheckerItem, Spinner, Flexbox, FlexboxItem, XButton, Popup, Previewer
   },
   computed: {
-    ...mapGetters(['AssembleRemember'])
+    ...mapGetters(['ErrorclassRemember'])
   },
   data () {
     return {
@@ -156,10 +156,10 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (vm.AssembleRemember.index.reset) {
+      if (vm.ErrorclassRemember.index.reset) {
         vm._getData()
       }
-      vm.$parent.$refs.viewBoxBody.scrollTop = vm.AssembleRemember.index.scroll
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.ErrorclassRemember.index.scroll
     })
   },
   beforeRouteLeave (to, from, next) {

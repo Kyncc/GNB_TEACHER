@@ -1,6 +1,6 @@
 <template>
   <div>
-    <card v-for="(item, index) in AssembleGood.index.list" :key="index">
+    <card v-for="(item, index) in ErrorclassGood.index.list" :key="index">
       <div class="weui-panel__hd" slot="header" style='color:#4cc0be'>
         {{item.chapterName}}
       </div>
@@ -28,7 +28,7 @@
     <!--组卷个数
     <div class='assembleCount'
       @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
-      已选<br/>{{AssembleGood.count}}
+      已选<br/>{{ErrorclassGood.count}}
     </div> -->
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
@@ -50,7 +50,7 @@ export default {
     XHeader, Group, Card, Cell, Spinner, Flexbox, FlexboxItem, XButton
   },
   computed: {
-    ...mapGetters(['AssembleGood'])
+    ...mapGetters(['ErrorclassGood'])
   },
   directives: {
     TransferDom
@@ -77,10 +77,10 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (vm.AssembleGood.index.reset) {
+      if (vm.ErrorclassGood.index.reset) {
         vm._getData()
       }
-      vm.$parent.$refs.viewBoxBody.scrollTop = vm.AssembleGood.index.scroll
+      vm.$parent.$refs.viewBoxBody.scrollTop = vm.ErrorclassGood.index.scroll
     })
   },
   beforeRouteLeave (to, from, next) {

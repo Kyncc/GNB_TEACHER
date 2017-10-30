@@ -37,7 +37,7 @@ export default {
     XButton, Checker, CheckerItem, XHeader, ViewBox
   },
   computed: {
-    ...mapGetters(['AssembleGood'])
+    ...mapGetters(['ErrorclassGood'])
   },
   data () {
     return {
@@ -57,8 +57,8 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.degree = vm.AssembleGood.index.options.degree.toString()
-      vm.type = vm.AssembleGood.index.options.type.toString()
+      vm.degree = vm.ErrorclassGood.index.options.degree.toString()
+      vm.type = vm.ErrorclassGood.index.options.type.toString()
     })
   },
   beforeRouteLeave (to, from, next) {

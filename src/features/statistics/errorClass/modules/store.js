@@ -4,6 +4,25 @@ import * as actions from './actions'
 import state from './state'
 
 const mutations = {
+  [types.STATISTICS_CHAPTER] (state, payload) {
+    state.chapter.list = payload.data
+  },
+  [types.STATISTICS_CHAPTER_RESET] (state) {
+    state.chapter.list = []
+  },
+  [types.STATISTICS_CHAPTER_OPTIONS] (state, payload) {
+    state.chapter.options.textbook = payload.textbook
+    state.chapter.options.subject = payload.subject
+    state.chapter.options.grade = payload.grade
+  },
+  [types.STATISTICS_SET_CHAPTER_OPTIONS] (state, payload) {
+    state.chapter.options.textbook = payload.textbook
+    state.chapter.options.subject = payload.subject
+    state.chapter.options.grade = payload.grade
+  },
+  [types.STATISTICS_TEXTBOOKLIST] (state, payload) {
+    state.chapter.options.textbookList = payload
+  },
   [types.STATISTICS_REMEMBER] (state, payload) {
     state.remember.count = payload.data.count
     if (payload.data.list.length === 0) return
