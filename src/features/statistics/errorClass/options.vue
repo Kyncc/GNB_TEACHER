@@ -19,9 +19,9 @@
           <checker-item value="8">化学</checker-item>
         </checker>
         <span class='searchtitle'>教材：</span>
-        <!-- <checker style='padding-left:.5rem;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-          <checker-item v-for='(item, index) in ErrorclassChapterOptions.textbookList[grade][subjectId][0].textbook' :key='index' :value="item.id">{{item.name}}</checker-item>
-        </checker> -->
+        <checker style='padding-left:.5rem;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+          <!-- <checker-item v-for='(item, index) in ErrorclassChapterOptions.textbookList[grade][subjectId][0].textbook' :key='index' :value="item.id">{{item.name}}</checker-item> -->
+        </checker>
       </div>
     </div>
   </view-box>
@@ -36,17 +36,17 @@ export default {
     XButton, Checker, CheckerItem, XHeader, ViewBox, Group, Cell, Spinner
   },
   computed: {
-    ...mapGetters(['User', 'ErrorclassChapterOptions'])
+    ...mapGetters(['ErrorclassChapterOptions'])
   },
   data () {
     return {
-      grade: '10',
+      grade: '',
       subjectId: '',
       textbookId: ''
     }
   },
   methods: {
-    ...mapActions(['Route', 'setStatisticsChapterOptions', 'getStatisticsOptionsTextbook']),
+    ...mapActions(['setStatisticsChapterOptions', 'getStatisticsOptionsTextbook']),
     _finish () {
       this.setStatisticsChapterOptions({
         textbook: this.textbookId,
@@ -65,7 +65,8 @@ export default {
     }
   },
   created () {
-    this.subjectId = this.User.subjectId
+    this.subjectId = this.ErrorclassChapterOptions.subjectId
+    this.grade = this.ErrorclassChapterOptions.grade
     this.getStatisticsOptionsTextbook().then(() => {
       this.textbookId = this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.subjectId.toString()][0]['textbook'][0].id
     })
