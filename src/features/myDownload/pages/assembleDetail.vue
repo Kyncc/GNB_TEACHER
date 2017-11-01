@@ -1,6 +1,6 @@
 <template>
   <view-box ref="myDownload_list" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '试卷详情'}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '组卷详情'}"></x-header>
     <div>
       <div v-for="(list, pindex) in block" :key="pindex" v-show='!loading'>
         <div class="weui-cells__title">{{list.name}}</div>
@@ -37,14 +37,14 @@ import {XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'list',
+  name: 'assembleDetail',
   components: {
     XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group
   },
   computed: {
-    ...mapGetters(['MyDownloadPaper']),
+    ...mapGetters(['MyDownloadAssemble']),
     block () {
-      return this.MyDownloadPaper.list.block
+      return this.MyDownloadAssemble.detail.block
     }
   },
   data () {
@@ -54,11 +54,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getMyDownloadList', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper']),
+    ...mapActions(['getMyDownloadAssembleDetail', 'setMyDownloadDetailScroll', 'clearMyDownloadDetail']),
     _getData () {
-      this.clearMyDownloadPaper()
+      this.clearMyDownloadDetail({type: 'assemble'})
       this.loading = true
-      this.getMyDownloadList().then(() => {
+      this.getMyDownloadAssembleDetail().then(() => {
         this.error = false
         this.loading = false
       }).catch(() => {
@@ -69,14 +69,14 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'myDownload') {
+      if (from.name === 'myDownloadAssemble') {
         vm._getData()
       }
-      vm.$refs.myDownload_list.scrollTo(vm.MyDownloadPaper.scroll)
+      vm.$refs.myDownload_list.scrollTo(vm.MyDownloadAssemble.scroll)
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setMyDownloadPaperScroll(this.$refs.myDownload_list.getScrollTop())
+    this.setMyDownloadDetailScroll({type: 'assemble', scroll: this.$refs.myDownload_list.getScrollTop()})
     next()
   }
 }

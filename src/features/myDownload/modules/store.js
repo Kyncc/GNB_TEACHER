@@ -3,29 +3,44 @@ import * as getters from './getters'
 import * as actions from './actions'
 
 const state = {
-  paper: {
+  assemble: {
     list: [],
+    detail: [],
     scroll: 0
   },
-  download: []
+  camera: {
+    list: [],
+    detail: [],
+    scroll: 0
+  },
+  good: {
+    list: [],
+    detail: [],
+    scroll: 0
+  },
+  remember: {
+    list: [],
+    detail: [],
+    scroll: 0
+  }
 }
 
 const mutations = {
-  [types.MYDOWNLOAD] (state, data) {
-    state.download = data
+  [types.MYDOWNLOAD] (state, payload) {
+    state[payload.type]['list'] = payload.data
   },
-  [types.MYDOWNLOAD_RESET] (state) {
-    state.download = []
+  [types.MYDOWNLOAD_RESET] (state, payload) {
+    state[payload.type]['list'] = []
   },
-  [types.MYDOWNLOAD_PAPER] (state, data) {
-    state.paper.list = data
+  [types.MYDOWNLOAD_DETAIL] (state, payload) {
+    state[payload.type]['detail'] = payload.data
   },
-  [types.MYDOWNLOAD_PAPER_RESET] (state) {
-    state.paper.list = []
-    state.paper.scroll = 0
+  [types.MYDOWNLOAD_DETAIL_SCROLL] (state, payload) {
+    state[payload.type]['scroll'] = payload.scroll
   },
-  [types.MYDOWNLOAD_PAPER_SCROLL] (state, data) {
-    state.paper.scroll = data
+  [types.MYDOWNLOAD_DETAIL_RESET] (state, payload) {
+    state[payload.type]['detail'] = []
+    state[payload.type]['scroll'] = 0
   }
 }
 

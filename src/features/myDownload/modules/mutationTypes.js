@@ -1,10 +1,10 @@
 /** 我的下载 */
 export const MYDOWNLOAD = 'MYDOWNLOAD'
-/** 我的下载清空 */
+/** 下载清空 */
 export const MYDOWNLOAD_RESET = 'MYDOWNLOAD_RESET'
-/** 试题 */
-export const MYDOWNLOAD_PAPER = 'MYDOWNLOAD_PAPER'
-/** 试题清空 */
-export const MYDOWNLOAD_PAPER_RESET = 'MYDOWNLOAD_PAPER_RESET'
-/** 试题高度 */
-export const MYDOWNLOAD_PAPER_SCROLL = 'MYDOWNLOAD_PAPER_SCROLL'
+/** 下载详情 */
+export const MYDOWNLOAD_DETAIL = 'MYDOWNLOAD_DETAIL'
+/** 下载高度 */
+export const MYDOWNLOAD_DETAIL_SCROLL = 'MYDOWNLOAD_DETAIL_SCROLL'
+/** 下载清空 */
+export const MYDOWNLOAD_DETAIL_RESET = 'MYDOWNLOAD_DETAIL_RESET'
