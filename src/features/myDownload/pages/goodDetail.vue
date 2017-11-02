@@ -37,7 +37,7 @@ import {XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'myDownloadGood_detail',
+  name: 'goodDetail',
   components: {
     XHeader, ViewBox, Card, Spinner, Flexbox, FlexboxItem, Group
   },

@@ -1,5 +1,5 @@
 export default {
-  path: '/download',
+  path: '/assemble/download',
   component: r => require.ensure([], () => r(require('./pages/layout')), '/download'),
   children: [
     {

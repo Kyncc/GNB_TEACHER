@@ -56,6 +56,9 @@
         ├── assemble    # 组卷中心
         ├── paper       # 试卷下载
         ├── points      # 我的积分
+        ├── assemble    # 我的组卷
+          ├── chapter      # 章节考点
+          ├── download     # 组卷编辑
         |── homework    # 布置作业
         ├── workbook    # 查答案
         ├── correct     # 纠错

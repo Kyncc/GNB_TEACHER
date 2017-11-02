@@ -6,14 +6,12 @@ import index from './router/router'
 import login from './features/login/router'
 import about from './features/about/router'
 import correct from './features/correct/router'
-// import error from './features/error/router'
 import example from './features/example/router'
 import homework from './features/homework/router'
 import message from './features/message/router'
 import myclass from './features/myclass/router'
 import assemble from './features/assemble/router'
 import myDownload from './features/myDownload/router'
-import download from './features/download/router'
 import settings from './features/settings/router'
 import workbook from './features/workbook/router'
 import statistics from './features/statistics/router'
@@ -25,11 +23,9 @@ Vue.use(Router)
 let router = new Router({
   mode: 'hash',
   routes: [
-    assemble,
+    ...assemble,
     about,
     correct,
-    download,
-    // error,
     example,
     homework,
     invite,

@@ -11,9 +11,9 @@
       </cell>
     </group>
     <group gutter="0">
-      <cell title="我的下载" link="myDownload">
+      <!-- <cell title="我的下载" link="myDownload">
         <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
-      </cell>
+      </cell> -->
       <cell title="我的积分" link="points">
         <i class="icon iconfont icon-wodejifen" style="color:#4cc0be;margin-left:-1px;" slot="icon"></i>
       </cell>

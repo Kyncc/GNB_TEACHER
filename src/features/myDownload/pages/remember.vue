@@ -35,7 +35,7 @@ import { mapGetters, mapActions } from 'vuex'
 import Share from '@/components/share'
 
 export default {
-  name: 'index',
+  name: 'remember',
   components: {
     XButton, XHeader, ViewBox, Group, Cell, PopupPicker, Spinner, Share
   },

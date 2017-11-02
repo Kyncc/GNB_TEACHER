@@ -9,7 +9,7 @@
     </x-header>
     <div>
       <group :gutter='0'>
-        <cell v-for="(myClass, index) in User.classes" :key='index' :title="myClass.name" :link="'class/detail/' + myClass.classCode"></cell>
+        <cell v-for="(myClass, index) in User.classes" :key='index' :title="myClass.name" :link="'/class/detail/' + myClass.classCode"></cell>
       </group>
       <x-button type="primary" @click.native="$router.push({name: 'class_add'})" style='width:90%;margin:1rem auto;'>添加班级</x-button>
     </div>

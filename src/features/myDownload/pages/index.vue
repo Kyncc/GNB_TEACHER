@@ -1,6 +1,6 @@
 <template>
   <view-box body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '我的下载'}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '下载中心'}">
     </x-header>
     <div>
       <group title='下载历史'>

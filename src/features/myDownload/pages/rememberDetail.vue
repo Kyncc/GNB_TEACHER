@@ -22,7 +22,7 @@ import {Group, Card, Cell, Spinner, Previewer, TransferDomDirective as TransferD
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'myDownloadRemember_detail',
+  name: 'rememberAssemble',
   components: {
     Group, Card, Cell, Spinner, Previewer
   },
