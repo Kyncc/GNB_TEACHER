@@ -21,11 +21,13 @@ const state = {
   example: {
     list: [],
     offset: '',
+    count: 0,
     scroll: 0
   },
   choice: {
     list: [],
     offset: '',
+    count: 0,
     scroll: 0
   }
 }
@@ -54,29 +56,33 @@ const mutations = {
   [types.ASSEMBLE_EXAMPLE] (state, data) {
     state.example.list = state.example.list ? state.example.list.concat(data.list) : data.list
     state.example.offset = data.offset
+    state.example.count = data.count
   },
   [types.ASSEMBLE_EXAMPLE_SCROLL] (state, height) {
     state.example.scroll = height
   },
   [types.ASSEMBLE_EXAMPLE_CLEAR] (state) {
-    state.example = { list: [], offset: '', scroll: 0 }
+    state.example = { list: [], offset: '', count: 0, scroll: 0 }
   },
   [types.ASSEMBLE_CHOICE] (state, data) {
     state.choice.list = state.choice.list ? state.choice.list.concat(data.list) : data.list
     state.choice.offset = data.offset
+    state.choice.count = data.count
   },
   [types.ASSEMBLE_INTO] (state, payload) {
     if (payload.form === 1) {
       state['example']['list'][payload.index]['isAssembly'] = payload.data.isAssembly
+      payload.data.isAssembly ? ++state.example.count : --state.example.count
     } else {
       state['choice']['list'][payload.index]['isAssembly'] = payload.data.isAssembly
+      payload.data.isAssembly ? ++state.choice.count : --state.choice.count
     }
   },
   [types.ASSEMBLE_CHOICE_SCROLL] (state, height) {
     state.choice.scroll = height
   },
   [types.ASSEMBLE_CHOICE_CLEAR] (state) {
-    state.choice = { list: [], offset: '', scroll: 0 }
+    state.choice = { list: [], offset: '', count: 0, scroll: 0 }
   }
 }
 

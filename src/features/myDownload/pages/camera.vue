@@ -16,9 +16,9 @@
             <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
               <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
             </span>
-            <span style='padding:0 5px;line-height:24px;' @click="$router.push({name:'myDownloadCamera_detail', params:{id: item.downloadId}})">
+            <!-- <span style='padding:0 5px;line-height:24px;' @click="$router.push({name:'myDownloadCamera_detail', params:{id: item.downloadId}})">
               <i class="icon iconfont icon-chakan" style="font-size:16px;"></i>查看
-            </span>
+            </span> -->
           </div>
         </cell>
       </group>

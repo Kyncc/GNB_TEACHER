@@ -1,8 +1,9 @@
 <template>
+<div style="height:100%">
  <view-box ref="viewBox" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: Route.params.name}">
-        <div slot="right" @click="$router.push({name: 'download'})"><i class="icon iconfont icon-download_link"></i></div>
+        <!-- <div slot="right" @click="$router.push({name: 'download'})"><i class="icon iconfont icon-download_link"></i></div> -->
       </x-header>
     </div>
     <div>
@@ -50,6 +51,11 @@
       </div>
     </div>
   </view-box>
+  <div class='assembleCount'
+    @click="$router.push({name: 'download'})">
+    已选<br/>{{AssembleExample.count}}
+  </div>
+</div>
 </template>
 
 <script>
@@ -104,3 +110,20 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.assembleCount{
+  position: fixed;
+  background:#4cc0be;
+  color:#fff;
+  font-size: .9rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  box-sizing: border-box;
+  padding:.5rem .75rem;
+  border-radius: 50%;
+  bottom: 10%;
+  right: 5%;
+  box-shadow: 2px 2px 7px #4cc0be;
+  text-align: center;
+}
+</style>
