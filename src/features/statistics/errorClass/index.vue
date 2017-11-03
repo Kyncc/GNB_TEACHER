@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <view-box ref="statistics" body-padding-top="46px">
-      <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '查看班级'}"></x-header>
-      <group :gutter='0'>
-        <cell v-for="(myClass, index) in User.classes" :key='index' :title="myClass.name" @click.native='_intoPage(myClass)'></cell>
-      </group>
-    </view-box>
-  </div>
+  <view-box ref="statistics" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '查看班级'}"></x-header>
+    <group :gutter='0'>
+      <cell v-for="(myClass, index) in User.classes" :key='index' :title="myClass.name" @click.native='_intoPage(myClass)'></cell>
+    </group>
+  </view-box>
 </template>
 
 <script>

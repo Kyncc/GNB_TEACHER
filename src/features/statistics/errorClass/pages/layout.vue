@@ -3,8 +3,8 @@
     <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="50px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
         <x-header :left-options="{backText: this.$route.params.name}">
-          <!-- <div slot="right" v-if="$route.name  === 'statisticsGood'">
-            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'statisticsGood_options'})">
+          <!-- <div slot="right" v-if="$route.name  === 'errorClassGood'">
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'errorClassGood_options'})">
             </i>
           </div> -->
         </x-header>
@@ -13,40 +13,39 @@
         <router-view></router-view>
       </keep-alive>
       <tabbar slot="bottom" class="homepage" style="z-index:2;">
-        <tabbar-item :selected="$route.name === 'statisticsRemember'" @click.native="_toPage('statisticsRemember')">
-          <i slot="icon" :class="'icon iconfont icon-jinrulianxi '+($route.name  === 'statisticsRemember' ? 'icon-active' : '')"></i>
+        <tabbar-item :selected="$route.name === 'errorClassRemember'" @click.native="_toPage('errorClassRemember')">
+          <i slot="icon" :class="'icon iconfont icon-jinrulianxi '+($route.name  === 'errorClassRemember' ? 'icon-active' : '')"></i>
           <span slot="label">记错题</span>
         </tabbar-item>
-        <tabbar-item :selected="$route.name === 'statisticsCamera'" @click.native="_toPage('statisticsCamera')">
-          <i slot="icon" :class="'icon iconfont icon-camera '+($route.name  === 'statisticsCamera' ? 'icon-active' : '')"></i>
+        <tabbar-item :selected="$route.name === 'errorClassCamera'" @click.native="_toPage('errorClassCamera')">
+          <i slot="icon" :class="'icon iconfont icon-camera '+($route.name  === 'errorClassCamera' ? 'icon-active' : '')"></i>
           <span slot="label">拍错题</span>
         </tabbar-item>
-        <tabbar-item :selected="$route.name  === 'statisticsGood'" @click.native="_toPage('statisticsGood')">
-          <i slot="icon" :class="'icon iconfont icon-bag1 '+($route.name  === 'statisticsGood' ? 'icon-active' : '')"></i>
+        <tabbar-item :selected="$route.name  === 'errorClassGood'" @click.native="_toPage('errorClassGood')">
+          <i slot="icon" :class="'icon iconfont icon-bag1 '+($route.name  === 'errorClassGood' ? 'icon-active' : '')"></i>
           <span slot="label">精选练习</span>
         </tabbar-item>
       </tabbar>
     </view-box>
     <!--组卷个数 -->
-    <template v-if="$route.name  === 'statisticsRemember'">
+    <template v-if="$route.name  === 'errorClassRemember'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsRemember_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'errorClassRemember_assemble', params: {classCode: $route.params.classCode}})">
         已选<br/>{{ErrorclassRemember.count}}
       </div>
     </template>
-     <template v-else-if="$route.name  === 'statisticsCamera'">
+     <template v-else-if="$route.name  === 'errorClassCamera'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsCamera_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'errorClassCamera_assemble', params: {classCode: $route.params.classCode}})">
         已选<br/>{{ErrorclassCamera.count}}
       </div>
     </template>
-    <template v-else-if="$route.name  === 'statisticsGood'">
+    <template v-else-if="$route.name  === 'errorClassGood'">
       <div class='assembleCount'
-        @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
+        @click="$router.push({name: 'errorClassGood_assemble', params: {classCode: $route.params.classCode}})">
         已选<br/>{{ErrorclassGood.count}}
       </div>
     </template>
-
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 let state = {
   chapter: {
     options: {
-      textbook: '',
+      textbookId: '',
       subject: '',
       grade: '',
       textbookList: []

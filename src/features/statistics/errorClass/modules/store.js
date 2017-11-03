@@ -11,12 +11,12 @@ const mutations = {
     state.chapter.list = []
   },
   [types.STATISTICS_CHAPTER_OPTIONS] (state, payload) {
-    state.chapter.options.textbook = payload.textbook
+    state.chapter.options.textbookId = payload.textbookId
     state.chapter.options.subject = payload.subject
     state.chapter.options.grade = payload.grade
   },
   [types.STATISTICS_SET_CHAPTER_OPTIONS] (state, payload) {
-    state.chapter.options.textbook = payload.textbook
+    state.chapter.options.textbookId = payload.textbookId
     state.chapter.options.subject = payload.subject
     state.chapter.options.grade = payload.grade
   },

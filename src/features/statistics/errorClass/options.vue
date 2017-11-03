@@ -8,19 +8,21 @@
     <div>
       <div style='padding:10px;'>
         <span class='searchtitle'>学段：</span>
-        <checker style='padding-left:.5rem;' v-model="grade" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+        <checker radio-required style='padding-left:.5rem;' v-model="grade" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
           <checker-item value="789">初中</checker-item>
           <checker-item value="10">高中</checker-item>
         </checker>
         <span class='searchtitle'>学科：</span>
-        <checker style='padding-left:.5rem;' v-model="subjectId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-          <checker-item value="2">数学</checker-item>
-          <checker-item value="7">物理</checker-item>
-          <checker-item value="8">化学</checker-item>
+        <checker radio-required style='padding-left:.5rem;' v-model="subject" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+          <checker-item value="math">数学</checker-item>
+          <checker-item value="physics">物理</checker-item>
+          <checker-item value="chemistry">化学</checker-item>
         </checker>
         <span class='searchtitle'>教材：</span>
-        <checker style='padding-left:.5rem;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
-          <!-- <checker-item v-for='(item, index) in ErrorclassChapterOptions.textbookList[grade][subjectId][0].textbook' :key='index' :value="item.id">{{item.name}}</checker-item> -->
+        <checker radio-required style='padding-left:.5rem;' v-model="textbookId" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+          <template v-if='ErrorclassChapterOptions.textbookList[grade]'>
+            <checker-item v-for='(item, index) in ErrorclassChapterOptions.textbookList[grade][this.getSubjectId(subject)][0].textbook' :key='index' :value="item.id">{{item.name}}</checker-item>
+          </template>
         </checker>
       </div>
     </div>
@@ -41,34 +43,50 @@ export default {
   data () {
     return {
       grade: '',
-      subjectId: '',
+      subject: '',
       textbookId: ''
     }
   },
   methods: {
     ...mapActions(['setStatisticsChapterOptions', 'getStatisticsOptionsTextbook']),
+    getSubjectId (name) {
+      let subjectId = ''
+      if (name.indexOf('math') >= 0) {
+        subjectId = '2'
+      } else if (name.indexOf('physics') >= 0) {
+        subjectId = '7'
+      } else if (name.indexOf('chemistry') >= 0) {
+        subjectId = '8'
+      }
+      return subjectId
+    },
     _finish () {
       this.setStatisticsChapterOptions({
-        textbook: this.textbookId,
-        subject: this.subjectId,
+        textbookId: this.textbookId,
+        subject: this.subject,
         grade: this.grade
+      }).then(() => {
+        this.$router.push({name: 'errorClassChapter', params: {name: this.$route.params.name, classCode: this.$route.params.classCode}})
       })
-      this.$router.go(-1)
     }
   },
   watch: {
-    grade () {
-      this.textbookId = this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.subjectId.toString()][0]['textbook'][0].id
+    grade (val) {
+      if (this.ErrorclassChapterOptions.textbookList[this.grade]) {
+        this.textbookId = this.ErrorclassChapterOptions.textbookList[val][this.getSubjectId(this.ErrorclassChapterOptions.subject)][0]['textbook'][0].id
+      }
     },
-    subjectId () {
-      this.textbookId = this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.subjectId.toString()][0]['textbook'][0].id
+    subject (val) {
+      if (this.ErrorclassChapterOptions.textbookList[this.grade]) {
+        this.textbookId = this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.getSubjectId(val)][0]['textbook'][0].id
+      }
     }
   },
   created () {
-    this.subjectId = this.ErrorclassChapterOptions.subjectId
+    this.subject = this.ErrorclassChapterOptions.subject
     this.grade = this.ErrorclassChapterOptions.grade
     this.getStatisticsOptionsTextbook().then(() => {
-      this.textbookId = this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.subjectId.toString()][0]['textbook'][0].id
+      this.textbookId = this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.getSubjectId(this.ErrorclassChapterOptions.subject)][0]['textbook'][0].id
     })
   },
   beforeRouteEnter (to, from, next) {

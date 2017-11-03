@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <group gutter="0" class="gnb_collapse" v-if="!loading">
+  <view-box ref="viewBox" body-padding-top="46px">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: $route.params.name}">
+      <div slot="right" @click="$router.push({name: 'errorClassOptions', params: {name: $route.params.name, classCode: $route.params.classCode}})">筛选</div>
+    </x-header>
+    <group gutter="0" v-if="!loading">
       <template v-for="(list, index) in ErrorclassChapter.list">
-        <cell :key='index' :title="list.name"
-          :link="{name: 'errorClassRemember', params: {classCode: $route.params.classCode, chapterId: list.id, name:list.name}}"
+        <cell :key='index' :title="list.chapterName"
+          :link="{name: 'errorClassRemember', params: {classCode: $route.params.classCode, chapterId: list.chapterId, name:list.chapterName}}"
           is-link>
         </cell>
       </template>
@@ -11,17 +14,17 @@
     <div style="text-align:center">
       <spinner v-if="loading" type="ripple"></spinner>
     </div>
-  </div>
+  </view-box>
 </template>
 
 <script>
-import {XHeader, Cell, CellBox, Group, Spinner, Flexbox, FlexboxItem} from 'vux'
+import {XHeader, Cell, CellBox, Group, Spinner, Flexbox, FlexboxItem, ViewBox} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'chapter',
   components: {
-    XHeader, Cell, Group, CellBox, Spinner, Flexbox, FlexboxItem
+    XHeader, Cell, Group, CellBox, Spinner, Flexbox, FlexboxItem, ViewBox
   },
   computed: {
     ...mapGetters(['ErrorclassChapter'])
@@ -42,7 +45,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'errorClassChapter' || from.name === 'errorClassOptions') {
+      if (from.name === 'errorClass' || from.name === 'errorClassOptions') {
         vm.clearStatisticsChapter()
         vm._getData()
       }
@@ -50,9 +53,6 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     next()
-  },
-  mounted () {
-    this._getData()
   }
 }
 </script>

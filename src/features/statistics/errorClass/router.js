@@ -13,7 +13,7 @@ export default [
   },
   // 筛选页面
   {
-    path: 'errorClass/chapter/options/:classCode',
+    path: 'errorClass/chapter/options/:name/:classCode',
     name: 'errorClassOptions',
     component: r => require.ensure([], () => r(require('./options')), '/errorClass/chapter/options')
   },

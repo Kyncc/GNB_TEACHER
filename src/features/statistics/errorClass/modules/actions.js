@@ -10,7 +10,7 @@ export const getStatisticsChapter = ({ state, rootState, commit }) => {
       url: 'errorClass/chapter',
       params: {
         token: rootState.common.user.token,
-        textbookId: state.chapter.options.textbook
+        textbookId: state.chapter.options.textbookId
       }
     }).then((response) => {
       commit(types.STATISTICS_CHAPTER, {data: response.data.data})
@@ -67,9 +67,9 @@ export const getStatisticsChapterOptions = ({ rootState, commit }, params) => {
 export const setStatisticsChapterOptions = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
-      method: 'post',
-      url: ' errorClass/options',
-      data: {
+      method: 'get',
+      url: ' errorClass/addOptions',
+      params: {
         options: {
           classCode: rootState.route.params.classCode,
           grade: params.grade,
@@ -92,7 +92,7 @@ export const getStatisticsRemember = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'statistics/remember/list',
+      url: 'errorClass/remember/list',
       params: {
         token: rootState.common.user.token,
         offset: state.remember.index.offset,
@@ -115,7 +115,7 @@ export const getStatisticsRememberAssemble = ({ state, rootState, commit }, para
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'statistics/remember/assemble',
+      url: 'errorClass/remember/assemble',
       params: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject
@@ -134,7 +134,7 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'statistics/remember/assemble/update',
+      url: 'errorClass/remember/assemble/update',
       data: {
         token: rootState.common.user.token,
         id: params.id,
@@ -165,7 +165,7 @@ export const getStatisticsCamera = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'statistics/camera/list',
+      url: 'errorClass/camera/list',
       params: {
         token: rootState.common.user.token,
         offset: state.camera.index.offset,
@@ -187,7 +187,7 @@ export const getStatisticsCameraAssemble = ({ state, rootState, commit }, params
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'statistics/camera/assemble',
+      url: 'errorClass/camera/assemble',
       params: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject
@@ -206,7 +206,7 @@ export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params)
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'statistics/camera/assemble/update',
+      url: 'errorClass/camera/assemble/update',
       data: {
         token: rootState.common.user.token,
         id: params.id,
@@ -231,7 +231,7 @@ export const getStatisticsGood = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'statistics/good/list',
+      url: 'errorClass/good/list',
       params: {
         token: rootState.common.user.token,
         offset: state.good.index.offset,
@@ -255,7 +255,7 @@ export const getStatisticsGoodAssemble = ({ state, rootState, commit }, params) 
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'statistics/good/assemble',
+      url: 'errorClass/good/assemble',
       params: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject
@@ -280,7 +280,7 @@ export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) =
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'statistics/good/assemble/update',
+      url: 'errorClass/good/assemble/update',
       data: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
@@ -310,7 +310,7 @@ export const setStatisticsGoodAssembleList = ({ state, rootState, commit }, para
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'statistics/good/assemble/order',
+      url: 'errorClass/good/assemble/order',
       params: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
@@ -357,7 +357,7 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'statistics/assemble/download',
+      url: 'errorClass/assemble/download',
       data: {
         token: rootState.common.user.token,
         subject: rootState.route.params.subject,
