@@ -125,15 +125,8 @@ export default {
       })()
     },
     _shareSuccess () {
-      let that = this
-      this.$vux.alert.show({
-        title: '下载成功',
-        content: '请到我的下载查看',
-        dialogTransition: '',
-        onHide () {
-          that._getData()
-        }
-      })
+      this._getData()
+      this.$router.go(-1)
     }
   },
   watch: {
