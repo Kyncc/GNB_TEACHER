@@ -7,7 +7,7 @@
         :arrow-direction="myClass.checked ? 'up' : 'down'"
         @click.native="myClass.checked = !myClass.checked" :key='pindex'></cell>
         <div class="slide" :class="myClass.checked ? 'animate':''" :key='pindex'>
-          <cell-box v-for="(student, index) in myClass.classmates" :key='index' @click.native="$router.push({name: 'errorClassmate_list', params: {name: student.name, studentId: student.id}})">
+          <cell-box is-link v-for="(student, index) in myClass.classmates" :key='index' @click.native="$router.push({name: 'errorClassmate_list', params: {name: student.name, studentId: student.id}})">
             <flexbox slot="default">
               <flexbox-item :span="12">
                 <img width="30" height="30" style="margin-right:5px;border-radius:50%;background:#ddd" v-lazy="student.headImg">
