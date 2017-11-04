@@ -41,7 +41,7 @@ export default {
       this.cropper.destroy()
     }
     this.cropper = new Cropper(this.$refs.result, {
-      aspectRatio: 1 / 1,
+      aspectRatio: '3/4',
       minContainerHeight: document.documentElement.clientHeight - 46,
       minCropBoxWidth: document.documentElement.clientWidth / 2,
       minCropBoxHeight: 80

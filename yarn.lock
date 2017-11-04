@@ -1382,9 +1382,9 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cropperjs@^1.0.0:
-  version "1.0.0"
-  resolved "http://registry.npm.taobao.org/cropperjs/download/cropperjs-1.0.0.tgz#3a4b7261f05a661316facdb4ebac90ecc48b0242"
+cropperjs@^1.1.3:
+  version "1.1.3"
+  resolved "http://registry.npm.taobao.org/cropperjs/download/cropperjs-1.1.3.tgz#e92f2b819d1051814b1026ea5e3fcfa45848f141"
 
 cross-spawn@^5.1.0:
   version "5.1.0"
@@ -4945,7 +4945,7 @@ vue-hot-reload-api@^2.0.11:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
 
-vue-infinite-loading@^2.1.3:
+vue-infinite-loading@^2.2.1:
   version "2.2.1"
   resolved "http://registry.npm.taobao.org/vue-infinite-loading/download/vue-infinite-loading-2.2.1.tgz#91a349c0fde8a1a51befd9d867eafd80c0dc2126"
 
