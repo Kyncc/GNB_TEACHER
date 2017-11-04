@@ -1,6 +1,6 @@
 <template>
   <view-box ref="viewBox" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '点拨错题',showBack: true}"></x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '查看学生',showBack: true}"></x-header>
     <group gutter="0" class="gnb_collapse" v-if="!loading">
       <template v-for="(myClass, pindex) in errorClassmate.list">
         <cell :title="myClass.className" is-link :border-intent="false"

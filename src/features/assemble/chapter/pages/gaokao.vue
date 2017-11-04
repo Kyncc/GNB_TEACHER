@@ -1,17 +1,17 @@
 <template>
-  <view-box ref="gaokao" body-padding-top="55px">
+  <view-box ref="gaokao" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '组卷中心'}">
         <div slot="right" @click="$router.push({name: 'assemble_options'})">
           筛选
         </div>
       </x-header>
-      <tab :animate="false">
+      <!-- <tab :animate="false">
         <tab-item :selected="Route.name === 'assemble_sync'" @click.native="$router.replace({name:'assemble_sync'})">同步题型</tab-item>
         <tab-item :selected="Route.name === 'assemble_gaokao'">考点题型</tab-item>
-      </tab>
+      </tab> -->
     </div>
-    <div style="padding-top:46px;">
+    <div>
       <group gutter="0" class="gnb_collapse" v-if="!loading">
         <template v-for="(list, pindex) in AssembleGaokao.list">
           <cell :key='pindex' :title="list.name" is-link :border-intent="false" :arrow-direction="list.check ? 'up' : 'down'" @click.native="list.check = !list.check"></cell>

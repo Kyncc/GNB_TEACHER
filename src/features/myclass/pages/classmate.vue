@@ -14,7 +14,7 @@
         </div>
       </x-header>
       <flexbox style='padding:.4rem;background:#fff;'>
-        <flexbox-item :span="8" style="font-size:.7rem">我的邀请码: <b></b>{{ClassMyClassmate.classcode}}</flexbox-item>
+        <flexbox-item :span="8" style="font-size:.7rem">我的班级码: <b></b>{{ClassMyClassmate.classcode}}</flexbox-item>
         <flexbox-item :span="4" style="color:#4bb7aa;">
           <x-button type="primary" @click.native='_invite(ClassMyClassmate.classcode)' plain mini>邀请学生</x-button>
         </flexbox-item>
