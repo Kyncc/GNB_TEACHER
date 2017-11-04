@@ -97,7 +97,7 @@ export const getStatisticsRemember = ({ state, rootState, commit }, params) => {
         token: rootState.common.user.token,
         offset: state.remember.index.offset,
         options: {
-          subject: rootState.route.params.subject,
+          classCode: rootState.route.params.classCode,
           chapterId: rootState.route.params.chapterId,
           degree: state.remember.index.options.degree
         }
@@ -118,7 +118,10 @@ export const getStatisticsRememberAssemble = ({ state, rootState, commit }, para
       url: 'errorClass/remember/assemble',
       params: {
         token: rootState.common.user.token,
-        subject: rootState.route.params.subject
+        options: {
+          classCode: rootState.route.params.classCode,
+          subject: state.chapter.options.subject
+        }
       }
     })
       .then((response) => {
@@ -129,7 +132,7 @@ export const getStatisticsRememberAssemble = ({ state, rootState, commit }, para
 }
 
 /** 记错题组卷编辑 */
-export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, params) => {
+export const setStatisticsRememberAssembleUpdate = ({ state, rootState, commit }, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
@@ -137,8 +140,11 @@ export const setStatisticsRememberAssembleUpdate = ({ rootState, commit }, param
       url: 'errorClass/remember/assemble/update',
       data: {
         token: rootState.common.user.token,
-        id: params.id,
-        subject: rootState.route.params.subject
+        options: {
+          classCode: rootState.route.params.classCode,
+          subject: state.chapter.options.subject
+        },
+        id: params.id
       }
     })
       .then((response) => {
@@ -170,7 +176,7 @@ export const getStatisticsCamera = ({ state, rootState, commit }, params) => {
         token: rootState.common.user.token,
         offset: state.camera.index.offset,
         options: {
-          subject: rootState.route.params.subject,
+          classCode: rootState.route.params.classCode,
           chapterId: rootState.route.params.chapterId
         }
       }
@@ -190,7 +196,10 @@ export const getStatisticsCameraAssemble = ({ state, rootState, commit }, params
       url: 'errorClass/camera/assemble',
       params: {
         token: rootState.common.user.token,
-        subject: rootState.route.params.subject
+        options: {
+          classCode: rootState.route.params.classCode,
+          subject: state.chapter.options.subject
+        }
       }
     })
       .then((response) => {
@@ -201,7 +210,7 @@ export const getStatisticsCameraAssemble = ({ state, rootState, commit }, params
 }
 
 /** 拍错题组卷编辑 */
-export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params) => {
+export const setStatisticsCameraAssembleUpdate = ({ state, rootState, commit }, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
@@ -210,7 +219,10 @@ export const setStatisticsCameraAssembleUpdate = ({ rootState, commit }, params)
       data: {
         token: rootState.common.user.token,
         id: params.id,
-        subject: rootState.route.params.subject
+        options: {
+          classCode: rootState.route.params.classCode,
+          subject: state.chapter.options.subject
+        }
       }
     })
       .then((response) => {
@@ -236,7 +248,7 @@ export const getStatisticsGood = ({ state, rootState, commit }, params) => {
         token: rootState.common.user.token,
         offset: state.good.index.offset,
         options: {
-          subject: rootState.route.params.subject,
+          classCode: rootState.route.params.classCode,
           chapterId: rootState.route.params.chapterId,
           type: state.good.index.options.type,
           degree: state.good.index.options.degree
@@ -258,7 +270,10 @@ export const getStatisticsGoodAssemble = ({ state, rootState, commit }, params) 
       url: 'errorClass/good/assemble',
       params: {
         token: rootState.common.user.token,
-        subject: rootState.route.params.subject
+        options: {
+          classCode: rootState.route.params.classCode,
+          subject: state.chapter.options.subject
+        }
       }
     })
       .then((response) => {
@@ -275,7 +290,7 @@ export const setStatisticsGoodOptions = ({ commit }, params) => {
 }
 
 /** 精选题组卷编辑 */
-export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) => {
+export const setStatisticsGoodAssembleUpdate = ({ state, rootState, commit }, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
@@ -283,9 +298,12 @@ export const setStatisticsGoodAssembleUpdate = ({ rootState, commit }, params) =
       url: 'errorClass/good/assemble/update',
       data: {
         token: rootState.common.user.token,
-        subject: rootState.route.params.subject,
         id: params.id,
-        type: params.type
+        options: {
+          classCode: rootState.route.params.classCode,
+          form: params.from,
+          subject: state.chapter.options.subject
+        }
       }
     })
       .then((response) => {
@@ -309,11 +327,13 @@ export const setStatisticsGoodAssembleList = ({ state, rootState, commit }, para
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
-      method: 'get',
+      method: 'post',
       url: 'errorClass/good/assemble/order',
-      params: {
+      data: {
         token: rootState.common.user.token,
-        subject: rootState.route.params.subject,
+        options: {
+          classCode: rootState.route.params.classCode
+        },
         ids: ids
       }
     }).then((response) => {
@@ -360,7 +380,9 @@ export const getStatisticsAssemblUrl = ({ rootState, commit }, params) => {
       url: 'errorClass/assemble/download',
       data: {
         token: rootState.common.user.token,
-        subject: rootState.route.params.subject,
+        options: {
+          classCode: rootState.route.params.classCode
+        },
         type: params.type
       }
     })

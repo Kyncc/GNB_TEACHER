@@ -6,8 +6,8 @@
 	"id": "H5B579B59",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-教师端",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "3.2.0",/*应用版本名称*/
-		"code": "320"
+		"name": "3.3.0",/*应用版本名称*/
+		"code": "330"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -147,7 +147,7 @@
 				"keystore": "",/*Android应用打包使用的密钥库文件*/
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
-				"permissions": ["<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+				"permissions": ["<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission  android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
 			},
 			"orientation": [
 				"portrait-primary"
@@ -193,9 +193,9 @@
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"retina55": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/1242×2208.png",
-						"retina47": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/750×1334.png",
-						"retina40": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/640×1136.png","retina35":"C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/640×960.png"
+						"retina55": "unpackage/res/start/1242×2208.png",
+						"retina47": "unpackage/res/start/750×1334.png",
+						"retina40": "unpackage/res/start/640×1136.png","retina35":"unpackage/res/start/640×960.png"
 					},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -211,9 +211,9 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "",
-					"hdpi": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/480×762.png",
-					"xhdpi": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/720×1242.png",
-					"xxhdpi": "C:/Users/Administrator/Documents/Tencent Files/459322602/FileRecv/新/1080×1882.png"
+					"hdpi": "unpackage/res/start/480×762.png",
+					"xhdpi": "unpackage/res/start/720×1242.png",
+					"xxhdpi": "unpackage/res/start/1080×1882.png"
 				}
 			}
 		}

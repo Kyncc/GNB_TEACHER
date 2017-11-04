@@ -66,7 +66,8 @@ export default {
         subject: this.subject,
         grade: this.grade
       }).then(() => {
-        this.$router.push({name: 'errorClassChapter', params: {name: this.$route.params.name, classCode: this.$route.params.classCode}})
+        this.$router.go(-1)
+        // this.$router.push({name: 'errorClassChapter', params: {name: this.$route.params.name, classCode: this.$route.params.classCode}})
       })
     }
   },

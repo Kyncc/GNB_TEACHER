@@ -53,7 +53,7 @@ export default {
     },
     subject () {
       switch (this.options[1]) {
-        case '数学': return 'matn'
+        case '数学': return 'math'
         case '物理': return 'physics'
         default : return ''
       }

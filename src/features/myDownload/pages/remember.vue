@@ -116,3 +116,8 @@ export default {
   }
 }
 </script>
+<style>
+.vux-header-title .vux-cell-box:before{
+  border-top:none !important;
+}
+</style>

@@ -4,7 +4,7 @@
       <div class="weui-panel__hd" slot="header" style='color:#4cc0be'>
         {{item.chapterName}}
       </div>
-      <div slot="content" @click="$router.push({name:'example', params: {subjectId: item.subject_id, id: item.exercisesId}})">
+      <div slot="content" @click="$router.push({name:'example', params: {type: item.form, grade: item.grade, subjectId: item.subject_id, id: item.exercisesId}})">
         <div v-html="item.stem"></div>
         <div v-if="item.opt.hasOwnProperty('A')">
           <div v-for="(value, key) in item.opt" :key='value' style="padding-top:5px;">{{ key }}： <p v-html="value" style="display:inline-block"></p></div>
@@ -16,7 +16,7 @@
             <flexbox>
               <flexbox-item :span="3">难度: {{item.degree}}</flexbox-item>
               <flexbox-item :span="5">更新: {{item.time | ymd}}</flexbox-item>
-              <flexbox-item :span="4" @click.native="setStatisticsGoodAssembleUpdate({from: item.from, id: item.exercisesId, index: index})" style='text-align:right'>
+              <flexbox-item :span="4" @click.native="setStatisticsGoodAssembleUpdate({from: item.form, id: item.exercisesId, index: index})" style='text-align:right'>
                 <i v-if='item.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be;margin-right:1rem;"></i>
                 <i v-else class="icon iconfont icon-icon073102" style="color:#4cc0be;margin-right:1rem;" ></i>
               </flexbox-item>
@@ -25,11 +25,6 @@
         </div>
       </div>
     </card>
-    <!--组卷个数
-    <div class='assembleCount'
-      @click="$router.push({name: 'statisticsGood_assemble', params: {subject: $route.params.subject}})">
-      已选<br/>{{ErrorclassGood.count}}
-    </div> -->
     <div style="text-align:center;padding:20px 0;">
       <spinner v-if="loading" type="lines"></spinner>
       <div>

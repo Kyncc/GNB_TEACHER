@@ -8,7 +8,7 @@
       </flexbox>
     </group>
     <template v-if='workbookExercise.cameraList.length'>
-      <card v-for="(items, pindex) of workbookExercise.cameraList" :key='items'>
+      <card v-for="(items, pindex) of workbookExercise.cameraList" :key='pindex'>
         <div class="weui-panel__hd" slot="header">
           <flexbox>
             <flexbox-item :span="6" style="color:#4bb7aa">{{items.studentName}}</flexbox-item>

@@ -5,10 +5,7 @@
     </x-header>
     <group gutter="0" v-if="!loading">
       <template v-for="(list, index) in ErrorclassChapter.list">
-        <cell :key='index' :title="list.chapterName"
-          :link="{name: 'errorClassRemember', params: {classCode: $route.params.classCode, chapterId: list.chapterId, name:list.chapterName}}"
-          is-link>
-        </cell>
+        <cell :key='index' :title="list.chapterName" @click.native='_toErrorClass(list)' is-link></cell>
       </template>
     </group>
     <div style="text-align:center">
@@ -35,12 +32,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getStatisticsChapter', 'clearStatisticsChapter']),
+    ...mapActions(['getStatisticsChapter', 'clearStatisticsChapter', 'clearStatisticsAssemble']),
     _getData () {
       this.loading = true
       this.getStatisticsChapter().then(() => {
         this.loading = false
       })
+    },
+    _toErrorClass (val) {
+      this.clearStatisticsAssemble({type: 'remember'})
+      this.clearStatisticsAssemble({type: 'camera'})
+      this.clearStatisticsAssemble({type: 'good'})
+      this.$router.push({name: 'errorClassRemember', params: {classCode: this.$route.params.classCode, chapterId: val.chapterId, name: val.chapterName}})
     }
   },
   beforeRouteEnter (to, from, next) {
