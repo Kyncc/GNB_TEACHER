@@ -67,7 +67,6 @@ export default {
         grade: this.grade
       }).then(() => {
         this.$router.go(-1)
-        // this.$router.push({name: 'errorClassChapter', params: {name: this.$route.params.name, classCode: this.$route.params.classCode}})
       })
     }
   },
@@ -86,9 +85,13 @@ export default {
   created () {
     this.subject = this.ErrorclassChapterOptions.subject
     this.grade = this.ErrorclassChapterOptions.grade
-    this.getStatisticsOptionsTextbook().then(() => {
-      this.textbookId = this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.getSubjectId(this.ErrorclassChapterOptions.subject)][0]['textbook'][0].id
-    })
+    if (this.ErrorclassChapterOptions.textbookId.length) {
+      this.getStatisticsOptionsTextbook().then(() => {
+        this.textbookId = Number(this.ErrorclassChapterOptions.textbookId.length
+          ? this.ErrorclassChapterOptions.textbookId
+          : this.ErrorclassChapterOptions.textbookList[this.grade.toString()][this.getSubjectId(this.ErrorclassChapterOptions.subject)][0]['textbook'][0].id)
+      })
+    }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {})

@@ -16,7 +16,7 @@
       </cell>
     </group>
     <group>
-      <x-input title="学校" v-model="school" class="input_right"></x-input>
+      <x-input title="任职学校/机构" v-model="school" class="input_right"></x-input>
       <selector v-model="subjectId" title="主教科目" :options="sublist"></selector>
     </group>
     <group>

@@ -14,7 +14,7 @@
       <cell title="性别" :value="User.sex === '1' ? '男' : '女'"></cell>
     </group>
     <group>
-      <cell title="学校" :value="User.school"></cell>
+      <cell title="任职学校/机构" :value="User.school"></cell>
       <cell title="主教科目" :value="User.subjectId === '2' ? '数学' : '物理'"></cell>
     </group>
     <group>
