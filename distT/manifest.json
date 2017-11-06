@@ -6,8 +6,8 @@
 	"id": "H5B579B59",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-教师端",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "3.2.0",/*应用版本名称*/
-		"code": "320"
+		"name": "3.3.0",/*应用版本名称*/
+		"code": "330"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -128,9 +128,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "58412619677baa2509000e1c ",
-						"channelid_ios": "3.2.0",
+						"channelid_ios": "3.3.0",
 						"appkey_android": "5833f4a33eae256274001322",
-						"channelid_android": "3.2.0"
+						"channelid_android": "3.3.0"
 					}
 				}
 			},
