@@ -44,7 +44,7 @@ export default {
       sex: 0,
       school: '',
       subjectId: '',
-      sublist: [{key: '2', value: '数学'}, {key: '7', value: '物理'}, {key: '8', value: '化学'}],
+      sublist: [{key: '2', value: '数学'}, {key: '7', value: '物理'}],
       show: false,
       menus: {
         menu1: '拍照',

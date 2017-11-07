@@ -1,13 +1,6 @@
 <template>
   <view-box ref="download" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '下载中心'}">
-      <div slot="right" @click="showPopupPicker = true">筛选</div>
-      <div class='popup'>
-        <popup-picker :show="showPopupPicker" :show-cell="false" :data="[['初中','高中'],['数学','物理']]"
-          @on-hide='showPopupPicker = false' v-model="options" confirm-text='确定'>
-        </popup-picker>
-      </div>
-    </x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '下载'}"></x-header>
     <div slot="default">
       <div v-for="(list, pindex) in block" :key="pindex" v-show='!loading'>
         <div class="weui-cells__title">{{list.name}}</div>
@@ -71,25 +64,10 @@ export default {
     },
     downloadId () {
       return this.DownloadPaper.list.downloadId
-    },
-    grade () {
-      switch (this.options[0]) {
-        case '初中': return '789'
-        case '高中': return '10'
-        default : return ''
-      }
-    },
-    subjectId () {
-      switch (this.options[1]) {
-        case '数学': return '2'
-        case '物理': return '7'
-        default : return ''
-      }
     }
   },
   data () {
     return {
-      options: [],
       showPopupPicker: false,
       loading: true,
       error: false,
@@ -105,7 +83,7 @@ export default {
     _getData () {
       this.clearMyDownloadPaper()
       this.loading = true
-      this.getDownloadList({options: {grade: this.grade, subjectId: this.subjectId}}).then(() => {
+      this.getDownloadList().then(() => {
         this.error = false
         this.loading = false
       }).catch((e) => {
@@ -129,15 +107,6 @@ export default {
       this.$router.go(-1)
     }
   },
-  watch: {
-    options () {
-      this.showPopupPicker = false
-      this._getData()
-    }
-  },
-  created () {
-    this.options = (this.User.subjectId === '7' ? ['高中', '物理'] : ['高中', '数学'])
-  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name !== 'example') {
@@ -149,9 +118,6 @@ export default {
   beforeRouteLeave (to, from, next) {
     // 弹窗的返回键处理
     if (this.showAction) {
-      this.showPopupPicker = false
-      next(false)
-    } else if (this.showPopupPicker) {
       this.showPopupPicker = false
       next(false)
     } else {

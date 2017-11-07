@@ -10,7 +10,10 @@ export const getDownloadList = ({ rootState, commit }, params) => {
       url: 'download/list',
       params: {
         token: rootState.common.user.token,
-        ...params
+        options: {
+          grade: rootState.assemble.options.grade,
+          subjectId: rootState.assemble.options.subject
+        }
       }
     }).then((response) => {
       commit(types.DOWNLOAD_PAPER, response.data.data)

@@ -52,19 +52,7 @@ export default {
     ...mapGetters(['User', 'AssembleOptions', 'AssembleSync', 'Route'])
   },
   methods: {
-    ...mapActions(['setAssembleOptions', 'getAssembleOptionsTextbook', 'getAssembleSync', 'setAssembleSyncScroll']),
-    // 设置筛选项并选择练习册
-    _getTextBook () {
-      let subject = (this.User.subjectId ? this.User.subjectId : '2')
-      let editionId = this.AssembleOptions.textbookList['10'][subject.toString()][0]['id']
-      let textbookId = this.AssembleOptions.textbookList['10'][subject][0]['textbook'][0].id
-      this.setAssembleOptions({
-        textbook: textbookId,
-        editionId: editionId,
-        subject: subject,
-        grade: 10
-      })
-    },
+    ...mapActions(['setAssembleOptions', 'getAssembleOptionsTextbook', 'getAssembleSync', 'getAssembleOptions', 'setAssembleSyncScroll']),
     _getData () {
       this.loading = true
       this.getAssembleSync().then(() => {
@@ -77,7 +65,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 同步题型为空而且教材不为空 则获取章节数据 否之为第一次进入
-      if (vm.AssembleSync.list.length === 0 && vm.AssembleOptions.textbook) {
+      if (from.name === 'assemble_options') {
         vm._getData()
       }
       vm.$refs.sync.scrollTo(vm.AssembleSync.scroll)
@@ -88,15 +76,13 @@ export default {
     next()
   },
   created () {
-    return (async () => {
-      try {
-        await this.getAssembleOptionsTextbook()
-        this._getTextBook()
-        await this._getData()
-      } catch (err) {
-        this.$vux.toast.show({ text: '异常错误', type: 'text', time: 1000, position: 'bottom' })
+    this.getAssembleOptions().then(() => {
+      if (!Number(this.AssembleOptions.textbookId)) {
+        this.$router.push({name: 'assemble_options'})
+      } else {
+        this._getData()
       }
-    })()
+    })
   }
 }
 </script>

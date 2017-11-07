@@ -4,10 +4,10 @@ import * as actions from './actions'
 
 const state = {
   options: {
-    textbook: '',
+    textbookId: '',
     editionId: '',
     subject: '',
-    grade: '10',
+    grade: '',
     textbookList: []
   },
   gaokao: {
@@ -37,7 +37,10 @@ const mutations = {
     state.options.textbookList = data
   },
   [types.ASSEMBLE_OPTIONS] (state, data) {
-    state.options = {subject: data.subject, grade: data.grade, textbook: data.textbook, editionId: data.editionId, textbookList: state.options.textbookList}
+    state.options = {subject: data.subject, grade: data.grade, textbookId: data.textbookId, editionId: data.editionId, textbookList: state.options.textbookList}
+  },
+  [types.ASSEMBLE_SET_OPTIONS] (state, data) {
+    state.options = {subject: data.subject, grade: data.grade, textbookId: data.textbookId, editionId: data.editionId, textbookList: state.options.textbookList}
     state.gaokao = { list: [], scroll: 0 }
     state.sync = { list: [], scroll: 0 }
   },

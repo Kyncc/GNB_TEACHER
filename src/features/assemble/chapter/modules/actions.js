@@ -26,8 +26,45 @@ export const getAssembleGaokao = ({ rootState, commit, state }, params) => {
 }
 
 /** 筛选选择 */
+export const getAssembleOptions = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'assemble/options',
+      params: {
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.ASSEMBLE_OPTIONS, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 筛选选择 */
 export const setAssembleOptions = ({ rootState, commit }, params) => {
-  commit(types.ASSEMBLE_OPTIONS, params)
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'assemble/addOptions',
+      params: {
+        options: {
+          editionId: params.editionId,
+          grade: params.grade,
+          subject: params.subject,
+          textbookId: params.textbookId
+        },
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.ASSEMBLE_SET_OPTIONS, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
 }
 
 /** 获取筛选教材 */
@@ -61,7 +98,7 @@ export const getAssembleSync = ({ rootState, commit, state }, params) => {
       url: 'assemble/sync',
       params: {
         token: rootState.common.user.token,
-        textbookId: state.options.textbook
+        textbookId: state.options.textbookId
       }
     }).then((response) => {
       commit(types.ASSEMBLE_SYNC, response.data.data)
@@ -151,16 +188,17 @@ export const setAssemble = ({ rootState, commit, state }, params) => {
       .then((response) => {
         Vue.$vux.loading.hide()
         commit(types.ASSEMBLE_INTO, { form: params.form, index: params.index, data: response.data.data })
-        if (localStorage.getItem('isAssemble')) {
-          Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1000, position: 'bottom' })
-        } else {
-          localStorage.setItem('isAssemble', true)
-          Vue.$vux.alert.show({
-            title: '请到下载中心下载~',
-            content: '(可以跨章节组卷)',
-            dialogTransition: 'vux-fade'
-          })
-        }
+        Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1000, position: 'bottom' })
+        // if (localStorage.getItem('isAssemble')) {
+        // Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1000, position: 'bottom' })
+        // } else {
+        //   localStorage.setItem('isAssemble', true)
+        //   Vue.$vux.alert.show({
+        //     title: '请到下载中心下载~',
+        //     content: '(可以跨章节组卷)',
+        //     dialogTransition: 'vux-fade'
+        //   })
+        // }
         resolve(response)
       })
       .catch((err) => {

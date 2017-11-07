@@ -16,7 +16,7 @@
       <group :gutter='8'>
         <cell title="批阅作业" inline-desc="10分/班次" :link="{name: 'workbook'}"></cell>
         <cell title="点评错题" inline-desc="5分/题次" :link="{name: 'error_classmate'}"></cell>
-        <cell title="布置作业" inline-desc="10分/班次" :link="{name: 'homework'}"></cell>
+        <cell title="布置作业" inline-desc="10分/次" :link="{name: 'homework'}"></cell>
       </group>
     </div>
   </view-box>

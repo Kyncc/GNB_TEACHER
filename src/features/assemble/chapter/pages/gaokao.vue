@@ -51,7 +51,7 @@ export default {
     ...mapGetters(['User', 'AssembleGaokao', 'Route'])
   },
   methods: {
-    ...mapActions(['getAssembleGaokao', 'setAssembleGaokaoScroll']),
+    ...mapActions(['getAssembleGaokao', 'setAssembleGaokaoScroll', 'getAssembleOptions']),
     _getData () {
       this.loading = true
       this.getAssembleGaokao().then(() => {
