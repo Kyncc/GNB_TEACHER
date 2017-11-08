@@ -11,7 +11,7 @@ import store from '@/store'
 export default {
   name: 'errorClassmate',
   beforeCreate () {
-    store.registerModule('error', {
+    store.registerModule(['statistics', 'classmate'], {
       ...modules
     })
   }

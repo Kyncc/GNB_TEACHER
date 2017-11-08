@@ -5,7 +5,12 @@
 </template>
 
 <script>
+import store from '@/store'
+
 export default {
-  name: 'statistics'
+  name: 'statistics',
+  beforeCreate () {
+    store.registerModule('statistics', {})
+  }
 }
 </script>

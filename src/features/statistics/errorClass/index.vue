@@ -34,7 +34,7 @@ export default {
     }
   },
   beforeCreate () {
-    store.registerModule('errorClass', {
+    store.registerModule(['statistics', 'classes'], {
       ...errorClass
     })
   }

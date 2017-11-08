@@ -11,7 +11,7 @@ import modules from '../modules/store'
 export default {
   name: 'download',
   beforeCreate () {
-    store.registerModule('download', {
+    store.registerModule(['assemble', 'download'], {
       ...modules
     })
   }
