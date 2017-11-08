@@ -79,7 +79,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper', 'getDownloadVaild']),
+    ...mapActions(['getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper', 'getDownloadVaild', 'clearAssembleExample', 'clearAssembleChoice']),
     _getData () {
       this.clearMyDownloadPaper()
       this.loading = true
@@ -104,6 +104,8 @@ export default {
     },
     _shareSuccess () {
       this._getData()
+      this.clearAssembleExample()
+      this.clearAssembleChoice()
       this.$router.go(-1)
     }
   },
