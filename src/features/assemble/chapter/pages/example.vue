@@ -96,7 +96,11 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 同步和高考题型清空
-      if (from.name === 'assemble_gaokao' || from.name === 'assemble_sync' || from.name === 'download') {
+      if (
+        from.name === 'assemble_gaokao' ||
+        from.name === 'assemble_sync' ||
+        vm.AssembleExample.list.length === 0
+      ) {
         vm.loadingNoData = false
         vm.clearAssembleExample()
         vm._getData()

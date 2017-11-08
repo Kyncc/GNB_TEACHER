@@ -104,6 +104,7 @@ export default {
     },
     _shareSuccess () {
       this._getData()
+      this.clearAssembleExample()
       this.$router.go(-1)
     }
   },
