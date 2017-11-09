@@ -1,7 +1,7 @@
 <template>
   <view-box ref="myClassAdd" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '添加班级'}">
-      <p slot="right" @click="_finish">完成</p>
+      <p slot="right" @click="_finish">确定</p>
     </x-header>
     <div>
       <group gutter="0">

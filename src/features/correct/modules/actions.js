@@ -38,6 +38,7 @@ export const postCorrect = ({ rootState, commit }, params) => {
           exercisesId: rootState.route.params.id,
           grade: rootState.route.params.grade,
           subjectId: rootState.route.params.subjectId,
+          form: (rootState.route.query.type === 'exercises' ? '1' : '2'),
           ...params
         }
       }

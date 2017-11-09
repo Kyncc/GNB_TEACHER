@@ -11,12 +11,12 @@
         <img src="../assets/title.png">
       </div>
       <group title="基本资料">
-        <x-input title="姓名" v-model="name" class="input_right"></x-input>
-        <x-input title="学校" v-model="school" class="input_right"></x-input>
+        <x-input title="姓名" v-model="username" class="input_right"></x-input>
+        <x-input title="任职学校/机构" v-model="school" class="input_right"></x-input>
         <selector v-model="subjectId" title="主教科目" :options="subjectList"></selector>
       </group>
       <div style="width:90%;margin:1.5rem auto">
-        <x-button type="primary" @click.native="_complete" :disabled="disable">完成</x-button>
+        <x-button type="primary" @click.native="_complete" :disabled="disable">确定</x-button>
       </div>
     </div>
   </view-box>

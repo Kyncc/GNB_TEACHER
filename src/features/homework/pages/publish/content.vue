@@ -2,7 +2,7 @@
   <view-box ref="homework" body-padding-top="220px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: '文字作业',showBack: true}">
-        <div slot="right" style="margin:0" @click='_publish'>发布</div>
+        <div slot="right" style="margin:0" @click='_publish'>确定</div>
       </x-header>
       <group title="文字消息">
         <x-textarea v-model="content" show-counter :rows="5"></x-textarea>

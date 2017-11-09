@@ -2,7 +2,7 @@ import axios from '@/components/axios/'
 import Vue from 'vue'
 import * as types from './mutationTypes'
 
-/** 获取班级同学列表 */
+/** 获取班级学生列表 */
 export const getMyClassmateList = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
@@ -38,7 +38,7 @@ export const delClass = ({ rootState, commit }, params) => {
   })
 }
 
-/** 删除同学 */
+/** 删除学生 */
 export const delClassmate = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
@@ -59,7 +59,7 @@ export const delClassmate = ({ rootState, commit }, params) => {
   })
 }
 
-/** 清空班级同学列表 */
+/** 清空班级学生列表 */
 export const myClassmateClear = ({ commit }) => {
   commit(types.CLASS_MYCLASSMATE_CLEAR)
 }

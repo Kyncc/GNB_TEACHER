@@ -54,6 +54,11 @@
     ├── features    # Modules
         ├── common      # 全局功能函数
         ├── assemble    # 组卷中心
+        ├── paper       # 试卷下载
+        ├── points      # 我的积分
+        ├── assemble    # 我的组卷
+          ├── chapter      # 章节考点
+          ├── download     # 组卷编辑
         |── homework    # 布置作业
         ├── workbook    # 查答案
         ├── correct     # 纠错
@@ -61,6 +66,9 @@
         ├── error       # 查看错题
         ├── workbook    # 批改作业
         ├── myclass     # 我的班级
+        ├── statistics  # 错题统计
+          ├── error          # 同学错题
+          ├── errorClass     # 班级错题
         ├── myDownload  # 我的下载
         ├── message     # 消息
         ├── invite      # 我的邀请

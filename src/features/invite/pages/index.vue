@@ -7,7 +7,7 @@
       <flexbox justify='center' class='tip'>
         <flexbox-item :span="11">
           <h4>提示:</h4>
-          <p>邀请好友安装归纳本APP，并在本界面填写您的邀请码。</p>
+          <p>邀请好友安装归纳本APP，并在本界面填写您的邀请码。<span style='color:red'>您和您的好友都可获得100积分</span></p>
         </flexbox-item>
       </flexbox>
       <flexbox justify='center'>
@@ -28,15 +28,14 @@
 </template>
 
 <script>
-import { XHeader, XButton, ViewBox, Flexbox, FlexboxItem } from 'vux'
-import { MessageBox } from 'mint-ui'
+import { XHeader, XButton, ViewBox, Flexbox, FlexboxItem, Confirm } from 'vux'
 import { mapGetters, mapActions } from 'vuex'
 import Share from '@/components/share'
 
 export default {
   name: 'index',
   components: {
-    XHeader, XButton, ViewBox, Flexbox, FlexboxItem, MessageBox, Share
+    XHeader, XButton, ViewBox, Flexbox, FlexboxItem, Confirm, Share
   },
   computed: {
     ...mapGetters(['Invite'])
@@ -54,13 +53,18 @@ export default {
   methods: {
     ...mapActions(['getInvite', 'setInviteCode']),
     _input () {
-      MessageBox.prompt(' ', '输入好友邀请码').then(({ value, action }) => {
-        this.setInviteCode({ code: value })
-      }).catch(() => {})
+      let that = this
+      this.$vux.confirm.prompt('请输入邀请码', {
+        title: '输入好友邀请码',
+        dialogTransition: 'vux-fade',
+        onConfirm (value) {
+          that.setInviteCode({ code: value })
+        }
+      })
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (from.name === 'user') {
+    if (from.name === 'user' || from.name === 'points_earn') {
       next(vm => {
         vm.getInvite()
       })

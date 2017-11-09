@@ -1,12 +1,12 @@
 <template>
   <view-box body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '剪裁'}">
-      <p slot="right" v-on:click="_finish">完成</p>
+      <p slot="right" v-on:click="_finish">确定</p>
     </x-header>
     <div>
        <img ref="result" :src="Homework.uploader.camera" style="width:100%;"/>
        <!-- <img ref="result" src="http://img.guinaben.com/workbookPic/429answer5810/1/Untitled.FR12%20-%200001.png?imageMogr2/auto-orient/thumbnail/!50p/format/jpg/interlace/1/quality/30|imageslim" style="width:100%;"/> -->
-       <div class='rotate' @click="cropper.rotate(90)"><img src="../../assets/rotate-right.png"></div>
+       <div class='rotate' @click="cropper.rotate(-90)"><img src="../../assets/rotate-right.png"></div>
     </div>
   </view-box>
 </template>
@@ -40,16 +40,11 @@ export default {
     if (this.cropper) {
       this.cropper.destroy()
     }
-    let minHeight = document.documentElement.clientHeight - 46
     this.cropper = new Cropper(this.$refs.result, {
-      aspectRatio: '1/1',
-      minContainerHeight: minHeight,
-      build: (e) => {
-        this.$vux.loading.show({text: '请稍候'})
-      },
-      built: (e) => {
-        this.$vux.loading.hide()
-      }
+      aspectRatio: '3/4',
+      minContainerHeight: document.documentElement.clientHeight - 46,
+      minCropBoxWidth: document.documentElement.clientWidth / 2,
+      minCropBoxHeight: 80
     })
   }
 }

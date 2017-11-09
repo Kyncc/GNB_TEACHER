@@ -4,16 +4,19 @@
       个人中心
     </x-header>
     <group gutter="0" class='headInfo'>
-      <cell class='userBg' link='settings/info'>
+      <cell class='userBg' :link="{name: 'settings_update'}">
         <img slot="icon" width="70" height="70" style="border-radius:50%;margin-right:1rem" v-lazy="User.headImg">
         <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
       </cell>
     </group>
     <group gutter="0">
-      <!--<cell title="我的账户" link="javascript:;">
-        <i class="icon iconfont icon-comment2" style="color:#ABC97C" slot="icon"></i>
-      </cell>-->
+      <!-- <cell title="我的下载" link="myDownload">
+        <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
+      </cell> -->
+      <cell title="我的积分" link="points">
+        <i class="icon iconfont icon-wodejifen" style="color:#4cc0be;margin-left:-1px;" slot="icon"></i>
+      </cell>
       <cell title="邀请好友" link="invite">
         <i class="icon iconfont icon-share" style="color:#4cc0be" slot="icon"></i>
       </cell>
@@ -24,10 +27,7 @@
         <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
         <badge v-if="News.correct || News.system"></badge>
       </cell>
-      <cell title="我的下载" link="myDownload">
-        <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
-      </cell>
-      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.1.0'" is-link @click.native="_openStore">
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.2.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
       </cell>

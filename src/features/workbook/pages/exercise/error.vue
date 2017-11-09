@@ -5,10 +5,12 @@
     </div>
     <div>
       <template v-show='workbookExercise.errorList.notPost.length'>
-        <group title="未提交照片同学">
-          <cell-box>
-            <span style='margin-right:10px' v-for="(name, index) in workbookExercise.errorList.notPost" :key='index'>{{name}}</span>
-          </cell-box>
+        <group title="未提交照片学生">
+          <flexbox :gutter="0" wrap="wrap">
+            <flexbox-item v-for="(name, index) in workbookExercise.errorList.notPost" :key='index' :span="1/4">
+             <div style='padding:.5rem;'>{{name}}</div>
+            </flexbox-item>
+          </flexbox>
         </group>
       </template>
       <template v-show='workbookExercise.errorList.list.length'>

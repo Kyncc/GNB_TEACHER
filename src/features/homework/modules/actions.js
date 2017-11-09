@@ -84,9 +84,10 @@ export const addHomeworkClass = ({ rootState, state, dispatch }, params) => {
     }).then((response) => {
       Vue.$vux.loading.hide()
       resolve(response)
-    }).catch((e) => {
+    }).catch((res) => {
       Vue.$vux.loading.hide()
-      reject(e)
+      Vue.$vux.toast.show({text: res.data.msg, type: 'text', time: 1000, position: 'bottom'})
+      reject(res)
     })
   })
 }

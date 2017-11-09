@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import 'babel-polyfill'
 import VueLazyload from 'vue-lazyload'
 import FastClick from 'fastclick'
 import store from './store'
 import router from './router'
 import { ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin } from 'vux'
 import App from './App'
+import 'babel-polyfill'
 
 Vue.use(ToastPlugin) // 使用提醒
 // 图片异步加载
@@ -26,6 +26,15 @@ Vue.filter('ymd', (value) => {
 // 时间戳转换分秒
 Vue.filter('ymdhms', (value) => {
   return dateFormat(new Date(Number(`${value}000`)), 'YYYY-MM-DD HH:mm:ss')
+})
+
+// 学科的转换
+Vue.filter('subject', (value) => {
+  switch (value) {
+    case 2: return '数学'
+    case 7: return '物理'
+    case 8: return '化学'
+  }
 })
 
 // 错误类型转换

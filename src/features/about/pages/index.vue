@@ -3,14 +3,14 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '关于归纳本'}"></x-header>
     <flexbox justify="center" orient="vertical" style="text-align:center;padding:3rem 0 1rem">
       <flexbox-item><img  src="../assets/icon.png" width="80px" height="80px"></flexbox-item>
-      <flexbox-item><p style="font-size:16px;">归纳本教师端 3.1.0</p></flexbox-item>
+      <flexbox-item><p style="font-size:16px;">归纳本教师端 3.3.0</p></flexbox-item>
     </flexbox>
     <group gutter="0">
-      <cell title="意见反馈" link="about/advice"></cell>
+      <cell title="意见反馈" :link="{name: 'about_advice'}"></cell>
       <cell title="给小纳好评" is-link @click.native="_openStore" ></cell>
     </group>
     <group>
-      <cell title="关注我们" link="about/my"></cell>
+      <cell title="关注我们" :link="{name:'about_my'}"></cell>
       <cell title="加入群聊" is-link @click.native="_add"></cell>
     </group>
     <section class="about_footer">
@@ -22,7 +22,7 @@
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Flexbox, FlexboxItem} from 'vux'
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'index',
@@ -33,12 +33,14 @@ export default {
     ...mapGetters(['System'])
   },
   methods: {
+    ...mapActions(['pointsStoreAdd']),
     _openStore () {
       if (this.System === 'IOS') {
         plus.runtime.openURL('itms-apps://itunes.apple.com/cn/app/gui-na-ben-jiao-shi-duan-zai/id1190013249?l=en&mt=8')
       } else {
         window.location.href = 'market://details?id=com.sanbao.guinaben.teacher'
       }
+      this.pointsStoreAdd()
     },
     _openQQ () {
       plus.runtime.openURL('mqqwpa://im/chat?chat_type=wpa&uin=1879831346&version=1&src_type=web&web_src=oicqzone.com')

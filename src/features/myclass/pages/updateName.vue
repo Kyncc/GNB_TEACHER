@@ -1,7 +1,7 @@
 <template>
   <view-box ref="userinfoUpdate" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改班级名称'}">
-      <p slot="right" @click="_finish">完成</p>
+      <p slot="right" @click="_finish">确定</p>
     </x-header>
     <group gutter="0">
       <x-input v-model="name"></x-input>
@@ -34,7 +34,7 @@ export default {
           name: this.name
         }).then(() => {
           this.getUserInfo().then(() => {
-            history.go(-2)
+            history.go(-1)
           })
         })
       } else {

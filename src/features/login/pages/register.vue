@@ -11,7 +11,7 @@
         <img src="../assets/title.png">
       </div>
       <group class="weui_cells_form">
-        <x-input name="mobile" placeholder="手机号" keyboard="number" is-type="china-mobile" 
+        <x-input name="mobile" placeholder="手机号" keyboard="number" is-type="china-mobile"
           v-model="mobile" ref="mobile" @on-change="_changeMoblie">
         </x-input>
         <div class="weui-cell" style="padding:0">
@@ -76,7 +76,7 @@ export default {
           cover: this.cover,
           mobile: this.mobile
         }).then(() => {
-          this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1000, position: 'bottom'})
+          this.$vux.toast.show({text: '验证码已发送', type: 'text', time: 1000, position: 'bottom'})
         })
       }
     },
@@ -85,7 +85,7 @@ export default {
         this.$router.replace({path: 'setPassword', registerMobile: this.mobile})
       } else {
         this.code = ''
-        this.$vux.toast.show({text: '注册码已发送', type: 'text', time: 1000, position: 'bottom'})
+        this.$vux.toast.show({text: '验证码错误', type: 'text', time: 1000, position: 'bottom'})
       }
     },
     _getCode () {

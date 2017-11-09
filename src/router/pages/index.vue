@@ -9,14 +9,14 @@
       </swiper-item>
     </swiper>
     <flexbox style='height:6.3rem' :gutter='0'>
-      <flexbox-item :span="4" @click.native="$router.push({ name: 'error'})" class='error'></flexbox-item>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'workbook'})" class='workbook'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'statistics'})" class='statistics'></flexbox-item>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'homework'})" class='homework'></flexbox-item>
     </flexbox>
     <flexbox style='height:6.3rem' :gutter='0'>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'assemble_sync'})" class='assemble'></flexbox-item>
-      <flexbox-item :span="4" @click.native="$router.push({ name: 'download'})" class='download'></flexbox-item>
-      <flexbox-item :span="4" @click.native="$router.push({ path: 'class'})" class='myclass'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'myDownload'})" class='myDownload'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'class'})" class='myclass'></flexbox-item>
     </flexbox>
   </div>
 </template>

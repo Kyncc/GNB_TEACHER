@@ -33,7 +33,13 @@
           <div class="weui-cell__bd">
             <flexbox :gutter='0'>
               <flexbox-item :span="3">难度: {{Example.degree}}</flexbox-item>
-              <flexbox-item :span="7">更新: {{Example.time | ymd}}</flexbox-item>
+              <flexbox-item :span="6">更新: {{Example.time | ymd}}</flexbox-item>
+              <!--来自组卷的显示精选练习 -->
+              <flexbox-item :span="3"
+              @click.native="$router.push({name:'assemble_choice', params: {subjectId: Params.subjectId, grade: Params.grade, id: Params.id}})"
+              v-if="Route.query.from === 'assemble'">
+               <div style='background:#4bb7aa;color:#fff;border-radius:10px;padding:2px;text-align:center'>精选练习</div>
+              </flexbox-item>
             </flexbox>
           </div>
         </div>
@@ -51,7 +57,7 @@
 </template>
 
 <script>
-import { XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem } from 'vux'
+import { XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem, XButton } from 'vux'
 import { Popup } from 'mint-ui'
 import { mapActions, mapGetters } from 'vuex'
 import store from '@/store'
@@ -60,7 +66,7 @@ import modules from '../modules/store'
 export default {
   name: 'example',
   components: {
-    XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem, 'mt-popup': Popup
+    XHeader, Card, ViewBox, Spinner, Flexbox, FlexboxItem, XButton, 'mt-popup': Popup
   },
   computed: {
     ...mapGetters(['Example', 'Params', 'Route'])

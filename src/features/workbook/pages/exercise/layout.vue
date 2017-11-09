@@ -7,13 +7,13 @@
         </div>
       </x-header>
       <tab :animate="false">
-        <tab-item :selected="Route.name === 'workbook_exercise_number'" 
-          @click.native="$router.replace({name:'workbook_exercise_number'})">
-          作业统计
-        </tab-item>
-        <tab-item :selected="Route.name === 'workbook_exercise_photo'" 
+        <tab-item :selected="Route.name === 'workbook_exercise_photo'"
           @click.native="$router.replace({name:'workbook_exercise_photo'})">
           批改作业
+        </tab-item>
+        <tab-item :selected="Route.name === 'workbook_exercise_number'"
+          @click.native="$router.replace({name:'workbook_exercise_number'})">
+          作业统计
         </tab-item>
       </tab>
     </div>
