@@ -20,7 +20,7 @@
                 错误人数: {{error.errorCount}}
               </flexbox-item>
               <flexbox-item :span="4">
-                更新: {{error.time | ymd}}
+                <!-- 更新: {{error.time | ymd}} -->
               </flexbox-item>
               <flexbox-item :span="4" style='text-align:right;'
                 @click.native="setStatisticsRememberAssembleUpdate({id: error.id, index: index})">
