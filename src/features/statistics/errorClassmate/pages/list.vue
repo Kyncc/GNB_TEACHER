@@ -53,14 +53,9 @@
         <group title='选择错误原因:'>
           <div style="padding:10px 10px 0 10px;">
             <checker type="radio" :value="errorType.type.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-              <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
-              <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
-              <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
-              <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
-              <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
-              <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
-              <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
-              <checker-item value="0" @on-item-click="onItemClick">我不知道</checker-item>
+              <checker-item value="概念模糊" @on-item-click="onItemClick">概念模糊</checker-item>
+              <checker-item value="粗心大意"  @on-item-click="onItemClick">粗心大意</checker-item>
+              <checker-item value="能力不够"  @on-item-click="onItemClick">能力不够</checker-item>
             </checker>
           </div>
         </group>
