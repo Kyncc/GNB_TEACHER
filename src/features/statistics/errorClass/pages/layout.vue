@@ -3,10 +3,12 @@
     <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="50px">
       <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
         <x-header :left-options="{backText: this.$route.params.name}">
-          <!-- <div slot="right" v-if="$route.name  === 'errorClassGood'">
-            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'errorClassGood_options'})">
-            </i>
-          </div> -->
+          <div slot="right" v-if="$route.name  === 'errorClassGood'">
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'errorClassGood_options'})"></i>
+          </div>
+          <div slot="right" v-if="$route.name  === 'errorClassRemember'">
+            <i class="icon iconfont icon-filter" style="padding:10px;margin:0 -10px 0 0" @click="$router.push({name:'errorClassRemember_options'})"></i>
+          </div>
         </x-header>
       </div>
       <keep-alive>
