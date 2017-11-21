@@ -2,7 +2,6 @@
   <view-box body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '筛选'}">
-        <div slot="right" @click='_finish()'>确定</div>
       </x-header>
     </div>
     <div>
@@ -45,15 +44,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setPaperOptions', 'getPaperOptionsTextbook']),
-    _finish () {
-      this.setPaperOptions({
-        editionId: this.editionId,
-        subject: this.subjectId,
-        grade: this.grade
-      })
-      this.$router.go(-1)
-    }
+    ...mapActions(['setPaperOptions', 'getPaperOptionsTextbook'])
   },
   watch: {
     grade (val) {
@@ -65,6 +56,14 @@ export default {
   },
   created () {
     this.subjectId = this.User.subjectId
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setPaperOptions({
+      editionId: this.editionId,
+      subject: this.subjectId,
+      grade: this.grade
+    })
+    next()
   }
 }
 </script>

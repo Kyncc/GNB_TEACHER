@@ -19,6 +19,10 @@ const state = {
     scroll: 0
   },
   example: {
+    options: {
+      degree: 0,
+      qType: 0
+    },
     list: [],
     offset: '',
     count: 0,
@@ -65,7 +69,14 @@ const mutations = {
     state.example.scroll = height
   },
   [types.ASSEMBLE_EXAMPLE_CLEAR] (state) {
+    state.example = { list: [], offset: '', count: 0, scroll: 0, degree: 0, qType: 0 }
+  },
+  [types.ASSEMBLE_EXAMPLE_OPTIONS] (state, payload) {
     state.example = { list: [], offset: '', count: 0, scroll: 0 }
+    state.example.options = {
+      degree: payload.degree,
+      qType: payload.qType
+    }
   },
   [types.ASSEMBLE_CHOICE] (state, data) {
     state.choice.list = state.choice.list ? state.choice.list.concat(data.list) : data.list

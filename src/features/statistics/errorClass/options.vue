@@ -2,7 +2,7 @@
   <view-box body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: '筛选'}">
-        <div slot="right" @click='_finish()'>确定</div>
+        <!-- <div slot="right" @click='_finish()'>确定</div> -->
       </x-header>
     </div>
     <div>
@@ -95,6 +95,15 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {})
+  },
+  beforeRouteLeave (to, from, next) {
+    this.setStatisticsChapterOptions({
+      textbookId: this.textbookId,
+      subject: this.subject,
+      grade: this.grade
+    }).then(() => {
+      next()
+    })
   }
 }
 </script>

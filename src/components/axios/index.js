@@ -10,7 +10,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 axios.interceptors.request.use((config) => {
   config.params = {
     ...config.params,
-    VERSION: '3.3.0'
+    VERSION: '3.4.0'
   }
   if (config.method === 'post') {
     config.data = JSON.stringify(config.data)

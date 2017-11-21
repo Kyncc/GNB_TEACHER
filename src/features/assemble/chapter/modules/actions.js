@@ -124,7 +124,9 @@ export const getAssembleExample = ({ rootState, commit, state }, params) => {
         offset: state.example.offset,
         options: {
           id: rootState.route.params.id,
-          type: rootState.route.params.type
+          type: rootState.route.params.type,
+          qType: state.example.options.qType,
+          degree: state.example.options.degree
         }
       }
     }).then((response) => {
@@ -135,6 +137,12 @@ export const getAssembleExample = ({ rootState, commit, state }, params) => {
     })
   })
 }
+
+/** 组卷精选难度筛选 */
+export const setAssembleExampleOptions = ({ commit }, params) => {
+  commit(types.ASSEMBLE_EXAMPLE_OPTIONS, {qType: params.qType, degree: params.degree})
+}
+
 /** 组卷精选高度保存 */
 export const setAssembleExampleScroll = ({ rootState, commit }, height) => {
   commit(types.ASSEMBLE_EXAMPLE_SCROLL, height)

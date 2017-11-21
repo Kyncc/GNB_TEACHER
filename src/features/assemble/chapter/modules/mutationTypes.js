@@ -16,6 +16,8 @@ export const ASSEMBLE_GAOKAO_SCROLL = 'ASSEMBLE_GAOKAO_SCROLL'
 
 /** 获取例题列表 */
 export const ASSEMBLE_EXAMPLE = 'ASSEMBLE_EXAMPLE'
+/** 获取例题筛选 */
+export const ASSEMBLE_EXAMPLE_OPTIONS = 'ASSEMBLE_EXAMPLE_OPTIONS'
 /** 例题滚动 */
 export const ASSEMBLE_EXAMPLE_SCROLL = 'ASSEMBLE_EXAMPLE_SCROLL'
 /** 例题清空 */
