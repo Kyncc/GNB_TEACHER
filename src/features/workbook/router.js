@@ -8,6 +8,16 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/index')), '/workbook/')
     },
     {
+      path: '/options',
+      name: 'workbook_options',
+      component: r => require.ensure([], () => r(require('./pages/options')), '/workbook/options')
+    },
+    {
+      path: '/update',
+      name: 'workbook_update',
+      component: r => require.ensure([], () => r(require('./pages/update')), '/workbook/update')
+    },
+    {
       path: 'chapter/:name/:workbookId',
       name: 'workbook_chapter',
       component: r => require.ensure([], () => r(require('./pages/chapter')), '/workbook/chapter')

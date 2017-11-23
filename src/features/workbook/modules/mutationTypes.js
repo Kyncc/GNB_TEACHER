@@ -4,6 +4,14 @@ export const WORKBOOK = 'WORKBOOK'
 export const WORKBOOK_SCROLL = 'WORKBOOK_SCROLL'
 /** 习题册清空 */
 export const WORKBOOK_CLEAR = 'WORKBOOK_CLEAR'
+/** 筛选条件获取 */
+export const WORKBOOK_OPTIONS = 'WORKBOOK_OPTIONS'
+/** 练习册编辑 */
+export const WORKBOOK_DISPLAY_UPDATE = 'WORKBOOK_DISPLAY_UPDATE'
+/** 筛选条件更改 */
+export const WORKBOOK_SET_OPTIONS = 'WORKBOOK_SET_OPTIONS'
+/** 筛选全部教材 */
+export const WORKBOOK_OPTIONS_TEXTBOOK = 'WORKBOOK_OPTIONS_TEXTBOOK'
 /** 获取习题册章节 */
 export const WORKBOOK_CHAPTER = 'WORKBOOK_CHAPTER'
 /** 清除章节数据 */

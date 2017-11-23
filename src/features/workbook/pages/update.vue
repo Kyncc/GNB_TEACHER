@@ -1,13 +1,9 @@
 <template>
   <view-box ref="viewBox" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '批改作业',showBack: true}">
-      <div slot="right" style="margin:0">
-        <div slot="right" @click="$router.push({name: 'workbook_options'})">筛选</div>
-      </div>
-    </x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '管理',showBack: true}"></x-header>
     <div>
       <group v-for="(textbook, pindex) in workbook.list.textbook" :key='pindex' :title="textbook.textbookName">
-        <cell v-for="(workbook, index) in textbook.list" :key="index" is-link @click.native="$router.push({ name: 'workbook_chapter', params: {'workbookId': workbook.workbookId ,'name': workbook.workbookName}})">
+        <cell v-for="(workbook, index) in textbook.list" :key="index">
           <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/180x240!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80">
           <div slot="after-title" style="width:90%;">
             <p style="color:#4cc0be;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
@@ -17,6 +13,10 @@
                 &nbsp;&nbsp;&nbsp;{{tag}}
               </p>
             </template>
+          </div>
+          <div slot="default">
+            <x-button v-if="!workbook.state" mini type="primary" slot="default" @click.native="_changeBook(pindex, index, workbook.workbookId)">添加</x-button>
+            <x-button v-else mini plain @click.native="_changeBook(pindex, index, workbook.workbookId)">隐藏</x-button>
           </div>
         </cell>
       </group>
@@ -35,12 +35,12 @@ import {XHeader, Cell, Group, ViewBox, Spinner, Tabbar, TabbarItem, XButton} fro
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: 'workbook',
+  name: 'Update',
   components: {
     XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem
   },
   computed: {
-    ...mapGetters(['workbook', 'User', 'workbookOptions'])
+    ...mapGetters(['workbook', 'User'])
   },
   data () {
     return {
@@ -48,35 +48,24 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getWorkbook', 'workbookClear', 'setWorkbookScroll', 'getWorkbookOptions']),
+    ...mapActions(['getWorkbook', 'setWorkbookUpdate']),
     _getData () {
       this.loading = true
       this.getWorkbook().then(() => {
         this.loading = false
       })
+    },
+    _changeBook (pindex, index, workbookId) {
+      this.setWorkbookUpdate({pindex: pindex, index: index, workbookId: workbookId})
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'workbook_options' || from.name === 'workbook_update') {
-        vm._getData()
-      } else {
-        vm.$refs.viewBox.scrollTo(vm.workbook.scroll)
-      }
+      vm._getData()
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setWorkbookScroll(this.$refs.viewBox.getScrollTop())
     next()
-  },
-  created () {
-    this.getWorkbookOptions().then(() => {
-      if (!Number(this.workbookOptions.textbookId)) {
-        this.$router.push({name: 'workbook_options'})
-      } else {
-        this._getData()
-      }
-    })
   }
 }
 </script>

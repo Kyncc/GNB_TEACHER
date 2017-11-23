@@ -1,6 +1,12 @@
 let state = {
+  options: {
+    textbookId: '',
+    editionId: '',
+    subject: '',
+    grade: '',
+    textbookList: []
+  },
   workbook: {
-    subjectId: 2,
     scroll: 0,
     list: []
   },
