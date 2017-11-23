@@ -1,9 +1,15 @@
 <template>
   <view-box ref="viewBox" body-padding-top="46px">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '批改作业',showBack: true}">
-      <div slot="right" style="margin:0">
-        <div slot="right" @click="$router.push({name: 'workbook_options'})">筛选</div>
+    <div slot="right" >
+      <i class="icon iconfont icon-6" style="padding:8px;font-size:28px;top:2px;right:-15px;" @click='visible = true'></i>
+      <div class="gnb-changeClass">
+        <mt-popup v-model="visible" popup-transition="popup-fade" class="gnb-changeClass-popup">
+          <p @click="$router.push({name: 'workbook_options'})">筛选</p>
+          <p @click="$router.push({name: 'workbook_update'})">管理</p>
+        </mt-popup>
       </div>
+    </div>
     </x-header>
     <div>
       <group v-for="(textbook, pindex) in workbook.list.textbook" :key='pindex' :title="textbook.textbookName">
@@ -31,19 +37,21 @@
   </view-box>
 </template>
 <script>
+import { Popup } from 'mint-ui'
 import {XHeader, Cell, Group, ViewBox, Spinner, Tabbar, TabbarItem, XButton} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'workbook',
   components: {
-    XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem
+    XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem, 'mt-popup': Popup
   },
   computed: {
     ...mapGetters(['workbook', 'User', 'workbookOptions'])
   },
   data () {
     return {
+      visible: false,
       loading: true
     }
   },
@@ -80,3 +88,40 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.gnb-changeClass{
+  margin-right:8px;
+  .gnb-changeClass-popup{
+      background: #fff;
+      width: 5em;
+      border-radius: 8px;
+      padding:.5rem ;
+      top:2.3rem;
+      left:86%;
+      -webkit-transform: translate(-50%, 0);
+      p{
+        font-size:.8rem;text-align: center;line-height:1.8rem; color:#555;width: 4rem;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+      }
+      .active{
+          background: #ccc;
+      }
+  }
+  .gnb-changeClass-popup:before {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border: solid transparent;
+      border-width:.5rem;
+      border-bottom-color: #fff;
+      content: '';
+      position: absolute;
+      top: -.9rem;
+      right: 1rem;
+  }
+}
+</style>
