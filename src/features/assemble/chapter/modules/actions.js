@@ -114,7 +114,7 @@ export const setAssembleSyncScroll = ({ rootState, commit }, height) => {
 }
 
 /** 获取例题列表 */
-export const getAssembleExample = ({ rootState, commit, state }, params) => {
+export const getAssembleExample = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',

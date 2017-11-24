@@ -2,8 +2,8 @@ import Vue from 'vue'
 import axios from 'axios'
 
 axios.defaults.timeout = 10000
-// axios.defaults.baseURL = 'http://www.guinaben.com:8070/test/teacher/'
-axios.defaults.baseURL = 'https://www.guinaben.com/teacher/'
+axios.defaults.baseURL = 'http://www.guinaben.com:8070/test/teacher/'
+// axios.defaults.baseURL = 'https://www.guinaben.com/teacher/'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
 // POST传参序列化

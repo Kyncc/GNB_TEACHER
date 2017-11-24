@@ -22,6 +22,17 @@ const state = {
     list: [],
     detail: [],
     scroll: 0
+  },
+  paper: {
+    list: [],
+    search: {
+      list: [],
+      options: {
+        subject: '',
+        grade: ''
+      },
+      offset: ''
+    }
   }
 }
 

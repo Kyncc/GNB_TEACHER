@@ -134,6 +134,24 @@ export const getMyDownloadGood = ({ rootState, commit }, params) => {
   })
 }
 
+/** 获取试卷下载历史 */
+export const getMyDownloadPaper = ({ rootState, commit }) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'paper/myDownload',
+      params: {
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.MYDOWNLOAD, {data: response.data.data, type: 'paper'})
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
 /** 获取精选题详情 */
 export const getMyDownloadGoodDetail = ({ rootState, commit }) => {
   return new Promise((resolve, reject) => {

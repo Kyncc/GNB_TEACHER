@@ -11,10 +11,10 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
       params: {
         token: rootState.common.user.token,
         options: {
-          editionId: params.editionId,
-          grade: params.grade,
-          subject: params.subject,
-          textbookId: params.textbookId
+          editionId: state.options.editionId,
+          grade: state.options.grade,
+          subject: state.options.subject,
+          textbookId: state.options.textbookId
         }
       }
     }).then((response) => {
@@ -55,7 +55,7 @@ export const getWorkbookOptions = ({ rootState, commit }, params) => {
 }
 
 /** 筛选选择 */
-export const setWorkbookOptions = ({ rootState, commit }, params) => {
+export const setWorkbookOptions = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -102,7 +102,7 @@ export const setWorkbookUpdate = ({state, rootState, commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: 'teacher/workbook/update',
+      url: 'workbook/update',
       data: {
         token: rootState.common.user.token,
         workbookId: params.workbookId

@@ -31,7 +31,7 @@
         <p v-else-if="User.classes.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;" @click="$router.push({name: 'class_add'})">
           没有学生？请点击<span style='color:#4cc0be'>创建班级</span>，并邀请学生加入班级
         </p>
-        <p v-else-if="workbook.list.textbook.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;">没有习题册？请让学生到学生端添加习题册</p>
+        <p v-else-if="workbook.list.textbook && workbook.list.textbook.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;">没有习题册？请让学生到学生端添加习题册</p>
       </div>
     </div>
   </view-box>
@@ -75,6 +75,7 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     this.setWorkbookScroll(this.$refs.viewBox.getScrollTop())
+    this.visible = false
     next()
   },
   created () {
