@@ -4977,9 +4977,9 @@ vux-xscroll@^3.1.10:
   version "3.1.12"
   resolved "http://registry.npm.taobao.org/vux-xscroll/download/vux-xscroll-3.1.12.tgz#e352e7f9dc5f9fee9253db331c967dd56b3bc950"
 
-vux@^2.7.1:
-  version "2.7.1"
-  resolved "http://registry.npm.taobao.org/vux/download/vux-2.7.1.tgz#56ddcab8367aa472150d1bce1cc09703b8e834ec"
+vux@^2.7.4:
+  version "2.7.4"
+  resolved "http://registry.npm.taobao.org/vux/download/vux-2.7.4.tgz#1acdfa4a50380402638045aaff6f7735ce5da7da"
   dependencies:
     array-filter "^1.0.0"
     array-find "^1.0.0"

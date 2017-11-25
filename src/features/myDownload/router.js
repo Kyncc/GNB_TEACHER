@@ -13,6 +13,11 @@ export default {
       component: r => require.ensure([], () => r(require('./pages/paper')), '/myDownload/paper')
     },
     {
+      path: 'paper/search',
+      name: 'myDownloadPaperSearch',
+      component: r => require.ensure([], () => r(require('./pages/paperSearch')), '/myDownload/paper/search')
+    },
+    {
       path: 'assemble',
       name: 'myDownloadAssemble',
       component: r => require.ensure([], () => r(require('./pages/assemble')), '/myDownload/assemble')

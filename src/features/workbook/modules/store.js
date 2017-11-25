@@ -21,7 +21,7 @@ const mutations = {
     state.options = {subject: data.subject, grade: data.grade, textbookId: data.textbookId, editionId: data.editionId, textbookList: state.options.textbookList}
   },
   [types.WORKBOOK_DISPLAY_UPDATE] (state, payload) {
-    state.workbook.list[payload.pindex]['textbook']['list'][payload.index]['state'] = payload.data.state
+    state.workbook.list['textbook'][payload.pindex]['list'][payload.index]['state'] = payload.data.state
   },
   [types.WORKBOOK_SET_OPTIONS] (state, data) {
     state.options = {subject: data.subject, grade: data.grade, textbookId: data.textbookId, editionId: data.editionId, textbookList: state.options.textbookList}

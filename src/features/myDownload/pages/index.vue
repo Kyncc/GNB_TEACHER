@@ -4,7 +4,7 @@
     </x-header>
     <div>
       <group :gutter='0'>
-        <cell title='试卷下载' :link="{name: 'myDownloadPaper'}"></cell>
+        <cell title='试卷下载' :link="{name: 'myDownloadPaperSearch'}"></cell>
       </group>
       <group title='下载历史'>
         <cell title='记错题' :link="{name: 'myDownloadRemember'}"></cell>
@@ -20,7 +20,7 @@
 <script>
 import {XHeader, ViewBox, Group, Cell} from 'vux'
 export default {
-  name: 'index',
+  name: 'Index',
   components: {
     XHeader, ViewBox, Group, Cell
   }

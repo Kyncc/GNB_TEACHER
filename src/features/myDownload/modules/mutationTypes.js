@@ -2,6 +2,10 @@
 export const MYDOWNLOAD = 'MYDOWNLOAD'
 /** 下载清空 */
 export const MYDOWNLOAD_RESET = 'MYDOWNLOAD_RESET'
+/** 试卷搜索 */
+export const MYDOWNLOAD_PAPER_SEARCH = 'MYDOWNLOAD_PAPER_SEARCH'
+/** 试卷搜索清空 */
+export const MYDOWNLOAD_SEARCH_RESET = 'MYDOWNLOAD_SEARCH_RESET'
 /** 下载详情 */
 export const MYDOWNLOAD_DETAIL = 'MYDOWNLOAD_DETAIL'
 /** 下载高度 */

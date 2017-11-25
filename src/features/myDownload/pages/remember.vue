@@ -9,7 +9,7 @@
     <div>
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownloadRemember.list.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownloadRemember.list' :key='index'>
-          <div slot="value" style='color:#4cc0be'>
+          <div style='color:#4cc0be'>
             <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
               <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
             </span>

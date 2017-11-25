@@ -9,7 +9,7 @@
     <div>
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownloadPaper.list.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownloadPaper.list' :key='index'>
-          <div slot="value" style='color:#4cc0be'>
+          <div style='color:#4cc0be'>
             <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
               <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
             </span>
@@ -42,14 +42,12 @@ export default {
       switch (this.options[0]) {
         case '初中': return '789'
         case '高中': return '10'
-        default : return ''
       }
     },
     subject () {
       switch (this.options[1]) {
         case '数学': return 'math'
         case '物理': return 'physics'
-        default : return ''
       }
     }
   },
@@ -60,7 +58,6 @@ export default {
       loading: true,
       error: false,
       showAction: false,
-      subject: '',
       share: {
         content: '',
         title: '我的试卷下载',
@@ -69,16 +66,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getMyDownloadPaperHistory', 'clearDownload']),
+    ...mapActions(['getMyDownloadPaper', 'clearMyDownload']),
     _download (item) {
       this.share.href = item.url
       this.share.content = item.name
       this.showAction = true
     },
     _getData () {
-      this.clearDownload({type: 'paper'})
+      this.clearMyDownload({type: 'paper'})
       this.loading = true
-      this.getMyDownloadPaperHistory({options: {grade: this.grade, subject: this.subject}}).then(() => {
+      this.getMyDownloadPaper({options: {grade: this.grade, subject: this.subject}}).then(() => {
         this.error = false
         this.loading = false
       }).catch((e) => {

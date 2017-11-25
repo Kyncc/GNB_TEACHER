@@ -54,7 +54,6 @@
     ├── features    # Modules
         ├── common      # 全局功能函数
         ├── assemble    # 组卷中心
-        ├── paper       # 试卷下载
         ├── points      # 我的积分
         ├── assemble    # 我的组卷
           ├── chapter      # 章节考点

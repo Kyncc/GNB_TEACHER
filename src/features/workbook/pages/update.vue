@@ -15,8 +15,8 @@
             </template>
           </div>
           <div slot="default">
-            <x-button v-if="!workbook.state" mini type="primary" slot="default" @click.native="_changeBook(pindex, index, workbook.workbookId)">添加</x-button>
-            <x-button v-else mini plain @click.native="_changeBook(pindex, index, workbook.workbookId)">隐藏</x-button>
+            <x-button v-if="workbook.state" mini type="primary" slot="default" @click.native="_changeBook(pindex, index, workbook.workbookId)">显示</x-button>
+            <x-button v-else type="primary" mini plain @click.native="_changeBook(pindex, index, workbook.workbookId)">隐藏</x-button>
           </div>
         </cell>
       </group>
