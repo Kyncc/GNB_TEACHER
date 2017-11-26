@@ -1,11 +1,11 @@
 export default {
   path: '/workbook',
-  component: r => require.ensure([], () => r(require('./pages/layout')), 'workbook'),
+  component: r => require.ensure([], () => r(require('./pages/layout')), 'workbook/layout'),
   children: [
     {
       path: '/',
       name: 'workbook',
-      component: r => require.ensure([], () => r(require('./pages/index')), 'workbook/')
+      component: r => require.ensure([], () => r(require('./pages/index')), 'workbook/index')
     },
     {
       path: '/options',

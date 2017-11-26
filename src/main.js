@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
 import FastClick from 'fastclick'
@@ -5,7 +6,6 @@ import store from './store'
 import router from './router'
 import { ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin } from 'vux'
 import App from './App'
-import 'babel-polyfill'
 
 Vue.use(ToastPlugin) // 使用提醒
 // 图片异步加载
