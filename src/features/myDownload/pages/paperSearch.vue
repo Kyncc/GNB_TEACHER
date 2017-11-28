@@ -92,7 +92,7 @@ export default {
     },
     _getData () {
       this.loading = true
-      this.getMyDownloadPaperSearch({options: {grade: this.grade, subject: this.subject}}).then((res) => {
+      this.getMyDownloadPaperSearch({name: this.name, options: {grade: this.grade, subject: this.subject}}).then((res) => {
         if (res.data.data.list.length < 10) {
           this.loadingNoData = true
         }

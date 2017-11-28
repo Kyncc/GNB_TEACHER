@@ -49,7 +49,7 @@ const mutations = {
     state.error.subjectId = 2
   },
   [types.ERROR_ERROR_TYPE] (state, payload) {
-    state['error']['list'][payload.index]['errorType'] = Number(payload.type)
+    state['error']['list'][payload.index]['errorComment'] = payload.errorComment
   },
   [types.ERROR_COMMENT] (state, payload) {
     state.comment.audio = payload.data.audioUrl

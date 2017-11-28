@@ -83,12 +83,13 @@
 ```
 npm/yarn install
 npm/yarn run dev
-open http://localhost:8080
+open http://localhost:8088
 ```
 
 ### Build
 ```
 npm/yarn run build
+npm/yarn run build --report 查看打包JS大小
 open Files in DistT Folder
 ```
 ## License

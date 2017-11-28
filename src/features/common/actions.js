@@ -27,9 +27,9 @@ export const setUserInfo = ({rootState, commit, dispatch}, params) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
-      method: 'post',
+      method: 'get',
       url: 'user/update',
-      data: {
+      params: {
         ...params,
         token: rootState.common.user.token
       }

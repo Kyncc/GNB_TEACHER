@@ -35,7 +35,6 @@ let router = new Router({
     myDownload,
     myclass,
     points,
-    // paper,
     settings,
     workbook
   ]
