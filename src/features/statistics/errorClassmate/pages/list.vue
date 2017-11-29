@@ -52,7 +52,7 @@
       <popup v-model="showErrorPopup" class="checker-popup">
         <group title='选择错误原因:'>
           <div style="padding:10px 10px 0 10px;">
-            <checker type="radio" :value="errorType.errorComment.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+            <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
               <checker-item value="概念模糊" @on-item-click="onItemClick('概念模糊')">概念模糊</checker-item>
               <checker-item value="粗心大意"  @on-item-click="onItemClick('粗心大意')">粗心大意</checker-item>
               <checker-item value="能力不够"  @on-item-click="onItemClick('能力不够')">能力不够</checker-item>
@@ -167,6 +167,8 @@ export default {
         wbeid: this.errorType.wbeid
       }).then(() => {
         this.$vux.toast.show({ text: '设置错误原因成功!', type: 'text', time: 1000, position: 'bottom' })
+        this.errorType.errorComment = ''
+      }).catch(() => {
         this.errorType.errorComment = ''
       })
     }
