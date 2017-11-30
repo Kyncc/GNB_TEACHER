@@ -93,10 +93,7 @@ export default {
     _getData () {
       this.loading = true
       this.getMyDownloadPaperSearch({name: this.name, options: {grade: this.grade, subject: this.subject}}).then((res) => {
-        if (res.data.data.list.length < 10) {
-          this.loadingNoData = true
-        }
-        this.loadingNoData = false
+        (res.data.data.list.length < 10 ? this.loadingNoData = true : this.loadingNoData = false)
         this.loading = false
       }).catch(() => {
         this.loadingNoData = true
