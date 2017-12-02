@@ -101,6 +101,7 @@ export default {
       if (
         from.name === 'assemble_gaokao' ||
         from.name === 'assemble_sync' ||
+        from.name === 'assemble_options' ||
         vm.AssembleExample.list.length === 0
       ) {
         vm.loadingNoData = false

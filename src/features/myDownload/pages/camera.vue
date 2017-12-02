@@ -5,7 +5,7 @@
       <div class='popup'>
         <popup-picker :show="showPopupPicker" @on-hide='showPopupPicker = false'
           confirm-text='确定' :show-cell="false"
-          :data="[['初中','高中'],['数学','物理']]" v-model="options">
+          :data="[['初中','高中'],['数学']]" v-model="options">
         </popup-picker>
       </div>
     </x-header>

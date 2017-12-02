@@ -15,7 +15,7 @@
         <span class='searchtitle'>学科：</span>
         <checker radio-required style='padding-left:.5rem;' v-model="subject" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
           <checker-item value="math">数学</checker-item>
-          <checker-item value="physics">物理</checker-item>
+          <!-- <checker-item value="physics">物理</checker-item> -->
           <!-- <checker-item value="chemistry">化学</checker-item> -->
         </checker>
         <span class='searchtitle'>教材：</span>

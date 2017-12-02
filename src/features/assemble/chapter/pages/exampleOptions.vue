@@ -44,7 +44,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setStatisticsGoodOptions'])
+    ...mapActions(['setAssembleExampleOptions'])
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
@@ -53,7 +53,7 @@ export default {
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setStatisticsGoodOptions({
+    this.setAssembleExampleOptions({
       degree: this.degree,
       type: this.type
     })
