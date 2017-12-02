@@ -140,7 +140,7 @@ export const getAssembleExample = ({ state, rootState, commit }, params) => {
 
 /** 组卷精选难度筛选 */
 export const setAssembleExampleOptions = ({ commit }, params) => {
-  commit(types.ASSEMBLE_EXAMPLE_OPTIONS, {qType: params.qType, degree: params.degree})
+  commit(types.ASSEMBLE_EXAMPLE_OPTIONS, {qType: params.type, degree: params.degree})
 }
 
 /** 组卷精选高度保存 */

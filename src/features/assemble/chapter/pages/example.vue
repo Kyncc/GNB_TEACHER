@@ -98,14 +98,11 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 同步和高考题型清空
-      if (
-        from.name === 'assemble_gaokao' ||
-        from.name === 'assemble_sync' ||
-        from.name === 'assemble_options' ||
-        vm.AssembleExample.list.length === 0
-      ) {
-        vm.loadingNoData = false
+      if (from.name === 'assemble_gaokao' || from.name === 'assemble_sync') {
         vm.clearAssembleExample()
+      }
+      if (from.name === 'assemble_options' || vm.AssembleExample.list.length === 0) {
+        vm.loadingNoData = false
         vm._getData()
       }
       vm.$refs.viewBox.scrollTo(vm.AssembleExample.scroll)
