@@ -106,17 +106,12 @@ export default {
     },
     onSubmit () {
       this.$refs.search.setBlur()
-      // this.$vux.toast.show({
-      //   type: 'text',
-      //   position: 'top',
-      //   text: 'on submit'
-      // })
     }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.name = ''
-      vm.clearMyDownloadPaperSearch()
+      vm.getResult()
     })
   },
   beforeRouteLeave (to, from, next) {
