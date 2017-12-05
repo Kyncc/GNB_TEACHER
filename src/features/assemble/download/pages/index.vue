@@ -98,7 +98,7 @@ export default {
           await this.getDownloadVaild()
           this.showAction = true
         } catch (err) {
-          this.showAction = true
+          this.showAction = false
         }
       })()
     },
