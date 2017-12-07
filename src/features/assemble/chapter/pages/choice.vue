@@ -104,8 +104,8 @@ export default {
   background:#4cc0be;
   color:#fff;
   font-size: .9rem;
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 4rem;
+  width: 4rem;
   box-sizing: border-box;
   padding:.5rem .75rem;
   border-radius: 50%;

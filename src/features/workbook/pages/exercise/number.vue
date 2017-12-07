@@ -26,21 +26,26 @@
         </group>
       </template>
     </div>
-
-    <div style="margin:1rem" v-if='exercise'>
-      <x-button :disabled="isRead" type="primary" @click.native="_post">已阅</x-button>
+    <div v-transfer-dom>
+      <tabbar v-if='exercise'>
+        <tabbar-item style='line-height:42px;height:42px;' v-if="$route.name === 'workbook_exercise_number'">
+          <div slot="label" style='line-height:42px;height:42px;'>
+            <x-button :disabled="isRead" type="primary" @click.native="_post" style='border-radius:0;'>已阅</x-button>
+          </div>
+        </tabbar-item>
+      </tabbar>
     </div>
   </div>
 </template>
 
 <script>
-import {Group, Cell, XButton} from 'vux'
+import {Tabbar, TabbarItem, Group, Cell, XButton, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'number',
   components: {
-    Group, Cell, XButton
+    Tabbar, TabbarItem, Group, Cell, XButton
   },
   computed: {
     ...mapGetters(['Route', 'workbookExercise']),
@@ -50,6 +55,9 @@ export default {
     isRead () {
       return this.workbookExercise.list.isRead
     }
+  },
+  directives: {
+    TransferDom
   },
   methods: {
     ...mapActions(['WorkbookExercisePost', 'setWorkbookExersciseScroll', 'setWorkbookExerciseRead']),

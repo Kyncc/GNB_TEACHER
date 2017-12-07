@@ -23,7 +23,7 @@
         <div slot="footer">
           <div class="weui-cell">
             <div class="weui-cell__bd" style="text-align:right">
-              <x-button mini type="primary" :plain="error.errorType !== -1" @click.native="_showErrorPopup(error, index)">{{error.errorType | errorType}}</x-button>
+              <x-button mini type="primary" :plain='error.errorComment.length !== 0' @click.native="_showErrorPopup(error, index)">{{error.errorComment ? error.errorComment : '错误原因'}}</x-button>
               <!--<x-button mini plain type="primary">参考例题</x-button>-->
               <x-button mini type="primary" @click.native="_comment(error, index)" v-if='!error.comment'>我要点评</x-button>
               <x-button mini type="primary" @click.native="_comment(error, index)" plain v-else>已点评</x-button>
@@ -52,15 +52,10 @@
       <popup v-model="showErrorPopup" class="checker-popup">
         <group title='选择错误原因:'>
           <div style="padding:10px 10px 0 10px;">
-            <checker type="radio" :value="errorType.type.toString()" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
-              <checker-item value="1" @on-item-click="onItemClick">审题不清</checker-item>
-              <checker-item value="2" @on-item-click="onItemClick">概念模糊</checker-item>
-              <checker-item value="3" @on-item-click="onItemClick">思路不清</checker-item>
-              <checker-item value="4" @on-item-click="onItemClick">运算错误</checker-item>
-              <checker-item value="5" @on-item-click="onItemClick">粗心大意</checker-item>
-              <checker-item value="6" @on-item-click="onItemClick">方法不对</checker-item>
-              <checker-item value="7" @on-item-click="onItemClick">时间不够</checker-item>
-              <checker-item value="0" @on-item-click="onItemClick">我不知道</checker-item>
+            <checker type="radio" v-model="errorType.errorComment" default-item-class="check-item" selected-item-class="check-item-selected" disabled-item-class="check-item-disabled">
+              <checker-item value="概念模糊" @on-item-click="onItemClick('概念模糊')">概念模糊</checker-item>
+              <checker-item value="粗心大意"  @on-item-click="onItemClick('粗心大意')">粗心大意</checker-item>
+              <checker-item value="能力不够"  @on-item-click="onItemClick('能力不够')">能力不够</checker-item>
             </checker>
           </div>
         </group>
@@ -102,7 +97,7 @@ export default {
       errorType: {
         chapterId: '',
         wbeid: '',
-        type: '',
+        errorComment: '',
         index: ''
       },
       comment: [],
@@ -149,7 +144,7 @@ export default {
     // 类型错误弹窗
     _showErrorPopup (error, index) {
       this.errorType.index = index
-      this.errorType.type = error.errorType
+      this.errorType.errorComment = error.errorComment
       this.errorType.wbeid = error.wbeid
       this.errorType.chapterId = error.chapterId
       this.showErrorPopup = true
@@ -168,11 +163,13 @@ export default {
       this.setErrorType({
         chapterId: this.errorType.chapterId,
         index: this.errorType.index,
-        type: value,
+        errorComment: value,
         wbeid: this.errorType.wbeid
       }).then(() => {
-        this.$vux.toast.show({ text: '设置错误类型成功!', type: 'text', time: 1000, position: 'bottom' })
-        this.errorType.type = ''
+        this.$vux.toast.show({ text: '设置错误原因成功!', type: 'text', time: 1000, position: 'bottom' })
+        this.errorType.errorComment = ''
+      }).catch(() => {
+        this.errorType.errorComment = ''
       })
     }
   },

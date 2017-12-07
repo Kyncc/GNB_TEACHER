@@ -20,7 +20,7 @@
                 错误学生: {{error.studentName}}
               </flexbox-item>
               <flexbox-item :span="4">
-                更新: {{error.time | ymd}}
+                <!-- 更新: {{error.time | ymd}} -->
               </flexbox-item>
               <flexbox-item :span="4" style='text-align:right;' @click.native="setStatisticsCameraAssembleUpdate({id: error.id, index: index})">
                 <i v-if='error.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be;margin-right:1rem;"></i>

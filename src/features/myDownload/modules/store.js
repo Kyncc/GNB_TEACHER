@@ -22,6 +22,13 @@ const state = {
     list: [],
     detail: [],
     scroll: 0
+  },
+  paper: {
+    list: [],
+    search: {
+      list: [],
+      offset: ''
+    }
   }
 }
 
@@ -34,6 +41,13 @@ const mutations = {
   },
   [types.MYDOWNLOAD_DETAIL] (state, payload) {
     state[payload.type]['detail'] = payload.data
+  },
+  [types.MYDOWNLOAD_SEARCH_RESET]  (state, payload) {
+    state.paper.search = { list: [], offset: '' }
+  },
+  [types.MYDOWNLOAD_PAPER_SEARCH]  (state, payload) {
+    state.paper.search.list = state.paper.search.list ? state.paper.search.list.concat(payload.list) : payload.list
+    state.paper.search.offset = payload.offset
   },
   [types.MYDOWNLOAD_DETAIL_SCROLL] (state, payload) {
     state[payload.type]['scroll'] = payload.scroll

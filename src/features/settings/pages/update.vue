@@ -1,8 +1,6 @@
 <template>
   <view-box ref="userinfoUpdate" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改资料'}">
-      <p slot="right" @click="_finish">确定</p>
-    </x-header>
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '修改资料'}"></x-header>
     <group gutter="0">
       <cell title="头像" @click.native="show = !show">
         <img slot="default" v-lazy="User.headImg" width="60" height="60"/>
@@ -44,7 +42,8 @@ export default {
       sex: 0,
       school: '',
       subjectId: '',
-      sublist: [{key: '2', value: '数学'}, {key: '7', value: '物理'}],
+      // sublist: [{key: '2', value: '数学'}, {key: '7', value: '物理'}],
+      sublist: [{key: '2', value: '数学'}],
       show: false,
       menus: {
         menu1: '拍照',
@@ -54,18 +53,6 @@ export default {
   },
   methods: {
     ...mapActions(['setHeadImg', 'setUserInfo', 'getUserInfo']),
-    _finish () {
-      this.setUserInfo({
-        name: this.name,
-        sex: this.sex,
-        school: this.school,
-        subjectId: this.subjectId
-      }).then(() => {
-        this.getUserInfo().then(() => {
-          history.go(-1)
-        })
-      })
-    },
     _getImage () {
       // 唤起本机相机
       let cmr = plus.camera.getCamera()
@@ -98,6 +85,24 @@ export default {
       vm.subjectId = vm.User.subjectId
       vm.sex = vm.User.sex
     })
+  },
+  beforeRouteLeave (to, from, next) {
+    if (to.name === 'user') {
+      return (async () => {
+        // 保存用户信息
+        await this.setUserInfo({
+          name: this.name,
+          sex: this.sex,
+          school: this.school,
+          subjectId: this.subjectId
+        })
+        // 重新获取用户信息
+        await this.getUserInfo()
+        next()
+      })()
+    } else {
+      next()
+    }
   }
 }
 </script>

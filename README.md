@@ -2,7 +2,7 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build status](https://ci.appveyor.com/api/projects/status/2qu59n38tva8mb40/branch/dev?svg=true)](https://ci.appveyor.com/project/HopeFE/gnb-teacher/branch/dev) [![Dependencies](https://david-dm.org/HopeFE/GNB_STUDENT/status.svg)](https://david-dm.org/HopeFE/GNB_TEACHER)
  [![devDependencies](https://david-dm.org/HopeFE/GNB_TEACHER/dev-status.svg)](https://david-dm.org/HopeFE/GNB_TEACHER?type=dev)
-> Base on Vue.js(v2.3) and DCloud Hybrid App
+> Base on Vue.js and DCloud Hybrid App
 
 ## App Market Download(IOS and Android)
 
@@ -54,7 +54,6 @@
     ├── features    # Modules
         ├── common      # 全局功能函数
         ├── assemble    # 组卷中心
-        ├── paper       # 试卷下载
         ├── points      # 我的积分
         ├── assemble    # 我的组卷
           ├── chapter      # 章节考点
@@ -84,12 +83,13 @@
 ```
 npm/yarn install
 npm/yarn run dev
-open http://localhost:8080
+open http://localhost:8088
 ```
 
 ### Build
 ```
 npm/yarn run build
+npm/yarn run build --report 查看打包JS大小
 open Files in DistT Folder
 ```
 ## License

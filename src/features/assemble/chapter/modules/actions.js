@@ -114,7 +114,7 @@ export const setAssembleSyncScroll = ({ rootState, commit }, height) => {
 }
 
 /** 获取例题列表 */
-export const getAssembleExample = ({ rootState, commit, state }, params) => {
+export const getAssembleExample = ({ state, rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
@@ -124,7 +124,9 @@ export const getAssembleExample = ({ rootState, commit, state }, params) => {
         offset: state.example.offset,
         options: {
           id: rootState.route.params.id,
-          type: rootState.route.params.type
+          type: rootState.route.params.type,
+          qType: state.example.options.qType,
+          degree: state.example.options.degree
         }
       }
     }).then((response) => {
@@ -135,6 +137,12 @@ export const getAssembleExample = ({ rootState, commit, state }, params) => {
     })
   })
 }
+
+/** 组卷精选难度筛选 */
+export const setAssembleExampleOptions = ({ commit }, params) => {
+  commit(types.ASSEMBLE_EXAMPLE_OPTIONS, {qType: params.type, degree: params.degree})
+}
+
 /** 组卷精选高度保存 */
 export const setAssembleExampleScroll = ({ rootState, commit }, height) => {
   commit(types.ASSEMBLE_EXAMPLE_SCROLL, height)
@@ -189,16 +197,6 @@ export const setAssemble = ({ rootState, commit, state }, params) => {
         Vue.$vux.loading.hide()
         commit(types.ASSEMBLE_INTO, { form: params.form, index: params.index, data: response.data.data })
         Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1000, position: 'bottom' })
-        // if (localStorage.getItem('isAssemble')) {
-        // Vue.$vux.toast.show({ text: response.data.msg, type: 'text', time: 1000, position: 'bottom' })
-        // } else {
-        //   localStorage.setItem('isAssemble', true)
-        //   Vue.$vux.alert.show({
-        //     title: '请到下载中心下载~',
-        //     content: '(可以跨章节组卷)',
-        //     dialogTransition: 'vux-fade'
-        //   })
-        // }
         resolve(response)
       })
       .catch((err) => {

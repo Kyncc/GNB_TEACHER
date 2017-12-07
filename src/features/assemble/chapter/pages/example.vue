@@ -3,7 +3,9 @@
  <view-box ref="viewBox" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;">
       <x-header :left-options="{backText: Route.params.name}">
-        <!-- <div slot="right" @click="$router.push({name: 'download'})"><i class="icon iconfont icon-download_link"></i></div> -->
+        <div slot="right" @click="$router.push({name: 'assemble_example_options'})">
+          筛选
+        </div>
       </x-header>
     </div>
     <div>
@@ -96,13 +98,11 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       // 同步和高考题型清空
-      if (
-        from.name === 'assemble_gaokao' ||
-        from.name === 'assemble_sync' ||
-        vm.AssembleExample.list.length === 0
-      ) {
-        vm.loadingNoData = false
+      if (from.name === 'assemble_gaokao' || from.name === 'assemble_sync') {
         vm.clearAssembleExample()
+      }
+      if (from.name === 'assemble_options' || vm.AssembleExample.list.length === 0) {
+        vm.loadingNoData = false
         vm._getData()
       }
       vm.$refs.viewBox.scrollTo(vm.AssembleExample.scroll)
@@ -120,8 +120,8 @@ export default {
   background:#4cc0be;
   color:#fff;
   font-size: .9rem;
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 4rem;
+  width: 4rem;
   box-sizing: border-box;
   padding:.5rem .75rem;
   border-radius: 50%;

@@ -54,7 +54,8 @@ export default {
       username: '',
       school: '',
       subjectId: '2',
-      subjectList: [{key: '2', value: '数学'}, {key: '7', value: '物理'}]
+      subjectList: [{key: '2', value: '数学'}]
+      // subjectList: [{key: '2', value: '数学'}, {key: '7', value: '物理'}]
     }
   },
   computed: {

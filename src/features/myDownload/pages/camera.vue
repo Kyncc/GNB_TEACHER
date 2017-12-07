@@ -5,14 +5,14 @@
       <div class='popup'>
         <popup-picker :show="showPopupPicker" @on-hide='showPopupPicker = false'
           confirm-text='确定' :show-cell="false"
-          :data="[['初中','高中'],['数学','物理']]" v-model="options">
+          :data="[['初中','高中'],['数学']]" v-model="options">
         </popup-picker>
       </div>
     </x-header>
     <div>
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownloadCamera.list.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownloadCamera.list' :key='index'>
-          <div slot="value" style='color:#4cc0be'>
+          <div style='color:#4cc0be'>
             <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
               <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
             </span>

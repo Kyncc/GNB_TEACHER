@@ -3,13 +3,13 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '记错题'}">
       <div slot="right" @click="showPopupPicker = true">筛选</div>
       <div class='popup'>
-        <popup-picker :show="showPopupPicker" @on-hide='showPopupPicker = false' confirm-text='确定' :show-cell="false" :data="[['初中','高中'],['数学','物理']]" v-model="options"></popup-picker>
+        <popup-picker :show="showPopupPicker" @on-hide='showPopupPicker = false' confirm-text='确定' :show-cell="false" :data="[['初中','高中'],['数学']]" v-model="options"></popup-picker>
       </div>
     </x-header>
     <div>
       <group :gutter='0' title='只展示最近一个月的试卷' v-show='MyDownloadRemember.list.length'>
         <cell :title='item.name' v-for='(item, index) in MyDownloadRemember.list' :key='index'>
-          <div slot="value" style='color:#4cc0be'>
+          <div style='color:#4cc0be'>
             <span style='padding:0 5px;line-height:24px;' @click="_download(item)">
               <i class="icon iconfont icon-download" style="font-size:16px;"></i>下载
             </span>

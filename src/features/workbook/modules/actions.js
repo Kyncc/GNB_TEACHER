@@ -10,10 +10,15 @@ export const getWorkbook = ({state, rootState, commit}, params) => {
       url: 'workbook',
       params: {
         token: rootState.common.user.token,
-        subjectId: params.subjectId
+        options: {
+          editionId: state.options.editionId,
+          grade: state.options.grade,
+          subject: state.options.subject,
+          textbookId: state.options.textbookId
+        }
       }
     }).then((response) => {
-      commit(types.WORKBOOK, {subjectId: params.subjectId, data: response.data.data})
+      commit(types.WORKBOOK, {data: response.data.data})
       resolve(response)
     }).catch((err) => {
       reject(err)
@@ -29,6 +34,89 @@ export const workbookClear = ({commit}) => {
 /** 练习册高度设置 */
 export const setWorkbookScroll = ({ rootState, commit }, height) => {
   commit(types.WORKBOOK_SCROLL, {height: height})
+}
+
+/** 筛选选择 */
+export const getWorkbookOptions = ({ rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'workbook/options',
+      params: {
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.WORKBOOK_OPTIONS, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 筛选选择 */
+export const setWorkbookOptions = ({ state, rootState, commit }, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'workbook/addOptions',
+      params: {
+        options: {
+          editionId: params.editionId,
+          grade: params.grade,
+          subject: params.subject,
+          textbookId: params.textbookId
+        },
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.WORKBOOK_SET_OPTIONS, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 获取筛选教材 */
+export const getWorkbookOptionsTextbook = ({ rootState, commit }) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'download/textbook',
+      params: {
+        token: rootState.common.user.token
+      }
+    }).then((response) => {
+      commit(types.WORKBOOK_OPTIONS_TEXTBOOK, response.data.data)
+      resolve(response)
+    }).catch((e) => {
+      reject(e)
+    })
+  })
+}
+
+/** 提交练习侧隐藏显示 */
+export const setWorkbookUpdate = ({state, rootState, commit}, params) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'workbook/update',
+      data: {
+        token: rootState.common.user.token,
+        workbookId: params.workbookId
+      }
+    }).then((response) => {
+      Vue.$vux.loading.hide()
+      Vue.$vux.toast.show({text: '更新成功', type: 'text', time: 1000, position: 'bottom'})
+      commit(types.WORKBOOK_DISPLAY_UPDATE, {pindex: params.pindex, index: params.index, data: response.data.data})
+      resolve(response)
+    }).catch((err) => {
+      Vue.$vux.loading.hide()
+      reject(err)
+    })
+  })
 }
 
 /** 获取练习册章节数据 */

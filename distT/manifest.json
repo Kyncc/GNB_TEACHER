@@ -6,8 +6,8 @@
 	"id": "H5B579B59",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "归纳本-教师端",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "3.3.0",/*应用版本名称*/
-		"code": "330"
+		"name": "3.4.0",/*应用版本名称*/
+		"code": "340"
 	},
 	"description": "",/*应用描述信息*/
 	"icons": {
@@ -128,9 +128,9 @@
 				"statics": {
 					"umeng": {
 						"appkey_ios": "58412619677baa2509000e1c ",
-						"channelid_ios": "3.3.0",
+						"channelid_ios": "3.4.0",
 						"appkey_android": "5833f4a33eae256274001322",
-						"channelid_android": "3.3.0"
+						"channelid_android": "3.4.0"
 					}
 				}
 			},
@@ -219,22 +219,131 @@
 		}
 	},
 	"dependencies": {
-		"pages": {
-			"index.html": {
-				"resources": [
-					"static/js/manifest.1be79d515bd8a00d3e19.js",
-					"static/js/app.5d1b6b46912ef68419fb.js",
-					"static/js/vendor.f6eb2fdbb9286127eb15.js",
-					"static/js/manifest.9a401f7f8cb36e5be50d.js",
-					"static/js/manifest.e423a6a1a90402ba2ee4.js"
-				],
-				"refer": [],
-				"priority": 0
-			}
-		},
-		"idle": {
-			"resources": []
-		}
+	  "pages": {
+	    "index.html": {
+	      "resources": [],
+	      "refer": [],
+	      "priority": 0
+	    }
+	  },
+	  "idle": {
+	    "resources": [
+	      "static/js/message/layout.9c63cf0e5ae3a97b8538.js",
+	      "static/js/download/index.3f4c014cab69e096c1a0.js",
+	      "static/js/invite/layout.32d23a2e74b8e02a1b8b.js",
+	      "static/js/login/index.3e5c37241556e83110aa.js",
+	      "static/js/errorClass/error/good/assemble.665c1c2fcd3bd5bb8ac9.js",
+	      "static/js/class/add.ba9b37a2bc74a78478d8.js",
+	      "static/js/errorClassmate/classmate.5a50a2a0a18238784434.js",
+	      "static/js/errorClass/error/good/options.2d4fb86af8e29bd3db57.js",
+	      "static/js/class/index.a288b41b4a7b21be0885.js",
+	      "static/js/errorClassmate/list.d86c31a653ac06bfc745.js",
+	      "static/js/assemble/gaokao.08724261beadf06f6679.js",
+	      "static/js/about/my.a31b0c119478c76d4199.js",
+	      "static/js/assemble/example/options.3f656e319a25a6471cc7.js",
+	      "static/js/myDownload/good/detail.36da749fa045f626c68d.js",
+	      "static/js/workbook/layout.0038c86fb5c118bf932d.js",
+	      "static/js/settings/resetPwd.7bc8d9ebb157f4252fbb.js",
+	      "static/js/errorClassmate/index.b2bed03b8dee83db9528.js",
+	      "static/img/assemble.e6107bf.png",
+	      "static/js/homework/content.133054e87ceebdef5c6a.js",
+	      "static/js/homework/layout.89cbf4a20d3317808ebf.js",
+	      "static/js/message/index.c93741837ee72c58e4e6.js",
+	      "static/js/errorClass/error/remember/options.13ce5d16e8f1ba37897a.js",
+	      "static/img/astop.d889b0e.png",
+	      "static/js/vendor.dll.js",
+	      "static/js/assemble/layout.b9a3804c55d6a13c3bcc.js",
+	      "static/js/statistics/layout.2f766324852a7163e4a4.js",
+	      "static/img/bg.03a0b07.jpg",
+	      "static/js/index.2ec489acbb7ef040ca96.js",
+	      "static/js/points/rask.c8a19c14f9d175cbdce6.js",
+	      "static/js/points/index.3117773f9a056527c5af.js",
+	      "static/js/errorClass/error.5c0ec644c44f21247666.js",
+	      "static/js/myDownload/paper.4577a763e523d9118496.js",
+	      "static/js/class/layout.f8b64ba4c5a414ffc3ad.js",
+	      "static/js/class/detail.ee1992019775688ea4bb.js",
+	      "static/js/errorClass/error/camera/assemble.97dcce5dd875362a94ad.js",
+	      "static/js/points/earn.f9e773d3c604488c4207.js",
+	      "static/js/workbook/exercise/number.220974e1aeec3e9d4a84.js",
+	      "static/js/about/index.850380738e0edb7b655c.js",
+	      "static/img/myclass.2b39758.png",
+	      "static/js/workbook/chapter.6642d826a22bfc8e1dcf.js",
+	      "static/js/login/info.ae004c88e4d07f89cc2c.js",
+	      "static/js/app.324e1d59ab943022bf96.js",
+	      "static/js/about/advice.eb6adb5b9ee69ead293a.js",
+	      "static/js/homework/index.b2c094fc5e3be29618f3.js",
+	      "static/js/assemble/center/options.e35aa565373ecafcbc38.js",
+	      "static/js/manifest.fcff6b30d8dc60274824.js",
+	      "static/js/example.b166370e6773b380cb8f.js",
+	      "static/js/workbook/update.9d926caadda8ee6469e0.js",
+	      "static/js/workbook/exercise.468764c91d4e8ecee2dc.js",
+	      "static/js/login/forget.4515e75b06430d6e5d00.js",
+	      "static/js/assemble/sync.96a08e3de623cb1b249e.js",
+	      "static/img/icon.31f8807.png",
+	      "static/js/login/register.d2b453cd2b4af5cca1b4.js",
+	      "static/js/errorClass/chapter.bfa2bc3e513559ec4f6b.js",
+	      "static/js/settings/update.898e4f74a2f708345673.js",
+	      "static/js/homework/image.754b42ac689c803ed00f.js",
+	      "static/js/errorClass/error/camera.964d41bf01444dde09da.js",
+	      "static/js/errorClass/error/good.f16f800ec7a874965a78.js",
+	      "static/js/download/update.cb3a585c1ff4a63d5051.js",
+	      "static/img/ewm.c582fb1.jpg",
+	      "static/js/myDownload/paper/search.9f7f8f40d77c490cd6fe.js",
+	      "static/js/workbook/options.fe28d3cb790180c44844.js",
+	      "static/js/errorClassmate/comment.bd3cc5db7b71944ac512.js",
+	      "static/js/assemble/choice.5302c73a5132b26fa3cb.js",
+	      "static/js/points/list.e69704f597054dcb978f.js",
+	      "static/js/login/setPassword.33f03824baeb311e8c6a.js",
+	      "static/js/myDownload/assemble.6fd15489d711b3c2e351.js",
+	      "static/js/assemble/example.40bce640a646a05cfb21.js",
+	      "static/js/invite/list.ba64b73cadd893ed8e53.js",
+	      "static/js/errorClass/error/remember.6969f18850780c5af8e5.js",
+	      "static/js/homework/audio.993627a3aa05567cd215.js",
+	      "static/js/about/layout.2708e9a414af9613d950.js",
+	      "static/js/about/adviceHistory.02c5e9f646cbc21e5da7.js",
+	      "static/js/message/correct.54dc2028d31844122c13.js",
+	      "static/js/myDownload/good.1f2b1c9e1d3f959fdec1.js",
+	      "static/js/correct.b566fd06552dfd4abbf7.js",
+	      "static/img/workbook.6bc6af4.png",
+	      "static/js/homework/class.3c7fe5fedeae39d99da4.js",
+	      "static/js/login/resetPassword.487d2a149b74eae6419b.js",
+	      "static/js/vendor.596f9804427d34232d70.js",
+	      "static/js/settings/layout.0ccfb5ae9be687e72d01.js",
+	      "static/js/myDownload/camera.2ef6a75ec560f2c2d31a.js",
+	      "static/js/workbook/index.99e344839215020bdfa1.js",
+	      "static/js/workbook/exercise/photo.afc3ee6dbd6bd4f025d3.js",
+	      "static/js/invite/index.9c441c1e1dc35520234c.js",
+	      "static/js/download/layout.8d4758a250e303ee7ba8.js",
+	      "static/js/user.fe8be966507ba42fb8b9.js",
+	      "static/js/myDownload/remember.83ffe9af2cda48bd896a.js",
+	      "static/js/myDownload/assemble/detail.f5cb06fcbb9f2aefde48.js",
+	      "static/js/errorClass/error/remember/assemble.e46772363bbfa4e90ce0.js",
+	      "static/js/settings/photo.aa72a4e7d27069ef7ec4.js",
+	      "static/js/class/update/name.2082860e382817e55310.js",
+	      "static/js/settings/index.f64183a1cbd992738420.js",
+	      "static/js/errorClass/class.d369ebc659ade76eb754.js",
+	      "static/js/myDownload/camera/detail.c51fb4babfd631fd28e5.js",
+	      "static/js/vendor-async.4e7c6da468f4490ff09b.js",
+	      "static/js/message/system.91099259d4a2296d2ec9.js",
+	      "static/js/statistics/index.1424760edb3d54bad1fa.js",
+	      "static/js/message/class.f2da55934a6e426e94a9.js",
+	      "static/js/class/classmateUpdate.59a90fa995c00d568b1b.js",
+	      "static/js/errorClass/chapter/options.d99203e0dada52c9af34.js",
+	      "static/js/settings/info.5869081dbe703bf7f0cd.js",
+	      "static/js/homework/photo.eab095137d1f6247d9d1.js",
+	      "static/js/points/layout.ea96f05e853e4804f595.js",
+	      "static/img/statistics.6075c6b.png",
+	      "static/js/workbook/exercise/error.8edd1bac635eb71d0b9d.js",
+	      "static/js/myDownload/remember/detail.1467cf7cf4dbd4fa53f3.js",
+	      "static/css/app.3f1c5ccce4a33ac227b15c5a778aac6d.css",
+	      "static/js/layout.2b83e41365e70c070999.js",
+	      "static/js/login/layout.2e9aea2bf567018cdb8a.js",
+	      "static/js/article.d8e00675e8989797b039.js",
+	      "static/js/bag.d3f9148ffb7d52ca30bf.js",
+	      "static/img/homework.eccebe6.png",
+	      "static/js/myDownload/index.bc9022c68de83e339a9d.js"
+	    ]
+	  }
 	},
 	"fullscreen": false
 }

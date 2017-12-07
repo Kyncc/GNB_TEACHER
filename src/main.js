@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
 import FastClick from 'fastclick'
@@ -5,7 +6,6 @@ import store from './store'
 import router from './router'
 import { ToastPlugin, LoadingPlugin, ConfirmPlugin, dateFormat, AlertPlugin } from 'vux'
 import App from './App'
-import 'babel-polyfill'
 
 Vue.use(ToastPlugin) // 使用提醒
 // 图片异步加载
@@ -34,21 +34,6 @@ Vue.filter('subject', (value) => {
     case 2: return '数学'
     case 7: return '物理'
     case 8: return '化学'
-  }
-})
-
-// 错误类型转换
-Vue.filter('errorType', (value) => {
-  switch (value) {
-    case -1: return '错误类型'
-    case 1: return '审题不清'
-    case 2: return '概念模糊'
-    case 3: return '思路不清'
-    case 4: return '运算错误'
-    case 5: return '粗心大意'
-    case 6: return '方法不对'
-    case 7: return '时间不够'
-    case 0: return '我不知道'
   }
 })
 

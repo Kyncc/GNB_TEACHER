@@ -34,10 +34,10 @@ export const setErrorType = ({rootState, commit, state}, params) => {
         studentId: rootState.route.params.studentId,
         wbeid: params.wbeid,
         chapterId: params.chapterId,
-        type: params.type
+        errorComment: params.errorComment
       }
     }).then((response) => {
-      commit(types.ERROR_ERROR_TYPE, {index: params.index, type: params.type})
+      commit(types.ERROR_ERROR_TYPE, {index: params.index, errorComment: params.errorComment})
       resolve(response)
     }).catch((err) => {
       reject(err)

@@ -6,3 +6,7 @@ export const MyDownloadCamera = (state) => state.camera
 export const MyDownloadRemember = (state) => state.remember
 /** 下载精选题 */
 export const MyDownloadGood = (state) => state.good
+/** 下载试卷 */
+export const MyDownloadPaper = (state) => state.paper
+/** 试卷搜索 */
+export const MyDownloadPaperSearch = (state) => state.paper.search
