@@ -9,7 +9,8 @@ export default [
       {
         path: '/',
         name: 'statistics',
-        component: r => require.ensure([], () => r(require('./index')), 'statistics/index')
+        redirect: {name: 'errorClass'}
+        // component: r => require.ensure([], () => r(require('./index')), 'statistics/index')
       },
       ...errorClass,
       errorClassmate

@@ -57,7 +57,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'statistics' || from.name === 'points_earn') {
+      if (from.name === 'errorClass' || from.name === 'points_earn') {
         vm.clearErrorClassmate()
         vm._getData()
       } else {
