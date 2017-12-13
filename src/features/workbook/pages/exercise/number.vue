@@ -26,6 +26,13 @@
         </group>
       </template>
     </div>
+    <group title="未提交作业学生" v-if='workbookExercise.notPost.length'>
+      <flexbox :gutter="0" wrap="wrap">
+        <flexbox-item v-for="(name, index) in workbookExercise.notPost" :key='index' :span="1/4">
+          <div style='padding:.5rem;'>{{name}}</div>
+        </flexbox-item>
+      </flexbox>
+    </group>
     <div v-transfer-dom>
       <tabbar v-if='exercise'>
         <tabbar-item style='line-height:42px;height:42px;' v-if="$route.name === 'workbook_exercise_number'">
@@ -39,13 +46,13 @@
 </template>
 
 <script>
-import {Tabbar, TabbarItem, Group, Cell, XButton, TransferDomDirective as TransferDom} from 'vux'
+import {Tabbar, TabbarItem, Group, Cell, Flexbox, FlexboxItem, XButton, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'number',
   components: {
-    Tabbar, TabbarItem, Group, Cell, XButton
+    Tabbar, TabbarItem, Group, Cell, XButton, Flexbox, FlexboxItem
   },
   computed: {
     ...mapGetters(['Route', 'workbookExercise']),
