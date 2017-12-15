@@ -9,7 +9,7 @@
         <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
       </cell>
-    </group>
+    </group> 
     <group gutter="0">
       <!-- <cell title="我的下载" link="myDownload">
         <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
@@ -27,7 +27,7 @@
         <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
         <badge v-if="News.correct || News.system"></badge>
       </cell>
-      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.4.0'" is-link @click.native="_openStore">
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.5.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
       </cell>
