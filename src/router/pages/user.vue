@@ -37,7 +37,7 @@
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Badge} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'user',
@@ -48,15 +48,9 @@ export default {
     ...mapGetters(['User', 'System', 'News'])
   },
   methods: {
-    ...mapActions(['getUserNews']),
     _openStore () {
       window.location.href = 'market://details?id=com.sanbao.guinaben.teacher'
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.getUserNews()
-    })
   }
 }
 </script>

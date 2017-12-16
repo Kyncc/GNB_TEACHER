@@ -4,9 +4,17 @@
     </x-header>
     <div>
       <group v-for="(aitem, index) in chapter" :key="index" style="margin-bottom:.5rem" :gutter="0">
-        <cell :title="aitem.name" :style=" _getColor(aitem)" @click.native='_toNumberPage(aitem)'></cell>
+        <cell :title="aitem.name" :style=" _getColor(aitem)" @click.native='_toNumberPage(aitem)'>
+          <div class="badge-value" v-if='aitem.isNews'>
+            <badge></badge>
+          </div>
+        </cell>
         <template v-for="(b, pindex) in aitem.b" >
-          <cell :title="b.name" :style="_getColor(b)" @click.native='_toNumberPage(b)' :key='pindex'></cell>
+          <cell :title="b.name" :style="_getColor(b)" @click.native='_toNumberPage(b)' :key='pindex'>
+            <div class="badge-value" v-if='b.isNews'>
+              <badge></badge>
+            </div>
+          </cell>
         </template>
       </group>
       <div style="text-align:center">
@@ -16,13 +24,13 @@
   </view-box>
 </template>
 <script>
-import {XHeader, ViewBox, Group, Cell, Spinner} from 'vux'
+import {Badge, XHeader, ViewBox, Group, Cell, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'chapter',
   components: {
-    XHeader, ViewBox, Group, Cell, Spinner
+    Badge, XHeader, ViewBox, Group, Cell, Spinner
   },
   computed: {
     ...mapGetters(['workbookChapter', 'Route']),
@@ -58,18 +66,16 @@ export default {
     }
   },
   activated () {
-    if (this.workbookChapter.isReset) {
-      this.loading = true
-      this.getWorkbookChapter().then(() => {
-        this.loading = false
-      }).then(() => {
-        this.$nextTick(() => {
-          this.$refs.viewBox.scrollTo(this.workbookChapter.scroll)
-        })
+    // if (this.workbookChapter.isReset) {
+    this.loading = true
+    this.getWorkbookChapter().then(() => {
+      this.loading = false
+    }).then(() => {
+      this.$nextTick(() => {
+        this.$refs.viewBox.scrollTo(this.workbookChapter.scroll)
       })
-    } else {
-      this.$refs.viewBox.scrollTo(this.workbookChapter.scroll)
-    }
+    })
+    // }
   },
   beforeRouteEnter (to, from, next) {
     // 选择练习本进来清空数据
@@ -88,3 +94,8 @@ export default {
   }
 }
 </script>
+<style lang="less">
+.badge-value {
+  display: inline-block!important;
+}
+</style>

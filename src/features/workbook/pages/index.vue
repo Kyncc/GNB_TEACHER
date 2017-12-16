@@ -15,6 +15,9 @@
       <group v-for="(textbook, pindex) in workbook.list.textbook" :key='pindex' :title="textbook.textbookName">
         <cell v-for="(workbook, index) in textbook.list" v-if='workbook.state' :key="index" is-link @click.native="$router.push({ name: 'workbook_chapter', params: {'workbookId': workbook.workbookId ,'name': workbook.workbookName}})">
           <img v-lazy='workbook.img.url+"?imageMogr2/auto-orient/thumbnail/180x240!/format/jpg/interlace/1/blur/1x0/quality/100|imageslim"' slot="icon" width="60" height="80">
+          <div class="badge-value" v-if='workbook.news'>
+            <badge></badge>
+          </div>
           <div slot="after-title" style="width:90%;">
             <p style="color:#4cc0be;font-size:14px;">&nbsp;&nbsp;&nbsp;{{workbook.year}}版</p>
             <p class="ellipsis" style="font-size:.9rem;padding:.2rem 0">&nbsp;&nbsp;{{workbook.workbookName}}</p>
@@ -28,7 +31,7 @@
       </group>
       <div style="text-align:center;padding:20px 0;">
         <spinner v-if="loading" type="dots"></spinner>
-        <p v-else-if="User.classes.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;" @click="$router.push({name: 'class_add'})">
+        <p v-else-if="!User.classes || User.classes.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;" @click="$router.push({name: 'class_add'})">
           没有学生？请点击<span style='color:#4cc0be'>创建班级</span>，并邀请学生加入班级
         </p>
         <p v-else-if="workbook.list.textbook && workbook.list.textbook.length === 0" style="font-size:16px;color:#666;padding:0 2rem;text-align:left;">没有习题册？请让学生到学生端添加习题册</p>
@@ -38,13 +41,13 @@
 </template>
 <script>
 import { Popup } from 'mint-ui'
-import {XHeader, Cell, Group, ViewBox, Spinner, Tabbar, TabbarItem, XButton} from 'vux'
+import {Badge, XHeader, Cell, Group, ViewBox, Spinner, Tabbar, TabbarItem, XButton} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'workbook',
   components: {
-    XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem, 'mt-popup': Popup
+    Badge, XHeader, Cell, Group, ViewBox, Spinner, XButton, Tabbar, TabbarItem, 'mt-popup': Popup
   },
   computed: {
     ...mapGetters(['workbook', 'User', 'workbookOptions'])
@@ -66,26 +69,24 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name === 'workbook_options' || from.name === 'workbook_update') {
-        vm._getData()
-      } else {
-        vm.$refs.viewBox.scrollTo(vm.workbook.scroll)
-      }
+      // if (from.name === 'workbook_options' || from.name === 'workbook_update') {
+      //   vm._getData()
+      // } else {
+      //   vm.$refs.viewBox.scrollTo(vm.workbook.scroll)
+      // }
+      vm.getWorkbookOptions().then(() => {
+        if (!Number(vm.workbookOptions.textbookId)) {
+          vm.$router.push({name: 'workbook_options'})
+        } else {
+          vm._getData()
+        }
+      })
     })
   },
   beforeRouteLeave (to, from, next) {
     this.setWorkbookScroll(this.$refs.viewBox.getScrollTop())
     this.visible = false
     next()
-  },
-  created () {
-    this.getWorkbookOptions().then(() => {
-      if (!Number(this.workbookOptions.textbookId)) {
-        this.$router.push({name: 'workbook_options'})
-      } else {
-        this._getData()
-      }
-    })
   }
 }
 </script>

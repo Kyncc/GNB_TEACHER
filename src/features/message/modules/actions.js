@@ -44,10 +44,9 @@ export const getMessageCorrect = ({ rootState, commit }, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'message',
+      url: 'message/correct',
       params: {
-        token: rootState.common.user.token,
-        type: 'correct'
+        token: rootState.common.user.token
       }
     }).then((response) => {
       commit(types.MESSAGE_CORRECT, response.data.data)

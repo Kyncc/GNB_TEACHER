@@ -10,7 +10,8 @@ const state = {
   news: {
     classes: false,
     correct: false,
-    system: false
+    system: false,
+    workbook: false
   },
   user: {
     version: '',
