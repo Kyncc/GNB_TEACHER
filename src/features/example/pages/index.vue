@@ -19,7 +19,7 @@
     <card v-show='!loading'>
       <div slot="header" class="weui-panel__hd">
         <flexbox>
-          <flexbox-item :span="10" style="color:#4bb7aa">{{Params.type === 'lxexercises' ? '练习题' : Route.query.name}}</flexbox-item>
+          <flexbox-item :span="10" style="color:#4bb7aa">{{Params.type === 'lxexercises' ? '练习题' : Example.chapterName}}</flexbox-item>
         </flexbox>
       </div>
       <div slot="content">
