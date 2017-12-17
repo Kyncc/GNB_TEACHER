@@ -2,27 +2,35 @@
   <div>
     <div v-for="(item, pindex) in exercise" :key='pindex'>
       <!--2级别练习册-->
-      <template v-if="item.b[0].type == '1'">
-        <group v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
-          <cell v-for="(itemC, index) in itemB.c" :title="itemC.name" :key="itemC.id">
-            <p slot="default" @click="_goErrorPhoto(itemC)">
-              <section style="display:inline-block;color:#FFC452">
-                错{{itemC.number}}人
-              </section>
-            </p>
-          </cell>
+      <template v-if="item.b[0] && item.b[0].type == '1' ">
+        <group v-for="itemB in item.b" :title="itemB.name" :key="itemB.id">
+          <card v-for="itemC in itemB.c" :key="itemC.id" @click.native="show(itemC.img)">
+            <div slot="content">
+              <div><img v-lazy="itemC.img.url+'-errorList'"/></div>
+            </div>
+            <div slot="footer">
+              <div class="weui-cell weui-cell_link" style='padding:.6rem'>
+                <div class="weui-cell__bd">错{{itemC.number}}人</div>
+              </div>
+            </div>
+          </card>
         </group>
       </template>
       <!--3级别练习册-->
-      <template v-else-if="item.b[0].type == '2'">
+      <template v-else-if="item.b[0] && item.b[0].type == '2'">
         <group :title="item.name">
-          <cell v-for="(itemB, index) in item.b" :title="itemB.name" :key="itemB.id">
-            <div slot="default" @click="_goErrorPhoto(itemB)">
-              <section style="display:inline-block;color:#FFC452">
-                 错{{itemB.number}}人
-              </section>
+          <card v-for="itemB in item.b" :key="itemB.id" @click.native="show(itemB.img)">
+            <div slot="content">
+              <div>
+                <img v-lazy="itemB.img.url+'-errorList'"/>
+              </div>
             </div>
-          </cell>
+            <div slot="footer">
+              <div class="weui-cell weui-cell_link" style='padding:.6rem'>
+                <div class="weui-cell__bd">错{{itemB.number}}人</div>
+              </div>
+            </div>
+          </card>
         </group>
       </template>
     </div>
@@ -42,17 +50,21 @@
         </tabbar-item>
       </tabbar>
     </div>
+    <!--照片放大 -->
+    <div v-transfer-dom>
+      <previewer :list="list" ref="previewer" :options="options"></previewer>
+    </div>
   </div>
 </template>
 
 <script>
-import {Tabbar, TabbarItem, Group, Cell, Flexbox, FlexboxItem, XButton, TransferDomDirective as TransferDom} from 'vux'
+import {Tabbar, TabbarItem, Group, Cell, Card, Flexbox, FlexboxItem, XButton, Previewer, TransferDomDirective as TransferDom} from 'vux'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'number',
   components: {
-    Tabbar, TabbarItem, Group, Cell, XButton, Flexbox, FlexboxItem
+    Tabbar, TabbarItem, Group, Cell, XButton, Flexbox, FlexboxItem, Card, Previewer
   },
   computed: {
     ...mapGetters(['Route', 'workbookExercise']),
@@ -61,6 +73,21 @@ export default {
     },
     isRead () {
       return this.workbookExercise.list.isRead
+    }
+  },
+  data () {
+    return {
+      list: [{
+        w: 0,
+        h: 0,
+        src: ``
+      }],
+      options: {
+        preload: [1, 1],
+        bgOpacity: 1,
+        fullscreenEl: false,
+        history: true
+      }
     }
   },
   directives: {
@@ -77,6 +104,14 @@ export default {
       } else {
         this.$vux.toast.show({text: '暂无学生错误', type: 'text', time: 1000, position: 'bottom'})
       }
+    },
+    show (img) {
+      this.list[0].w = img.width
+      this.list[0].h = img.height
+      this.list[0].src = img.url
+      this.$nextTick(() => {
+        this.$refs.previewer.show(0)
+      })
     }
   }
   // activated () {
@@ -88,3 +123,8 @@ export default {
   // }
 }
 </script>
+<style scoped>
+.weui-panel{
+  margin-top:-1px !important;
+}
+</style>

@@ -44,11 +44,13 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.getUserNews()
+      return (async () => {
+        if (!vm.User.name) {
+          await vm.getUserInfo()
+        }
+        await vm.getUserNews()
+      })()
     })
-  },
-  created () {
-    this.getUserInfo()
   }
 }
 </script>
