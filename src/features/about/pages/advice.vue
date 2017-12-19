@@ -42,7 +42,7 @@ export default {
           contact: this.contact
         }).then(() => {
           setTimeout(() => {
-            this.$router.push('adviceHistory')
+            this.$router.go(-1)
           }, 300)
         })
       } else {
