@@ -84,7 +84,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getDownloadUpdate', 'getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper', 'getDownloadVaild', 'clearAssembleExample', 'clearAssembleChoice', 'setMyDownloadPaperUp', 'setMyDownloadPaperDown', 'setMyDownloadPaperDel']),
+    ...mapActions(['clearAssembleExample', 'getDownloadUpdate', 'getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper', 'clearAssembleChoice', 'setMyDownloadPaperUp', 'setMyDownloadPaperDown', 'setMyDownloadPaperDel']),
     _getData () {
       this.clearMyDownloadPaper()
       this.loading = true
@@ -100,12 +100,10 @@ export default {
     _download () {
       return (async () => {
         try {
-          await this.getDownloadVaild()
-          await this.getDownloadUpdate().then((res) => {
+          await this.getDownloadUpdate({id: this.downloadId}).then((res) => {
             this.share.href = res.data.data.url
             this.showAction = true
           })
-          // 'http://www.guinaben.com/upload/assembly/'+downloadId+'.pdf'"
         } catch (err) {
           this.showAction = false
         }
@@ -113,6 +111,7 @@ export default {
     },
     _shareSuccess () {
       this._getData()
+      this.clearMyDownloadPaper()
       this.clearAssembleExample()
       this.$router.go(-1)
     }

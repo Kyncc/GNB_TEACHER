@@ -40,7 +40,7 @@ export const getDownloadUpdate = ({ rootState, state, commit }, params) => {
       url: 'download/update/v2',
       data: {
         token: rootState.common.user.token,
-        downloadId: rootState.route.params.id,
+        downloadId: params.id,
         ids: ids
       }
     }).then((response) => {
