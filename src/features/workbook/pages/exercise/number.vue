@@ -10,7 +10,7 @@
             </div>
             <div slot="footer">
               <div class="weui-cell weui-cell_link" style='padding:.6rem'>
-                <div class="weui-cell__bd">错{{itemC.number}}人</div>
+                <div class="weui-cell__bd" style='color:#feaa85'>错{{itemC.number}}人</div>
               </div>
             </div>
           </card>
@@ -27,7 +27,7 @@
             </div>
             <div slot="footer">
               <div class="weui-cell weui-cell_link" style='padding:.6rem'>
-                <div class="weui-cell__bd">错{{itemB.number}}人</div>
+                <div class="weui-cell__bd" style='color:#feaa85'>错{{itemB.number}}人</div>
               </div>
             </div>
           </card>

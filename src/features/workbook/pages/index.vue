@@ -1,6 +1,6 @@
 <template>
   <view-box ref="viewBox" body-padding-top="46px">
-    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '批改作业',showBack: true}">
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '查看错题',showBack: true}">
     <div slot="right" >
       <i class="icon iconfont icon-6" style="padding:8px;font-size:28px;top:2px;right:-15px;" @click='visible = true'></i>
       <div class="gnb-changeClass">

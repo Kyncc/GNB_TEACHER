@@ -8,7 +8,7 @@
         v-model="type"
         :max="4"
         type="checkbox"
-        default-item-class="select-item"
+        default-item-class="select-item"            
         selected-item-class="select-item-selected">
           <checker-item value="题干有误">题干有误</checker-item>
           <checker-item value="答案有误">答案有误</checker-item>
