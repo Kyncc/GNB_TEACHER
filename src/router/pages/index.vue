@@ -9,7 +9,7 @@
       </swiper-item>
     </swiper>
     <flexbox style='height:6.3rem' :gutter='0'>
-      <flexbox-item :span="4" @click.native="$router.push({ name: 'workbook'})" class='workbook'></flexbox-item>
+      <flexbox-item :span="4" @click.native="$router.push({ name: 'workbook'})" :class="News.workbook ? 'workbookMsg' : 'workbook'"></flexbox-item>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'statistics'})" class='statistics'></flexbox-item>
       <flexbox-item :span="4" @click.native="$router.push({ name: 'homework'})" class='homework'></flexbox-item>
     </flexbox>
@@ -31,7 +31,7 @@ export default {
     XHeader, ViewBox, XButton, Swiper, SwiperItem, Flexbox, FlexboxItem
   },
   computed: {
-    ...mapGetters(['User']),
+    ...mapGetters(['User', 'News']),
     list () {
       return this.User.swiper.map((item, index) => ({
         url: `/article/${item.id}`,
@@ -40,10 +40,17 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getUserInfo'])
+    ...mapActions(['getUserInfo', 'getUserNews'])
   },
-  created () {
-    this.getUserInfo()
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      return (async () => {
+        if (!vm.User.name) {
+          await vm.getUserInfo()
+        }
+        await vm.getUserNews()
+      })()
+    })
   }
 }
 </script>

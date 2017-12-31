@@ -15,9 +15,16 @@
           <div slot="footer">
             <div class="weui-cell weui-cell_link">
               <div class="weui-cell__bd">
-                <flexbox :gutter='0'>
-                  <flexbox-item :span="3">难度：{{item.degree}}</flexbox-item>
-                  <flexbox-item :span="7">时间：{{item.time | ymd}}</flexbox-item>
+                <flexbox>
+                  <flexbox-item :span="4" class='center' @click.native='setMyDownloadPaperUp({pindex:pindex, index:index})'>
+                    <i class="icon iconfont icon-up"></i>上移
+                  </flexbox-item>
+                  <flexbox-item :span="4" class='center' @click.native='setMyDownloadPaperDown({pindex:pindex, index:index})'>
+                    <i class="icon iconfont icon-down"></i>下移
+                  </flexbox-item>
+                  <flexbox-item :span="4" class='center' @click.native='setMyDownloadPaperDel({pindex:pindex, index:index})'>
+                    <i class="icon iconfont icon-lajitong16"></i>删除
+                  </flexbox-item>
                 </flexbox>
               </div>
             </div>
@@ -31,16 +38,13 @@
       </div>
       <share :change.sync='showAction' :showAction='showAction' :content='share.content'
         :title='share.title'
-        :href="'http://www.guinaben.com/upload/assembly/'+downloadId+'.pdf'"
+        :href='share.href'
         @on-share-success='_shareSuccess()'>
       </share>
     </div>
     <tabbar slot="bottom" style='background-color:#4cc0be;color:#fff' v-show='block && block.length'>
       <flexbox style='padding:.3rem;'>
-        <flexbox-item :span="6" style="font-size:.8rem;text-align:center;"
-          @click.native="$router.push({name: 'download_update', params: {id: downloadId}})">
-          <i class="icon iconfont icon-bianji"></i>编辑</flexbox-item>
-        <flexbox-item :span="6" style="font-size:.8rem;text-align:center;" @click.native="_download()">
+        <flexbox-item :span="12" style="font-size:.8rem;text-align:center;" @click.native="_download()">
           <i class="icon iconfont icon-download"></i>下载</flexbox-item>
       </flexbox>
     </tabbar>
@@ -73,13 +77,14 @@ export default {
       error: false,
       showAction: false,
       share: {
+        href: '',
         content: '试卷分享',
         title: '我的组卷'
       }
     }
   },
   methods: {
-    ...mapActions(['getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper', 'getDownloadVaild', 'clearAssembleExample', 'clearAssembleChoice']),
+    ...mapActions(['clearAssembleExample', 'getDownloadUpdate', 'getDownloadList', 'getDownloadUrl', 'setMyDownloadPaperScroll', 'clearMyDownloadPaper', 'clearAssembleChoice', 'setMyDownloadPaperUp', 'setMyDownloadPaperDown', 'setMyDownloadPaperDel']),
     _getData () {
       this.clearMyDownloadPaper()
       this.loading = true
@@ -95,8 +100,10 @@ export default {
     _download () {
       return (async () => {
         try {
-          await this.getDownloadVaild()
-          this.showAction = true
+          await this.getDownloadUpdate({id: this.downloadId}).then((res) => {
+            this.share.href = res.data.data.url
+            this.showAction = true
+          })
         } catch (err) {
           this.showAction = false
         }
@@ -104,6 +111,7 @@ export default {
     },
     _shareSuccess () {
       this._getData()
+      this.clearMyDownloadPaper()
       this.clearAssembleExample()
       this.$router.go(-1)
     }
@@ -131,5 +139,8 @@ export default {
 <style scoped>
 .popup .vux-cell-box:before{
   border-top:0px !important;
+}
+.center{
+  text-align: center;
 }
 </style>

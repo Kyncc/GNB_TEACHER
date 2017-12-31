@@ -9,11 +9,8 @@
         <div slot="after-title" style='color:#fff;'>{{User.name}}</div>
         <div slot="inline-desc" style='color:#fff;padding-top:.25rem'>{{User.mobile}}</div>
       </cell>
-    </group>
+    </group> 
     <group gutter="0">
-      <!-- <cell title="我的下载" link="myDownload">
-        <i class="icon iconfont icon-yduixiazai" style="color:#4cc0be" slot="icon"></i>
-      </cell> -->
       <cell title="我的积分" link="points">
         <i class="icon iconfont icon-wodejifen" style="color:#4cc0be;margin-left:-1px;" slot="icon"></i>
       </cell>
@@ -27,7 +24,7 @@
         <i class="icon iconfont icon-comment2" style="color:#4cc0be" slot="icon"></i>
         <badge v-if="News.correct || News.system"></badge>
       </cell>
-      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.4.0'" is-link @click.native="_openStore">
+      <cell title="版本更新" v-if="System != 'IOS' && User.version !== '3.5.0'" is-link @click.native="_openStore">
         <i class="icon iconfont icon-gengxin" style="color:#4cc0be" slot="icon"></i>
         <badge></badge>
       </cell>
@@ -37,7 +34,7 @@
 
 <script>
 import {XHeader, Cell, Group, ViewBox, Badge} from 'vux'
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'user',
@@ -48,15 +45,9 @@ export default {
     ...mapGetters(['User', 'System', 'News'])
   },
   methods: {
-    ...mapActions(['getUserNews']),
     _openStore () {
       window.location.href = 'market://details?id=com.sanbao.guinaben.teacher'
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.getUserNews()
-    })
   }
 }
 </script>

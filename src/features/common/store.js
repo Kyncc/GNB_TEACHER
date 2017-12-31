@@ -10,7 +10,8 @@ const state = {
   news: {
     classes: false,
     correct: false,
-    system: false
+    system: false,
+    workbook: false
   },
   user: {
     version: '',
@@ -80,6 +81,7 @@ const mutations = {
     state.news.classes = data.classes
     state.news.correct = data.correct
     state.news.system = data.system
+    state.news.workbook = data.workbook
   },
   [types.SWIPER_INFO] (state, data) {
     state.article.title = data.title

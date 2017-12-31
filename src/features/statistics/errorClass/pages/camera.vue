@@ -16,11 +16,8 @@
         <div class="weui-cell weui-cell_link" style='padding:5px 15px'>
            <div class="weui-cell__bd">
             <flexbox :gutter='0'>
-              <flexbox-item :span="4">
+              <flexbox-item :span="8">
                 错误学生: {{error.studentName}}
-              </flexbox-item>
-              <flexbox-item :span="4">
-                <!-- 更新: {{error.time | ymd}} -->
               </flexbox-item>
               <flexbox-item :span="4" style='text-align:right;' @click.native="setStatisticsCameraAssembleUpdate({id: error.id, index: index})">
                 <i v-if='error.isAssembly' class="icon iconfont icon-correct" style="color:#4cc0be;margin-right:1rem;"></i>

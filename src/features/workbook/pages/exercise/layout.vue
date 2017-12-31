@@ -1,12 +1,12 @@
 <template>
-  <view-box ref="workbook" body-padding-top="90px">
+  <view-box ref="workbook" body-padding-top="46px">
     <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" >
       <x-header :left-options="{backText: Route.params.name}">
         <div slot="right" style="margin:0">
           <gnbChangeClass :change.sync='selectedClass' :classList='workbookChapter.classList'></gnbChangeClass>
         </div>
       </x-header>
-      <tab :animate="false">
+      <!-- <tab :animate="false">
         <tab-item :selected="Route.name === 'workbook_exercise_number'"
           @click.native="$router.replace({name:'workbook_exercise_number'})">
           作业统计
@@ -15,7 +15,7 @@
           @click.native="$router.replace({name:'workbook_exercise_photo'})">
           批改作业
         </tab-item>
-      </tab>
+      </tab> -->
     </div>
     <div>
       <keep-alive>

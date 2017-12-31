@@ -62,8 +62,7 @@
         ├── workbook    # 查答案
         ├── correct     # 纠错
         ├── example     # 例题
-        ├── error       # 查看错题
-        ├── workbook    # 批改作业
+        ├── workbook    # 查看错题
         ├── myclass     # 我的班级
         ├── statistics  # 错题统计
           ├── error          # 同学错题

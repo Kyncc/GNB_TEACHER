@@ -190,6 +190,7 @@ export const getWorkbookExercisePhoto = ({state, rootState, commit}, params) => 
 
 /** 提交练习数据已阅 */
 export const setWorkbookExerciseRead = ({state, rootState, commit}) => {
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
@@ -200,10 +201,12 @@ export const setWorkbookExerciseRead = ({state, rootState, commit}) => {
         classCode: state.exercise.classCode
       }
     }).then((response) => {
+      Vue.$vux.loading.hide()
       Vue.$vux.toast.show({text: '已阅成功', type: 'text', time: 1000, position: 'bottom'})
       commit(types.WORKBOOK_EXERCISE_READ)
       resolve(response)
     }).catch((err) => {
+      Vue.$vux.loading.hide()
       reject(err)
     })
   })

@@ -11,7 +11,8 @@ let state = {
   remember: {
     index: {
       options: {
-        degree: 0
+        degree: 0,
+        type: 0
       },
       scroll: 0,
       list: [],

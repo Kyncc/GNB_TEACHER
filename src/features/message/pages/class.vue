@@ -3,8 +3,8 @@
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:1;" :left-options="{backText: '班级通知'}"></x-header>
     <div v-if="!loading" class="messageSection">
       <section v-for="(item, index) in messageClassList" :key='index'>
-        <h3>{{item.time | ymd}}</h3>
-        <article>{{item.content}}</article>
+        <h3>{{ item.time | ymd }}</h3>
+        <article>{{ item.content }}</article>
       </section>
     </div>
     <div style="text-align:center">
@@ -13,6 +13,7 @@
     </div>
   </view-box>
 </template>
+
 <script>
 import {XHeader, ViewBox, Spinner} from 'vux'
 import {mapActions, mapGetters} from 'vuex'

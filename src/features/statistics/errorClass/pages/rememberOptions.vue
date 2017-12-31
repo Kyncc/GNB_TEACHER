@@ -13,6 +13,15 @@
         <checker-item value="3">3</checker-item>
       </checker>
     </div>
+    <div style='padding:10px;'>
+      <span class='searchtitle'>题型：</span>
+      <checker style='padding-left:.5rem;' v-model="type" default-item-class="demo4-item" selected-item-class="demo4-item-selected" disabled-item-class="demo4-item-disabled">
+        <checker-item value="0">不限</checker-item>
+        <checker-item value="1">选择题</checker-item>
+        <checker-item value="2">填空题</checker-item>
+        <checker-item value="3">解答题</checker-item>
+      </checker>
+    </div>
   </view-box>
 </template>
 <script>
@@ -29,7 +38,8 @@ export default {
   },
   data () {
     return {
-      degree: ''
+      degree: '',
+      type: ''
     }
   },
   methods: {
@@ -37,11 +47,12 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.degree = vm.ErrorclassRemember.index.options.degree.toString()
+      vm.degree = vm.ErrorclassRemember.index.options.degree + ''
+      vm.type = vm.ErrorclassRemember.index.options.type + ''
     })
   },
   beforeRouteLeave (to, from, next) {
-    this.setStatisticsRememberOptions({degree: this.degree})
+    this.setStatisticsRememberOptions({degree: this.degree, type: this.type})
     next()
   }
 }
